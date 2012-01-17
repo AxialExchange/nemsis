@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+require "nemsis"
+
+require 'rubygems'
+require 'ruby-debug'
+
+$LOAD_PATH.unshift File.expand_path('..', __FILE__)
+require 'mappings'
+
+class Main
+  include Mapping
+
+  def self.run
+    sample_xml_file = File.expand_path('../../data/sample.xml', __FILE__)
+    xml_str = File.read(sample_xml_file)
+
+    parser = Nemsis::Parser.new(xml_str)
+    parser.parse
+
+    xpath = '//E01'
+
+    parser.find(xpath).children.each do |node|
+      puts "#{node.name}: #{node.text}"
+    end
+
+    puts mapping
+  end
+
+end
+
+Main.run
