@@ -54,85 +54,34 @@ module Mapping
             :is_mapped      => 'N',
             :comment        => 'Patient Number: 777777'
         },
-        # {
-          # this field is the title of E23_09
-        #     :name           => 'Patient Number',
-        #     :hl7_field      => 'PID.18.1',
-        #     :nemsis_field   => 'E23_11',
-        #     :allow_multiple => 'N',
-        #     :is_mapped      => 'N',
-        #     :comment        => '55555555'
-        # },
-        {
-            :name           => 'Medical Record Number',
-            :hl7_field      => 'PID.3.1',
-            :nemsis_field   => 'E23_09, E23_11"',
-            :allow_multiple => 'N',
-            :is_mapped      => 'N',
-            :comment        => '333333'
-        },
         {
             :name           => 'Receiving Facility',
             :hl7_field      => 'MSH.6',
-            :nemsis_field   => 'Map NEMSIS field E20_02 to WM location code in the comments section',
+            :nemsis_field   => 'E20_02',
             :allow_multiple => 'N',
             :is_mapped      => 'Y',
+            :map            => {'F00002506' => 'Raleigh',
+                                'F00002573' => 'Cary',
+                                'F00039974' => 'Brier Creek',
+                                'F00035879' => 'North',
+                                'F00035878' => 'Apex'},
             :comment        => '1 Raleigh Campus'
-        },
-        {
-            :name           => ' ',
-            :hl7_field      => ' ',
-            :nemsis_field   => 'F00002506 = Raleigh Campus',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
-            :comment        => '2 Cary Hospital'
-        },
-        {
-            :name           => ' ',
-            :hl7_field      => ' ',
-            :nemsis_field   => 'F00002573 = Cary',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
-            :comment        => 'M Brier Creek Healthplex'
-        },
-        {
-            :name           => ' ',
-            :hl7_field      => ' ',
-            :nemsis_field   => 'F00039974 = Brier Creek',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
-            :comment        => 'I Apex Healthplex'
-        },
-        {
-            :name           => ' ',
-            :hl7_field      => ' ',
-            :nemsis_field   => 'F00035879 = North',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
-            :comment        => 'N North Healthplex'
-        },
-        {
-            :name           => ' ',
-            :hl7_field      => ' ',
-            :nemsis_field   => 'F00035878 = Apex',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
-            :comment        => ''
         },
         {
             :name           => 'Receiving Application',
             :hl7_field      => 'MSH.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
+            :default_value  => 'HMED',
             :comment        => 'HMED'
         },
         {
             :name           => 'Sending Facility',
             :hl7_field      => 'MSH.4',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => 'AXIAL'
         },
         {

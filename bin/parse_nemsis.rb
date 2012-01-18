@@ -21,6 +21,7 @@ class Main
     maps = Mapping.mapping
     maps.each do |map|
       name = map[:name]
+      # debugger if name == 'Receiving Application'
       if name == 'custom' && !map[:nemsis_title_field].nil? && 
                              !map[:nemsis_value_field].nil?
 
@@ -33,7 +34,7 @@ class Main
           puts "#{field_name} [#{map[:nemsis_value_field]}]:[#{field_value}]"
         end
 
-      else
+      elsif !map[:nemsis_field].nil? && map[:nemsis_field].gsub(/\s*/, '').size > 0
         nemsis_fields = map[:nemsis_field].split(/\s*\+\s*/)
 
         values = []
@@ -49,6 +50,8 @@ class Main
         end
 
         puts "#{name} [#{nemsis_fields.join('+')}]: [#{values.join(' ')}]"
+      else
+        puts "#{name} [default]: [#{map[:default_value]}]"
       end
     end
 
