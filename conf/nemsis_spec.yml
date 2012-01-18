@@ -10,7 +10,7 @@ D01_01:
 D01_02:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values: {}
   is_multi_entry: 0
   name: EMS AGENCY NAME
@@ -179,7 +179,7 @@ D01_17:
 D01_18:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   field_values: {}
   is_multi_entry: 1
   name: EMS BILLABLE CALLS PER YEAR
@@ -203,7 +203,7 @@ D01_19:
 D01_20:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     0: No
     1: Yes
@@ -226,7 +226,7 @@ D01_21:
 D02_01:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values: {}
   is_multi_entry: 0
   name: AGENCY CONTACT LAST NAME
@@ -234,7 +234,7 @@ D02_01:
 D02_02:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -247,7 +247,7 @@ D02_02:
 D02_03:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -260,7 +260,7 @@ D02_03:
 D02_04:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -307,7 +307,7 @@ D02_07:
 D02_08:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -320,7 +320,7 @@ D02_08:
 D02_09:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -333,7 +333,7 @@ D02_09:
 D02_10:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -346,7 +346,7 @@ D02_10:
 D02_11:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -359,7 +359,7 @@ D02_11:
 D03_01:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values: {}
   is_multi_entry: 0
   name: AGENCY MEDICAL DIRECTOR LAST NAME
@@ -367,7 +367,7 @@ D03_01:
 D03_02:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -380,7 +380,7 @@ D03_02:
 D03_03:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -393,7 +393,7 @@ D03_03:
 D03_04:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -432,7 +432,7 @@ D03_06:
 D03_07:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values: {}
   is_multi_entry: 0
   name: AGENCY MEDICAL DIRECTOR ZIP CODE
@@ -440,7 +440,7 @@ D03_07:
 D03_08:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -453,7 +453,7 @@ D03_08:
 D03_09:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -490,7 +490,7 @@ D03_10:
 D03_11:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -788,7 +788,7 @@ D04_11:
 D04_12:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -809,7 +809,7 @@ D04_13:
 D04_14:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -847,7 +847,7 @@ D04_16:
 D04_17:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values: {}
   is_multi_entry: 0
   name: EMD VENDOR
@@ -855,7 +855,7 @@ D04_17:
 D05_01:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values: {}
   is_multi_entry: 1
   name: STATION NAME
@@ -863,7 +863,7 @@ D05_01:
 D05_02:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -876,7 +876,7 @@ D05_02:
 D05_03:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values: {}
   is_multi_entry: 1
   name: STATION ZONE
@@ -884,7 +884,7 @@ D05_03:
 D05_04:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values: {}
   is_multi_entry: 1
   name: STATION GPS
@@ -892,7 +892,7 @@ D05_04:
 D05_05:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -931,7 +931,7 @@ D05_07:
 D05_08:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values: {}
   is_multi_entry: 1
   name: STATION ZIP
@@ -939,7 +939,7 @@ D05_08:
 D05_09:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -952,7 +952,7 @@ D05_09:
 D06_01:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values: {}
   is_multi_entry: 1
   name: UNIT/VEHICLE NUMBER
@@ -994,7 +994,7 @@ D06_04:
 D06_05:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   field_values: {}
   is_multi_entry: 1
   name: NUMBER OF EACH PERSONNEL LEVEL ON THE VEHICLE CREW
@@ -1002,7 +1002,7 @@ D06_05:
 D06_06:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   field_values: {}
   is_multi_entry: 1
   name: VEHICLE INITIAL COST
@@ -1010,7 +1010,7 @@ D06_06:
 D06_07:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   field_values: {}
   is_multi_entry: 1
   name: VEHICLE MODEL YEAR
@@ -1018,7 +1018,7 @@ D06_07:
 D06_08:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: date/time
   field_values: {}
   is_multi_entry: 1
   name: YEAR MILES/HOURS ACCRUED
@@ -1026,7 +1026,7 @@ D06_08:
 D06_09:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -1039,7 +1039,7 @@ D06_09:
 D06_10:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -1052,7 +1052,7 @@ D06_10:
 D07_01:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values: {}
   is_multi_entry: 1
   name: PERSONNEL'S AGENCY ID NUMBER
@@ -1060,7 +1060,7 @@ D07_01:
 D07_02:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values: {}
   is_multi_entry: 1
   name: STATE/LICENSURE ID NUMBER
@@ -1082,7 +1082,7 @@ D07_03:
 D07_04:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: date/time
   field_values: {}
   is_multi_entry: 1
   name: EMPLOYMENT STATUS DATE
@@ -1104,7 +1104,7 @@ D07_05:
 D07_06:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: date/time
   field_values: {}
   is_multi_entry: 1
   name: DATE OF PERSONNEL'S CERTIFICATION OR LICENSURE FOR AGENCY
@@ -1112,7 +1112,7 @@ D07_06:
 D08_01:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values: {}
   is_multi_entry: 1
   name: EMS PERSONNEL'S LAST NAME
@@ -1120,7 +1120,7 @@ D08_01:
 D08_02:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -1133,7 +1133,7 @@ D08_02:
 D08_03:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -1146,7 +1146,7 @@ D08_03:
 D08_04:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -1185,7 +1185,7 @@ D08_06:
 D08_07:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values: {}
   is_multi_entry: 1
   name: EMS PERSONNEL'S ZIP CODE
@@ -1193,7 +1193,7 @@ D08_07:
 D08_08:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -1206,7 +1206,7 @@ D08_08:
 D08_09:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -1219,7 +1219,7 @@ D08_09:
 D08_10:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -1232,7 +1232,7 @@ D08_10:
 D08_11:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: date
   field_values: {}
   is_multi_entry: 1
   name: EMS PERSONNEL'S DATE OF BIRTH
@@ -1308,7 +1308,7 @@ D08_16:
 D08_17:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: date/time
   field_values: {}
   is_multi_entry: 1
   name: STATE EMS CURRENT CERTIFICATION DATE
@@ -1316,7 +1316,7 @@ D08_17:
 D08_18:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: date/time
   field_values: {}
   is_multi_entry: 1
   name: INITIAL STATE CERTIFICATION DATE
@@ -1324,7 +1324,7 @@ D08_18:
 D08_19:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   field_values: {}
   is_multi_entry: 1
   name: TOTAL LENGTH OF SERVICE
@@ -1332,7 +1332,7 @@ D08_19:
 D08_20:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: date/time
   field_values: {}
   is_multi_entry: 1
   name: DATE LENGTH OF SERVICE DOCUMENTED
@@ -1340,7 +1340,7 @@ D08_20:
 D09_01:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values: {}
   is_multi_entry: 1
   name: DEVICE SERIAL NUMBER
@@ -1348,7 +1348,7 @@ D09_01:
 D09_02:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values: {}
   is_multi_entry: 1
   name: DEVICE NAME OR ID
@@ -1356,7 +1356,7 @@ D09_02:
 D09_03:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values: {}
   is_multi_entry: 1
   name: DEVICE MANUFACTURER
@@ -1364,7 +1364,7 @@ D09_03:
 D09_04:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values: {}
   is_multi_entry: 1
   name: MODEL NUMBER
@@ -1372,7 +1372,7 @@ D09_04:
 D09_05:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: date/time
   field_values: {}
   is_multi_entry: 1
   name: DEVICE PURCHASE DATE
@@ -1448,7 +1448,7 @@ E02_01:
 E02_02:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -1461,7 +1461,7 @@ E02_02:
 E02_03:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -1671,28 +1671,28 @@ E02_14:
 E02_15:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   is_multi_entry: 0
   name: VEHICLE DISPATCH GPS LOCATION
   node: E02_15
 E02_16:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 0
   name: BEGINNING ODOMETER READING OF RESPONDING VEHICLE
   node: E02_16
 E02_17:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 0
   name: ON-SCENE ODOMETER READING OF RESPONDING VEHICLE
   node: E02_17
 E02_19:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 0
   name: ENDING ODOMETER READING OF RESPONDING VEHICLE
   node: E02_19
@@ -1774,7 +1774,7 @@ E03_02:
 E03_03:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -1787,7 +1787,7 @@ E03_03:
 E04_01:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -1840,7 +1840,7 @@ E04_03:
 E05_01:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: date/time
   is_multi_entry: 0
   name: INCIDENT OR ONSET DATE/TIME
   node: E05_01
@@ -1854,7 +1854,7 @@ E05_02:
 E05_03:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: date/time
   is_multi_entry: 0
   name: DISPATCH NOTIFIED DATE/TIME
   node: E05_03
@@ -1889,7 +1889,7 @@ E05_07:
 E05_08:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: date/time
   is_multi_entry: 0
   name: TRANSFER OF PATIENT CARE DATE/TIME
   node: E05_08
@@ -1917,7 +1917,7 @@ E05_11:
 E05_12:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: date/time
   is_multi_entry: 0
   name: UNIT CANCELLED DATE/TIME
   node: E05_12
@@ -1931,7 +1931,7 @@ E05_13:
 E06_01:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -1944,7 +1944,7 @@ E06_01:
 E06_02:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -1957,7 +1957,7 @@ E06_02:
 E06_03:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -1970,7 +1970,7 @@ E06_03:
 E06_04:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -2048,7 +2048,7 @@ E06_09:
 E06_10:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -2134,14 +2134,14 @@ E06_15:
 E06_16:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: date
   is_multi_entry: 0
   name: DATE OF BIRTH
   node: E06_16
 E06_17:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -2167,7 +2167,7 @@ E06_18:
 E06_19:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -2215,7 +2215,7 @@ E07_02:
 E07_03:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -2244,7 +2244,7 @@ E07_04:
 E07_05:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -2283,7 +2283,7 @@ E07_07:
 E07_08:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -2296,7 +2296,7 @@ E07_08:
 E07_09:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -2309,7 +2309,7 @@ E07_09:
 E07_10:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -2322,7 +2322,7 @@ E07_10:
 E07_11:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -2335,7 +2335,7 @@ E07_11:
 E07_12:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -2348,7 +2348,7 @@ E07_12:
 E07_13:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -2451,7 +2451,7 @@ E07_17:
 E07_18:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -2464,7 +2464,7 @@ E07_18:
 E07_19:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -2477,7 +2477,7 @@ E07_19:
 E07_20:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -2490,7 +2490,7 @@ E07_20:
 E07_21:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -2529,7 +2529,7 @@ E07_23:
 E07_24:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -2542,7 +2542,7 @@ E07_24:
 E07_25:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -2574,7 +2574,7 @@ E07_26:
 E07_27:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -2587,7 +2587,7 @@ E07_27:
 E07_28:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -2626,7 +2626,7 @@ E07_30:
 E07_31:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -2639,7 +2639,7 @@ E07_31:
 E07_32:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -2760,7 +2760,7 @@ E07_35:
 E07_36:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -2848,7 +2848,7 @@ E08_03:
 E08_04:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: date/time
   is_multi_entry: 0
   name: DATE/TIME INITIAL RESPONDER ARRIVED ON SCENE
   node: E08_04
@@ -2911,7 +2911,7 @@ E08_07:
 E08_08:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -2937,14 +2937,14 @@ E08_09:
 E08_10:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   is_multi_entry: 0
   name: SCENE GPS LOCATION
   node: E08_10
 E08_11:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -3071,7 +3071,7 @@ E09_04:
 E09_05:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -3084,7 +3084,7 @@ E09_05:
 E09_06:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 0
   name: DURATION OF CHIEF COMPLAINT
   node: E09_06
@@ -3106,7 +3106,7 @@ E09_07:
 E09_08:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -3119,7 +3119,7 @@ E09_08:
 E09_09:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 0
   name: DURATION OF SECONDARY COMPLAINT
   node: E09_09
@@ -3456,7 +3456,7 @@ E10_05:
 E10_06:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     50: 'is passed, the location is designated "Cargo Area"'
   is_multi_entry: 0
@@ -3524,7 +3524,7 @@ E10_09:
 E10_10:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 0
   name: HEIGHT OF FALL
   node: E10_10
@@ -3677,7 +3677,7 @@ E11_08:
 E11_09:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: date/time
   is_multi_entry: 0
   name: DATE/TIME RESUSCITATION DISCONTINUED
   node: E11_09
@@ -3764,7 +3764,7 @@ E12_01:
 E12_02:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -3777,7 +3777,7 @@ E12_02:
 E12_03:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -3790,7 +3790,7 @@ E12_03:
 E12_04:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -3803,7 +3803,7 @@ E12_04:
 E12_05:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -3816,7 +3816,7 @@ E12_05:
 E12_06:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -3930,7 +3930,7 @@ E12_12:
 E12_13:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -3950,7 +3950,7 @@ E12_14:
 E12_15:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 1
   name: CURRENT MEDICATION DOSE
   node: E12_15
@@ -4065,7 +4065,7 @@ E12_20:
 E13_01:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -4078,7 +4078,7 @@ E13_01:
 E14_01:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: date/time
   is_multi_entry: 1
   name: DATE/TIME VITAL SIGNS TAKEN
   node: E14_01
@@ -4140,14 +4140,14 @@ E14_03:
 E14_04:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 1
   name: SBP (SYSTOLIC BLOOD PRESSURE)
   node: E14_04
 E14_05:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 1
   name: DBP (DIASTOLIC BLOOD PRESSURE)
   node: E14_05
@@ -4167,21 +4167,21 @@ E14_06:
 E14_07:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 1
   name: PULSE RATE
   node: E14_07
 E14_08:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 1
   name: ELECTRONIC MONITOR RATE
   node: E14_08
 E14_09:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 1
   name: PULSE OXIMETRY
   node: E14_09
@@ -4203,14 +4203,14 @@ E14_10:
 E14_11:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 1
   name: RESPIRATORY RATE
   node: E14_11
 E14_12:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -4228,21 +4228,21 @@ E14_12:
 E14_13:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 1
   name: CARBON DIOXIDE
   node: E14_13
 E14_14:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 1
   name: BLOOD GLUCOSE LEVEL
   node: E14_14
 E14_15:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   field_values:
     1: '= Does Not Open Eyes ● ● For All Age Groups:'
     2: '= Opens Eyes to painful ● stimulation ● For All Age Groups:'
@@ -4254,7 +4254,7 @@ E14_15:
 E14_16:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   field_values:
     -23: 'months:'
     1: '= None ● ● Patients >5 years:'
@@ -4268,7 +4268,7 @@ E14_16:
 E14_17:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   field_values:
     1: = None ● Patients up to
     2: = Extensor posturing in response response to painful stimulation to painful stimulation ● Patients up to
@@ -4299,14 +4299,14 @@ E14_18:
 E14_19:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 1
   name: TOTAL GLASGOW COMA SCORE
   node: E14_19
 E14_20:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 1
   name: TEMPERATURE
   node: E14_20
@@ -4343,7 +4343,7 @@ E14_22:
 E14_23:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 1
   name: PAIN SCALE
   node: E14_23
@@ -4385,21 +4385,21 @@ E14_25:
 E14_26:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 1
   name: APGAR
   node: E14_26
 E14_27:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 1
   name: REVISED TRAUMA SCORE
   node: E14_27
 E14_28:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 1
   name: PEDIATRIC TRAUMA SCORE
   node: E14_28
@@ -4670,7 +4670,7 @@ E15_11:
 E16_01:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 0
   name: ESTIMATED BODY WEIGHT
   node: E16_01
@@ -4699,7 +4699,7 @@ E16_02:
 E16_03:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: date/time
   is_multi_entry: 1
   name: DATE/TIME OF ASSESSMENT
   node: E16_03
@@ -5143,7 +5143,7 @@ E17_01:
 E18_01:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: date/time
   is_multi_entry: 1
   name: DATE/TIME MEDICATION ADMINISTERED
   node: E18_01
@@ -5215,7 +5215,7 @@ E18_04:
 E18_05:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 1
   name: MEDICATION DOSAGE
   node: E18_05
@@ -5293,7 +5293,7 @@ E18_08:
 E18_09:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -5323,7 +5323,7 @@ E18_10:
 E18_11:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -5336,7 +5336,7 @@ E18_11:
 E19_01:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: date/time
   is_multi_entry: 1
   name: DATE/TIME PROCEDURE PERFORMED SUCCESSFULLY
   node: E19_01
@@ -5371,7 +5371,7 @@ E19_03:
 E19_04:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -5461,7 +5461,7 @@ E19_08:
 E19_09:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -5491,7 +5491,7 @@ E19_10:
 E19_11:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -5579,7 +5579,7 @@ E19_14:
 E20_01:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -5592,7 +5592,7 @@ E20_01:
 E20_02:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -5605,7 +5605,7 @@ E20_02:
 E20_03:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -5670,7 +5670,7 @@ E20_07:
 E20_08:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   is_multi_entry: 0
   name: DESTINATION GPS LOCATION
   node: E20_08
@@ -5844,14 +5844,14 @@ E20_17:
 E21_01:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: date/time
   is_multi_entry: 1
   name: EVENT DATE/TIME
   node: E21_01
 E21_02:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -5886,7 +5886,7 @@ E21_02:
 E21_03:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     5200: JPG
     5205: PDF
@@ -5896,14 +5896,14 @@ E21_03:
 E21_04:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: binary
   is_multi_entry: 1
   name: WAVEFORM GRAPHIC
   node: E21_04
 E21_05:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     5210: Automated
     5215: Manual
@@ -5918,7 +5918,7 @@ E21_05:
 E21_06:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     5245: I
     5250: II
@@ -5939,14 +5939,14 @@ E21_06:
 E21_07:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   is_multi_entry: 1
   name: ECG INTERPRETATION
   node: E21_07
 E21_08:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     5310: Biphasic
     5315: Monophasic
@@ -5956,77 +5956,77 @@ E21_08:
 E21_09:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 1
   name: SHOCK OR PACING ENERGY
   node: E21_09
 E21_10:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 1
   name: TOTAL NUMBER OF SHOCKS DELIVERED
   node: E21_10
 E21_11:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 1
   name: PACING RATE
   node: E21_11
 E21_12:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 1
   name: DEVICE HEART RATE
   node: E21_12
 E21_13:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 1
   name: DEVICE PULSE RATE
   node: E21_13
 E21_14:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 1
   name: DEVICE SYSTOLIC BLOOD PRESSURE
   node: E21_14
 E21_15:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 1
   name: DEVICE DIASTOLIC BLOOD PRESSURE
   node: E21_15
 E21_16:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 1
   name: DEVICE RESPIRATORY RATE
   node: E21_16
 E21_17:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 1
   name: DEVICE PULSE OXIMETRY
   node: E21_17
 E21_18:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 1
   name: DEVICE CO2 OR ETCO2
   node: E21_18
 E21_19:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     5320: kPa
     5325: '% Volume'
@@ -6037,7 +6037,7 @@ E21_19:
 E21_20:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 1
   name: DEVICE INVASIVE PRESSURE MEAN
   node: E21_20
@@ -6082,7 +6082,7 @@ E22_02:
 E22_03:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -6095,7 +6095,7 @@ E22_03:
 E22_04:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -6108,7 +6108,7 @@ E22_04:
 E22_05:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -6121,7 +6121,7 @@ E22_05:
 E22_06:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -6270,7 +6270,7 @@ E23_08:
 E23_09:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -6283,7 +6283,7 @@ E23_09:
 E23_10:
   allow_null: 1
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   field_values:
     -10: Not Known
     -15: Not Reporting
@@ -6296,14 +6296,14 @@ E23_10:
 E23_11:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: text
   is_multi_entry: 1
   name: RESEARCH SURVEY FIELD TITLE
   node: E23_11
 VEHICLE E02_18:
   allow_null: 0
   data_entry_method: ~
-  data_type: ~
+  data_type: number
   is_multi_entry: 0
   name: PATIENT DESTINATION ODOMETER READING OF RESPONDING
   node: VEHICLE E02_18
