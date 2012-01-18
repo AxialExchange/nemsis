@@ -35,37 +35,34 @@ module Mapping
             :comment        => '19000101'
         },
         {
-            :name           => ' ',
-            :hl7_field      => ' ',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
-            :comment        => 'YYYYMMDD'
-        },
-        {
             :name           => 'Gender',
             :hl7_field      => 'PID.8, OBX.5"',
             :nemsis_field   => 'E06_11',
             :allow_multiple => 'N',
-            :is_mapped      => 'N',
+            :is_mapped      => 'Y',
+            :map            => {'650' => 'Male',
+                                '655' => 'Female'},
             :comment        => 'M or F'
         },
         {
-            :name           => 'ESO Armband ID',
+            :name           => 'custom',
             :hl7_field      => 'PID.2.1',
-            :nemsis_field   => 'E23_09, E23_11"',
+            :nemsis_field   => 'E23_09_0',
+            :nemsis_title_field   => 'E23_11',
+            :nemsis_value_field   => 'E23_09',
             :allow_multiple => 'N',
             :is_mapped      => 'N',
-            :comment        => '777777'
+            :comment        => 'Patient Number: 777777'
         },
-        {
-            :name           => 'Patient Number',
-            :hl7_field      => 'PID.18.1',
-            :nemsis_field   => 'E23_09, E23_11"',
-            :allow_multiple => 'N',
-            :is_mapped      => 'N',
-            :comment        => '55555555'
-        },
+        # {
+          # this field is the title of E23_09
+        #     :name           => 'Patient Number',
+        #     :hl7_field      => 'PID.18.1',
+        #     :nemsis_field   => 'E23_11',
+        #     :allow_multiple => 'N',
+        #     :is_mapped      => 'N',
+        #     :comment        => '55555555'
+        # },
         {
             :name           => 'Medical Record Number',
             :hl7_field      => 'PID.3.1',

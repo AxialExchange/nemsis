@@ -21,15 +21,35 @@ class Main
     maps = Mapping.mapping
     maps.each do |map|
       name = map[:name]
-      nemsis_fields = map[:nemsis_field].split(/\s*\+\s*/)
+      if name == 'custom' && !map[:nemsis_title_field].nil? && 
+                             !map[:nemsis_value_field].nil?
 
-      values = []
-      nemsis_fields.each do |field|
-        xpath = "//#{field}"
-        values << parser.find(xpath).first.text rescue nil
+        xpath = "//#{map[:nemsis_field]}"
+        nodes = parser.find(xpath)
+        nodes.each do |node|
+          field_name  = node.xpath(".//#{map[:nemsis_title_field]}").first.text
+          field_value = node.xpath(".//#{map[:nemsis_value_field]}").first.text
+
+          puts "#{field_name} [#{map[:nemsis_value_field]}]:[#{field_value}]"
+        end
+
+      else
+        nemsis_fields = map[:nemsis_field].split(/\s*\+\s*/)
+
+        values = []
+        nemsis_fields.each do |field|
+          xpath = "//#{field}"
+          value = parser.find(xpath).first.text rescue nil
+
+          if map[:is_mapped] == 'Y' && !map[:map].nil?
+            value = map[:map][value]
+          end
+
+          values << value
+        end
+
+        puts "#{name} [#{nemsis_fields.join('+')}]: [#{values.join(' ')}]"
       end
-
-      puts "#{name} [#{nemsis_fields.join('+')}]: [#{values.join(' ')}]"
     end
 
   end
