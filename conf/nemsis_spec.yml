@@ -1,0 +1,6309 @@
+---
+D01_01:
+  allow_null: 0
+  data_entry_method: National Element
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: EMS AGENCY NUMBER
+  node: D01_01
+D01_02:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 0
+  name: EMS AGENCY NAME
+  node: D01_02
+D01_03:
+  allow_null: 0
+  data_entry_method: multiple-choice National Element
+  data_type: combo
+  field_values:
+    2: digit FIPS code
+  is_multi_entry: 1
+  name: EMS AGENCY STATE
+  node: D01_03
+D01_04:
+  allow_null: 0
+  data_entry_method: multiple-choice National Element
+  data_type: combo
+  field_values:
+    5: digit FIPS code
+  is_multi_entry: 1
+  name: EMS AGENCY COUNTY
+  node: D01_04
+D01_05:
+  allow_null: 0
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    5630: Air Medical
+    5640: Hazmat
+    5650: Medical Transport (Convalescent)
+    5660: Paramedic Intercept
+    5670: Rescue
+    5680: Specialty Care Transport
+    911: Response (Scene) without Transport Capability
+  is_multi_entry: 0
+  name: PRIMARY TYPE OF SERVICE
+  node: D01_05
+D01_06:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    5710: Air Medical
+    5720: Hazmat
+    5730: Medical Transport (Convalescent)
+    5740: Paramedic Intercept
+    5750: Rescue
+    5760: Specialty Care Transport
+    911: Response (Scene) without Transport Capability
+  is_multi_entry: 1
+  name: OTHER TYPES OF SERVICE
+  node: D01_06
+D01_07:
+  allow_null: 0
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    6090: EMT-Basic
+    6100: EMT-Intermediate
+    6110: EMT-Paramedic
+    6111: Nurse
+    6112: Physician
+    6120: First Responder
+  is_multi_entry: 0
+  name: LEVEL OF SERVICE
+  node: D01_07
+D01_08:
+  allow_null: 0
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    5810: 'Community, Non-Profit'
+    5820: Fire Department
+    5830: 'Governmental, Non-Fire'
+    5840: Hospital
+    5850: 'Private, Non_Hospital'
+    5860: Tribal
+  is_multi_entry: 0
+  name: ORGANIZATIONAL TYPE
+  node: D01_08
+D01_09:
+  allow_null: 0
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    5870: Mixed
+    5880: Non-Volunteer
+    5890: Volunteer
+  is_multi_entry: 0
+  name: ORGANIZATION STATUS
+  node: D01_09
+D01_10:
+  allow_null: 0
+  data_entry_method: National Element
+  data_type: date/time
+  field_values: {}
+  is_multi_entry: 1
+  name: STATISTICAL YEAR
+  node: D01_10
+D01_11:
+  allow_null: 1
+  data_entry_method: multiple-entry
+  data_type: text
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: OTHER AGENCIES IN AREA
+  node: D01_11
+D01_12:
+  allow_null: 1
+  data_entry_method: National Element
+  data_type: number
+  field_values: {}
+  is_multi_entry: 1
+  name: TOTAL SERVICE SIZE AREA
+  node: D01_12
+D01_13:
+  allow_null: 1
+  data_entry_method: National Element
+  data_type: number
+  field_values: {}
+  is_multi_entry: 1
+  name: TOTAL SERVICE AREA POPULATION
+  node: D01_13
+D01_14:
+  allow_null: 1
+  data_entry_method: National Element
+  data_type: number
+  field_values: {}
+  is_multi_entry: 1
+  name: 911 CALL VOLUME PER YEAR
+  node: D01_14
+D01_15:
+  allow_null: 1
+  data_entry_method: National Element
+  data_type: number
+  field_values: {}
+  is_multi_entry: 1
+  name: EMS DISPATCH VOLUME PER YEAR
+  node: D01_15
+D01_16:
+  allow_null: 1
+  data_entry_method: National Element
+  data_type: number
+  field_values: {}
+  is_multi_entry: 1
+  name: EMS TRANSPORT VOLUME PER YEAR
+  node: D01_16
+D01_17:
+  allow_null: 1
+  data_entry_method: National Element
+  data_type: number
+  field_values: {}
+  is_multi_entry: 1
+  name: EMS PATIENT CONTACT VOLUME PER YEAR
+  node: D01_17
+D01_18:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 1
+  name: EMS BILLABLE CALLS PER YEAR
+  node: D01_18
+D01_19:
+  allow_null: 0
+  data_entry_method: National Element
+  data_type: text
+  field_values:
+    5900: 'GMT-11:00 Midway Island, Samoa'
+    5910: GMT-10:00 Hawaii
+    5920: GMT-09:00 Alaska
+    5930: GMT-08:00 Pacific Time
+    5940: GMT-07:00 Mountain Time
+    5950: GMT-06:00 Central Time
+    5960: GMT-05:00 Eastern Time
+    5970: GMT-04:00 Atlantic Time
+  is_multi_entry: 0
+  name: EMS AGENCY TIME ZONE
+  node: D01_19
+D01_20:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: EMS AGENCY DAYLIGHT SAVINGS TIME USE
+  node: D01_20
+D01_21:
+  allow_null: 1
+  data_entry_method: National Element
+  data_type: text
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: NATIONAL PROVIDER IDENTIFIER
+  node: D01_21
+D02_01:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 0
+  name: AGENCY CONTACT LAST NAME
+  node: D02_01
+D02_02:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: AGENCY CONTACT MIDDLE NAME/INITIAL
+  node: D02_02
+D02_03:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: AGENCY CONTACT FIRST NAME
+  node: D02_03
+D02_04:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: AGENCY CONTACT ADDRESS
+  node: D02_04
+D02_05:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: AGENCY CONTACT CITY
+  node: D02_05
+D02_06:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: AGENCY CONTACT STATE
+  node: D02_06
+D02_07:
+  allow_null: 0
+  data_entry_method: National Element
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: AGENCY CONTACT ZIP CODE
+  node: D02_07
+D02_08:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: AGENCY CONTACT TELEPHONE NUMBER
+  node: D02_08
+D02_09:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: AGENCY CONTACT FAX NUMBER
+  node: D02_09
+D02_10:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: AGENCY CONTACT EMAIL ADDRESS
+  node: D02_10
+D02_11:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: AGENCY CONTACT WEB ADDRESS
+  node: D02_11
+D03_01:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 0
+  name: AGENCY MEDICAL DIRECTOR LAST NAME
+  node: D03_01
+D03_02:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: AGENCY MEDICAL DIRECTOR MIDDLE NAME/INITIAL
+  node: D03_02
+D03_03:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: AGENCY MEDICAL DIRECTOR FIRST NAME
+  node: D03_03
+D03_04:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: AGENCY MEDICAL DIRECTOR ADDRESS
+  node: D03_04
+D03_05:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: AGENCY MEDICAL DIRECTOR CITY
+  node: D03_05
+D03_06:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: AGENCY MEDICAL DIRECTOR STATE
+  node: D03_06
+D03_07:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 0
+  name: AGENCY MEDICAL DIRECTOR ZIP CODE
+  node: D03_07
+D03_08:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: AGENCY MEDICAL DIRECTOR TELEPHONE NUMBER
+  node: D03_08
+D03_09:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: AGENCY MEDICAL DIRECTOR FAX NUMBER
+  node: D03_09
+D03_10:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    5980: Anesthesiology
+    5990: Cardiology
+    6000: Emergency Medicine
+    6010: Family Practice
+    6020: General Practice (not board certified)
+    6030: Internal Medicine
+    6040: Obstetrics and Gynecology
+    6050: Orthopedics
+    6060: Other
+    6070: Pediatrics
+    6080: Surgery
+  is_multi_entry: 0
+  name: AGENCY MEDICAL DIRECTOR'S MEDICAL SPECIALTY
+  node: D03_10
+D03_11:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: AGENCY MEDICAL DIRECTOR EMAIL ADDRESS
+  node: D03_11
+D04_01:
+  allow_null: 0
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    6090: EMT-Basic
+    6100: EMT-Intermediate
+    6110: EMT-Paramedic
+    6111: Nurse
+    6112: Physician
+    6120: First Responder
+  is_multi_entry: 1
+  name: STATE CERTIFICATION LICENSURE LEVELS
+  node: D04_01
+D04_02:
+  allow_null: 0
+  data_entry_method: multiple-entry
+  data_type: text
+  field_values: {}
+  is_multi_entry: 1
+  name: EMS UNIT CALL SIGN
+  node: D04_02
+D04_03:
+  allow_null: 0
+  data_entry_method: multiple-entry
+  data_type: text
+  field_values: {}
+  is_multi_entry: 1
+  name: ZONES
+  node: D04_03
+D04_04:
+  allow_null: 0
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    000: Airway-Nasotracheal Intubation
+    010: Pericardiocentesis
+    020: Restraints-Physical
+    030: Pain Measurement
+    040: Specialty Center Activation-Adult Trauma
+    041: Venous Access-Femoral Line
+    042: Venous Access-Internal Jugular Line
+    051: Left Ventricular Assist Device Maintenance
+    052: 'Patient Warming (Hot Pack, etc.)'
+    053: Patient Off-Loaded Helicopter Hot Off-Load
+    055: CPR-Start Compressions only without Ventilation
+    057: CPR-Mechanical Thumper Type Device
+    058: CPR-Start Compressions and Ventilations
+    059: CPR-Precordial Thump Only
+    070: Airway-Bagged (via tube)
+    071: Airway-BiPAP
+    090: Activation-Tactical or SWAT Specialty Service/Response Team
+    100: Airway-Needle Cricothyrotomy
+    101: Airway-PEEP
+    102: Airway-Respirator Operation (BLS)
+    103: Airway-Rapid Sequence Intubation
+    104: Airway-Suctioning
+    105: Airway-Surgical Cricothyrotomy
+    110: Restraints-Pharmacological
+    12: Lead ECG-Transmitted
+    120: Spinal Immobilization
+    130: Joint Reduction/Relocation
+    131: Patient Cooling-Post Resuscitation
+    150: Specialty Center Activation-Stroke
+    181: Venous Access-Intraosseous Pediatric
+    182: Venous Access-Subclavian Line
+    200: Airway-Bagged (via BVMask)
+    201: Decontamination
+    202: Defibrillation-Automated (AED)
+    203: Defibrillation-Manual
+    204: Defibrillation-Placement for Monitoring/Analysis
+    205: Escharotomy
+    206: Extrication
+    230: Intra-Aortic Balloon Pump Maintenance
+    231: Patient Off-Loaded
+    280: Activation-Fire Rehabilitation Specialty Service/Response Team
+    290: Airway-Change Tracheostomy Tube
+    300: Airway-Intubation Confirm Colorimetric ETCO2
+    301: Airway-Intubation Confirm Esophageal Bulb
+    302: Airway-King LT Blind Insertion Airway Device
+    303: Airway-Laryngeal Mask Blind Insertion Airway Device
+    350: Airway-Nasal
+    391: Venous Access-Central Line Maintenance
+    392: Airway-Nebulizer Treatment
+    420: Orthostatic Blood Pressure Measurement
+    421: Temperature Measurement
+    450: Airway-Video Laryngoscopy
+    500: Venous Access-Swan Ganz Maintenance
+    510: Venous Access-Discontinue
+    540: Airway-Ventilator with PEEP
+    580: Airway-Direct Laryngoscopy
+    590: Venous Access-Intraosseous Adult
+    591: Airway-Ventilator Operation
+    599: Airway-Intubation of Existing Tracheostomy Stoma
+    600: Wound Care-Taser Barb Removal
+    601: Venous Access-Umbilical Vein Cannulation
+    602: Wound Care-General
+    603: Wound Care-Hemostatic Agent
+    604: Wound Care-Irrigation
+    610: Urinary Catheterization
+    611: Wound Care-Tourniquet 93.056
+    612: Airway-CPAP
+    615: Activation-Advanced Hazmat Specialty Service/Response Team
+    620: Cardiac Monitor
+    621: Activation-Other Specialty Service/Response Team
+    622: Activation-Rescue Specialty Service/Response Team
+    623: Venous Access-Extremity
+    624: Venous Access-Existing Catheter
+    625: Activation-Social Services Notification/Referral
+    626: Venous Access-External Jugular Line
+    640: CPR by Other External Automated Device
+    641: Blood Glucose Analysis
+    700: Vagal Maneuver-Carotid Massage
+    701: Vagal Maneuver-Valsalva or Other Vagal Maneuver (Not Carotid Massage)
+    702: Airway-Extubation
+    703: Arterial Access-Blood Draw
+    704: Arterial Line Maintenance
+    790: Specialty Center Activation-Cardiac Arrest
+    810: Airway-Foreign Body Removal
+    811: Airway-Impedance Threshold Device
+    820: CPR-Start Rescue Breathing without Compressions
+    821: CPR-Stop
+    841: Airway-Oral
+    842: Airway-Orotracheal Intubation
+    900: MAST
+    910: Thrombolytic Screen
+    920: CNS Catheter-Epidural Maintenance
+    921: CNS Catheter-Intraventricular Maintenance
+    930: Gastric Tube Insertion-Inserted Orally
+    931: Gastric Tube Insertion-Inserted Nasally
+    940: Assessment-Adult
+    990: Capnography (CO2 Measurement)
+    991: Cardiac Pacing-Transvenous
+    992: Chest Decompression
+    993: Cardioversion
+    994: Chest Tube Placement
+    995: Childbirth
+    996: Contact Medical Control
+    997: Cardiac Pacing-External
+    998: CPR-AutoPulse Device
+  is_multi_entry: 1
+  name: PROCEDURES
+  node: D04_04
+D04_05:
+  allow_null: 0
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    6090: EMT-Basic
+    6100: EMT-Intermediate
+    6110: EMT-Paramedic
+    6111: Nurse
+    6112: Physician
+    6120: First Responder
+  is_multi_entry: 1
+  name: PERSONNEL LEVEL PERMITTED TO USE THE PROCEDURE
+  node: D04_05
+D04_06:
+  allow_null: 0
+  data_entry_method: multiple-entry
+  data_type: text
+  field_values: {}
+  is_multi_entry: 1
+  name: MEDICATIONS GIVEN
+  node: D04_06
+D04_07:
+  allow_null: 0
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    6090: EMT-Basic
+    6100: EMT-Intermediate
+    6110: EMT-Paramedic
+    6111: Nurse
+    6112: Physician
+    6120: First Responder
+  is_multi_entry: 1
+  name: PERSONNEL LEVEL PERMITTED TO USE THE MEDICATION
+  node: D04_07
+D04_08:
+  allow_null: 0
+  data_entry_method: multiple-entry
+  data_type: text
+  field_values:
+    6720: Abdominal Pain
+    6730: Airway
+    6740: Airway-Failed
+    6760: Airway-RSI
+    6770: Allergic Reaction/Anaphylaxis
+    6780: Altered Mental Status
+    6785: AltitudeSickness
+    6790: Asystole
+    6791: Atrial Fibrillation
+    6800: Back Pain
+    6810: Behavioral
+    6820: Bites and Envenomations
+    6830: Bradycardia
+    6840: Burns
+    6850: Cardiac Arrest
+    6860: Cardiac Chest Pain
+    6870: Childbirth/Labor
+    6875: Cold Exposure
+    6880: Dental Problems
+    6881: Device Malfunction
+    6885: Diarrhea
+    6890: Drowning/Near Drowning
+    6892: Diving Emergencies
+    6900: Electrical Injuries
+    6910: Epistaxis
+    6911: Exposure-Airway Irritants
+    6912: Exposure-Biological/Infectious
+    6913: Exposure-Blistering Agents
+    6914: Exposure-Cyanide
+    6915: Exposure-Nerve Agents
+    6916: Exposure-Radiologic Agents
+    6917: Exposure-Riot Control Agents
+    6920: Extremity Trauma
+    6925: Eye Trauma
+    6930: Fever
+    6935: Gynecologic Emergencies
+    6940: Head Trauma
+    6945: Hyperglycemia
+    6950: Hypertension
+    6960: Hyperthermia
+    6965: Hypoglycemia
+    6970: Hypotension/Shock (Non-Trauma)
+    6980: Hypothermia
+    6990: IV Access
+    7000: Trauma-Multisystem
+    7010: Newly Born
+    7020: Obstetrical Emergencies
+    7030: Overdose/Toxic Ingestion
+    7040: Pain Control
+    7130: Post Resuscitation
+    7140: Pulmonary Edema
+    7150: Pulseless Electrical Activity
+    7160: Respiratory Distress
+    7170: Seizure
+    7175: Spinal Cord Trauma
+    7180: Spinal Immobilization
+    7190: Supraventricular Tachycardia
+    7200: Stroke/TIA
+    7210: Syncope
+    7214: Trauma-Arrest
+    7215: Trauma-Amputation
+    7220: Universal Patient Care
+    7230: Ventricular Fibrillation
+    7232: Ventricular Ectopy
+    7240: Ventricular Tachycardia
+    7251: Vomiting
+  is_multi_entry: 1
+  name: PROTOCOL
+  node: D04_08
+D04_09:
+  allow_null: 0
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    6090: EMT-Basic
+    6100: EMT-Intermediate
+    6110: EMT-Paramedic
+    6111: Nurse
+    6112: Physician
+    6120: First Responder
+  is_multi_entry: 1
+  name: PERSONNEL LEVEL PERMITTED TO USE THE PROTOCOL
+  node: D04_09
+D04_10:
+  allow_null: 0
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: BILLING STATUS
+  node: D04_10
+D04_11:
+  allow_null: 0
+  data_entry_method: multiple-entry
+  data_type: text
+  field_values: {}
+  is_multi_entry: 1
+  name: HOSPITALS SERVED
+  node: D04_11
+D04_12:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: HOSPITAL FACILITY NUMBER
+  node: D04_12
+D04_13:
+  allow_null: 0
+  data_entry_method: multiple-entry
+  data_type: text
+  field_values: {}
+  is_multi_entry: 1
+  name: OTHER DESTINATIONS
+  node: D04_13
+D04_14:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: DESTINATION FACILITY NUMBER
+  node: D04_14
+D04_15:
+  allow_null: 0
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    7270: Home
+    7280: Hospital
+    7290: Medical Office/Clinic
+    7300: Morgue
+    7320: Nursing Home
+    7330: Other
+    7340: Other EMS Responder (air)
+    7350: Other EMS Responder (ground)
+    7360: Police/Jail
+  is_multi_entry: 1
+  name: DESTINATION TYPE
+  node: D04_15
+D04_16:
+  allow_null: 0
+  data_entry_method: multiple-entry
+  data_type: text
+  field_values: {}
+  is_multi_entry: 1
+  name: INSURANCE COMPANIES USED
+  node: D04_16
+D04_17:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 0
+  name: EMD VENDOR
+  node: D04_17
+D05_01:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 1
+  name: STATION NAME
+  node: D05_01
+D05_02:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: STATION NUMBER
+  node: D05_02
+D05_03:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 1
+  name: STATION ZONE
+  node: D05_03
+D05_04:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 1
+  name: STATION GPS
+  node: D05_04
+D05_05:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: STATION ADDRESS
+  node: D05_05
+D05_06:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: STATION CITY
+  node: D05_06
+D05_07:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: STATION STATE
+  node: D05_07
+D05_08:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 1
+  name: STATION ZIP
+  node: D05_08
+D05_09:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: STATION TELEPHONE NUMBER
+  node: D05_09
+D06_01:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 1
+  name: UNIT/VEHICLE NUMBER
+  node: D06_01
+D06_03:
+  allow_null: 0
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    7370: Ambulance
+    7380: ATV
+    7390: Bicycle
+    7400: Boat
+    7410: Fire Truck
+    7420: Fixed Wing
+    7430: Motorcycle
+    7440: Other
+    7450: Private Vehicle
+    7460: Quick Response Vehicle (Non-Transport Vehicle other than Fire Truck
+    7470: Rescue
+    7480: Rotor Craft
+  is_multi_entry: 1
+  name: VEHICLE TYPE
+  node: D06_03
+D06_04:
+  allow_null: 0
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    6090: EMT-Basic
+    6100: EMT-Intermediate
+    6110: EMT-Paramedic
+    6111: Nurse
+    6112: Physician
+    6120: First Responder
+  is_multi_entry: 1
+  name: STATE CERTIFICATION/LICENSURE LEVELS
+  node: D06_04
+D06_05:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 1
+  name: NUMBER OF EACH PERSONNEL LEVEL ON THE VEHICLE CREW
+  node: D06_05
+D06_06:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 1
+  name: VEHICLE INITIAL COST
+  node: D06_06
+D06_07:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 1
+  name: VEHICLE MODEL YEAR
+  node: D06_07
+D06_08:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 1
+  name: YEAR MILES/HOURS ACCRUED
+  node: D06_08
+D06_09:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: ANNUAL VEHICLE HOURS
+  node: D06_09
+D06_10:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: ANNUAL VEHICLE MILES
+  node: D06_10
+D07_01:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 1
+  name: PERSONNEL'S AGENCY ID NUMBER
+  node: D07_01
+D07_02:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 1
+  name: STATE/LICENSURE ID NUMBER
+  node: D07_02
+D07_03:
+  allow_null: 0
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    7490: Full Time Paid Employee
+    7500: Full Time Unpaid Employee
+    7510: Part Time Paid and Part Time Unpaid Employee
+    7520: Part Time Paid Employee
+    7530: Part Time Unpaid Employee
+    7535: No Longer Employed By Service
+  is_multi_entry: 1
+  name: PERSONNEL'S EMPLOYMENT STATUS
+  node: D07_03
+D07_04:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 1
+  name: EMPLOYMENT STATUS DATE
+  node: D07_04
+D07_05:
+  allow_null: 0
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    6090: EMT-Basic
+    6100: EMT-Intermediate
+    6110: EMT-Paramedic
+    6111: Nurse
+    6112: Physician
+    6120: First Responder
+  is_multi_entry: 1
+  name: PERSONNEL'S LEVEL OF CERTIFICATION/LICENSURE FOR AGENCY
+  node: D07_05
+D07_06:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 1
+  name: DATE OF PERSONNEL'S CERTIFICATION OR LICENSURE FOR AGENCY
+  node: D07_06
+D08_01:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 1
+  name: EMS PERSONNEL'S LAST NAME
+  node: D08_01
+D08_02:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: EMS PERSONNEL'S MIDDLE NAME/INITIAL
+  node: D08_02
+D08_03:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: EMS PERSONNEL'S FIRST NAME
+  node: D08_03
+D08_04:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: EMS PERSONNEL'S MAILING ADDRESS
+  node: D08_04
+D08_05:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: EMS PERSONNEL'S CITY OF RESIDENCE
+  node: D08_05
+D08_06:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: EMS PERSONNEL'S STATE
+  node: D08_06
+D08_07:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 1
+  name: EMS PERSONNEL'S ZIP CODE
+  node: D08_07
+D08_08:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: EMS PERSONNEL'S WORK TELEPHONE
+  node: D08_08
+D08_09:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: EMS PERSONNEL'S HOME TELEPHONE
+  node: D08_09
+D08_10:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: EMS PERSONNEL'S EMAIL ADDRESS
+  node: D08_10
+D08_11:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 1
+  name: EMS PERSONNEL'S DATE OF BIRTH
+  node: D08_11
+D08_12:
+  allow_null: 0
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    650: Male
+    655: Female
+  is_multi_entry: 1
+  name: EMS PERSONNEL'S GENDER
+  node: D08_12
+D08_13:
+  allow_null: 0
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    660: American Indian or Alaska Native
+    665: Asian
+    670: Black or African American
+    675: Native Hawaiian or Other Pacific Islander
+    680: White
+    685: Other Race
+  is_multi_entry: 1
+  name: EMS PERSONNEL'S RACE
+  node: D08_13
+D08_14:
+  allow_null: 0
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    690: Hispanic or Latino
+    695: Not Hispanic or Latino
+  is_multi_entry: 1
+  name: EMS PERSONNEL'S ETHNICITY
+  node: D08_14
+D08_15:
+  allow_null: 0
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    6090: EMT-Basic
+    6100: EMT-Intermediate
+    6110: EMT-Paramedic
+    6111: Nurse
+    6112: Physician
+    6120: First Responder
+  is_multi_entry: 1
+  name: STATE EMS CERTIFICATION LICENSURE LEVEL
+  node: D08_15
+D08_16:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 1
+  name: NATIONAL REGISTRY CREDENTIALED
+  node: D08_16
+D08_17:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 1
+  name: STATE EMS CURRENT CERTIFICATION DATE
+  node: D08_17
+D08_18:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 1
+  name: INITIAL STATE CERTIFICATION DATE
+  node: D08_18
+D08_19:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 1
+  name: TOTAL LENGTH OF SERVICE
+  node: D08_19
+D08_20:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 1
+  name: DATE LENGTH OF SERVICE DOCUMENTED
+  node: D08_20
+D09_01:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 1
+  name: DEVICE SERIAL NUMBER
+  node: D09_01
+D09_02:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 1
+  name: DEVICE NAME OR ID
+  node: D09_02
+D09_03:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 1
+  name: DEVICE MANUFACTURER
+  node: D09_03
+D09_04:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 1
+  name: MODEL NUMBER
+  node: D09_04
+D09_05:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values: {}
+  is_multi_entry: 1
+  name: DEVICE PURCHASE DATE
+  node: D09_05
+DEATH E23_05:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: SUSPECTED CONTACT WITH BLOOD/BODY FLUIDS OF EMS INJURY OR
+  node: DEATH E23_05
+E00:
+  allow_null: 0
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: COMMON NULL VALUES
+  node: E00
+E01_01:
+  allow_null: 0
+  data_entry_method: National Element
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: PATIENT CARE REPORT NUMBER
+  node: E01_01
+E01_02:
+  allow_null: 0
+  data_entry_method: National Element
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: SOFTWARE CREATOR
+  node: E01_02
+E01_03:
+  allow_null: 0
+  data_entry_method: National Element
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: SOFTWARE NAME
+  node: E01_03
+E01_04:
+  allow_null: 0
+  data_entry_method: National Element
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: SOFTWARE VERSION
+  node: E01_04
+E02_01:
+  allow_null: 0
+  data_entry_method: National Element
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: EMS AGENCY NUMBER
+  node: E02_01
+E02_02:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: INCIDENT NUMBER
+  node: E02_02
+E02_03:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: EMS UNIT (VEHICLE) RESPONSE NUMBER
+  node: E02_03
+E02_04:
+  allow_null: 0
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    35: Intercept
+    40: Interfacility Transfer
+    45: Medical Transport
+    50: Mutual Aid
+    55: Standby
+    911: Response (Scene)
+  is_multi_entry: 0
+  name: TYPE OF SERVICE REQUESTED
+  node: E02_04
+E02_05:
+  allow_null: 0
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    60: Non-Transport
+    65: Rescue
+    70: Supervisor
+    75: Transport
+  is_multi_entry: 0
+  name: PRIMARY ROLE OF THE UNIT
+  node: E02_05
+E02_06:
+  allow_null: 1
+  data_entry_method: multiple-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    100: No Units Available
+    105: None
+    110: Other
+    115: Scene Safety (Not Secure for EMS)
+    120: 'Technical Failure (Computer, Phone etc.)'
+    80: Caller (Uncooperative)
+    85: High Call Volume
+    90: Language Barrier
+    95: Location (Inability to Obtain)
+  is_multi_entry: 1
+  name: TYPE OF DISPATCH DELAY
+  node: E02_06
+E02_07:
+  allow_null: 1
+  data_entry_method: multiple-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    125: Crowd
+    130: Directions
+    135: Distance
+    140: Diversion
+    145: HazMat
+    150: None
+    155: Other
+    160: Safety
+    165: Staff Delay
+    170: Traffic
+    175: Vehicle Crash
+    180: Vehicle Failure
+    185: Weather
+  is_multi_entry: 1
+  name: TYPE OF RESPONSE DELAY
+  node: E02_07
+E02_08:
+  allow_null: 1
+  data_entry_method: multiple-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    190: Crowd
+    195: Directions
+    200: Distance
+    205: Diversion
+    210: Extrication >20 min.
+    215: HazMat
+    220: Language Barrier
+    225: None
+    230: Other
+    235: Safety
+    240: Staff Delay
+    245: Traffic
+    250: Vehicle Crash
+    255: Vehicle Failure
+    260: Weather
+  is_multi_entry: 1
+  name: TYPE OF SCENE DELAY
+  node: E02_08
+E02_09:
+  allow_null: 1
+  data_entry_method: multiple-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    265: Crowd
+    270: Directions
+    275: Distance
+    280: Diversion
+    285: HazMat
+    290: None
+    295: Other
+    300: Safety
+    305: Staff Delay
+    310: Traffic
+    315: Vehicle Crash
+    320: Vehicle Failure
+    325: Weather
+  is_multi_entry: 1
+  name: TYPE OF TRANSPORT DELAY
+  node: E02_09
+E02_10:
+  allow_null: 1
+  data_entry_method: multiple-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    330: Clean-up
+    335: Decontamination
+    340: Documentation
+    345: ED Overcrowding
+    350: Equipment Failure
+    355: Equipment Replenishment
+    360: None
+    365: Other
+    370: Staff Delay
+    375: Vehicle Failure
+  is_multi_entry: 1
+  name: TYPE OF TURN-AROUND DELAY
+  node: E02_10
+E02_11:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: EMS UNIT/VEHICLE NUMBER
+  node: E02_11
+E02_12:
+  allow_null: 0
+  data_entry_method: single-choice National Element
+  data_type: combo
+  is_multi_entry: 0
+  name: EMS UNIT CALL SIGN (RADIO NUMBER)
+  node: E02_12
+E02_13:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: VEHICLE DISPATCH LOCATION
+  node: E02_13
+E02_14:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: VEHICLE DISPATCH ZONE
+  node: E02_14
+E02_15:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 0
+  name: VEHICLE DISPATCH GPS LOCATION
+  node: E02_15
+E02_16:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 0
+  name: BEGINNING ODOMETER READING OF RESPONDING VEHICLE
+  node: E02_16
+E02_17:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 0
+  name: ON-SCENE ODOMETER READING OF RESPONDING VEHICLE
+  node: E02_17
+E02_19:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 0
+  name: ENDING ODOMETER READING OF RESPONDING VEHICLE
+  node: E02_19
+E02_20:
+  allow_null: 0
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    380: 'Initial Lights and Sirens, Downgraded to No Lights or'
+    385: 'Initial No Lights or Sirens, Upgraded to Lights and Sirens Sirens'
+    390: Lights and Sirens
+    395: No Lights or Sirens
+  is_multi_entry: 0
+  name: RESPONSE MODE TO SCENE
+  node: E02_20
+E03_01:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    400: Abdominal Pain
+    405: Allergies
+    410: Animal Bite
+    415: Assault
+    420: Back Pain
+    425: Breathing Problem
+    430: Burns
+    435: CO Poisoning/Hazmat
+    440: Cardiac Arrest
+    445: Chest Pain
+    450: Choking
+    455: Convulsions/Seizure
+    460: Diabetic Problem
+    465: Drowning
+    470: Electrocution
+    475: Eye Problem
+    480: Fall Victim
+    485: Headache
+    490: Heart Problems
+    495: Heat/Cold Exposure
+    500: Hemorrhage/Laceration
+    505: Industrial Accident/Inaccessible Incident/Other
+    510: Ingestion/Poisoning Entrapments (non-vehicle)
+    515: Pregnancy/Childbirth
+    520: Psychiatric Problem
+    525: Sick Person
+    530: Stab/Gunshot Wound
+    535: Stroke/CVA
+    540: Traffic Accident
+    545: Traumatic Injury
+    550: Unconscious/Fainting
+    555: Unknown Problem Man Down
+    560: Transfer/Interfacility/Palliative Care
+    565: MCI (Mass Casualty Incident)
+  is_multi_entry: 0
+  name: COMPLAINT REPORTED BY DISPATCH
+  node: E03_01
+E03_02:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    0: No
+    570: 'Yes, With Pre-Arrival Instructions'
+    575: 'Yes, Without Pre-Arrival Instructions'
+  is_multi_entry: 0
+  name: EMD PERFORMED
+  node: E03_02
+E03_03:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: EMD CARD NUMBER
+  node: E03_03
+E04_01:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: CREW MEMBER ID
+  node: E04_01
+E04_02:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    580: Driver
+    585: Primary Patient Caregiver
+    590: Secondary Patient Caregiver
+    595: Third Patient Caregiver
+    600: Other
+  is_multi_entry: 1
+  name: CREW MEMBER ROLE
+  node: E04_02
+E04_03:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    6090: EMT-Basic
+    6100: EMT-Intermediate
+    6110: EMT-Paramedic
+    6111: Nurse
+    6112: Physician
+    6120: First Responder
+    635: Student
+    640: Other Healthcare Professional
+    645: Other Non-Healthcare Professional
+  is_multi_entry: 1
+  name: CREW MEMBER LEVEL
+  node: E04_03
+E05_01:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 0
+  name: INCIDENT OR ONSET DATE/TIME
+  node: E05_01
+E05_02:
+  allow_null: 1
+  data_entry_method: National Element
+  data_type: date/time
+  is_multi_entry: 0
+  name: PSAP CALL DATE/TIME
+  node: E05_02
+E05_03:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 0
+  name: DISPATCH NOTIFIED DATE/TIME
+  node: E05_03
+E05_04:
+  allow_null: 0
+  data_entry_method: National Element
+  data_type: date/time
+  is_multi_entry: 0
+  name: UNIT NOTIFIED BY DISPATCH DATE/TIME
+  node: E05_04
+E05_05:
+  allow_null: 1
+  data_entry_method: National Element
+  data_type: date/time
+  is_multi_entry: 0
+  name: UNIT EN ROUTE DATE/TIME
+  node: E05_05
+E05_06:
+  allow_null: 1
+  data_entry_method: National Element
+  data_type: date/time
+  is_multi_entry: 0
+  name: UNIT ARRIVED ON SCENE DATE/TIME
+  node: E05_06
+E05_07:
+  allow_null: 1
+  data_entry_method: National Element
+  data_type: date/time
+  is_multi_entry: 0
+  name: ARRIVED AT PATIENT DATE/TIME
+  node: E05_07
+E05_08:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 0
+  name: TRANSFER OF PATIENT CARE DATE/TIME
+  node: E05_08
+E05_09:
+  allow_null: 1
+  data_entry_method: National Element
+  data_type: date/time
+  is_multi_entry: 0
+  name: UNIT LEFT SCENE DATE/TIME
+  node: E05_09
+E05_10:
+  allow_null: 1
+  data_entry_method: National Element
+  data_type: date/time
+  is_multi_entry: 0
+  name: PATIENT ARRIVED AT DESTINATION DATE/TIME
+  node: E05_10
+E05_11:
+  allow_null: 0
+  data_entry_method: National Element
+  data_type: date/time
+  is_multi_entry: 0
+  name: UNIT BACK IN SERVICE DATE/TIME
+  node: E05_11
+E05_12:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 0
+  name: UNIT CANCELLED DATE/TIME
+  node: E05_12
+E05_13:
+  allow_null: 1
+  data_entry_method: National Element
+  data_type: date/time
+  is_multi_entry: 0
+  name: UNIT BACK AT HOME LOCATION DATE/TIME
+  node: E05_13
+E06_01:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: LAST NAME
+  node: E06_01
+E06_02:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: FIRST NAME
+  node: E06_02
+E06_03:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: MIDDLE INITIAL/NAME
+  node: E06_03
+E06_04:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: PATIENT'S HOME ADDRESS
+  node: E06_04
+E06_05:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: PATIENT'S HOME CITY
+  node: E06_05
+E06_06:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: PATIENT'S HOME COUNTY
+  node: E06_06
+E06_07:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: PATIENT'S HOME STATE
+  node: E06_07
+E06_08:
+  allow_null: 1
+  data_entry_method: National Element
+  data_type: text
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: PATIENT'S HOME ZIP CODE
+  node: E06_08
+E06_09:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: PATIENT’S HOME COUNTRY
+  node: E06_09
+E06_10:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: SOCIAL SECURITY NUMBER
+  node: E06_10
+E06_11:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    650: Male
+    655: Female
+  is_multi_entry: 0
+  name: GENDER
+  node: E06_11
+E06_12:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    660: American Indian or Alaska Native
+    665: Asian
+    670: Black or African American
+    675: Native Hawaiian or Other Pacific Islander
+    680: White
+    685: Other Race
+  is_multi_entry: 0
+  name: RACE
+  node: E06_12
+E06_13:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    690: Hispanic or Latino
+    695: Not Hispanic or Latino
+  is_multi_entry: 0
+  name: ETHNICITY
+  node: E06_13
+E06_14:
+  allow_null: 1
+  data_entry_method: National Element
+  data_type: number
+  is_multi_entry: 0
+  name: AGE
+  node: E06_14
+E06_15:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    700: Hours
+    705: Days
+    710: Months
+    715: Years
+  is_multi_entry: 0
+  name: AGE UNITS
+  node: E06_15
+E06_16:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 0
+  name: DATE OF BIRTH
+  node: E06_16
+E06_17:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: PRIMARY OR HOME TELEPHONE NUMBER
+  node: E06_17
+E06_18:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: STATE ISSUING DRIVER'S LICENSE
+  node: E06_18
+E06_19:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: DRIVER'S LICENSE NUMBER
+  node: E06_19
+E07_01:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    720: Insurance
+    725: Medicaid
+    730: Medicare
+    735: Not Billed (for any reason)
+    740: Other Government
+    745: Self Pay
+    750: Workers Compensation
+  is_multi_entry: 0
+  name: PRIMARY METHOD OF PAYMENT
+  node: E07_01
+E07_02:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: CERTIFICATE OF MEDICAL NECESSITY
+  node: E07_02
+E07_03:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: INSURANCE COMPANY ID/NAME
+  node: E07_03
+E07_04:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    755: Primary
+    760: Secondary
+    765: Other
+  is_multi_entry: 1
+  name: INSURANCE COMPANY BILLING PRIORITY
+  node: E07_04
+E07_05:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: INSURANCE COMPANY ADDRESS
+  node: E07_05
+E07_06:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: INSURANCE COMPANY CITY
+  node: E07_06
+E07_07:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: INSURANCE COMPANY STATE
+  node: E07_07
+E07_08:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: INSURANCE COMPANY ZIP CODE
+  node: E07_08
+E07_09:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: INSURANCE GROUP ID/NAME
+  node: E07_09
+E07_10:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: INSURANCE POLICY ID NUMBER
+  node: E07_10
+E07_11:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: LAST NAME OF THE INSURED
+  node: E07_11
+E07_12:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: FIRST NAME OF THE INSURED
+  node: E07_12
+E07_13:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: MIDDLE INITIAL/NAME OF THE INSURED
+  node: E07_13
+E07_14:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    770: Self
+    775: Spouse
+    780: Son/Daughter
+    785: Other
+  is_multi_entry: 1
+  name: RELATIONSHIP TO THE INSURED
+  node: E07_14
+E07_15:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: WORK-RELATED
+  node: E07_15
+E07_16:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    790: Construction
+    795: 'Finance, Insurance, and Real Estate'
+    800: Government
+    805: Manufacturing
+    810: Mining
+    815: Retail Trade
+    820: Services
+    825: Transportation and Public Utilities
+    830: Wholesale Trade
+  is_multi_entry: 0
+  name: PATIENT’S OCCUPATIONAL INDUSTRY
+  node: E07_16
+E07_17:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    835: Management Occupations
+    840: Business and Financial Operations Occupations
+    845: Computer and Mathematical Occupations
+    850: Architecture and Engineering Occupations
+    855: 'Life, Physical, and Social Science Occupations'
+    860: Community and Social Services Occupations
+    865: Legal Occupations
+    870: 'Education, Training, and Library Occupations'
+    875: 'Arts, Design, Entertainment, Sports, and Media Occupations'
+    880: Healthcare Practitioners and Technical Occupations
+    885: Healthcare Support Occupations
+    890: Protective Service Occupations
+    895: Food Preparation and Serving Related Occupations
+    900: Building and Grounds Cleaning and Maintenance
+    905: Personal Care and Service Occupations Occupations
+    910: Sales and Related Occupations
+    915: Office and Administrative Support Occupations
+    920: 'Farming, Fishing and Forestry Occupations'
+    925: Construction and Extraction Occupations
+    930: 'Installation, Maintenance, and Repair Occupations'
+    935: Production Occupations
+    940: Transportation and Material Moving Occupations
+    945: Military Specific Occupations
+  is_multi_entry: 0
+  name: PATIENT’S OCCUPATION
+  node: E07_17
+E07_18:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: CLOSEST RELATIVE/GUARDIAN LAST NAME
+  node: E07_18
+E07_19:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: FIRST NAME OF THE CLOSEST RELATIVE/ GUARDIAN
+  node: E07_19
+E07_20:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: MIDDLE INITIAL/NAME OF THE CLOSEST RELATIVE/ GUARDIAN
+  node: E07_20
+E07_21:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: CLOSEST RELATIVE/ GUARDIAN STREET ADDRESS
+  node: E07_21
+E07_22:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: CLOSEST RELATIVE/ GUARDIAN CITY
+  node: E07_22
+E07_23:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: CLOSEST RELATIVE/ GUARDIAN STATE
+  node: E07_23
+E07_24:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: CLOSEST RELATIVE/ GUARDIAN ZIP CODE
+  node: E07_24
+E07_25:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: CLOSEST RELATIVE/ GUARDIAN PHONE NUMBER
+  node: E07_25
+E07_26:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    950: Appointed Guardian
+    955: Father
+    960: Mother
+    965: Other
+    970: Son/Daughter
+    975: Spouse
+  is_multi_entry: 0
+  name: CLOSEST RELATIVE/ GUARDIAN RELATIONSHIP
+  node: E07_26
+E07_27:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: PATIENT'S EMPLOYER
+  node: E07_27
+E07_28:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: PATIENT'S EMPLOYER'S ADDRESS
+  node: E07_28
+E07_29:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: PATIENT’S EMPLOYER’S CITY
+  node: E07_29
+E07_30:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: PATIENT’S EMPLOYER’S STATE
+  node: E07_30
+E07_31:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: PATIENT’S EMPLOYER’S ZIP CODE
+  node: E07_31
+E07_32:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: PATIENT'S WORK TELEPHONE NUMBER
+  node: E07_32
+E07_33:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    980: Immediate
+    985: Non-Immediate
+  is_multi_entry: 0
+  name: RESPONSE URGENCY
+  node: E07_33
+E07_34:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    1: Emergency
+    1000: 'ALS, Level'
+    1005: 'ALS, Level'
+    1010: 'ALS, Level'
+    1015: Paramedic Intercept
+    1020: Specialty Care Transport
+    1025: Fixed Wing (Airplane)
+    1030: Rotary Wing (Helicopter)
+    990: BLS
+    995: 'BLS, Emergency'
+  is_multi_entry: 0
+  name: CMS SERVICE LEVEL
+  node: E07_34
+E07_35:
+  allow_null: 1
+  data_entry_method: multiple-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    8001: Severe Abdominal Pain (ALS-789.00)
+    8002: Abdominal Pain (ALS-789.00)
+    8003: 'Abnormal Cardiac Rhythm/Cardiac Dysrhythmia (ALS- 427.9)'
+    8004: Abnormal Skin Signs (ALS-780.8)
+    8005: Abnormal Vital Signs (ALS-796.4)
+    8006: Allergic Reaction (ALS-995.0)
+    8007: Allergic Reaction (BLS-692.9)
+    8008: Blood Glucose (ALS-790.21)
+    8009: Respiratory Arrest (ALS-799.1)
+    8010: Difficulty Breathing (ALS-786.05)
+    8011: Cardiac Arrest-Resuscitation in Progress (ALS-427.5)
+    8012: Chest Pain (non-traumatic) (ALS-786.50)
+    8013: Choking Episode (ALS-784.9)
+    8014: Cold Exposure (ALS-991.6)
+    8015: Cold Exposure (BLS-991.9)
+    8016: Altered Level of Consciousness (non-traumatic) (ALS-
+    8017: Convulsions/Seizures (ALS-780.39) 780.01)
+    8018: Eye Symptoms (non-traumatic) (BLS-379.90)
+    8019: Non Traumatic Headache (ALS-437.9)
+    8020: Cardiac Symptoms other than Chest Pain (palpitations)
+    8021: Cardiac Symptoms other than Chest Pain (atypical pain) (ALS-785.1) (ALS-536.2)
+    8022: Heat Exposure (ALS-992.5)
+    8023: Heat Exposure (BLS-992.2)
+    8024: Hemorrhage (ALS-459.0)
+    8025: Infectious Diseases requiring Isolation/Public Health Risk (BLS-038.9)
+    8026: Hazmat Exposure (ALS-987.9)
+    8027: Medical Device Failure (ALS-996.0)
+    8028: Medical Device Failure (BLS-996.3)
+    8029: Neurologic Distress (ALS-436.0)
+    8030: Pain (Severe) (ALS-780.99)
+    8031: Back Pain (non-traumatic possible cardiac or vascular) (ALS-724.5)
+    8032: Back Pain (non-traumatic with neurologic symptoms)
+    8033: Poisons (all routes) (ALS-977.9) (ALS-724.9)
+    8034: Alcohol Intoxication or Drug Overdose (BLS-305.0)
+    8035: Severe Alcohol Intoxication (ALS-977.3)
+    8036: Post-Operative Procedure Complications (BLS-998.9)
+    8037: Pregnancy Complication/Childbirth/Labor (ALS-650.0)
+    8038: Psychiatric/Behavioral (abnormal mental status) (ALS-
+    8039: 'Psychiatric/Behavioral (threat to self or others) (BLS- 292.9) 298.9)'
+    8040: Sick Person-Fever (BLS-036.9)
+    8041: Severe Dehydration (ALS-787.01)
+    8042: Unconscious/Syncope/Dizziness (ALS-780.02)
+    8043: Major Trauma (ALS-959.8)
+    8044: Other Trauma (need for monitor or airway) (ALS-518.5)
+    8045: Other Trauma (major bleeding) (ALS-958.2)
+    8046: Other Trauma (fracture/dislocation) (BLS-829.0)
+    8047: Other Trauma (penetrating extremity) (BLS-880.0)
+    8048: Other Trauma (amputation digits) (BLS-886.0)
+    8049: Other Trauma (amputation other) (ALS-887.4)
+    8050: Other Trauma (suspected internal injuries) (ALS-869.0)
+    8051: Burns-Major (ALS-949.3)
+    8052: Burns-Minor (BLS-949.2)
+    8053: Animal Bites/Sting/Envenomation (ALS-989.5)
+    8054: Animal Bites/Sting/Envenomation (BLS-879.8)
+    8055: Lightning (ALS-994.0)
+    8056: Electrocution (ALS-994.8)
+    8057: Near Drowning (ALS-994.1)
+  is_multi_entry: 1
+  name: CONDITION CODE NUMBER
+  node: E07_35
+E07_36:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: ICD-9 CODE FOR THE CONDITION CODE NUMBER
+  node: E07_36
+E07_37:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    1035: A-Interfacility Transport (requires higher level of care)
+    1036: B-Interfacility Transport (service not available)
+    1037: C-ALS Response to BLS Patient
+    1038: D-Medically Necessary Transport (Not Nearest Facility)
+    1039: E-BLS Transport of ALS Patient
+    1040: F-Emergency Trauma Dispatch Condition Code (patient
+    1041: Air-A-Long Distance is BLS)
+    1042: Air-B-Traffic Precludes Ground Transport
+    1043: Air-C-Time Precludes Ground Transport
+    1044: Air-D-Pick up Point not Accessible by Ground Transport
+  is_multi_entry: 1
+  name: CONDITION CODE MODIFIER
+  node: E07_37
+E08_01:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: OTHER EMS AGENCIES AT SCENE
+  node: E08_01
+E08_02:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    1060: EMS Mutual Aid
+    1065: Fire
+    1070: Hazmat
+    1075: Law
+    1080: Other Health Care Provider
+    1085: Other
+    1090: Rescue
+    1095: Utilities
+  is_multi_entry: 1
+  name: OTHER SERVICES AT SCENE
+  node: E08_02
+E08_03:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    1100: '>15 minutes'
+    1110: <5 Minutes
+    1115: After EMS
+    15: Minutes
+    5: -
+  is_multi_entry: 0
+  name: ESTIMATED DATE/TIME INITIAL RESPONDER ARRIVED ON SCENE
+  node: E08_03
+E08_04:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 0
+  name: DATE/TIME INITIAL RESPONDER ARRIVED ON SCENE
+  node: E08_04
+E08_05:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    1120: None
+    1125: Single
+    1130: Multiple
+  is_multi_entry: 0
+  name: NUMBER OF PATIENTS AT SCENE
+  node: E08_05
+E08_06:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: MASS CASUALTY INCIDENT
+  node: E08_06
+E08_07:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    1135: Home/Residence
+    1140: Farm
+    1145: Mine or Quarry
+    1150: Industrial Place and Premises
+    1155: Place of Recreation or Sport
+    1160: Street or Highway
+    1165: 'Public Building (schools, gov. offices)'
+    1170: 'Trade or service (business, bars, restaurants, etc)'
+    1175: 'Health Care Facility (clinic, hospital, nursing home)'
+    1180: 'Residential Institution (Nursing Home, jail/prison)'
+    1185: 'Lake, River, Ocean'
+    1190: Other Location
+  is_multi_entry: 0
+  name: INCIDENT LOCATION TYPE
+  node: E08_07
+E08_08:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: INCIDENT FACILITY CODE
+  node: E08_08
+E08_09:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: SCENE ZONE NUMBER
+  node: E08_09
+E08_10:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 0
+  name: SCENE GPS LOCATION
+  node: E08_10
+E08_11:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: INCIDENT ADDRESS
+  node: E08_11
+E08_12:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: INCIDENT CITY
+  node: E08_12
+E08_13:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: INCIDENT COUNTY
+  node: E08_13
+E08_14:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: INCIDENT STATE
+  node: E08_14
+E08_15:
+  allow_null: 1
+  data_entry_method: National Element
+  data_type: text
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: INCIDENT ZIP CODE
+  node: E08_15
+E09_01:
+  allow_null: 1
+  data_entry_method: multiple-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: PRIOR AID
+  node: E09_01
+E09_02:
+  allow_null: 1
+  data_entry_method: multiple-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    1195: EMS Provider
+    1200: Law Enforcement
+    1205: Lay Person
+    1210: Other Healthcare Provider
+    1215: Patient
+  is_multi_entry: 1
+  name: PRIOR AID PERFORMED BY
+  node: E09_02
+E09_03:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    1220: Improved
+    1225: Unchanged
+    1230: Worse
+  is_multi_entry: 0
+  name: OUTCOME OF THE PRIOR AID
+  node: E09_03
+E09_04:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: POSSIBLE INJURY
+  node: E09_04
+E09_05:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: CHIEF COMPLAINT
+  node: E09_05
+E09_06:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 0
+  name: DURATION OF CHIEF COMPLAINT
+  node: E09_06
+E09_07:
+  allow_null: 0
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    1235: Seconds
+    1240: Minutes
+    1245: Hours
+    1250: Days
+    1255: Weeks
+    1260: Months
+    1265: Years
+  is_multi_entry: 0
+  name: TIME UNITS OF DURATION OF CHIEF COMPLAINT
+  node: E09_07
+E09_08:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: SECONDARY COMPLAINT NARRATIVE
+  node: E09_08
+E09_09:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 0
+  name: DURATION OF SECONDARY COMPLAINT
+  node: E09_09
+E09_10:
+  allow_null: 0
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    1270: Seconds
+    1275: Minutes
+    1280: Hours
+    1285: Days
+    1290: Weeks
+    1295: Months
+    1300: Years
+  is_multi_entry: 0
+  name: TIME UNITS OF DURATION OF SECONDARY COMPLAINT
+  node: E09_10
+E09_11:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    1305: Abdomen
+    1310: Back
+    1315: Chest
+    1320: Extremity-Lower
+    1325: Extremity-Upper
+    1330: General/Global
+    1335: Genitalia
+    1340: Head
+    1345: Neck
+  is_multi_entry: 0
+  name: CHIEF COMPLAINT ANATOMIC LOCATION
+  node: E09_11
+E09_12:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    1350: Cardiovascular
+    1355: CNS/Neuro
+    1360: Endocrine/Metabolic
+    1365: GI
+    1370: Global
+    1375: Musculoskeletal
+    1380: OB/Gyn
+    1385: Psych
+    1390: Pulmonary
+    1395: Renal
+    1400: Skin
+  is_multi_entry: 0
+  name: CHIEF COMPLAINT ORGAN SYSTEM
+  node: E09_12
+E09_13:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    1405: Bleeding
+    1410: Breathing Problem
+    1415: Change in responsiveness
+    1420: Choking
+    1425: Death
+    1430: Device/Equipment Problem
+    1435: Diarrhea
+    1440: Drainage/Discharge
+    1445: Fever
+    1450: Malaise
+    1455: Mass/Lesion
+    1460: Mental/Psych
+    1465: Nausea/Vomiting
+    1470: None
+    1475: Pain
+    1480: Palpitations
+    1485: Rash/Itching
+    1490: Swelling
+    1495: Transport Only
+    1500: Weakness
+    1505: Wound
+  is_multi_entry: 0
+  name: PRIMARY SYMPTOM
+  node: E09_13
+E09_14:
+  allow_null: 1
+  data_entry_method: multiple-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    1510: Bleeding
+    1515: Breathing Problem
+    1520: Change in responsiveness
+    1525: Choking
+    1530: Death
+    1535: Device/Equipment Problem
+    1540: Diarrhea
+    1545: Drainage/Discharge
+    1550: Fever
+    1555: Malaise
+    1560: Mass/Lesion
+    1565: Mental/Psych
+    1570: Nausea/Vomiting
+    1575: None
+    1580: Pain
+    1585: Palpitations
+    1590: Rash/Itching
+    1595: Swelling
+    1600: Transport Only
+    1605: Weakness
+    1610: Wound
+  is_multi_entry: 1
+  name: OTHER ASSOCIATED SYMPTOMS
+  node: E09_14
+E09_15:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    1615: '789.00- Abdominal pain / problems'
+    1620: '519.80- Airway obstruction'
+    1625: '995.30- Allergic reaction'
+    1630: '780.09- Altered level of consciousness'
+    1635: '312.90- Behavioral / psychiatric disorder'
+    1640: '427.50- Cardiac arrest'
+    1645: '427.90- Cardiac rhythm disturbance'
+    1650: '786.50- Chest pain / discomfort'
+    1655: '250.90- Diabetic symptoms (hypoglycemia)'
+    1660: '994.80- Electrocution'
+    1665: '780.60- Hyperthermia'
+    1670: '780.90- Hypothermia'
+    1675: '785.59- Hypovolemia / shock'
+    1680: '987.90- Inhalation injury (toxic gas)'
+    1685: '798.99- Obvious death'
+    1690: '977.90- Poisoning / drug ingestion'
+    1695: '659.90- Pregnancy / OB delivery'
+    1700: '786.09- Respiratory distress'
+    1705: '799.10- Respiratory arrest'
+    1710: '780.30- Seizure'
+    1715: '959.90- Sexual assault / rape'
+    1720: '987.90- Smoke inhalation'
+    1725: '989.50- Stings / venomous bites'
+    1730: '436.00- Stroke / CVA'
+    1735: '780.20- Syncope / fainting'
+    1740: '959.90- Traumatic injury'
+    1745: '623.80- Vaginal hemorrhage'
+  is_multi_entry: 0
+  name: PROVIDERS PRIMARY IMPRESSION
+  node: E09_15
+E09_16:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    1750: '789.00- Abdominal pain / problems'
+    1755: '519.80- Airway obstruction'
+    1760: '995.30- Allergic reaction'
+    1765: '780.09- Altered level of consciousness'
+    1770: '312.90- Behavioral / psychiatric disorder'
+    1775: '427.50- Cardiac arrest'
+    1780: '427.90- Cardiac rhythm disturbance'
+    1785: '786.50- Chest pain / discomfort'
+    1790: '250.90- Diabetic symptoms (hypoglycemia)'
+    1795: '994.80- Electrocution'
+    1800: '780.60- Hyperthermia'
+    1805: '780.90- Hypothermia'
+    1810: '785.59- Hypovolemia / shock'
+    1815: '987.90- Inhalation injury (toxic gas)'
+    1820: '798.99- Obvious death'
+    1825: '977.90- Poisoning / drug ingestion'
+    1830: '659.90- Pregnancy / OB delivery'
+    1835: '786.09- Respiratory distress'
+    1840: '799.10- Respiratory arrest'
+    1845: '780.30- Seizure'
+    1850: '959.90- Sexual assault / rape'
+    1855: '987.90- Smoke inhalation'
+    1860: '989.50- Stings / venomous bites'
+    1865: '436.00- Stroke / CVA'
+    1870: '780.20- Syncope / fainting'
+    1875: '959.90- Traumatic injury'
+    1880: '623.80- Vaginal hemorrhage'
+  is_multi_entry: 0
+  name: PROVIDER’S SECONDARY IMPRESSION
+  node: E09_16
+E10_01:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    1885: Bites (E906.0)
+    9500: Aircraft related accident (E84X.0)
+    9505: Bicycle Accident (E826.0)
+    9515: Chemical poisoning (E86X.0)
+    9520: Child battering (E967.0)
+    9525: Drowning (E910.0)
+    9530: Drug poisoning (E85X.0)
+    9535: Electrocution (non-lightning) (E925.0)
+    9540: Excessive Cold (E901.0)
+    9545: Excessive Heat (E900.0)
+    9550: Falls (E88X.0)
+    9555: Fire and Flames (E89X.0)
+    9560: Firearm assault (E965.0)
+    9565: Firearm injury (accidental) (E985.0)
+    9570: Firearm self inflicted (E955.0)
+    9575: Lightning (E907.0)
+    9580: Machinery accidents (E919.0)
+    9585: Mechanical Suffocation (E913.0)
+    9590: Motor Vehicle non-traffic accident (E82X.0)
+    9595: Motor Vehicle traffic accident (E81X.0)
+    9600: Motorcycle Accident (E81X.1)
+    9605: Non-Motorized Vehicle Accident (E848.0)
+    9610: Pedestrian traffic accident (E814.0)
+    9615: Radiation exposure (E926.0)
+    9620: Rape (E960.1)
+    9625: Smoke Inhalation (E89X.2)
+    9630: Stabbing/Cutting Accidental (E986.0)
+    9635: Stabbing/Cutting Assault (E966.0)
+    9640: Struck by Blunt/Thrown Object (E968.2)
+    9645: 'Venomous stings (plants, animals) (E905.0)'
+    9650: Water Transport accident (E83X.0)
+  is_multi_entry: 0
+  name: CAUSE OF INJURY
+  node: E10_01
+E10_02:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    2020: 'Intentional, Other (Assaulted)'
+    2025: 'Intentional, Self'
+    2030: Unintentional
+  is_multi_entry: 0
+  name: INTENT OF THE INJURY
+  node: E10_02
+E10_03:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    2035: Blunt
+    2040: Burn
+    2045: Other
+    2050: Penetrating
+  is_multi_entry: 1
+  name: MECHANISM OF INJURY
+  node: E10_03
+E10_04:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    2055: Dash Deformity
+    2060: DOA Same Vehicle
+    2065: Ejection
+    2070: Fire
+    2075: Rollover/Roof Deformity
+    2080: Side Post Deformity
+    2085: Space Intrusion >1 foot
+    2090: Steering Wheel Deformity
+    2095: Windshield Spider/Star
+  is_multi_entry: 1
+  name: VEHICULAR INJURY INDICATORS
+  node: E10_04
+E10_05:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    2100: Center Front
+    2105: Center Rear
+    2110: Left Front
+    2115: Left Rear
+    2120: Left Side
+    2125: Right Front
+    2130: Right Rear
+    2135: Right Side
+    2140: Roll Over
+  is_multi_entry: 1
+  name: AREA OF THE VEHICLE IMPACTED BY THE COLLISION
+  node: E10_05
+E10_06:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    50: 'is passed, the location is designated "Cargo Area"'
+  is_multi_entry: 0
+  name: SEAT ROW LOCATION OF PATIENT IN VEHICLE
+  node: E10_06
+E10_07:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    2145: Driver
+    2150: Left (non-driver)
+    2155: Middle
+    2160: Other
+    2165: Right
+  is_multi_entry: 0
+  name: POSITION OF PATIENT IN THE SEAT OF THE VEHICLE
+  node: E10_07
+E10_08:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    2170: Child Restraint
+    2175: Eye Protection
+    2180: Helmet Worn
+    2185: Lap Belt
+    2187: None
+    2190: Other
+    2195: Personal Floatation Device
+    2200: Protective Clothing
+    2205: Protective Non-Clothing Gear
+    2210: Shoulder Belt
+  is_multi_entry: 1
+  name: USE OF OCCUPANT SAFETY EQUIPMENT
+  node: E10_08
+E10_09:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    2215: No Airbag Present
+    2220: No Airbag Deployed
+    2225: Airbag Deployed Front
+    2230: Airbag Deployed Side
+    2235: 'Airbag Deployed Other (knee, airbelt, etc.)'
+  is_multi_entry: 1
+  name: AIRBAG DEPLOYMENT
+  node: E10_09
+E10_10:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 0
+  name: HEIGHT OF FALL
+  node: E10_10
+E11_01:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    0: No
+    2240: 'Yes, Prior to EMS Arrival'
+    2245: 'Yes, After EMS Arrival'
+  is_multi_entry: 0
+  name: CARDIAC ARREST
+  node: E11_01
+E11_02:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    2250: Presumed Cardiac
+    2255: Trauma
+    2260: Drowning
+    2265: Respiratory
+    2270: Electrocution
+    2275: Other
+  is_multi_entry: 0
+  name: CARDIAC ARREST ETIOLOGY
+  node: E11_02
+E11_03:
+  allow_null: 1
+  data_entry_method: multiple-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    2280: Attempted Defibrillation
+    2285: Attempted Ventilation
+    2290: Initiated Chest Compressions
+    2295: Not Attempted-Considered Futile
+    2300: Not Attempted-DNR Orders
+    2305: Not Attempted-Signs of Circulation
+  is_multi_entry: 1
+  name: RESUSCITATION ATTEMPTED
+  node: E11_03
+E11_04:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    2310: Witnessed by Healthcare Provider
+    2315: Witnessed by Lay Person
+    2320: Not Witnessed
+  is_multi_entry: 0
+  name: ARREST WITNESSED BY
+  node: E11_04
+E11_05:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    2325: Asystole
+    2330: Bradycardia
+    2335: Normal Sinus Rhythm
+    2340: Other
+    2345: PEA
+    2350: Unknown AED Non-Shockable Rhythm
+    2355: Unknown AED Shockable Rhythm
+    2360: Ventricular Fibrillation
+    2365: Ventricular Tachycardia
+  is_multi_entry: 0
+  name: FIRST MONITORED RHYTHM OF THE PATIENT
+  node: E11_05
+E11_06:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    2370: 'Yes, Prior to ED Arrival Only'
+    2375: 'Yes, Prior to ED Arrival and at the ED'
+    2380: No
+  is_multi_entry: 0
+  name: ANY RETURN OF SPONTANEOUS CIRCULATION
+  node: E11_06
+E11_07:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    1: or
+    2380: CPC
+    2385: CPC
+    3: or 4
+  is_multi_entry: 0
+  name: NEUROLOGICAL OUTCOME AT HOSPITAL DISCHARGE
+  node: E11_07
+E11_08:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    2390: '>20 Minutes'
+    2395: 15-20 Minutes
+    2400: 10-15 Minutes
+    2405: 8-10 Minutes
+    2410: 6-8 Minutes
+    2415: 4-6 Minutes
+    2420: 2-4 Minutes
+    2425: 0-2 Minutes
+  is_multi_entry: 0
+  name: ESTIMATED TIME OF ARREST PRIOR TO EMS ARRIVAL
+  node: E11_08
+E11_09:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 0
+  name: DATE/TIME RESUSCITATION DISCONTINUED
+  node: E11_09
+E11_10:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    2430: DNR
+    2435: Medical Control Order
+    2440: Obvious Signs of Death
+    2445: Protocol/Policy Requirements Completed
+    2450: Return of Spontaneous Circulation (pulse or BP noted)
+  is_multi_entry: 0
+  name: REASON CPR DISCONTINUED
+  node: E11_10
+E11_11:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    12: Lead ECG-Lateral Ischemia
+    2470: Agonal/Idioventricular
+    2475: Artifact
+    2480: Asystole
+    2485: Atrial Fibrillation/Flutter
+    2490: AV Block-1st Degree
+    2495: AV Block-2nd Degree-Type
+    2500: AV Block-2nd Degree-Type
+    2505: AV Block-3rd Degree
+    2510: Junctional
+    2515: Left Bundle Branch Block
+    2520: Normal Sinus Rhythm
+    2525: Other
+    2530: Paced Rhythm
+    2535: PEA
+    2540: Premature Atrial Contractions
+    2545: Premature Ventricular Contractions
+    2550: Right Bundle Branch Block
+    2555: Sinus Arrhythmia
+    2560: Sinus Bradycardia
+    2565: Sinus Tachycardia
+    2570: Supraventricular Tachycardia
+    2575: Torsades De Points
+    2580: Unknown AED Non-Shockable Rhythm
+    2585: Unknown AED Shockable Rhythm
+    2590: Ventricular Fibrillation
+    2595: Ventricular Tachycardia
+  is_multi_entry: 1
+  name: CARDIAC RHYTHM ON ARRIVAL AT DESTINATION
+  node: E11_11
+E12_01:
+  allow_null: 1
+  data_entry_method: multiple-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    2600: Developmentally Impaired
+    2605: Hearing Impaired
+    2610: Language
+    2615: None
+    2620: Physically Impaired
+    2625: Physically Restrained
+    2630: Speech Impaired
+    2635: Unattended or Unsupervised (including minors)
+    2640: Unconscious
+  is_multi_entry: 1
+  name: BARRIERS TO PATIENT CARE
+  node: E12_01
+E12_02:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: SENDING FACILITY MEDICAL RECORD NUMBER
+  node: E12_02
+E12_03:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: DESTINATION MEDICAL RECORD NUMBER
+  node: E12_03
+E12_04:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: FIRST NAME OF PATIENT'S PRIMARY PRACTITIONER
+  node: E12_04
+E12_05:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: MIDDLE NAME OF PATIENT'S PRIMARY PRACTITIONER
+  node: E12_05
+E12_06:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: LAST NAME OF PATIENT'S PRIMARY PRACTITIONER
+  node: E12_06
+E12_07:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    2645: State/EMS DNR Form
+    2650: Other Healthcare DNR Form
+    2655: Living Will
+    2660: Family/Guardian request DNR (but no documentation)
+    2665: Other
+    2670: None
+  is_multi_entry: 1
+  name: ADVANCED DIRECTIVES
+  node: E12_07
+E12_08:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: MEDICATION ALLERGIES
+  node: E12_08
+E12_09:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    2675: Insect Sting
+    2680: Food Allergy
+    2685: Latex
+    2690: Chemical
+    2695: Other
+    2700: None
+  is_multi_entry: 1
+  name: ENVIRONMENTAL/FOOD ALLERGIES
+  node: E12_09
+E12_10:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo or text
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: MEDICAL/SURGICAL HISTORY
+  node: E12_10
+E12_11:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    2705: Bystander/Other
+    2710: Family
+    2715: Health Care Personnel
+    2720: None
+    2725: Patient
+  is_multi_entry: 0
+  name: MEDICAL HISTORY OBTAINED FROM
+  node: E12_11
+E12_12:
+  allow_null: 0
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    2730: Anthrax
+    2735: 'DPT (Diphtheria, Tetanus, Pertussis)'
+    2740: Hemophilus Influenza B
+    2745: Hepatitis A
+    2750: Hepatitis B
+    2755: Influenza (Flu)
+    2760: 'MMR (Measles, Mumps, Rubella)'
+    2765: 'Polio = 8, Pneumococcal (pneumonia)'
+    2770: Small Pox
+    2775: Tetanus
+    2780: Varicella
+  is_multi_entry: 1
+  name: IMMUNIZATION HISTORY
+  node: E12_12
+E12_13:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: IMMUNIZATION DATE
+  node: E12_13
+E12_14:
+  allow_null: 0
+  data_entry_method: multiple-choice
+  data_type: combo or text
+  is_multi_entry: 1
+  name: CURRENT MEDICATIONS
+  node: E12_14
+E12_15:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: CURRENT MEDICATION DOSE
+  node: E12_15
+E12_16:
+  allow_null: 0
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    2785: GMS
+    2790: Inches
+    2795: IU
+    2800: KVO (TKO)
+    2805: L/MIN
+    2810: LITERS
+    2815: LPM
+    2820: MCG
+    2825: MCG/KG/MIN
+    2830: MEQ
+    2835: MG
+    2840: MG/KG/MIN
+    2845: ML
+    2850: ML/HR
+    2855: Other
+    2860: Puffs
+  is_multi_entry: 1
+  name: CURRENT MEDICATION DOSAGE UNIT
+  node: E12_16
+E12_17:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    2865: Endotracheal tube
+    2870: Gastrostomy
+    2875: Inhalation
+    2880: Intramuscular
+    2890: Intraocular
+    2895: Intravenous
+    2900: Nasal
+    2905: Nasal prongs
+    2910: Nasogastric
+    2915: Ophthalmic
+    2920: Oral
+    2925: Other/miscellaneous
+    2930: Otic
+    2935: Non Re-breather mask
+    2940: Rectal
+    2945: Subcutaneous
+    2950: Sublingual
+    2955: Topical
+    2960: Tracheostomy
+    2965: Transdermal
+    2970: Urethral
+    2975: Ventimask
+    2980: Wound
+  is_multi_entry: 1
+  name: CURRENT MEDICATION ADMINISTRATION ROUTE
+  node: E12_17
+E12_18:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: PRESENCE OF EMERGENCY INFORMATION FORM
+  node: E12_18
+E12_19:
+  allow_null: 1
+  data_entry_method: multiple-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    2985: Smell of Alcohol on Breath
+    2990: Patient Admits to Alcohol Use
+    2995: Patient Admits to Drug Use
+    3000: Alcohol and/or Drug Paraphernalia at Scene
+    3001: None
+  is_multi_entry: 1
+  name: ALCOHOL/DRUG USE INDICATORS
+  node: E12_19
+E12_20:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: PREGNANCY
+  node: E12_20
+E13_01:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: RUN REPORT NARRATIVE
+  node: E13_01
+E14_01:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: DATE/TIME VITAL SIGNS TAKEN
+  node: E14_01
+E14_02:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 1
+  name: OBTAINED PRIOR TO THIS UNITS EMS CARE
+  node: E14_02
+E14_03:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    12: Lead ECG-Lateral Ischemia
+    3020: Agonal/Idioventricular
+    3025: Artifact
+    3030: Asystole
+    3035: Atrial Fibrillation/Flutter
+    3040: AV Block-1st Degree
+    3045: AV Block-2nd Degree-Type
+    3050: AV Block-2nd Degree-Type
+    3055: AV Block-3rd Degree
+    3060: Junctional
+    3065: Left Bundle Branch Block
+    3070: Normal Sinus Rhythm
+    3075: Other
+    3080: Paced Rhythm
+    3085: PEA
+    3090: Premature Atrial Contractions
+    3095: Premature Ventricular Contractions
+    3100: Right Bundle Branch Block
+    3105: Sinus Arrhythmia
+    3110: Sinus Bradycardia
+    3115: Sinus Tachycardia
+    3120: Supraventricular Tachycardia
+    3125: Torsades De Points
+    3130: Unknown AED Non-Shockable Rhythm
+    3135: Unknown AED Shockable Rhythm
+    3140: Ventricular Fibrillation
+    3145: Ventricular Tachycardia
+  is_multi_entry: 1
+  name: CARDIAC RHYTHM
+  node: E14_03
+E14_04:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: SBP (SYSTOLIC BLOOD PRESSURE)
+  node: E14_04
+E14_05:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: DBP (DIASTOLIC BLOOD PRESSURE)
+  node: E14_05
+E14_06:
+  allow_null: 0
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    3150: Arterial Line
+    3155: Automated Cuff
+    3160: Manual Cuff
+    3165: Palpated Cuff
+    3170: Venous Line
+  is_multi_entry: 1
+  name: METHOD OF BLOOD PRESSURE MEASUREMENT
+  node: E14_06
+E14_07:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: PULSE RATE
+  node: E14_07
+E14_08:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: ELECTRONIC MONITOR RATE
+  node: E14_08
+E14_09:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: PULSE OXIMETRY
+  node: E14_09
+E14_10:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3175: Regular
+    3180: Irregular
+  is_multi_entry: 1
+  name: PULSE RHYTHM
+  node: E14_10
+E14_11:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: RESPIRATORY RATE
+  node: E14_11
+E14_12:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3185: Normal
+    3190: Labored
+    3195: Fatigued
+    3200: Absent
+    3205: Not Assessed
+  is_multi_entry: 1
+  name: RESPIRATORY EFFORT
+  node: E14_12
+E14_13:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: CARBON DIOXIDE
+  node: E14_13
+E14_14:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: BLOOD GLUCOSE LEVEL
+  node: E14_14
+E14_15:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    1: '= Does Not Open Eyes ● ● For All Age Groups:'
+    2: '= Opens Eyes to painful ● stimulation ● For All Age Groups:'
+    3: '= Opens Eyes to verbal stimulation ● ● For All Age Groups:'
+    4: = Opens Eyes spontaneously ●
+  is_multi_entry: 1
+  name: GLASGOW COMA SCORE-EYE
+  node: E14_15
+E14_16:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -23: 'months:'
+    1: '= None ● ● Patients >5 years:'
+    2: '= Non-specified sounds ● ● Patients >5 years:'
+    3: '= Inappropriate words ● ● Patients >5 years:'
+    4: '= Confused conversation or ● ● Patients >5 years:'
+    5: = Oriented and appropriate speech
+  is_multi_entry: 1
+  name: GLASGOW COMA SCORE-VERBAL
+  node: E14_16
+E14_17:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    1: = None ● Patients up to
+    2: = Extensor posturing in response response to painful stimulation to painful stimulation ● Patients up to
+    3: = Flexor posturing in response to to painful stimulation painful stimulation ● Patients up to
+    4: = General withdrawal in response response to painful stimulation to painful stimulation ● Patients up to
+    5: 'years:'
+    6: = Obeys commands with appropriate motor responses
+  is_multi_entry: 1
+  name: GLASGOW COMA SCORE-MOTOR
+  node: E14_17
+E14_18:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3210: Initial GCS has legitimate values without interventions such as intubation and sedation
+    3215: Patient Chemically Sedated
+    3220: Patient Intubated
+    3225: Patient Intubated and Chemically Paralyzed
+  is_multi_entry: 1
+  name: GLASGOW COMA SCORE-QUALIFIER
+  node: E14_18
+E14_19:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: TOTAL GLASGOW COMA SCORE
+  node: E14_19
+E14_20:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: TEMPERATURE
+  node: E14_20
+E14_21:
+  allow_null: 0
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    3230: Axillary
+    3235: Oral
+    3240: Rectal
+    3245: Tympanic
+    3250: Urinary catheter
+  is_multi_entry: 1
+  name: TEMPERATURE METHOD
+  node: E14_21
+E14_22:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3255: Alert
+    3260: Verbal
+    3265: Painful
+    3270: Unresponsive
+  is_multi_entry: 1
+  name: LEVEL OF RESPONSIVENESS
+  node: E14_22
+E14_23:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: PAIN SCALE
+  node: E14_23
+E14_24:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3275: Cincinnati Stroke Scale Negative
+    3280: Cincinnati Stroke Scale Non-conclusive
+    3285: Cincinnati Stroke Scale Positive
+    3290: LA Stroke Scale Negative
+    3295: LA Stroke Scale Non-conclusive
+    3300: LA Stroke Scale Positive
+  is_multi_entry: 1
+  name: STROKE SCALE
+  node: E14_24
+E14_25:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3305: Definite Contraindications to Thrombolytic use
+    3310: No Contraindications to Thrombolytic Use
+    3315: Possible Contraindications to Thrombolytic Use
+  is_multi_entry: 1
+  name: THROMBOLYTIC SCREEN
+  node: E14_25
+E14_26:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: APGAR
+  node: E14_26
+E14_27:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: REVISED TRAUMA SCORE
+  node: E14_27
+E14_28:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: PEDIATRIC TRAUMA SCORE
+  node: E14_28
+E15_01:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3320: Amputation
+    3325: Bleeding Controlled
+    3330: Bleeding Uncontrolled
+    3335: Burn
+    3340: Crush
+    3345: Dislocation Fracture
+    3350: Gunshot
+    3355: Laceration
+    3360: Pain without swelling/bruising
+    3365: Puncture/stab
+    3370: Soft Tissue Swelling/Bruising
+  is_multi_entry: 1
+  name: NHTSA INJURY MATRIX EXTERNAL/SKIN
+  node: E15_01
+E15_02:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3320: Amputation
+    3325: Bleeding Controlled
+    3330: Bleeding Uncontrolled
+    3335: Burn
+    3340: Crush
+    3345: Dislocation Fracture
+    3350: Gunshot
+    3355: Laceration
+    3360: Pain without swelling/bruising
+    3365: Puncture/stab
+    3370: Soft Tissue Swelling/Bruising
+  is_multi_entry: 1
+  name: NHTSA INJURY MATRIX HEAD
+  node: E15_02
+E15_03:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3320: Amputation
+    3325: Bleeding Controlled
+    3330: Bleeding Uncontrolled
+    3335: Burn
+    3340: Crush
+    3345: Dislocation Fracture
+    3350: Gunshot
+    3355: Laceration
+    3360: Pain without swelling/bruising
+    3365: Puncture/stab
+    3370: Soft Tissue Swelling/Bruising
+  is_multi_entry: 1
+  name: NHTSA INJURY MATRIX FACE
+  node: E15_03
+E15_04:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3320: Amputation
+    3325: Bleeding Controlled
+    3330: Bleeding Uncontrolled
+    3335: Burn
+    3340: Crush
+    3345: Dislocation Fracture
+    3350: Gunshot
+    3355: Laceration
+    3360: Pain without swelling/bruising
+    3365: Puncture/stab
+    3370: Soft Tissue Swelling/Bruising
+  is_multi_entry: 1
+  name: NHTSA INJURY MATRIX NECK
+  node: E15_04
+E15_05:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3320: Amputation
+    3325: Bleeding Controlled
+    3330: Bleeding Uncontrolled
+    3335: Burn
+    3340: Crush
+    3345: Dislocation Fracture
+    3350: Gunshot
+    3355: Laceration
+    3360: Pain without swelling/bruising
+    3365: Puncture/stab
+    3370: Soft Tissue Swelling/Bruising
+  is_multi_entry: 1
+  name: NHTSA INJURY MATRIX THORAX
+  node: E15_05
+E15_06:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3320: Amputation
+    3325: Bleeding Controlled
+    3330: Bleeding Uncontrolled
+    3335: Burn
+    3340: Crush
+    3345: Dislocation Fracture
+    3350: Gunshot
+    3355: Laceration
+    3360: Pain without swelling/bruising
+    3365: Puncture/stab
+    3370: Soft Tissue Swelling/Bruising
+  is_multi_entry: 1
+  name: NHTSA INJURY MATRIX ABDOMEN
+  node: E15_06
+E15_07:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3320: Amputation
+    3325: Bleeding Controlled
+    3330: Bleeding Uncontrolled
+    3335: Burn
+    3340: Crush
+    3345: Dislocation Fracture
+    3350: Gunshot
+    3355: Laceration
+    3360: Pain without swelling/bruising
+    3365: Puncture/stab
+    3370: Soft Tissue Swelling/Bruising
+  is_multi_entry: 1
+  name: NHTSA INJURY MATRIX SPINE
+  node: E15_07
+E15_08:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3320: Amputation
+    3325: Bleeding Controlled
+    3330: Bleeding Uncontrolled
+    3335: Burn
+    3340: Crush
+    3345: Dislocation Fracture
+    3350: Gunshot
+    3355: Laceration
+    3360: Pain without swelling/bruising
+    3365: Puncture/stab
+    3370: Soft Tissue Swelling/Bruising
+  is_multi_entry: 1
+  name: NHTSA INJURY MATRIX UPPER EXTREMITIES
+  node: E15_08
+E15_09:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3320: Amputation
+    3325: Bleeding Controlled
+    3330: Bleeding Uncontrolled
+    3335: Burn
+    3340: Crush
+    3345: Dislocation Fracture
+    3350: Gunshot
+    3355: Laceration
+    3360: Pain without swelling/bruising
+    3365: Puncture/stab
+    3370: Soft Tissue Swelling/Bruising
+  is_multi_entry: 1
+  name: NHTSA INJURY MATRIX PELVIS
+  node: E15_09
+E15_10:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3320: Amputation
+    3325: Bleeding Controlled
+    3330: Bleeding Uncontrolled
+    3335: Burn
+    3340: Crush
+    3345: Dislocation Fracture
+    3350: Gunshot
+    3355: Laceration
+    3360: Pain without swelling/bruising
+    3365: Puncture/stab
+    3370: Soft Tissue Swelling/Bruising
+  is_multi_entry: 1
+  name: NHTSA INJURY MATRIX LOWER EXTREMITIES
+  node: E15_10
+E15_11:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3320: Amputation
+    3325: Bleeding Controlled
+    3330: Bleeding Uncontrolled
+    3335: Burn
+    3340: Crush
+    3345: Dislocation Fracture
+    3350: Gunshot
+    3355: Laceration
+    3360: Pain without swelling/bruising
+    3365: Puncture/stab
+    3370: Soft Tissue Swelling/Bruising
+  is_multi_entry: 1
+  name: NHTSA INJURY MATRIX UNSPECIFIED
+  node: E15_11
+E16_01:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 0
+  name: ESTIMATED BODY WEIGHT
+  node: E16_01
+E16_02:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3375: Blue
+    3380: Green
+    3385: Grey
+    3390: Orange
+    3395: Pink
+    3400: Purple
+    3405: Red
+    3410: White
+    3415: Yellow
+  is_multi_entry: 0
+  name: BROSELOW/LUTEN COLOR
+  node: E16_02
+E16_03:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: DATE/TIME OF ASSESSMENT
+  node: E16_03
+E16_04:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3420: Normal
+    3425: Not Done
+    3430: Clammy
+    3435: Cold
+    3440: Cyanotic
+    3445: Jaundiced
+    3450: Lividity
+    3455: Mottled
+    3460: Pale
+    3465: Warm
+  is_multi_entry: 1
+  name: SKIN ASSESSMENT
+  node: E16_04
+E16_05:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3470: Normal
+    3475: Not Done
+    3480: Asymmetric Smile or Droop
+    3485: Drainage
+    3490: Mass/Lesion
+    3495: Swelling
+  is_multi_entry: 1
+  name: HEAD/FACE ASSESSMENT
+  node: E16_05
+E16_06:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3500: Normal
+    3505: Not Done
+    3510: JVD
+    3515: Strider
+    3520: SubQ Air
+    3525: Tracheal Dev
+  is_multi_entry: 1
+  name: NECK ASSESSMENT
+  node: E16_06
+E16_07:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3530: Normal
+    3535: Not Done
+    3540: Accessory Muscles
+    3545: Decreased BS-Left
+    3550: Decreased BS-Right
+    3555: Flail Segment-Left
+    3560: Flail Segment-Right
+    3565: Increased Effort
+    3570: Normal BS
+    3575: Rales
+    3580: Rhonchi/Wheezing
+    3585: Tenderness-Left
+    3590: Tenderness-Right
+  is_multi_entry: 1
+  name: CHEST/LUNGS ASSESSMENT
+  node: E16_07
+E16_08:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3595: Normal
+    3600: Not Done
+    3605: Decreased Sounds
+    3610: Murmur
+  is_multi_entry: 1
+  name: HEART ASSESSMENT
+  node: E16_08
+E16_09:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3615: Normal
+    3620: Not Done
+    3625: Distention
+    3630: Guarding
+    3635: Mass
+    3640: Tenderness
+  is_multi_entry: 1
+  name: ABDOMEN LEFT UPPER ASSESSMENT
+  node: E16_09
+E16_10:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3645: Normal
+    3650: Not Done
+    3655: Distention
+    3660: Guarding
+    3665: Mass
+    3670: Tenderness
+  is_multi_entry: 1
+  name: ABDOMEN LEFT LOWER ASSESSMENT
+  node: E16_10
+E16_11:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3675: Normal
+    3680: Not Done
+    3685: Distention
+    3690: Guarding
+    3695: Mass
+    3700: Tenderness
+  is_multi_entry: 1
+  name: ABDOMEN RIGHT UPPER ASSESSMENT
+  node: E16_11
+E16_12:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3705: Normal
+    3710: Not Done
+    3715: Distention
+    3720: Guarding
+    3725: Mass
+    3730: Tenderness
+  is_multi_entry: 1
+  name: ABDOMEN RIGHT LOWER ASSESSMENT
+  node: E16_12
+E16_13:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3735: Normal
+    3740: Not Done
+    3745: Crowning
+    3750: Genital Injury
+    3755: Tenderness
+    3760: Unstable
+  is_multi_entry: 1
+  name: GU ASSESSMENT
+  node: E16_13
+E16_14:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3765: Normal
+    3770: Not Done
+    3775: Pain to ROM
+    3780: Tender Para-spinous
+    3785: Tender Spinous Process
+  is_multi_entry: 1
+  name: BACK CERVICAL ASSESSMENT
+  node: E16_14
+E16_15:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3790: Normal
+    3795: Not Done
+    3800: Pain to ROM
+    3805: Tender Para-spinous
+    3810: Tender Spinous Process
+  is_multi_entry: 1
+  name: BACK THORACIC ASSESSMENT
+  node: E16_15
+E16_16:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3815: Normal
+    3820: Not Done
+    3825: Pain to ROM
+    3830: Tender Para-spinous
+    3835: Tender Spinous Process
+  is_multi_entry: 1
+  name: BACK LUMBAR/SACRAL ASSESSMENT
+  node: E16_16
+E16_17:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3840: Normal
+    3845: Not Done
+    3850: Abnormal Pulse
+    3855: Abnormal Sensation
+    3860: Edema
+    3865: Tenderness
+    3870: Weakness
+  is_multi_entry: 1
+  name: EXTREMITIES-RIGHT UPPER ASSESSMENT
+  node: E16_17
+E16_18:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3875: Normal
+    3880: Not Done
+    3885: Abnormal Pulse
+    3890: Abnormal Sensation
+    3895: Edema
+    3900: Tenderness
+    3905: Weakness
+  is_multi_entry: 1
+  name: EXTREMITIES-RIGHT LOWER ASSESSMENT
+  node: E16_18
+E16_19:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3910: Normal
+    3915: Not Done
+    3920: Abnormal Pulse
+    3925: Abnormal Sensation
+    3930: Edema
+    3935: Tenderness
+    3940: Weakness
+  is_multi_entry: 1
+  name: EXTREMITIES-LEFT UPPER ASSESSMENT
+  node: E16_19
+E16_20:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3945: Normal
+    3950: Not Done
+    3955: Abnormal Pulse
+    3960: Abnormal Sensation
+    3965: Edema
+    3970: Tenderness
+    3975: Weakness
+  is_multi_entry: 1
+  name: EXTREMITIES-LEFT LOWER ASSESSMENT
+  node: E16_20
+E16_21:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3980: Not Done
+    3985: 2-mm
+    3990: 3-mm
+    3995: 4-mm
+    4000: 5-mm
+    4005: 6-mm
+    4010: 7-mm
+    4015: Blind
+    4020: Reactive
+    4025: Non-Reactive
+  is_multi_entry: 1
+  name: EYES-LEFT ASSESSMENT
+  node: E16_21
+E16_22:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    4030: Not Done
+    4035: 2-mm
+    4040: 3-mm
+    4045: 4-mm
+    4050: 5-mm
+    4055: 6-mm
+    4060: 7-mm
+    4065: Blind
+    4070: Reactive
+    4075: Non-Reactive
+  is_multi_entry: 1
+  name: EYES-RIGHT ASSESSMENT
+  node: E16_22
+E16_23:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    4080: Normal
+    4085: Not Done
+    4090: Combative
+    4095: Confused
+    4100: Hallucinations
+    4105: Oriented-Person
+    4110: Oriented-Place
+    4115: Oriented-Time
+    4120: Unresponsive
+  is_multi_entry: 1
+  name: MENTAL STATUS ASSESSMENT
+  node: E16_23
+E16_24:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    4125: Normal
+    4130: Not Done
+    4135: Abnormal Gait
+    4140: Facial Droop
+    4145: Seizures
+    4150: Speech Normal
+    4155: Speech Slurring
+    4160: Tremors
+    4165: Weakness-Left Sided
+    4170: Weakness-Right Sided
+  is_multi_entry: 1
+  name: NEUROLOGICAL ASSESSMENT
+  node: E16_24
+E17_01:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: PROTOCOLS USED
+  node: E17_01
+E18_01:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: DATE/TIME MEDICATION ADMINISTERED
+  node: E18_01
+E18_02:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 1
+  name: MEDICATION ADMINISTERED PRIOR TO THIS UNITS EMS CARE
+  node: E18_02
+E18_03:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: MEDICATION GIVEN
+  node: E18_03
+E18_04:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    4175: Endotracheal tube
+    4180: Gastrostomy tube
+    4185: Inhalation
+    4190: Intramuscular
+    4191: Intraosseous
+    4200: Intraocular
+    4205: Intravenous
+    4210: Nasal
+    4215: Nasal prongs
+    4220: Nasogastric
+    4225: Ophthalmic
+    4230: Oral
+    4235: Other/miscellaneous
+    4240: Otic
+    4245: Re-breather mask
+    4250: Rectal
+    4255: Subcutaneous
+    4260: Sublingual
+    4265: Topical
+    4270: Tracheostomy
+    4275: Transdermal
+    4280: Urethral
+    4285: Ventimask
+    4290: Wound
+  is_multi_entry: 1
+  name: MEDICATION ADMINISTERED ROUTE
+  node: E18_04
+E18_05:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: MEDICATION DOSAGE
+  node: E18_05
+E18_06:
+  allow_null: 0
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    4295: GMS
+    4300: Inches
+    4305: IU
+    4310: KVO (TKO)
+    4315: L/MIN
+    4320: LITERS
+    4325: LPM
+    4330: MCG
+    4335: MCG/KG/MIN
+    4340: MEQ
+    4345: MG
+    4350: MG/KG/MIN
+    4355: ML
+    4360: ML/HR
+    4365: Other
+    4370: Puffs
+  is_multi_entry: 1
+  name: MEDICATION DOSAGE UNITS
+  node: E18_06
+E18_07:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    4375: Improved
+    4380: Unchanged
+    4385: Worse
+  is_multi_entry: 1
+  name: RESPONSE TO MEDICATION
+  node: E18_07
+E18_08:
+  allow_null: 1
+  data_entry_method: multiple-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    4390: None
+    4395: Altered Mental Status
+    4400: Apnea
+    4405: Bleeding
+    4410: Bradycardia
+    4415: Diarrhea
+    4420: Extravasion
+    4425: Hypertension
+    4430: Hyperthermia
+    4435: Hypotension
+    4440: Hypoxia
+    4445: Injury
+    4450: Itching/Urticaria
+    4455: Nausea
+    4460: Other
+    4465: Respiratory Distress
+    4470: Tachycardia
+    4475: Vomiting
+  is_multi_entry: 1
+  name: MEDICATION COMPLICATION
+  node: E18_08
+E18_09:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: MEDICATION CREW MEMBER ID
+  node: E18_09
+E18_10:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    4480: On-Line
+    4485: On-Scene
+    4490: Protocol (Standing Order)
+    4495: Written Orders (Patient Specific)
+  is_multi_entry: 1
+  name: MEDICATION AUTHORIZATION
+  node: E18_10
+E18_11:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: MEDICATION AUTHORIZING PHYSICIAN
+  node: E18_11
+E19_01:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: DATE/TIME PROCEDURE PERFORMED SUCCESSFULLY
+  node: E19_01
+E19_02:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 1
+  name: PROCEDURE PERFORMED PRIOR TO THIS UNITS EMS CARE
+  node: E19_02
+E19_03:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: PROCEDURE
+  node: E19_03
+E19_04:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: SIZE OF PROCEDURE EQUIPMENT
+  node: E19_04
+E19_05:
+  allow_null: 1
+  data_entry_method: National Element
+  data_type: number
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: NUMBER OF PROCEDURE ATTEMPTS
+  node: E19_05
+E19_06:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 1
+  name: PROCEDURE SUCCESSFUL
+  node: E19_06
+E19_07:
+  allow_null: 1
+  data_entry_method: multiple-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    4500: None
+    4505: Altered Mental Status
+    4510: Apnea
+    4515: Bleeding
+    4520: Bradycardia
+    4525: Diarrhea
+    4530: Esophageal Intubation-immediately
+    4535: Esophageal Intubation-other
+    4540: Extravasion
+    4545: Hypertension
+    4550: Hyperthermia
+    4555: Hypotension
+    4560: Hypoxia
+    4565: Injury
+    4570: Itching/Urticaria
+    4575: Nausea
+    4580: Other
+    4585: Respiratory Distress
+    4590: Tachycardia
+    4595: Vomiting
+  is_multi_entry: 1
+  name: PROCEDURE COMPLICATION
+  node: E19_07
+E19_08:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    4600: Improved
+    4605: Unchanged
+    4610: Worse
+  is_multi_entry: 1
+  name: RESPONSE TO PROCEDURE
+  node: E19_08
+E19_09:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: PROCEDURE CREW MEMBERS ID
+  node: E19_09
+E19_10:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    4615: On-Line
+    4620: On-Scene
+    4625: Protocol (Standing Order)
+    4630: Written Orders (Patient Specific)
+  is_multi_entry: 1
+  name: PROCEDURE AUTHORIZATION
+  node: E19_10
+E19_11:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: PROCEDURE AUTHORIZING PHYSICIAN
+  node: E19_11
+E19_12:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    4635: Antecubital-Left
+    4640: Antecubital-Right
+    4645: External Jugular-Left
+    4650: External Jugular-Right
+    4655: Femoral-Left IV
+    4660: Femoral-Left Distal IO
+    4665: Femoral-Right IV
+    4670: Femoral-Right IO
+    4675: Forearm-Left
+    4680: Forearm-Right
+    4685: Hand-Left
+    4690: Hand-Right
+    4695: Lower Extremity-Left
+    4700: Lower Extremity-Right
+    4705: Other
+    4710: Scalp
+    4715: Sternal IO
+    4720: Tibia IO-Left
+    4725: Tibia IO-Right
+    4730: Umbilical
+  is_multi_entry: 1
+  name: SUCCESSFUL IV SITE
+  node: E19_12
+E19_13:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    4735: Auscultation of Bilateral Breath Sounds
+    4740: Colormetric CO2 Detector Confirmation
+    4745: Digital CO2 Confirmation
+    4750: Esophageal Bulb Aspiration confirmation
+    4755: Negative Auscultation of the Epigastrium
+    4760: Visualization of the Chest Rising with ventilation
+    4765: Visualization of Tube Passing Through the Cords
+    4770: Waveform CO2 Confirmation
+  is_multi_entry: 1
+  name: TUBE CONFIRMATION
+  node: E19_13
+E19_14:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    4775: Auscultation of Bilateral Breath Sounds
+    4780: Colormetric CO2 Detector Confirmation
+    4785: Digital CO2 Confirmation
+    4790: Esophageal Bulb Aspiration confirmation
+    4795: Negative Auscultation of the Epigastrium
+    4800: Visualization of the Chest Rising with ventilation
+    4805: Visualization of Tube Passing Through the Cords
+    4810: Waveform CO2 Confirmation
+  is_multi_entry: 1
+  name: DESTINATION CONFIRMATION OF TUBE PLACEMENT
+  node: E19_14
+E20_01:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: 'DESTINATION/TRANSFERRED TO, NAME'
+  node: E20_01
+E20_02:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: 'DESTINATION/TRANSFERRED TO, CODE'
+  node: E20_02
+E20_03:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: DESTINATION STREET ADDRESS
+  node: E20_03
+E20_04:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: DESTINATION CITY
+  node: E20_04
+E20_05:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: DESTINATION STATE
+  node: E20_05
+E20_06:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: DESTINATION COUNTY
+  node: E20_06
+E20_07:
+  allow_null: 1
+  data_entry_method: National Element
+  data_type: text
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: DESTINATION ZIP CODE
+  node: E20_07
+E20_08:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 0
+  name: DESTINATION GPS LOCATION
+  node: E20_08
+E20_09:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: DESTINATION ZONE NUMBER
+  node: E20_09
+E20_10:
+  allow_null: 0
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    4815: Cancelled
+    4820: Dead at Scene
+    4825: No Patient Found
+    4830: No Treatment Required
+    4835: Patient Refused Care
+    4840: Treated and Released
+    4845: 'Treated, Transferred Care'
+    4850: 'Treated, Transported by EMS'
+    4855: 'Treated, Transported by Law Enforcement'
+    4860: 'Treated, Transported by Private Vehicle'
+  is_multi_entry: 0
+  name: INCIDENT/PATIENT DISPOSITION
+  node: E20_10
+E20_11:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    4865: Assisted/Walk
+    4870: Carry
+    4875: Stairchair
+    4880: Stretcher
+    4885: Other
+  is_multi_entry: 0
+  name: HOW PATIENT WAS MOVED TO AMBULANCE
+  node: E20_11
+E20_12:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    4890: Car Seat
+    4895: Fowlers
+    4900: Lateral
+    4905: Prone
+    4910: Semi-Fowlers
+    4915: Sitting
+    4920: Supine
+    4925: Other
+  is_multi_entry: 0
+  name: POSITION OF PATIENT DURING TRANSPORT
+  node: E20_12
+E20_13:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    4930: Assisted/Walk
+    4935: Carry
+    4940: Stairchair
+    4945: Stretcher
+    4950: Other
+  is_multi_entry: 0
+  name: HOW PATIENT WAS TRANSPORTED FROM AMBULANCE
+  node: E20_13
+E20_14:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    4955: 'Initial Lights and Sirens, Downgraded to No Lights or Sirens'
+    4960: 'Initial No Lights or Sirens, Upgraded to Lights and Sirens'
+    4965: Lights and Sirens
+    4970: No Lights or Sirens
+  is_multi_entry: 0
+  name: TRANSPORT MODE FROM SCENE
+  node: E20_14
+E20_15:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    4975: Improved
+    4980: Unchanged
+    4985: Worse
+  is_multi_entry: 0
+  name: CONDITION OF PATIENT AT DESTINATION
+  node: E20_15
+E20_16:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    4990: Closest Facility (none below)
+    4995: Diversion
+    5000: Family Choice
+    5005: Insurance Status
+    5010: Law Enforcement Choice
+    5015: On-Line Medical Direction
+    5020: Other
+    5025: Patient Choice
+    5030: Patient's Physicians Choice
+    5035: Protocol
+    5040: Specialty Resource Center
+  is_multi_entry: 0
+  name: REASON FOR CHOOSING DESTINATION
+  node: E20_16
+E20_17:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    7270: Home
+    7280: Hospital
+    7290: Medical Office/Clinic
+    7300: Morgue
+    7320: Nursing Home
+    7330: Other
+    7340: Other EMS Responder (air)
+    7350: Other EMS Responder (ground)
+    7360: Police/Jail
+  is_multi_entry: 0
+  name: TYPE OF DESTINATION
+  node: E20_17
+E21_01:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: EVENT DATE/TIME
+  node: E21_01
+E21_02:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    5090: 12-Lead ECG
+    5095: Analysis (Button Pressed)
+    5100: CO2
+    5105: Date Transmitted
+    5110: Defibrillation
+    5115: ECG-Monitor
+    5120: Heart Rate
+    5125: Invasive Pressure
+    5130: Invasive Pressure
+    5135: No Shock Advised
+    5140: Non-Invasive BP
+    5145: Pacing Electrical Capture
+    5150: Pacing Started
+    5155: Pacing Stopped
+    5160: Patient Connected
+    5165: Power On
+    5170: Pulse Oximetry
+    5175: Pulse Rate
+    5180: Respiratory Rate
+    5185: Shock Advised
+    5190: Sync Off
+    5195: Sync On
+  is_multi_entry: 1
+  name: MEDICAL DEVICE EVENT NAME
+  node: E21_02
+E21_03:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    5200: JPG
+    5205: PDF
+  is_multi_entry: 1
+  name: WAVEFORM GRAPHIC TYPE
+  node: E21_03
+E21_04:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: WAVEFORM GRAPHIC
+  node: E21_04
+E21_05:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    5210: Automated
+    5215: Manual
+    5220: Advisory
+    5225: Demand
+    5230: Sensing
+    5235: Mid-Stream
+    5240: Side-Stream
+  is_multi_entry: 1
+  name: 'AED, PACING, OR CO2 MODE'
+  node: E21_05
+E21_06:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    5245: I
+    5250: II
+    5255: III
+    5260: AVR
+    5265: AVL
+    5270: AVF
+    5275: V1
+    5280: V2
+    5285: V3
+    5290: V4
+    5295: V5
+    5300: V6
+    5305: Paddle
+  is_multi_entry: 1
+  name: ECG LEAD
+  node: E21_06
+E21_07:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: ECG INTERPRETATION
+  node: E21_07
+E21_08:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    5310: Biphasic
+    5315: Monophasic
+  is_multi_entry: 1
+  name: TYPE OF SHOCK
+  node: E21_08
+E21_09:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: SHOCK OR PACING ENERGY
+  node: E21_09
+E21_10:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: TOTAL NUMBER OF SHOCKS DELIVERED
+  node: E21_10
+E21_11:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: PACING RATE
+  node: E21_11
+E21_12:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: DEVICE HEART RATE
+  node: E21_12
+E21_13:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: DEVICE PULSE RATE
+  node: E21_13
+E21_14:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: DEVICE SYSTOLIC BLOOD PRESSURE
+  node: E21_14
+E21_15:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: DEVICE DIASTOLIC BLOOD PRESSURE
+  node: E21_15
+E21_16:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: DEVICE RESPIRATORY RATE
+  node: E21_16
+E21_17:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: DEVICE PULSE OXIMETRY
+  node: E21_17
+E21_18:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: DEVICE CO2 OR ETCO2
+  node: E21_18
+E21_19:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    5320: kPa
+    5325: '% Volume'
+    5330: mmHg
+  is_multi_entry: 1
+  name: 'DEVICE CO2, ETCO2, OR INVASIVE PRESSURE MONITOR UNITS'
+  node: E21_19
+E21_20:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: DEVICE INVASIVE PRESSURE MEAN
+  node: E21_20
+E22_01:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    5335: Admitted to Hospital Floor
+    5340: Admitted to Hospital ICU
+    5345: Death
+    5350: Not Applicable (Not Transported to ED)
+    5355: Released
+    5360: Transferred
+  is_multi_entry: 0
+  name: EMERGENCY DEPARTMENT DISPOSITION
+  node: E22_01
+E22_02:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    5365: Death
+    5370: Discharged
+    5375: Transfer to Hospital
+    5380: Transfer to Nursing Home
+    5385: Transfer to Other
+    5390: Transfer to Rehabilitation Facility
+  is_multi_entry: 0
+  name: HOSPITAL DISPOSITION
+  node: E22_02
+E22_03:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: LAW ENFORCEMENT/CRASH REPORT NUMBER
+  node: E22_03
+E22_04:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: TRAUMA REGISTRY ID
+  node: E22_04
+E22_05:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: FIRE INCIDENT REPORT NUMBER
+  node: E22_05
+E22_06:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: PATIENT ID BAND/TAG NUMBER
+  node: E22_06
+E23_01:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: REVIEW REQUESTED
+  node: E23_01
+E23_02:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    5395: Burn
+    5400: Cardiac/MI
+    5405: CVA/Stroke
+    5410: Drowning
+    5415: Spinal Cord Injury
+    5420: Trauma
+    5425: Traumatic Brain Injury
+    5430: Other
+  is_multi_entry: 1
+  name: POTENTIAL REGISTRY CANDIDATE
+  node: E23_02
+E23_03:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    5435: Eye Protection
+    5440: Gloves
+    5445: Level A Suit
+    5450: Level B Suit
+    5455: Level C Suit
+    5460: Mask
+    5465: Other
+  is_multi_entry: 1
+  name: PERSONAL PROTECTIVE EQUIPMENT USED
+  node: E23_03
+E23_04:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    5470: Biologic Agent
+    5475: Building Failure
+    5480: Chemical Agent
+    5485: Explosive Device
+    5490: Fire
+    5495: Hostage Event
+    5500: Mass Gathering
+    5505: Nuclear Agent
+    5510: Radioactive Device
+    5515: Secondary Destructive Device
+    5520: Shooting/Sniper
+    5525: Vehicular
+    5530: Weather
+  is_multi_entry: 1
+  name: 'SUSPECTED INTENTIONAL, OR UNINTENTIONAL DISASTER'
+  node: E23_04
+E23_06:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    5540: Contact to Broken Skin
+    5545: Contact to Intact Skin
+    5550: Contact with Eye
+    5555: Contact with Mucosal Surface
+    5560: Inhalation Exposure
+    5565: Needle Stick with Fluid Injection
+    5570: Needle Stick without Fluid Injection
+    5575: Other Physical injury
+    5580: Death
+    5585: None
+  is_multi_entry: 1
+  name: 'TYPE OF SUSPECTED BLOOD/BODY FLUID EXPOSURE, INJURY, OR'
+  node: E23_06
+E23_07:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    5590: This EMS Crew
+    5595: Non-EMS individual
+    5600: Other EMS Personnel
+  is_multi_entry: 1
+  name: PERSONNEL EXPOSED
+  node: E23_07
+E23_08:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: REQUIRED REPORTABLE CONDITIONS
+  node: E23_08
+E23_09:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: RESEARCH SURVEY FIELD
+  node: E23_09
+E23_10:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: ~
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: WHO GENERATED THIS REPORT?
+  node: E23_10
+E23_11:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 1
+  name: RESEARCH SURVEY FIELD TITLE
+  node: E23_11
+VEHICLE E02_18:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: ~
+  is_multi_entry: 0
+  name: PATIENT DESTINATION ODOMETER READING OF RESPONDING
+  node: VEHICLE E02_18
