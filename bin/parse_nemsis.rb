@@ -34,22 +34,55 @@ class Main
           puts "#{field_name} [#{map[:nemsis_value_field]}]:[#{field_value}]"
         end
 
-      elsif !map[:nemsis_field].nil? && map[:nemsis_field].gsub(/\s*/, '').size > 0
-        nemsis_fields = map[:nemsis_field].split(/\s*\+\s*/)
+      elsif !map[:nemsis_field].nil? && 
+            map[:nemsis_field].gsub(/\s*/, '').size > 0
 
-        values = []
-        nemsis_fields.each do |field|
-          xpath = "//#{field}"
-          value = parser.find(xpath).first.text rescue nil
+        if map[:allow_multiple] == 'Y'
+          nemsis_field = map[:nemsis_field]
 
-          if map[:is_mapped] == 'Y' && !map[:map].nil?
-            value = map[:map][value]
+          values = []
+          xpath = "//#{nemsis_field}"
+          nodes = parser.find(xpath)
+
+          begin
+            nodes.each do |node|
+              value = node.text rescue nil
+
+              if map[:is_mapped] == 'Y'
+                code_map = Mapping.nemsis_code.merge(map[:map] || {})
+                value = code_map[value]
+              end
+
+              values << value
+              puts "#{name} [#{nemsis_field}]: [#{values.join(' ')}]"
+            end
+          rescue
           end
 
-          values << value
-        end
+        else
+          nemsis_fields = map[:nemsis_field].split(/\s*\+\s*/)
 
-        puts "#{name} [#{nemsis_fields.join('+')}]: [#{values.join(' ')}]"
+          values = []
+          nemsis_fields.each do |field|
+            xpath = "//#{field}"
+            nodes = parser.find(xpath)
+            begin
+              nodes.each do |node|
+                value = node.text rescue nil
+
+                if map[:is_mapped] == 'Y'
+                  code_map = Mapping.nemsis_code.merge(map[:map] || {})
+                  value = code_map[value]
+                end
+
+                values << value
+              end
+            rescue
+            end
+          end
+
+          puts "#{name} [#{nemsis_fields.join('+')}]: [#{values.join(' ')}]"
+        end
       else
         puts "#{name} [default]: [#{map[:default_value]}]"
       end

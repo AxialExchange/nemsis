@@ -1,4 +1,245 @@
 module Mapping
+  def self.nemsis_code
+    code = {
+      '-25'  => 'Not Applicable ',
+      '-20'  => 'Not Recorded',
+      '-15'  => 'Not Reporting',
+      '-10'  => 'Not Known',
+      '-5'   => 'Not Available',
+      '2645' => 'State/EMS DNR Form',
+      '2650' => 'Other Healthcare DNR Form',
+      '2655' => 'Living Will',
+      '2660' => 'Family/Guardian request DNR (but no documentation',
+      '2665' => 'Other',
+      '2670' => 'None',
+      '3175' => 'Regular',
+      '3180' => 'Irregular',
+      '3320' => 'Amputation',
+      '3325' => 'Bleeding Controlled',
+      '3330' => 'Bleeding Uncontrolled',
+      '3335' => 'Burn',
+      '3340' => 'Crush',
+      '3345' => 'Dislocation Fracture',
+      '3350' => 'Gunshot',
+      '3355' => 'Laceration',
+      '3360' => 'Pain without swelling/bruising',
+      '3365' => 'Puncture/stab',
+      '3370' => 'Soft Tissue Swelling/Bruising',
+      '3420' => 'Normal',
+      '3425' => 'Not Done',
+      '3430' => 'Clammy',
+      '3435' => 'Cold',
+      '3440' => 'Cyanotic',
+      '3445' => 'Jaundiced',
+      '3450' => 'Lividity',
+      '3455' => 'Mottled',
+      '3460' => 'Pale',
+      '3465' => 'Warm',
+      '3470' => 'Normal',
+      '3475' => 'Not Done',
+      '3480' => 'Asymmetric Smile or Droop',
+      '3485' => 'Drainage',
+      '3490' => 'Mass/Lesion',
+      '3495' => 'Swelling',
+      '3500' => 'Normal',
+      '3505' => 'Not Done',
+      '3510' => 'JVD',
+      '3515' => 'Strider',
+      '3520' => 'SubQ Air',
+      '3525' => 'Tracheal Dev',
+      '3530' => 'Normal',
+      '3535' => 'Not Done',
+      '3540' => 'Accessory Muscles',
+      '3545' => 'Decreased BS-Left',
+      '3550' => 'Decreased BS-Right',
+      '3555' => 'Flail Segment-Left',
+      '3560' => 'Flail Segment-Right',
+      '3565' => 'Increased Effort',
+      '3570' => 'Normal BS',
+      '3575' => 'Rales',
+      '3580' => 'Rhonchi/Wheezing',
+      '3585' => 'Tenderness-Left',
+      '3590' => 'Tenderness-Right',
+      '3595' => 'Normal',
+      '3600' => 'Not Done',
+      '3605' => 'Decreased Sounds',
+      '3610' => 'Murmur',
+      '3615' => 'Normal',
+      '3620' => 'Not Done',
+      '3625' => 'Distention',
+      '3630' => 'Guarding',
+      '3635' => 'Mass',
+      '3640' => 'Tenderness',
+      '3645' => 'Normal',
+      '3650' => 'Not Done',
+      '3655' => 'Distention',
+      '3660' => 'Guarding',
+      '3665' => 'Mass',
+      '3670' => 'Tenderness',
+      '3675' => 'Normal',
+      '3680' => 'Not Done',
+      '3685' => 'Distention',
+      '3690' => 'Guarding',
+      '3695' => 'Mass',
+      '3700' => 'Tenderness',
+      '3705' => 'Normal',
+      '3710' => 'Not Done',
+      '3715' => 'Distention',
+      '3720' => 'Guarding',
+      '3725' => 'Mass',
+      '3730' => 'Tenderness',
+      '3735' => 'Normal',
+      '3735' => 'Normal',
+      '3740' => 'Not Done',
+      '3740' => 'Not Done',
+      '3745' => 'Crowning',
+      '3745' => 'Crowning',
+      '3750' => 'Genital Injury',
+      '3750' => 'Genital Injury',
+      '3755' => 'Tenderness',
+      '3755' => 'Tenderness',
+      '3760' => 'Unstable',
+      '3760' => 'Unstable',
+      '3980' => 'Not Done',
+      '3985' => '2-mm',
+      '3990' => '3-mm',
+      '3995' => '4-mm',
+      '4000' => '5-mm',
+      '4005' => '6-mm',
+      '4010' => '7-mm',
+      '4015' => 'Blind',
+      '4020' => 'Reactive',
+      '4025' => 'Non-Reactive',
+      '4030' => 'Not Done',
+      '4035' => '2-mm',
+      '4040' => '3-mm',
+      '4045' => '4-mm',
+      '4050' => '5-mm',
+      '4055' => '6-mm',
+      '4060' => '7-mm',
+      '4065' => 'Blind',
+      '4070' => 'Reactive',
+      '4075' => 'Non-Reactive',
+      '4175' => 'Endotracheal tube',
+      '4180' => 'Gastrostomy tube',
+      '4185' => 'Inhalation',
+      '4190' => 'Intramuscular',
+      '4191' => 'Intraosseous',
+      '4200' => 'Intraocular',
+      '4205' => 'Intravenous',
+      '4210' => 'Nasal',
+      '4215' => 'Nasal prongs',
+      '4220' => 'Nasogastric',
+      '4225' => 'Ophthalmic',
+      '4230' => 'Oral',
+      '4235' => 'Other/miscellaneous',
+      '4240' => 'Otic',
+      '4245' => 'Re-breather mask',
+      '4250' => 'Rectal',
+      '4255' => 'Subcutaneous',
+      '4260' => 'Sublingual',
+      '4265' => 'Topical',
+      '4270' => 'Tracheostomy',
+      '4275' => 'Transdermal',
+      '4280' => 'Urethral',
+      '4285' => 'Ventimask',
+      '4290' => 'Wound',
+      '4300' => 'Inches',
+      '4305' => 'IU',
+      '4310' => 'KVO (TKO)',
+      '4315' => 'L/MIN',
+      '4320' => 'LITERS',
+      '4325' => 'LPM',
+      '4330' => 'MCG',
+      '4335' => 'MCG/KG/MIN',
+      '4340' => 'MEQ',
+      '4345' => 'MG',
+      '4350' => 'MG/KG/MIN',
+      '4355' => 'ML',
+      '4360' => 'ML/HR',
+      '4365' => 'Other',
+      '4370' => 'Puffs' ,
+      '4375' => 'Improved',
+      '4380' => 'Unchanged',
+      '4385' => 'Worse',
+      '4390' => 'None',
+      '4395' => 'Altered Mental Status',
+      '4400' => 'Apnea',
+      '4405' => 'Bleeding',
+      '4410' => 'Bradycardia',
+      '4415' => 'Diarrhea',
+      '4420' => 'Extravasion',
+      '4425' => 'Hypertension',
+      '4430' => 'Hyperthermia',
+      '4435' => 'Hypotension',
+      '4440' => 'Hypoxia',
+      '4445' => 'Injury',
+      '4450' => 'Itching/Urticaria',
+      '4455' => 'Nausea',
+      '4460' => 'Other',
+      '4465' => 'Respiratory Distress',
+      '4470' => 'Tachycardia',
+      '4475' => 'Vomiting',
+      '4500' => 'None',
+      '4505' => 'Altered Mental Status',
+      '4510' => 'Apnea',
+      '4515' => 'Bleeding',
+      '4520' => 'Bradycardia',
+      '4525' => 'Diarrhea',
+      '4530' => 'Esophageal Intubation-immediately',
+      '4535' => 'Esophageal Intubation-other',
+      '4540' => 'Extravasion',
+      '4545' => 'Hypertension',
+      '4550' => 'Hyperthermia',
+      '4555' => 'Hypotension',
+      '4560' => 'Hypoxia',
+      '4565' => 'Injury',
+      '4570' => 'Itching/Urticaria',
+      '4575' => 'Nausea',
+      '4580' => 'Other',
+      '4585' => 'Respiratory Distress',
+      '4590' => 'Tachycardia',
+      '4595' => 'Vomiting',
+      '4600' => 'Improved',
+      '4605' => 'Unchanged',
+      '4610' => 'Worse',
+      '4635' => 'Antecubital-Left',
+      '4640' => 'Antecubital-Right',
+      '4645' => 'External Jugular-Left',
+      '4650' => 'External Jugular-Right',
+      '4655' => 'Femoral-Left IV',
+      '4660' => 'Femoral-Left Distal IO',
+      '4665' => 'Femoral-Right IV',
+      '4670' => 'Femoral-Right IO',
+      '4675' => 'Forearm-Left',
+      '4680' => 'Forearm-Right',
+      '4685' => 'Hand-Left',
+      '4690' => 'Hand-Right',
+      '4695' => 'Lower Extremity-Left',
+      '4700' => 'Lower Extremity-Right',
+      '4705' => 'Other',
+      '4710' => 'Scalp',
+      '4715' => 'Sternal IO',
+      '4720' => 'Tibia IO-Left',
+      '4725' => 'Tibia IO-Right',
+      '4730' => 'Umbilical',
+      '4735' => 'Auscultation of Bilateral Breath Sounds',
+      '4740' => 'Colormetric CO2 Detector Confirmation',
+      '4745' => 'Digital CO2 Confirmation',
+      '4750' => 'Esophageal Bulb Aspiration confirmation',
+      '4755' => 'Negative Auscultation of the Epigastrium',
+      '4760' => 'Visualization of the Chest Rising with ventilation',
+      '4765' => 'Visualization of Tube Passing Through the Cords',
+      '4770' => 'Waveform CO2 Confirmation',
+      '650' => 'Male',
+      '655' => 'Female',
+      '700' => 'Hours',
+      '706' => 'Days',
+      '710' => 'Months',
+      '715' => 'Years',
+    }
+    
+  end
 
   def self.mapping
     [
@@ -40,8 +281,6 @@ module Mapping
             :nemsis_field   => 'E06_11',
             :allow_multiple => 'N',
             :is_mapped      => 'Y',
-            :map            => {'650' => 'Male',
-                                '655' => 'Female'},
             :comment        => 'M or F'
         },
         {
@@ -52,7 +291,8 @@ module Mapping
             :nemsis_value_field   => 'E23_09',
             :allow_multiple => 'N',
             :is_mapped      => 'N',
-            :comment        => 'Patient Number: 777777'
+            :comment        => 'Patient Number:
+777777'
         },
         {
             :name           => 'Receiving Facility',
@@ -82,78 +322,84 @@ module Mapping
             :nemsis_field   => '',
             :allow_multiple => '',
             :is_mapped      => '',
+            :default_value  => 'AXIAL',
             :comment        => 'AXIAL'
         },
         {
             :name           => 'Sending Application',
             :hl7_field      => 'MSH.3',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
+            :default_value  => 'EMS ALERTS',
             :comment        => 'EMS ALERTS'
         },
         {
             :name           => 'Message Type',
             :hl7_field      => 'MSH.9',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
+            :default_value  => 'ORU^R01',
             :comment        => 'Always ORU^R01'
         },
         {
             :name           => 'Message Control ID',
             :hl7_field      => 'MSH.10',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => 'Axial will create a unique ID for each message sent'
         },
         {
             :name           => 'Processing ID',
             :hl7_field      => 'MSH.11',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => 'P for production, D for non-production"'
         },
         {
             :name           => 'Version ID',
             :hl7_field      => 'MSH.12',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
+            :default_value  => '2.3.1',
             :comment        => '2.3.1'
         },
         {
             :name           => 'Placer Order Number',
             :hl7_field      => 'OBR.2',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
+            :default_value  => 'AXIAL',
             :comment        => 'This field is required for the Allscripts interface, but the value does not drive any logic. Axial will place the same value of ""AXIAL"" in all messages."'
         },
         {
             :name           => 'Universal Service ID',
             :hl7_field      => 'OBR.4',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
+            :default_value  => 'RUNSHEET',
             :comment        => 'Always RUNSHEET'
         },
         {
             :name           => 'OBX Set ID',
             :hl7_field      => 'OBX.1',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => 'Increment by one for each OBX segment per message'
         },
         {
             :name           => 'Observation Result Status',
             :hl7_field      => 'OBX.11',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => 'HL-7 standard required field, but does not drive any logic within Allscripts. Axial will set to F to designate Final status."'
         },
         {
@@ -175,17 +421,17 @@ module Mapping
         {
             :name           => 'Patient Age',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => 'E06_14 + E06_15',
+            :nemsis_field   => 'E06_14',
             :allow_multiple => 'N',
             :is_mapped      => 'N',
             :comment        => '55 years'
         },
         {
-            :name           => ' ',
-            :hl7_field      => ' ',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :name           => 'Patient Age Unit',
+            :hl7_field      => 'OBX.5',
+            :nemsis_field   => 'E06_15',
+            :allow_multiple => 'N',
+            :is_mapped      => 'Y',
             :comment        => 'E06_15 values to be mapped to text values'
         },
         {
@@ -221,11 +467,13 @@ module Mapping
             :comment        => ''
         },
         {
+          # Need map!
             :name           => 'Patient State',
             :hl7_field      => 'OBX.5',
             :nemsis_field   => 'E06_07',
             :allow_multiple => 'N',
-            :is_mapped      => 'N',
+            :is_mapped      => 'Y',
+            :map            => {},
             :comment        => ''
         },
         {
@@ -335,9 +583,9 @@ module Mapping
         {
             :name           => 'Medical/Trauma',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
@@ -399,17 +647,17 @@ module Mapping
         {
             :name           => 'Vital Signs Side',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
             :name           => 'Vital Signs POS',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
@@ -418,31 +666,31 @@ module Mapping
             :nemsis_field   => 'E14_04 + E14_05 + E14_06',
             :allow_multiple => 'Y',
             :is_mapped      => 'Y',
-            :comment => 'Axial will use abbreviations of (Need clarification from Richard as to what abbreviations are used here) to stand for Aterial Line, Manual Cuff, Venous Line, Automated Cuff, and Palpated Cuff, respectively, as indicated in field E14_06"'
-        },
-        {
-            :name           => ' ',
-            :hl7_field      => ' ',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
-            :comment        => 'Example 109/73 X'
+            :comment => 'Axial will use abbreviations of (Need clarification from Richard as to what abbreviations are used here) to stand for Aterial Line, Manual Cuff, Venous Line, Automated Cuff, and Palpated Cuff, respectively, as indicated in field E14_06, Example 109/73 X'
         },
         {
             :name           => 'Vital Signs Pulse',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => '(E14_07 or E14_08) + E14_10',
+            :nemsis_field   => 'E14_07',
             :allow_multiple => 'Y',
-            :is_mapped      => 'Y',
-            :comment => 'E14_10 will be used to map to ""regular"" or ""irregular."" Axial will place an ""I"" or ""R"" next to the pulse, if provided."'
+            :is_mapped      => 'N',
+            :comment => ''
         },
         {
-            :name           => ' ',
-            :hl7_field      => ' ',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
-            :comment        => 'Example 104 R'
+            :name           => 'Vital Signs Heart Rate',
+            :hl7_field      => 'OBX.5',
+            :nemsis_field   => 'E14_08',
+            :allow_multiple => 'Y',
+            :is_mapped      => 'N',
+            :comment => ''
+        },
+        {
+            :name           => 'Vital Signs Pulse Rhythm',
+            :hl7_field      => 'OBX.5',
+            :nemsis_field   => 'E14_10',
+            :allow_multiple => 'Y',
+            :is_mapped      => 'Y',
+            :comment => 'E14_10 will be used to map to ""regular"" or ""irregular."" Axial will place an ""I"" or ""R"" next to the pulse, if provided.  Example 104 R'
         },
         {
             :name           => 'Vital Signs Respiratory Rate',
@@ -450,15 +698,7 @@ module Mapping
             :nemsis_field   => 'E14_11 + E14_12',
             :allow_multiple => 'Y',
             :is_mapped      => 'Y',
-            :comment => 'E14_12 will be used to map to ""labored,"" ""absent,"" ""normal"", or ""fatigued."" Axial will place an ""L,"" ""A,"" ""R,"" or ""F"" next to the respiratory rate to reflect the value."'
-        },
-        {
-            :name           => ' ',
-            :hl7_field      => ' ',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
-            :comment        => 'Example 12 R'
+            :comment => 'E14_12 will be used to map to ""labored,"" ""absent,"" ""normal"", or ""fatigued."" Axial will place an ""L,"" ""A,"" ""R,"" or ""F"" next to the respiratory rate to reflect the value. Example 12 R'
         },
         {
             :name           => 'Vital Signs SPO2',
@@ -471,9 +711,9 @@ module Mapping
         {
             :name           => 'Vital Signs CO',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
@@ -543,49 +783,145 @@ module Mapping
         {
             :name           => '12-Lead ECG',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
-            :name           => 'Flow Chart Time',
+            :name           => 'Medication Administered Time',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => 'E18_01 or E19_01',
+            :nemsis_field   => 'E18_01',
+            :allow_multiple => 'Y',
+            :is_mapped      => 'N',
+            :comment        => ''
+        },
+        {
+            :name           => 'Medication Given',
+            :hl7_field      => 'OBX.5',
+            :nemsis_field   => 'E18_03',
+            :allow_multiple => 'Y',
+            :is_mapped      => 'N',
+            :comment        => ''
+        },
+        {
+            :name           => 'Medication Administered Route',
+            :hl7_field      => 'OBX.5',
+            :nemsis_field   => 'E18_04',
+            :allow_multiple => 'Y',
+            :is_mapped      => 'Y',
+            :comment        => ''
+        },
+        {
+            :name           => 'Medication Dosage',
+            :hl7_field      => 'OBX.5',
+            :nemsis_field   => 'E18_05',
+            :allow_multiple => 'Y',
+            :is_mapped      => 'N',
+            :comment        => ''
+        },
+        {
+            :name           => 'Medication Dosage Units',
+            :hl7_field      => 'OBX.5',
+            :nemsis_field   => 'E18_06',
+            :allow_multiple => 'Y',
+            :is_mapped      => 'Y',
+            :comment        => ''
+        },
+        {
+            :name           => 'Response to Medication',
+            :hl7_field      => 'OBX.5',
+            :nemsis_field   => 'E18_07',
+            :allow_multiple => 'Y',
+            :is_mapped      => 'Y',
+            :comment        => ''
+        },
+        {
+            :name           => 'Medication Complication',
+            :hl7_field      => 'OBX.5',
+            :nemsis_field   => 'E18_08',
+            :allow_multiple => 'Y',
+            :is_mapped      => 'Y',
+            :comment        => ''
+        },
+        {
+            :name           => 'Procedure Time',
+            :hl7_field      => 'OBX.5',
+            :nemsis_field   => 'E19_01',
             :allow_multiple => 'Y',
             :is_mapped      => 'N',
             :comment        => 'If E18_02 or E19_02= 1, then time = ""PTA"""'
         },
         {
-            :name           => 'Flow Chart Treatment',
+            :name           => 'Procedure',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => 'E18_03 or E19_03',
+            :nemsis_field   => 'E19_03',
             :allow_multiple => 'Y',
-            :is_mapped      => 'Y',
-            :comment => 'E19_03 will map to text values in the NEMSIS 2.2.1 spec as described in element D04_04'
+            :is_mapped      => 'N',
+            :comment        => ''
         },
         {
-            :name      => 'Flow Chart Description',
-            :hl7_field => 'OBX.5',
-            :nemsis_field => '(E18_05 + E18_06; E18_04; E18_07; E18_08) or E19_04; E19_12; E19_08; E19_06; E19_07; E19_13',
+            :name           => 'Size of Procedure Equipment',
+            :hl7_field      => 'OBX.5',
+            :nemsis_field   => 'E19_04',
+            :allow_multiple => 'Y',
+            :is_mapped      => 'Y',
+            :comment        => ''
+        },
+        {
+            :name           => 'Procedure Successful',
+            :hl7_field      => 'OBX.5',
+            :nemsis_field   => 'E19_06',
+            :allow_multiple => 'Y',
+            :is_mapped      => 'Y',
+            :comment        => ''
+        },
+        {
+            :name           => 'Procedure Complication',
+            :hl7_field      => 'OBX.5',
+            :nemsis_field   => 'E19_07',
+            :allow_multiple => 'Y',
+            :is_mapped      => 'Y',
+            :comment        => ''
+        },
+        {
+            :name           => 'Response to Procedure',
+            :hl7_field      => 'OBX.5',
+            :nemsis_field   => 'E19_08',
+            :allow_multiple => 'Y',
+            :is_mapped      => 'Y',
+            :comment        => ''
+        },
+        {
+            :name           => 'Successful IV Site',
+            :hl7_field      => 'OBX.5',
+            :nemsis_field   => 'E19_12',
+            :allow_multiple => 'Y',
+            :is_mapped      => 'Y',
+            :comment        => ''
+        },
+        {
+            :name           => 'Tube Confirmation',
+            :hl7_field      => 'OBX.5',
+            :nemsis_field   => 'E19_13',
             :allow_multiple => 'Y',
             :is_mapped      => 'Y',
             :comment        => ''
         },
         {
             :name           => 'Flow Chart Provider',
-            :hl7_field      => ' ',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :hl7_field      => '',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
             :name           => 'Mental Status Comments',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
@@ -599,15 +935,23 @@ module Mapping
         {
             :name           => 'Skin Comments',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
-            :name           => 'Skin Abnormalities',
+            :name           => 'Skin Assessment',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => 'E16_04, E15_01"',
+            :nemsis_field   => 'E16_04',
+            :allow_multiple => 'Y',
+            :is_mapped      => 'Y',
+            :comment        => 'Values to be mapped to text values'
+        },
+        {
+            :name           => 'NHTSA Injury Matrix External/Skin',
+            :hl7_field      => 'OBX.5',
+            :nemsis_field   => 'E15_01',
             :allow_multiple => 'Y',
             :is_mapped      => 'Y',
             :comment        => 'Values to be mapped to text values'
@@ -615,47 +959,63 @@ module Mapping
         {
             :name           => 'HEENT Comments',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
             :name           => 'Head/Face Abnormalities',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => 'E16_05, E15_02, E15_03"',
+            :nemsis_field   => 'E16_05',
             :allow_multiple => 'Y',
             :is_mapped      => 'Y',
             :comment        => 'Values to be mapped to text values'
         },
         {
-            :name           => 'Eyes Abnormalities',
+            :name           => 'NHTSA Injury Matrix Head',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => 'E16_21, E16_22"',
+            :nemsis_field   => 'E15_02',
             :allow_multiple => 'Y',
             :is_mapped      => 'Y',
             :comment        => 'Values to be mapped to text values'
         },
         {
-            :name           => ' ',
-            :hl7_field      => ' ',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
-            :comment        => 'Axial will designate ""L"" and ""R"" for left and right eyes."'
-        },
-        {
-            :name           => ' ',
-            :hl7_field      => ' ',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
-            :comment        => 'Example L Blind'
-        },
-        {
-            :name           => 'Neck Abnormalities',
+            :name           => 'NHTSA Injury Matrix Face',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => 'E16_06, E15_04"',
+            :nemsis_field   => 'E15_03',
+            :allow_multiple => 'Y',
+            :is_mapped      => 'Y',
+            :comment        => 'Values to be mapped to text values'
+        },
+        {
+            :name           => 'Eyes Left Assessment',
+            :hl7_field      => 'OBX.5',
+            :nemsis_field   => 'E16_21',
+            :allow_multiple => 'Y',
+            :is_mapped      => 'Y',
+            :comment        => 'Axial will designate ""L"" and ""R"" for left and right eyes.  Example L Blind'
+        },
+        {
+            :name           => 'Eyes Right Assessment',
+            :hl7_field      => 'OBX.5',
+            :nemsis_field   => 'E16_22',
+            :allow_multiple => 'Y',
+            :is_mapped      => 'Y',
+            :comment        => 'Axial will designate ""L"" and ""R"" for left and right eyes.  Example L Blind'
+        },
+        {
+            :name           => 'Neck Assessment',
+            :hl7_field      => 'OBX.5',
+            :nemsis_field   => 'E16_06',
+            :allow_multiple => 'Y',
+            :is_mapped      => 'Y',
+            :comment        => 'Values to be mapped to text values'
+        },
+        {
+            :name           => 'NHTSA Injury Matrix Neck',
+            :hl7_field      => 'OBX.5',
+            :nemsis_field   => 'E15_04',
             :allow_multiple => 'Y',
             :is_mapped      => 'Y',
             :comment        => 'Values to be mapped to text values'
@@ -663,9 +1023,9 @@ module Mapping
         {
             :name           => 'Chest Comments',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
@@ -695,15 +1055,23 @@ module Mapping
         {
             :name           => 'Abdomen Comments',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
             :name           => 'Abdomen General Abnormalities',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => 'E16_13, E15_06"',
+            :nemsis_field   => 'E16_13',
+            :allow_multiple => 'Y',
+            :is_mapped      => 'Y',
+            :comment        => 'Values to be mapped to text values'
+        },
+        {
+            :name           => 'NHTSA Injury Matrix Abdomen',
+            :hl7_field      => 'OBX.5',
+            :nemsis_field   => 'E15_06',
             :allow_multiple => 'Y',
             :is_mapped      => 'Y',
             :comment        => 'Values to be mapped to text values'
@@ -743,9 +1111,9 @@ module Mapping
         {
             :name           => 'Back Comments',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
@@ -775,15 +1143,23 @@ module Mapping
         {
             :name           => 'Pelvis/GU/GI Comments',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
             :name           => 'Pelvis/GU/GI Abnormalities',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => 'E16_13, E15_09"',
+            :nemsis_field   => 'E16_13',
+            :allow_multiple => 'Y',
+            :is_mapped      => 'Y',
+            :comment        => ''
+        },
+        {
+            :name           => 'NHTSA Injury Matrix Pelvis',
+            :hl7_field      => 'OBX.5',
+            :nemsis_field   => 'E15_09',
             :allow_multiple => 'Y',
             :is_mapped      => 'Y',
             :comment        => ''
@@ -791,9 +1167,9 @@ module Mapping
         {
             :name           => 'Extremities Comments',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
@@ -831,25 +1207,25 @@ module Mapping
         {
             :name           => 'Pulse Abnormalities',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
             :name           => 'Capillary Refill Abnormalities',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
             :name           => 'Neurological Comments',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
@@ -887,9 +1263,9 @@ module Mapping
         {
             :name           => 'Incident Address 2',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
@@ -951,17 +1327,17 @@ module Mapping
         {
             :name           => 'Shift',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
             :name           => 'Level of Service',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
@@ -991,9 +1367,9 @@ module Mapping
         {
             :name           => 'Requested By',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
@@ -1015,9 +1391,9 @@ module Mapping
         {
             :name           => 'Destination Address 2',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
@@ -1151,9 +1527,9 @@ module Mapping
         {
             :name           => 'Crew Member Name',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
@@ -1183,7 +1559,7 @@ module Mapping
         {
             :name           => 'Insured\'s Name',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => 'E07_11 _ E07_12 + E07_13',
+            :nemsis_field   => 'E07_12 + E07_13 + E07_11',
             :allow_multiple => 'Y',
             :is_mapped      => 'N',
             :comment        => ''
@@ -1269,14 +1645,6 @@ module Mapping
             :comment        => ''
         },
         {
-            :name           => 'Loaded Miles',
-            :hl7_field      => 'OBX.5',
-            :nemsis_field   => 'Calculated E02_18 - E02_17',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
-            :comment        => ''
-        },
-        {
             :name           => 'Start Mileage',
             :hl7_field      => 'OBX.5',
             :nemsis_field   => 'E02_16',
@@ -1290,14 +1658,6 @@ module Mapping
             :nemsis_field   => 'E02_19',
             :allow_multiple => 'N',
             :is_mapped      => 'N',
-            :comment        => ''
-        },
-        {
-            :name           => 'Total Miles',
-            :hl7_field      => 'OBX.5',
-            :nemsis_field   => 'Calculated E02_19 - E02_16',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
             :comment        => ''
         },
         {
@@ -1418,97 +1778,97 @@ module Mapping
         {
             :name           => 'PAN',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
             :name           => 'PCS',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
             :name           => 'ABN',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
             :name           => 'CMS Service Level',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
             :name           => 'ICD-9 Code',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
             :name           => 'Transfer Reason',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
             :name           => 'Other/Services',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
             :name           => 'Medical Necessity',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
             :name           => 'Sending Physician',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
             :name           => 'Receiving Physician',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
             :name           => 'Condition Code',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         },
         {
             :name           => 'Condition Code Modifier',
             :hl7_field      => 'OBX.5',
-            :nemsis_field   => ' ',
-            :allow_multiple => ' ',
-            :is_mapped      => ' ',
+            :nemsis_field   => '',
+            :allow_multiple => '',
+            :is_mapped      => '',
             :comment        => ''
         }
     ]
