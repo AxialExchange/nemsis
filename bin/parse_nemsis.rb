@@ -40,6 +40,10 @@ class Main
     # puts parser.E20_02
     # puts parser.parse_pair('E23_11', 'E23_09')
 
+    # parser.parse_cluster('E14').each do |p|
+    #   puts p.E14_10
+    # end
+
     renderer = Renderer.new(parser)
     renderer.render
   end

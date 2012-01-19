@@ -42,7 +42,9 @@ module Nemsis
             nodes.each do |node|
               value = node.text
 
-              if element_spec['data_type'] =~ /(text|combo)/i && 
+              # Note: data_type possible values are
+              # ["text", "combo", "date/time", "number", "date", "combo or text", "binary"]
+              if element_spec['data_type'] =~ /(text|combo|combo or text)/i && 
                  value =~ /^\d+$/ && 
                  !element_spec['field_values'].nil?
 
@@ -87,6 +89,30 @@ module Nemsis
       result = {}
       names.size.times {|i| result[names[i]] = values[i]}
       result
+    end
+    
+    def parse_cluster(element)
+      xpath = "//#{element}"
+      nodes = xml_doc.xpath(xpath)
+      # puts nodes.count
+
+      clusters = []
+      begin
+        nodes.each do |node|
+          cluster = Nemsis::Parser.new(node.to_s)
+          clusters << cluster
+        end
+      rescue => err
+        puts "Error: parsing xpath [#{xpath}]: #{err}"
+      end
+
+      clusters
+    end
+
+    def concat(elements)
+      elements.map do |elem|
+        parse_element(elem)
+      end.compact.join(' ')
     end
 
     def method_missing(method_sym, *arguments, &block)

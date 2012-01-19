@@ -11,35 +11,35 @@
       </tr>
       <tr>
         <td><font size="2"><b>Last</b></font></td>
-        <td><font size="2"><%= @parser.E06_01.to_s %></font></td>
+        <td><font size="2"><%= @parser.E06_01 %></font></td>
         <td><font size="2"><b>First</b></font></td>
-        <td><font size="2"><%= @parser.E06_02.to_s %></font></td>
+        <td><font size="2"><%= @parser.E06_02 %></font></td>
         <td><font size="2"><b>Middle</b></font></td>
-        <td><font size="2"><%= @parser.E06_03.to_s %></font></td>
+        <td><font size="2"><%= @parser.E06_03 %></font></td>
         <td><font size="2"><b>DOB</b></font></td>
-        <td><font size="2">1/1/1970</font></td>
+        <td><font size="2"><%= @parser.E06_16 %></font></td>
         <td><font size="2"><b>Gender</b></font></td>
-        <td><font size="2">Male</font></td>
+        <td><font size="2"><%= @parser.E06_11 %></font></td>
         <td><font size="2"><b>Weight</b></font></td>
-        <td><font size="2">121 lbs</font></td>
+        <td><font size="2"><%= @parser.E16_01 %> kg</font></td>
         <td><font size="2"><b>SSN</b></font></td>
-        <td><font size="2">555115555</font></td>
+        <td><font size="2"><%= @parser.E06_10 %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Address</b></font></td>
-        <td><font size="2">101 Main Street</font></td>
+        <td><font size="2"><%= @parser.E06_04 %></font></td>
         <td><font size="2"><b>Address 2</b></font></td>
         <td><font size="2">&nbsp;</font></td>
         <td><font size="2"><b>City</b></font></td>
-        <td><font size="2">Raleigh</font></td>
+        <td><font size="2"><%= @parser.E06_05 %></font></td>
         <td><font size="2"><b>State</b></font></td>
-        <td><font size="2">NC</font></td>
+        <td><font size="2"><%= @parser.E06_07 %></font></td>
         <td><font size="2"><b>Zip</b></font></td>
-        <td><font size="2">27601</font></td>
+        <td><font size="2"><%= @parser.E06_08 %></font></td>
         <td><font size="2"><b>Country</b></font></td>
-        <td><font size="2">&nbsp;</font></td>
+        <td><font size="2"><%= @parser.E06_09 %></font></td>
         <td><font size="2"><b>Tel</b></font></td>
-        <td><font size="2">9195551234</font></td>
+        <td><font size="2"><%= @parser.E06_04 %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Advanced Directive</b></font></td>
@@ -106,54 +106,46 @@
         <td><font size="2"><b>Side</b></font></td>
         <td><font size="2"><b>POS</b></font></td>
         <td><font size="2"><b>BP</b></font></td>
+
         <td><font size="2"><b>Pulse</b></font></td>
         <td><font size="2"><b>RR</b></font></td>
         <td><font size="2"><b>SPO2</b></font></td>
         <td><font size="2"><b>ETCO2</b></font></td>
         <td><font size="2"><b>CO</b></font></td>
+
         <td><font size="2"><b>BG</b></font></td>
         <td><font size="2"><b>Temp</b></font></td>
         <td><font size="2"><b>Pain</b></font></td>
         <td><font size="2"><b>GCS</b></font></td>
         <td><font size="2"><b>RTS</b></font></td>
+
         <td><font size="2"><b>PTS</b></font></td>
       </tr>
-      <tr>
-        <td><font size="2">12:10</font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2">121/80 M</font></td>
-        <td><font size="2">121 I</font></td>
-        <td><font size="2">80 I</font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2">7</font></td>
-        <td><font size="2">&nbsp;</font></td>
-      </tr>
-      <tr>
-        <td><font size="2">12:11</font></td>
-        <td><font size="2">V</font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2">6</font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2">&nbsp;</font></td>
-      </tr>
+      <% @parser.parse_cluster('E14').each do |e14| %>
+        <tr>
+          <td><font size="2"><%= e14.E14_01 %></font></td>
+          <td><font size="2"><%= e14.E14_22 %></font></td>
+          <td><font size="2">&nbsp;</font></td>
+          <td><font size="2">&nbsp;</font></td>
+          <td><font size="2"><%= e14.concat ['E14_04', 'E14_05', 'E14_06'] %></font></td>
+
+          <td><font size="2"><%= [(e14.E14_07 || e14.E14_08), e14.E14_10].compact.join(' ') %></font></td>
+          <td><font size="2"><%= e14.concat ['E14_11', 'E14_12'] %></font></td>
+          <td><font size="2"><%= e14.E14_09 %></font></td>
+          <td><font size="2">&nbsp;</font></td>
+          <td><font size="2">&nbsp;</font></td>
+
+          <td><font size="2"><%= e14.E14_14 %></font></td>
+          <td><font size="2"><%= e14.concat ['E14_20', 'E14_21'] %></font></td>
+          <td><font size="2"><%= e14.E14_23 %></font></td>
+          <td><font size="2"><%= e14.E14_19 %></font></td>
+          <td><font size="2"><%= e14.E14_27 %></font></td>
+
+          <td><font size="2"><%= e14.E14_28 %></font></td>
+
+        </tr>
+      <% end %>
+
       <tr>
         <td colspan="16"><font color="blue" size="3">Flow Chart</font></td>
       </tr>
