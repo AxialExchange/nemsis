@@ -14,14 +14,18 @@ class Main
 
     parser = Nemsis::Parser.new(xml_str)
     puts parser.parse_element('E06_01')
+    puts parser.parse_element('E06_02')
     puts parser.parse_field('FIRST NAME')
     puts parser.parse_field('LAST NAME')
-    puts parser.parse_element('E06_02')
-    puts parser.parse_element('E06_16')
-    puts parser.parse_element('E06_11')
-    puts parser.parse_element('E23_09')
-    puts parser.parse_element('E23_11')
-    puts parser.parse_element('E20_02')
+    puts parser.E06_16
+    puts parser.E06_11
+    puts parser.E23_09
+    puts parser.E23_11
+    puts parser.E20_02
+    puts parser.E20_02
+    puts parser.parse_pair('E23_11', 'E23_09')
+
+    # puts parser.to_html
 
   end
 
