@@ -25,7 +25,7 @@ class Main
     puts parser.E20_02
     puts parser.parse_pair('E23_11', 'E23_09')
 
-    # puts parser.to_html
+    puts parser.to_html
 
   end
 
