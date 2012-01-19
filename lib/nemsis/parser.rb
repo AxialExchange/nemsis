@@ -33,11 +33,30 @@ module Nemsis
 
     def parse(element_spec)
       xpath = "//#{element_spec['node']}"
-      nodes = xml_doc.xpath(xpath)
 
-      values = []
       begin
-        nodes.each do |node|
+        nodes = xml_doc.xpath(xpath) or return
+        case element_spec['is_multiple_entry']
+        when true
+          values = []
+            nodes.each do |node|
+              value = node.text
+
+              if element_spec['data_type'] =~ /(text|combo)/i && 
+                 value =~ /^\d+$/ && 
+                 !element_spec['field_values'].nil?
+
+                mapped_value = element_spec['field_values'][value.to_i]
+                
+                value = mapped_value unless mapped_value.nil?
+              end
+
+              values << value
+            end
+
+          return values
+        else
+          node = nodes.first or return
           value = node.text
 
           if element_spec['data_type'] =~ /(text|combo)/i && 
@@ -49,13 +68,13 @@ module Nemsis
             value = mapped_value unless mapped_value.nil?
           end
 
-          values << value
+          return value
         end
-      rescue  error
-        puts "Error: #{error}"
+
+      rescue => err
+        puts "Error: parsing xpath [#{xpath}] #{err}"
       end
 
-      values
     end
 
     def parse_pair(name_element, value_element)
@@ -84,12 +103,6 @@ module Nemsis
       else
         super
       end
-    end
-
-    def to_html
-      erb_file = File.expand_path('../../runsheet.html.erb', __FILE__)
-      template = ERB.new(File.read(erb_file))
-      template.result
     end
   end
 end
