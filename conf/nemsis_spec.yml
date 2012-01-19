@@ -1689,6 +1689,13 @@ E02_17:
   is_multi_entry: 0
   name: ON-SCENE ODOMETER READING OF RESPONDING VEHICLE
   node: E02_17
+E02_18:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 0
+  name: PATIENT DESTINATION ODOMETER READING OF RESPONDING
+  node: E02_18
 E02_19:
   allow_null: 0
   data_entry_method: ~
@@ -6300,10 +6307,3 @@ E23_11:
   is_multi_entry: 1
   name: RESEARCH SURVEY FIELD TITLE
   node: E23_11
-VEHICLE E02_18:
-  allow_null: 0
-  data_entry_method: ~
-  data_type: number
-  is_multi_entry: 0
-  name: PATIENT DESTINATION ODOMETER READING OF RESPONDING
-  node: VEHICLE E02_18

@@ -43,7 +43,7 @@
       </tr>
       <tr>
         <td><font size="2"><b>Advanced Directive</b></font></td>
-        <td colspan="13"><font size="2">State/EMS DNR Form</font></td>
+        <td colspan="13"><font size="2"><%= @parser.E12_07 %></font></td>
       </tr>
     </tbody>
   </table><br>
@@ -54,28 +54,27 @@
       </tr>
       <tr>
         <td><font size="2"><b>Primary Impression</b></font></td>
-        <td><font size="2">Allergic Reaction</font></td>
+        <td><font size="2"><%= @parser.E09_15 %></font></td>
         <td><font size="2"><b>Chief Complaint</b></font></td>
-        <td><font size="2">Difficulty Breathing</font></td>
+        <td><font size="2"><%= @parser.E09_05 %></font></td>
         <td><font size="2"><b>Injury</b></font></td>
-        <td><font size="2">&nbsp;</font></td>
+        <td><font size="2"><%= @parser.concat 'E10_01', 'E10_02', 'E10_03' %></font></td>
         <td><font size="2"><b>Barriers of Care</b></font></td>
-        <td><font size="2">Hearing Impaired</font></td>
+        <td><font size="2"><%= @parser.E12_01 %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Secondary Impression</b></font></td>
-        <td><font size="2">Asthma</font></td>
+        <td><font size="2"><%= @parser.E09_16 %></font></td>
         <td><font size="2"><b>Duration</b></font></td>
-        <td><font size="2">&nbsp;</font></td>
+        <td><font size="2"><%= @parser.concat 'E09_06', 'E09_07' %></font></td>
         <td><font size="2"><b>Medical/trauma</b></font></td>
-        <td><font size="2">Medical</font></td>
+        <td><font size="2"></font></td>
         <td><font size="2"><b>Alcohol/Drugs</b></font></td>
-        <td><font size="2">Smell of Alcohol on Breath</font></td>
+        <td><font size="2"><%= @parser.E12_19 %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Signs &amp; Symptoms</b></font></td>
-        <td colspan="7"><font size="2">Allergic Reaction - Anaphylaxis -
-        Unspecified</font></td>
+        <td colspan="7"><font size="2"><%= @parser.concat 'E09_13', 'E09_14' %></font></td>
       </tr>
     </tbody>
   </table><br>
@@ -87,15 +86,15 @@
       </tr>
       <tr>
         <td><font size="2"><b>Medications</b></font></td>
-        <td colspan="15"><font size="2">Prescription 23 MG</font></td>
+        <td colspan="15"><font size="2"><%= @parser.concat 'E12_14', 'E12_15', 'E12_16' %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Allergies</b></font></td>
-        <td colspan="15"><font size="2">&nbsp;</font></td>
+        <td colspan="15"><font size="2"><%= @parser.concat 'E12_08', 'E12_09' %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>History</b></font></td>
-        <td colspan="15"><font size="2">&nbsp;</font></td>
+        <td colspan="15"><font size="2"><%= @parser.E12_10 %></font></td>
       </tr>
 
       <tr>
@@ -449,18 +448,14 @@
         <td><font size="2"><b>Role</b></font></td>
         <td><font size="2"><b>Certification Level</b></font></td>
       </tr>
-      <tr>
-        <td><font size="2">SMITH, JOHN</font></td>
-        <td><font size="2">P0482732</font></td>
-        <td><font size="2">Lead</font></td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td><font size="2">COLLINS, BENNIE</font></td>
-        <td><font size="2">P027804</font></td>
-        <td><font size="2">Driver</font></td>
-        <td><font size="2">EMT-Paramedic</font></td>
-      </tr>
+      <% @parser.parse_cluster('E04').each do |e04| %>
+        <tr>
+          <td><font size="2"></font></td>
+          <td><font size="2"><%= e04.E04_01 %></font></td>
+          <td><font size="2"><%= e04.E04_02 %></font></td>
+          <td><font size="2"><%= e04.E04_03 %></font></td>
+        </tr>
+      <% end %>
     </tbody>
   </table><br>
   <table border="1" cellspacing="0" width="900">
@@ -470,7 +465,7 @@
       </tr>
       <tr>
         <td><font size="2"><b>Insured's Name</b></font></td>
-        <td><font size="2">John Doe</font></td>
+        <td><font size="2"><%= @parser.concat 'E07_11', 'E07_12', 'E07_13' %></font></td>
         <td><font size="2"><b>State</b></font></td>
         <td><font size="2">NC</font></td>
         <td><font size="2"><b>Medicare</b></font></td>
@@ -480,13 +475,13 @@
       </tr>
       <tr>
         <td><font size="2"><b>Relationship to Patient</b></font></td>
-        <td><font size="2">Self</font></td>
+        <td><font size="2"><%= @parser.E07_14 %></font></td>
         <td><font size="2"><b>Zip</b></font></td>
         <td>&nbsp;</td>
         <td><font size="2"><b>Medicaid</b></font></td>
         <td>&nbsp;</td>
         <td><font size="2"><b>Policy #</b></font></td>
-        <td>&nbsp;</td>
+        <td><font size="2"></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Address 1</b></font></td>
@@ -494,9 +489,9 @@
         <td><font size="2"><b>Country</b></font></td>
         <td>&nbsp;</td>
         <td><font size="2"><b>Primary Insurance</b></font></td>
-        <td><font size="2">BCBS</font></td>
+        <td><font size="2"><%= @parser.E07_03 %></font></td>
         <td><font size="2"><b>Group #</b></font></td>
-        <td>&nbsp;</td>
+        <td><font size="2"></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Address 2</b></font></td>
@@ -504,7 +499,7 @@
         <td><font size="2"><b>Phone</b></font></td>
         <td>&nbsp;</td>
         <td><font size="2"><b>Group #</b></font></td>
-        <td><font size="2">ZXY12034</font></td>
+        <td><font size="2"><%= @parser.E07_09 %></font></td>
         <td><font size="2"><b>Contact</b></font></td>
         <td>&nbsp;</td>
       </tr>
@@ -512,9 +507,9 @@
         <td><font size="2"><b>Address 3</b></font></td>
         <td>&nbsp;</td>
         <td><font size="2"><b>Primary Payer</b></font></td>
-        <td>&nbsp;</td>
+        <td><font size="2"><%= @parser.E07_01 %></font></td>
         <td><font size="2"><b>Policy #</b></font></td>
-        <td><font size="2">123456789</font></td>
+        <td><font size="2"><%= @parser.E07_10 %></font></td>
         <td><font size="2"><b>Dispatch Nature</b></font></td>
         <td>&nbsp;</td>
       </tr>
@@ -522,9 +517,9 @@
         <td><font size="2"><b>City</b></font></td>
         <td><font size="2">Raleigh</font></td>
         <td><font size="2"><b>Employer</b></font></td>
-        <td>&nbsp;</td>
+        <td><font size="2"><%= @parser.E07_27 %></font></td>
         <td><font size="2"><b>Job Related Injury</b></font></td>
-        <td>&nbsp;</td>
+        <td><font size="2"><%= @parser.E07_15 %></font></td>
         <td><font size="2"><b>Response Urgency</b></font></td>
         <td>&nbsp;</td>
       </tr>
@@ -539,26 +534,26 @@
       </tr>
       <tr>
         <td><font size="2"><b>Scene</b></font></td>
-        <td><font size="2">10102.0</font></td>
+        <td><font size="2"><%= @parser.E02_17 %></font></td>
         <td><font size="2"><b>Start</b></font></td>
-        <td><font size="2">10100.0</font></td>
+        <td><font size="2"><%= @parser.E02_16 %></font></td>
         <td><font size="2"><b>Category</b></font></td>
         <td><font size="2"><b>Delays</b></font></td>
-        <td colspan="2"><font size="2">Apex Fire Department</font></td>
+        <td colspan="2"><font size="2"><%= @parser.concat 'E08_01', 'E08_02' %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Destination</b></font></td>
-        <td><font size="2">10105.0</font></td>
+        <td><font size="2"><%= @parser.E02_18 %></font></td>
         <td><font size="2"><b>End</b></font></td>
-        <td><font size="2">10107.0</font></td>
+        <td><font size="2"><%= @parser.E02_19 %></font></td>
         <td><font size="2">Dispatch Delays</font></td>
-        <td><font size="2">Uncooperative Caller</font></td>
+        <td><font size="2"><%= @parser.E02_06 %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Loaded Miles</b></font></td>
-        <td><font size="2">3.0</font></td>
+        <td><font size="2"><%= @parser.E02_18.to_i - @parser.E02_17.to_i %></font></td>
         <td><font size="2"><b>Total Miles</b></font></td>
-        <td><font size="2">7.0</font></td>
+        <td><font size="2"><%= @parser.E02_19.to_i - @parser.E02_16.to_i %></font></td>
       </tr>
     </tbody>
   </table><br>
@@ -570,18 +565,18 @@
       </tr>
       <tr>
         <td><font size="2"><b>Next of Kin Name</b></font></td>
-        <td><font size="2">Jane Doe</font></td>
+        <td><font size="2"><%= @parser.concat 'E07_18', 'E07_19', 'E07_20' %></font></td>
         <td><font size="2"><b>Address 1</b></font></td>
-        <td><font size="2">1234 Some Street Way</font></td>
+        <td><font size="2"><%= @parser.E07_21 %></font></td>
         <td><font size="2"><b>City</b></font></td>
-        <td><font size="2">Raleigh</font></td>
+        <td><font size="2"><%= @parser.E07_22 %></font></td>
         <td><font size="2"><b>Item</b></font></td>
         <td><font size="2"><b>Given To</b></font></td>
         <td><font size="2"><b>Comment</b></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Relationship to Patient</b></font></td>
-        <td><font size="2">Spouse</font></td>
+        <td><font size="2"><%= @parser.E07_26 %></font></td>
         <td><font size="2"><b>Address 2</b></font></td>
         <td><font size="2">&nbsp;</font></td>
         <td><font size="2"><b>State</b></font></td>
@@ -592,7 +587,7 @@
       </tr>
       <tr>
         <td><font size="2"><b>Phone</b></font></td>
-        <td><font size="2">&nbsp;</font></td>
+        <td><font size="2"><%= @parser.E07_25 %></font></td>
         <td><font size="2"><b>Address 3</b></font></td>
         <td><font size="2">&nbsp;</font></td>
         <td><font size="2"><b>Zip</b></font></td>
@@ -620,7 +615,7 @@
         <td><font size="2"><b>PCS</b></font></td>
         <td><font size="2">&nbsp;</font></td>
         <td><font size="2"><b>Sending Record #</b></font></td>
-        <td><font size="2">&nbsp;</font></td>
+        <td><font size="2"><%= @parser.E12_02 %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>ABN</b></font></td>

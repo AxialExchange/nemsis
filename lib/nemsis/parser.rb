@@ -20,6 +20,7 @@ module Nemsis
     def parse_element(element)
       element_spec = @@spec[element]
 
+      puts element if element_spec.nil?
       parse(element_spec)
     end
 
