@@ -340,101 +340,101 @@
       </tr>
       <tr>
         <td><font size="2"><b>Location</b></font></td>
-        <td><font size="2">Capital Building</font></td>
+        <td><font size="2"><%= @parser.E08_07 %></font></td>
         <td><font size="2"><b>Disposition</b></font></td>
-        <td><font size="2">Transported Lights/Siren</font></td>
+        <td><font size="2"><%= @parser.concat('E20_10', 'E20_14') %></font></td>
         <td><font size="2"><b>Call Received</b></font></td>
-        <td><font size="2">12:03:00</font></td>
+        <td><font size="2"><%= @parser.E05_01 %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Adress</b></font></td>
-        <td><font size="2">101 West First Street</font></td>
+        <td><font size="2"><%= @parser.E08_11 %></font></td>
         <td><font size="2"><b>Transport Due To</b></font></td>
-        <td><font size="2">Patient</font></td>
+        <td><font size="2"><%= @parser.E20_16 %></font></td>
         <td><font size="2"><b>Dispatched</b></font></td>
-        <td><font size="2">12:04:00</font></td>
+        <td><font size="2"><%= @parser.E05_04 %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Address 2</b></font></td>
         <td><font size="2">&nbsp;</font></td>
         <td><font size="2"><b>Transported To</b></font></td>
-        <td><font size="2">WakeMed Main</font></td>
+        <td><font size="2"><%= @parser.E20_01 %></font></td>
         <td><font size="2"><b>En Route</b></font></td>
-        <td><font size="2">12:05:00</font></td>
+        <td><font size="2"><%= @parser.E05_05 %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>City</b></font></td>
-        <td><font size="2">Raleigh</font></td>
+        <td><font size="2"><%= @parser.E08_12 %></font></td>
         <td><font size="2"><b>Requested By</b></font></td>
-        <td><font size="2">Patient</font></td>
+        <td><font size="2"></font></td>
         <td><font size="2"><b>Resp on Scene</b></font></td>
-        <td><font size="2">12:06:00</font></td>
+        <td><font size="2"><%= @parser.E05_06 %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>State</b></font></td>
-        <td><font size="2">NC</font></td>
+        <td><font size="2"><%= @parser.E08_14 %></font></td>
         <td><font size="2"><b>Destination</b></font></td>
-        <td><font size="2">Hospital ER</font></td>
+        <td><font size="2"><%= @parser.E20_17 %></font></td>
         <td><font size="2"><b>On Scene</b></font></td>
-        <td><font size="2">12:08:00</font></td>
+        <td><font size="2"></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Zip</b></font></td>
-        <td><font size="2">27601</font></td>
+        <td><font size="2"><%= @parser.E08_15 %></font></td>
         <td><font size="2"><b>Address</b></font></td>
-        <td><font size="2">3000 New Bern Ave</font></td>
+        <td><font size="2"><%= @parser.E20_03 %></font></td>
         <td><font size="2"><b>At Patient</b></font></td>
-        <td><font size="2">12:09:00</font></td>
+        <td><font size="2"><%= @parser.E05_07 %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Medic Unit</b></font></td>
-        <td><font size="2">CH100</font></td>
+        <td><font size="2"><%= @parser.E02_03 %></font></td>
         <td><font size="2"><b>Address 2</b></font></td>
         <td><font size="2">&nbsp;</font></td>
         <td><font size="2"><b>Depart Scene</b></font></td>
-        <td><font size="2">12:10:00</font></td>
+        <td><font size="2"><%= @parser.E05_09 %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Run Type</b></font></td>
-        <td><font size="2">911 Response (Emergency)</font></td>
+        <td><font size="2"><%= @parser.E02_04 %></font></td>
         <td><font size="2"><b>City</b></font></td>
-        <td><font size="2">Raleigh</font></td>
+        <td><font size="2"><%= @parser.E20_04 %></font></td>
         <td><font size="2"><b>At Destination</b></font></td>
-        <td><font size="2">12:11:00</font></td>
+        <td><font size="2"><%= @parser.E05_10 %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Priority Scene</b></font></td>
-        <td><font size="2">Lights/Siren</font></td>
+        <td><font size="2"><%= @parser.E02_20 %></font></td>
         <td><font size="2"><b>State</b></font></td>
-        <td><font size="2">NC</font></td>
+        <td><font size="2"><%= @parser.E20_05 %></font></td>
         <td><font size="2"><b>Pt. Transferred</b></font></td>
-        <td><font size="2">12:12:00</font></td>
+        <td><font size="2"><%= @parser.E05_08 %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Shift</b></font></td>
-        <td><font size="2">A-24</font></td>
+        <td><font size="2"></font></td>
         <td><font size="2"><b>Zip</b></font></td>
-        <td><font size="2">27610</font></td>
+        <td><font size="2"><%= @parser.E20_07 %></font></td>
         <td><font size="2"><b>Incident Close</b></font></td>
-        <td><font size="2">12:13:00</font></td>
+        <td><font size="2"><%= @parser.E05_11 %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Zone</b></font></td>
         <td><font size="2">&nbsp;</font></td>
         <td><font size="2"><b>Zone</b></font></td>
-        <td><font size="2">&nbsp;</font></td>
+        <td><font size="2"><%= @parser.E20_09 %></font></td>
         <td><font size="2"><b>In District</b></font></td>
-        <td><font size="2">12:14:00</font></td>
+        <td><font size="2"><%= @parser.E05_13 %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Level of Service</b></font></td>
-        <td><font size="2">Basic Life Support</font></td>
+        <td><font size="2"></font></td>
         <td><font size="2"><b>Condition at Destination</b></font></td>
-        <td colspan="3"><font size="2">Improved</font></td>
+        <td colspan="3"><font size="2"><%= @parser.E20_15 %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Destination Record #</b></font></td>
-        <td colspan="5"><font size="2">&nbsp;</font></td>
+        <td colspan="5"><font size="2"><%= @parser.E20_13 %></font></td>
       </tr>
     </tbody>
   </table><br>
