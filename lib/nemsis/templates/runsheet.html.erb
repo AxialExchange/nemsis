@@ -97,6 +97,7 @@
         <td><font size="2"><b>History</b></font></td>
         <td colspan="15"><font size="2">&nbsp;</font></td>
       </tr>
+
       <tr>
         <td colspan="16"><font color="blue" size="3">Vital Signs</font></td>
       </tr>
@@ -121,28 +122,46 @@
 
         <td><font size="2"><b>PTS</b></font></td>
       </tr>
+
       <% @parser.parse_cluster('E14').each do |e14| %>
         <tr>
           <td><font size="2"><%= e14.E14_01 %></font></td>
           <td><font size="2"><%= e14.E14_22 %></font></td>
           <td><font size="2">&nbsp;</font></td>
           <td><font size="2">&nbsp;</font></td>
-          <td><font size="2"><%= e14.concat ['E14_04', 'E14_05', 'E14_06'] %></font></td>
+          <td><font size="2"><%= e14.concat 'E14_04', 'E14_05', 'E14_06' %></font></td>
 
           <td><font size="2"><%= [(e14.E14_07 || e14.E14_08), e14.E14_10].compact.join(' ') %></font></td>
-          <td><font size="2"><%= e14.concat ['E14_11', 'E14_12'] %></font></td>
+          <td><font size="2"><%= e14.concat 'E14_11', 'E14_12' %></font></td>
           <td><font size="2"><%= e14.E14_09 %></font></td>
           <td><font size="2">&nbsp;</font></td>
           <td><font size="2">&nbsp;</font></td>
 
           <td><font size="2"><%= e14.E14_14 %></font></td>
-          <td><font size="2"><%= e14.concat ['E14_20', 'E14_21'] %></font></td>
+          <td><font size="2"><%= e14.concat 'E14_20', 'E14_21' %></font></td>
           <td><font size="2"><%= e14.E14_23 %></font></td>
           <td><font size="2"><%= e14.E14_19 %></font></td>
           <td><font size="2"><%= e14.E14_27 %></font></td>
 
           <td><font size="2"><%= e14.E14_28 %></font></td>
 
+        </tr>
+      <% end %>
+
+      <tr>
+        <td colspan="16"><font color="blue" size="3">ECG</font></td>
+      </tr>
+      <tr>
+        <td colspan="1"><font size="2"><b>Time</b></font></td>
+        <td colspan="7"><font size="2"><b>3-Lead ECG</b></font></td>
+        <td colspan="8"><font size="2"><b>12-Lead ECG</b></font></td>
+      </tr>
+
+      <% @parser.parse_cluster('E14').each do |e14| %>
+        <tr>
+          <td colspan="1"><font size="2"><%= e14.E14_01 %></font></td>
+          <td colspan="7"><font size="2"><%= e14.E14_03 %></font></td>
+          <td colspan="8"><font size="2">&nbsp;</font></td>
         </tr>
       <% end %>
 
@@ -155,171 +174,160 @@
         <td colspan="11"><font size="2"><b>Description</b></font></td>
         <td colspan="2"><font size="2"><b>Provider</b></font></td>
       </tr>
-      <tr>
-        <td><font size="2">12:11</font></td>
-        <td colspan="2"><font size="2">Benadryl</font></td>
-        <td colspan="11"><font size="2">12 mg; Intravenous;</font></td>
-        <td colspan="2"><font size="2">Lee, Stan</font></td>
-      </tr>
+
+      <% @parser.parse_clusters('E18', 'E19').sort_by!{|c| Time.parse(c.sub_element('01'))}.each do |cluster| %>
+        <tr>
+          <td><font size="2"><%= cluster.sub_element('01') %></font></td>
+          <td colspan="2"><font size="2"><%= cluster.sub_element('03') %></font></td>
+          <td colspan="11">
+            <font size="2">
+              <% if cluster.root_element_name == 'E18'  %>
+                <%= cluster.concat 'E18_05', 'E18_06' %>;
+                <%= cluster.E18_07 %>; 
+                <%= cluster.E18_08 %>; 
+              <% elsif cluster.root_element_name == 'E19'  %>
+              <% end %>
+            </font>
+          </td>
+          <td colspan="2"><font size="2"></font></td>
+        </tr>
+      <% end %>
+
       <tr>
         <td colspan="16"><font color="blue" size="3">Initial Assessment</font></td>
       </tr>
-      <tr>
-        <td colspan="2"><font size="2"><b>Category</b></font></td>
-        <td colspan="6"><font size="2"><b>Comments</b></font></td>
-        <td colspan="2"><font size="2"><b>Abnormalities</b></font></td>
-        <td colspan="6"><font size="2">&nbsp;</font></td>
-      </tr>
-      <tr>
-        <td colspan="2"><font size="2"><b>Mental Status</b></font></td>
-        <td colspan="6"><font size="2">Nullam tortor nulla, tincidunt sit amet vehicula
-        nec, tincidunt nec neque. Duis et venenatis nibh. Sed arcu augue, vehicula vitae
-        adipiscing a, ultrices vel enim. Ut massa est, accumsan non ullamcorper vel,
-        tempus vel arcu. Vivamus facilisis luctus iaculis. Quisque molestie felis quis
-        urna consectetur ut iaculis magna sodales. Sed sit amet nunc id urna ultricies
-        gravida eget ac nibh. Pellentesque nec nulla justo, suscipit ultrices
-        leo.</font></td>
-        <td colspan="2"><font size="2">Mental Status</font></td>
-        <td colspan="6"><font size="2">Nullam tortor nulla, tincidunt sit amet vehicula
-        nec, tincidunt nec neque. Duis et venenatis nibh. Sed arcu augue, vehicula vitae
-        adipiscing a, ultrices vel enim. Ut massa est, accumsan non ullamcorper vel,
-        tempus vel arcu. Vivamus facilisis luctus iaculis. Quisque molestie felis quis
-        urna consectetur ut iaculis magna sodales. Sed sit amet nunc id urna ultricies
-        gravida eget ac nibh. Pellentesque nec nulla justo, suscipit ultrices
-        leo.</font></td>
-      </tr>
-      <tr>
-        <td colspan="2"><font size="2"><b>Skin</b></font></td>
-        <td colspan="6"><font size="2">&nbsp;</font></td>
-        <td colspan="2"><font size="2">Skin</font></td>
-        <td colspan="6"><font size="2">No abnormalities</font></td>
-      </tr>
-      <tr>
-        <td colspan="2" rowspan="3"><font size="2"><b>HEENT</b></font></td>
-        <td colspan="6" rowspan="3"><font size="2"><b>&nbsp;</b></font></td>
-        <td colspan="2"><font size="2">Head/Face</font></td>
-        <td colspan="6"><font size="2">No abnormalities</font></td>
-      </tr>
-      <tr>
-        <td colspan="2"><font size="2">Eyes</font></td>
-        <td colspan="6"><font size="2">No abnormalities</font></td>
-      </tr>
-      <tr>
-        <td colspan="2"><font size="2">Neck</font></td>
-        <td colspan="6"><font size="2">No abnormalities</font></td>
-      </tr>
-      <tr>
-        <td colspan="2" rowspan="3"><font size="2"><b>Chest</b></font></td>
-        <td colspan="6" rowspan="3"><font size="2"><b>&nbsp;</b></font></td>
-        <td colspan="2"><font size="2">Chest</font></td>
-        <td colspan="6"><font size="2">No abnormalities</font></td>
-      </tr>
-      <tr>
-        <td colspan="2"><font size="2">Heart Sounds</font></td>
-        <td colspan="6"><font size="2">No abnormalities</font></td>
-      </tr>
-      <tr>
-        <td colspan="2"><font size="2">Lung Sounds</font></td>
-        <td colspan="6"><font size="2">No abnormalities</font></td>
-      </tr>
-      <tr>
-        <td colspan="2" rowspan="5"><font size="2"><b>Abdomen</b></font></td>
-        <td colspan="6" rowspan="5"><font size="2"><b>&nbsp;</b></font></td>
-        <td colspan="2"><font size="2">General</font></td>
-        <td colspan="6"><font size="2">No abnormalities</font></td>
-      </tr>
-      <tr>
-        <td colspan="2"><font size="2">Left Upper</font></td>
-        <td colspan="6"><font size="2">No abnormalities</font></td>
-      </tr>
-      <tr>
-        <td colspan="2"><font size="2">Right Upper</font></td>
-        <td colspan="6"><font size="2">No abnormalities</font></td>
-      </tr>
-      <tr>
-        <td colspan="2"><font size="2">Left Lower</font></td>
-        <td colspan="6"><font size="2">No abnormalities</font></td>
-      </tr>
-      <tr>
-        <td colspan="2"><font size="2">Right Lower</font></td>
-        <td colspan="6"><font size="2">No abnormalities</font></td>
-      </tr>
-      <tr>
-        <td colspan="2" rowspan="3"><font size="2"><b>Back</b></font></td>
-        <td colspan="6" rowspan="3"><font size="2"><b>&nbsp;</b></font></td>
-        <td colspan="2"><font size="2">Cervical</font></td>
-        <td colspan="6"><font size="2">No abnormalities</font></td>
-      </tr>
-      <tr>
-        <td colspan="2"><font size="2">Thoracic</font></td>
-        <td colspan="6"><font size="2">No abnormalities</font></td>
-      </tr>
-      <tr>
-        <td colspan="2"><font size="2">Lumbar/Sacral</font></td>
-        <td colspan="6"><font size="2">No abnormalities</font></td>
-      </tr>
-      <tr>
-        <td colspan="2"><font size="2"><b>Pelvis/GU/GI</b></font></td>
-        <td colspan="6"><font size="2">&nbsp;</font></td>
-        <td colspan="2"><font size="2">Pelvis/GU/GI</font></td>
-        <td colspan="6"><font size="2">No abnormalities</font></td>
-      </tr>
-      <tr>
-        <td colspan="2" rowspan="6"><font size="2"><b>Extremities</b></font></td>
-        <td colspan="6" rowspan="6"><font size="2"><b>&nbsp;</b></font></td>
-        <td colspan="2"><font size="2">Left Arm</font></td>
-        <td colspan="6"><font size="2">No abnormalities</font></td>
-      </tr>
-      <tr>
-        <td colspan="2"><font size="2">Right Arm</font></td>
-        <td colspan="6"><font size="2">No abnormalities</font></td>
-      </tr>
-      <tr>
-        <td colspan="2"><font size="2">Left Leg</font></td>
-        <td colspan="6"><font size="2">No abnormalities</font></td>
-      </tr>
-      <tr>
-        <td colspan="2"><font size="2">Right Leg</font></td>
-        <td colspan="6"><font size="2">No abnormalities</font></td>
-      </tr>
-      <tr>
-        <td colspan="2"><font size="2">Pulse</font></td>
-        <td colspan="6"><font size="2">No abnormalities</font></td>
-      </tr>
-      <tr>
-        <td colspan="2"><font size="2">Capillary Refill</font></td>
-        <td colspan="6"><font size="2">No abnormalities</font></td>
-      </tr>
-      <tr>
-        <td colspan="2"><font size="2"><b>Neurological</b></font></td>
-        <td colspan="6"><font size="2">&nbsp;</font></td>
-        <td colspan="2"><font size="2">Neurological</font></td>
-        <td colspan="6"><font size="2">No abnormalities</font></td>
-      </tr>
-    </tbody>
-  </table><br>
-  <font size="2"><b>Assessment Time:</b></font><br>
+      <% @parser.parse_cluster('E16').each do |e16| %>
+        <tr>
+          <td colspan="2"><font size="2"><b>Category</b></font></td>
+          <td colspan="6"><font size="2"><b>Comments</b></font></td>
+          <td colspan="2"><font size="2"><b>Abnormalities</b></font></td>
+          <td colspan="6"><font size="2">&nbsp;</font></td>
+        </tr>
+        <tr>
+          <td colspan="2"><font size="2"><b>Mental Status</b></font></td>
+          <td colspan="6"><font size="2"></font></td>
+          <td colspan="2"><font size="2">Mental Status</font></td>
+          <td colspan="6"><font size="2"><%= e16.E16_23 %></font></td>
+        </tr>
+        <tr>
+          <td colspan="2"><font size="2"><b>Skin</b></font></td>
+          <td colspan="6"><font size="2">&nbsp;</font></td>
+          <td colspan="2"><font size="2">Skin</font></td>
+          <td colspan="6"><font size="2"><%= e16.E16_04 %></font></td>
+        </tr>
+        <tr>
+          <td colspan="2" rowspan="3"><font size="2"><b>HEENT</b></font></td>
+          <td colspan="6" rowspan="3"><font size="2"><b>&nbsp;</b></font></td>
+          <td colspan="2"><font size="2">Head/Face</font></td>
+          <td colspan="6"><font size="2"><%= e16.E16_05 %></font></td>
+        </tr>
+        <tr>
+          <td colspan="2"><font size="2">Eyes</font></td>
+          <td colspan="6"><font size="2"><%= e16.E16_05 || e16.E16_22 %></font></td>
+        </tr>
+        <tr>
+          <td colspan="2"><font size="2">Neck</font></td>
+          <td colspan="6"><font size="2"><%= e16.E16_06 %></font></td>
+        </tr>
+        <tr>
+          <td colspan="2" rowspan="3"><font size="2"><b>Chest</b></font></td>
+          <td colspan="6" rowspan="3"><font size="2"><b>&nbsp;</b></font></td>
+          <td colspan="2"><font size="2">Chest</font></td>
+          <td colspan="6"><font size="2"></font></td>
+        </tr>
+        <tr>
+          <td colspan="2"><font size="2">Heart Sounds</font></td>
+          <td colspan="6"><font size="2"><%= e16.E16_08 %></font></td>
+        </tr>
+        <tr>
+          <td colspan="2"><font size="2">Lung Sounds</font></td>
+          <td colspan="6"><font size="2"><%= e16.E16_07 %></font></td>
+        </tr>
+        <tr>
+          <td colspan="2" rowspan="5"><font size="2"><b>Abdomen</b></font></td>
+          <td colspan="6" rowspan="5"><font size="2"><b>&nbsp;</b></font></td>
+          <td colspan="2"><font size="2">General</font></td>
+          <td colspan="6"><font size="2"><%= e16.E16_13 %></font></td>
+        </tr>
+        <tr>
+          <td colspan="2"><font size="2">Left Upper</font></td>
+          <td colspan="6"><font size="2"><%= e16.E16_09 %></font></td>
+        </tr>
+        <tr>
+          <td colspan="2"><font size="2">Right Upper</font></td>
+          <td colspan="6"><font size="2"><%= e16.E16_11 %></font></td>
+        </tr>
+        <tr>
+          <td colspan="2"><font size="2">Left Lower</font></td>
+          <td colspan="6"><font size="2"><%= e16.E16_10 %></font></td>
+        </tr>
+        <tr>
+          <td colspan="2"><font size="2">Right Lower</font></td>
+          <td colspan="6"><font size="2"><%= e16.E16_12 %></font></td>
+        </tr>
+        <tr>
+          <td colspan="2" rowspan="3"><font size="2"><b>Back</b></font></td>
+          <td colspan="6" rowspan="3"><font size="2"><b>&nbsp;</b></font></td>
+          <td colspan="2"><font size="2">Cervical</font></td>
+          <td colspan="6"><font size="2"><%= e16.E16_14 %></font></td>
+        </tr>
+        <tr>
+          <td colspan="2"><font size="2">Thoracic</font></td>
+          <td colspan="6"><font size="2"></font></td>
+        </tr>
+        <tr>
+          <td colspan="2"><font size="2">Lumbar/Sacral</font></td>
+          <td colspan="6"><font size="2"><%= e16.E16_16 %></font></td>
+        </tr>
+        <tr>
+          <td colspan="2"><font size="2"><b>Pelvis/GU/GI</b></font></td>
+          <td colspan="6"><font size="2">&nbsp;</font></td>
+          <td colspan="2"><font size="2">Pelvis/GU/GI</font></td>
+          <td colspan="6"><font size="2"><%= e16.E16_13 %></font></td>
+        </tr>
+        <tr>
+          <td colspan="2" rowspan="6"><font size="2"><b>Extremities</b></font></td>
+          <td colspan="6" rowspan="6"><font size="2"><b>&nbsp;</b></font></td>
+          <td colspan="2"><font size="2">Left Arm</font></td>
+          <td colspan="6"><font size="2"><%= e16.E16_19 %></font></td>
+        </tr>
+        <tr>
+          <td colspan="2"><font size="2">Right Arm</font></td>
+          <td colspan="6"><font size="2"><%= e16.E16_17 %></font></td>
+        </tr>
+        <tr>
+          <td colspan="2"><font size="2">Left Leg</font></td>
+          <td colspan="6"><font size="2"><%= e16.E16_20 %></font></td>
+        </tr>
+        <tr>
+          <td colspan="2"><font size="2">Right Leg</font></td>
+          <td colspan="6"><font size="2"><%= e16.E16_18 %></font></td>
+        </tr>
+        <tr>
+          <td colspan="2"><font size="2">Pulse</font></td>
+          <td colspan="6"><font size="2"></font></td>
+        </tr>
+        <tr>
+          <td colspan="2"><font size="2">Capillary Refill</font></td>
+          <td colspan="6"><font size="2"></font></td>
+        </tr>
+        <tr>
+          <td colspan="2"><font size="2"><b>Neurological</b></font></td>
+          <td colspan="6"><font size="2">&nbsp;</font></td>
+          <td colspan="2"><font size="2">Neurological</font></td>
+          <td colspan="6"><font size="2"><%= e16.E16_24 %></font></td>
+        </tr>
+      </tbody>
+    </table><br>
+    <font size="2"><b>Assessment Time:</b><%= e16.E16_03 %></font><br>
+  <% end %>
   <table border="1" cellspacing="0" width="900">
     <tbody>
       <tr>
         <td><font color="blue" size="3">Narrative</font></td>
       </tr>
       <tr>
-        <td><font size="2">Patient was having difficulty breathing after eating shell
-        fish and the provider gave them benadryl. Lorem ipsum dolor sit amet, consectetur
-        adipiscing elit. Praesent ac nibh tellus, vel interdum mi. Sed tempus ultricies
-        eros sagittis ultrices. Curabitur ante erat, hendrerit sodales egestas nec,
-        bibendum at nunc. Vestibulum in scelerisque risus. Nullam semper, elit at
-        porttitor ultrices, orci ipsum tincidunt felis, id commodo tellus nunc in lorem.
-        Aliquam non molestie risus. Quisque posuere, risus et rhoncus vestibulum, ligula
-        sapien venenatis metus, sed semper magna nulla eu lectus. Proin interdum, eros
-        sed fringilla tincidunt, orci velit dictum tellus, eget vestibulum elit eros vel
-        turpis. Sed quam ligula, congue a tristique nec, porta id diam. Integer quis
-        mauris metus, ac condimentum felis. Nullam lacinia nibh leo, sed varius ante.
-        Nunc vitae lacus felis, rutrum condimentum ipsum. Maecenas pellentesque, libero
-        ut viverra sagittis, eros odio volutpat arcu, quis adipiscing diam neque eget
-        dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-        inceptos himenaeos.</font></td>
+        <td><font size="2"><%= @parser.E13_01 %></font></td>
       </tr>
     </tbody>
   </table><br>
@@ -331,7 +339,7 @@
         <td colspan="2"><font color="blue" size="3">Incident Times</font></td>
       </tr>
       <tr>
-        <td><font size="2"><font size="2"><b>Location</b></font></font></td>
+        <td><font size="2"><b>Location</b></font></td>
         <td><font size="2">Capital Building</font></td>
         <td><font size="2"><b>Disposition</b></font></td>
         <td><font size="2">Transported Lights/Siren</font></td>

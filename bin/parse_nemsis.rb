@@ -2,6 +2,7 @@
 require 'rubygems'
 require 'ruby-debug'
 require 'yaml'
+require 'time'
 
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require "nemsis"
@@ -24,7 +25,7 @@ end
 class Main
 
   def self.run
-    sample_xml_file = File.expand_path('../../data/sample.xml', __FILE__)
+    sample_xml_file = File.expand_path('../../data/sample_2.xml', __FILE__)
     xml_str = File.read(sample_xml_file)
 
     parser = Nemsis::Parser.new(xml_str)

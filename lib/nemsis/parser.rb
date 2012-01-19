@@ -109,7 +109,24 @@ module Nemsis
       clusters
     end
 
-    def concat(elements)
+    def parse_clusters(*cluster_elements)
+      results = []
+      cluster_elements.each do |element|
+        results = results + parse_cluster(element)
+      end
+
+      results
+    end
+
+    def root_element_name
+      xml_doc.root.name
+    end
+
+    def sub_element(element_suffix)
+      parse_element("#{root_element_name}_#{element_suffix}")
+    end
+
+    def concat(*elements)
       elements.map do |elem|
         parse_element(elem)
       end.compact.join(' ')
