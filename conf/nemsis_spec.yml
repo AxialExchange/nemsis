@@ -2845,10 +2845,9 @@ E08_03:
     -25: Not Applicable
     -5: Not Available
     1100: '>15 minutes'
+    1105: '5 - 15 minutes'
     1110: <5 Minutes
     1115: After EMS
-    15: Minutes
-    5: -
   is_multi_entry: 0
   name: ESTIMATED DATE/TIME INITIAL RESPONDER ARRIVED ON SCENE
   node: E08_03
