@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 require 'rubygems'
 require 'ruby-debug'
-require 'erb'
 
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require "nemsis"
