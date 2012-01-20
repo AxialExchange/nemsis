@@ -1,4 +1,3 @@
-require 'erb'
 require 'nokogiri'
 require 'yaml'
 
@@ -17,21 +16,6 @@ module Nemsis
       self.xml_str = xml_str
       self.xml_doc = Nokogiri::XML(xml_str)
       xml_doc.remove_namespaces!
-    end
-
-    def parse_element(element)
-      element_spec = @@spec[element]
-
-      puts element if element_spec.nil?
-      parse(element_spec)
-    end
-
-    def parse_field(field_name)
-      element_spec = @@spec.values.
-                            select{|v| v['name'] == field_name}.
-                            first
-
-      parse(element_spec)
     end
 
     def parse(element_spec)
@@ -80,6 +64,21 @@ module Nemsis
         puts "Error: parsing xpath [#{xpath}] #{err}"
       end
 
+    end
+
+    def parse_element(element)
+      element_spec = @@spec[element]
+
+      puts element if element_spec.nil?
+      parse(element_spec)
+    end
+
+    def parse_field(field_name)
+      element_spec = @@spec.values.
+                            select{|v| v['name'] == field_name}.
+                            first
+
+      parse(element_spec)
     end
 
     def parse_pair(name_element, value_element)

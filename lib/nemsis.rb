@@ -2,7 +2,8 @@ require 'rubygems'
 
 module Nemsis
   require 'nemsis/version'
-  autoload :Builder, 'nemsis/builder'
+  require 'nemsis/renderer'
+
   autoload :Parser, 'nemsis/parser'
 
   # Your code goes here...
