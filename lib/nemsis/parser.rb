@@ -1,4 +1,6 @@
 require 'erb'
+require 'nokogiri'
+require 'yaml'
 
 module Nemsis
   class Parser

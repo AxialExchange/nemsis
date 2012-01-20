@@ -1,11 +1,9 @@
-require "rubygems"
+require 'rubygems'
 
 module Nemsis
-  autoload "nemsis/version"
-  autoload "nemsis/builder"
-  autoload "nemsis/parser"
+  require 'nemsis/version'
+  autoload :Builder, 'nemsis/builder'
+  autoload :Parser, 'nemsis/parser'
 
-  autoload "nokogiri"
-  autoload "yaml"
   # Your code goes here...
 end
