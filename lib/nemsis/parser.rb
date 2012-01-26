@@ -89,7 +89,11 @@ module Nemsis
       values = parse(value_element_spec)
 
       result = {}
-      names.size.times {|i| result[names[i]] = values[i]}
+      begin
+        names.size.times {|i| result[names[i]] = values[i]}
+      rescue
+      end
+
       result
     end
     
