@@ -23,8 +23,8 @@ module Nemsis
 
       begin
         nodes = xml_doc.xpath(xpath) or return
-        case element_spec['is_multiple_entry']
-        when true
+        case element_spec['is_multi_entry']
+        when 1
           values = []
             nodes.each do |node|
               value = node.text
@@ -63,7 +63,6 @@ module Nemsis
       rescue => err
         puts "Error: parsing xpath [#{xpath}] #{err}"
       end
-
     end
 
     def parse_element(element)
