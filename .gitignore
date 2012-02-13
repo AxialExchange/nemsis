@@ -1,4 +1,5 @@
 *.gem
-.bundle
-pkg/*
 .DS_Store
+.bundle
+Gemfile.lock
+pkg/*
