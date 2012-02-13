@@ -8,6 +8,11 @@ require "nemsis"
 class Main
 
   def self.run
+    Main.parser_examples
+    Main.reproducer_examples
+  end
+    
+  def self.parser_examples
     sample_xml_file = File.expand_path('../../data/sample_2.xml', __FILE__)
     xml_str = File.read(sample_xml_file)
 
@@ -29,7 +34,24 @@ class Main
     # end
 
     renderer = Nemsis::Renderer::WakeMed::HTML.new(parser)
-    puts renderer.render
+    # puts renderer.render
+  end
+
+  def self.reproducer_examples
+    sample_xml_file = File.expand_path('../../data/sample_2.xml', __FILE__)
+    xml_str = File.read(sample_xml_file)
+
+    reproducer = Nemsis::Reproducer.new(xml_str)
+
+    reproducer.pcr_id = 'ALKEJ189PQNO49'
+    reproducer.last_name = 'Davenport'
+    reproducer.first_name = 'Jeffrey'
+    reproducer.middle_name = 'G'
+    reproducer.gender = 'Male'
+    reproducer.dob = '1970-01-01'
+    reproducer.transferred_to = 'WakeMed Cary'
+
+    # puts reproducer.to_xml
   end
 
 end
