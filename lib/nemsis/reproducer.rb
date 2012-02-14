@@ -88,5 +88,77 @@ module Nemsis
       self.transferred_to_name= transferred_to_name
       self.transferred_to_code= transferred_to_code
     end
+
+    def patient_number= value
+      custom_nodes = xml_doc.xpath("//xmlns:E23_11")
+      patient_number_node = 
+        custom_nodes.select do |node|
+          node.content == 'Patient Number'
+        end.first
+      patient_number_node.parent.remove
+
+      e23_09_0_node = Nokogiri::XML::Node.new('E23_09_0', xml_doc)
+
+      e23_09_node = Nokogiri::XML::Node.new('E23_09', xml_doc)
+      e23_09_node.content = value
+      
+      e23_11_node = Nokogiri::XML::Node.new('E23_11', xml_doc)
+      e23_11_node.content = 'Patient Number'
+
+      e23_09_0_node << e23_09_node
+      e23_09_0_node << e23_11_node
+
+      e23_node = xml_doc.xpath("//xmlns:E23").first
+      e23_node << e23_09_0_node
+    end
+
+    def patient_number
+      custom_nodes = xml_doc.xpath("//xmlns:E23_11")
+      patient_number_node = 
+        custom_nodes.select do |node|
+          node.content == 'Patient Number'
+        end.first
+
+      patient_number_value_node = 
+        patient_number_node.parent.xpath('.//xmlns:E23_09').first
+
+      patient_number_value_node.content
+    end
+
+    def hospital_chart_number= value
+      custom_nodes = xml_doc.xpath("//xmlns:E23_11")
+      hospital_chart_number_node = 
+        custom_nodes.select do |node|
+          node.content == 'Hospital Chart Number'
+        end.first
+      hospital_chart_number_node.parent.remove
+
+      e23_09_0_node = Nokogiri::XML::Node.new('E23_09_0', xml_doc)
+
+      e23_09_node = Nokogiri::XML::Node.new('E23_09', xml_doc)
+      e23_09_node.content = value
+      
+      e23_11_node = Nokogiri::XML::Node.new('E23_11', xml_doc)
+      e23_11_node.content = 'Hospital Chart Number'
+
+      e23_09_0_node << e23_09_node
+      e23_09_0_node << e23_11_node
+
+      e23_node = xml_doc.xpath("//xmlns:E23").first
+      e23_node << e23_09_0_node
+    end
+
+    def hospital_chart_number
+      custom_nodes = xml_doc.xpath("//xmlns:E23_11")
+      hospital_chart_number_node = 
+        custom_nodes.select do |node|
+          node.content == 'Hospital Chart Number'
+        end.first
+
+      hospital_chart_number_value_node = 
+        hospital_chart_number_node.parent.xpath('.//xmlns:E23_09').first
+
+      hospital_chart_number_value_node.content
+    end
   end
 end

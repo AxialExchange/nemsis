@@ -100,5 +100,19 @@ describe Nemsis::Reproducer do
         reproducer.transferred_to_code.should == 'F00002573'
       end
     end
+
+    describe '#patient_number=' do
+      it 'sets patient_number' do
+        reproducer.patient_number = '123456789'
+        reproducer.patient_number.should == '123456789'
+      end
+    end
+
+    describe '#hospital_chart_number=' do
+      it 'sets hospital_chart_number' do
+        reproducer.hospital_chart_number = '1234/56789'
+        reproducer.hospital_chart_number.should == '1234/56789'
+      end
+    end
   end
 end
