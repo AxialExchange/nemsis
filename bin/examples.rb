@@ -13,7 +13,7 @@ class Main
   end
     
   def self.parser_examples
-    sample_xml_file = File.expand_path('../../data/sample_2.xml', __FILE__)
+    sample_xml_file = File.expand_path('../../data/sample_3.xml', __FILE__)
     xml_str = File.read(sample_xml_file)
 
     parser = Nemsis::Parser.new(xml_str)
@@ -34,7 +34,7 @@ class Main
     # end
 
     renderer = Nemsis::Renderer::WakeMed::HTML.new(parser)
-    # puts renderer.render
+    puts renderer.render
   end
 
   def self.reproducer_examples

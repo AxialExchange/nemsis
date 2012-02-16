@@ -29,17 +29,17 @@
         <td><font size="2"><b>Address</b></font></td>
         <td><font size="2"><%= @parser.E06_04 %></font></td>
         <td><font size="2"><b>Address 2</b></font></td>
-        <td><font size="2">&nbsp;</font></td>
+        <td><font size="2">E23_09 fieldname to be determined</font></td>
         <td><font size="2"><b>City</b></font></td>
         <td><font size="2"><%= @parser.E06_05 %></font></td>
         <td><font size="2"><b>State</b></font></td>
-        <td><font size="2"><%= @parser.E06_07 %></font></td>
+        <td><font size="2"><%= @parser.parse_state('E06_07') %></font></td>
         <td><font size="2"><b>Zip</b></font></td>
         <td><font size="2"><%= @parser.E06_08 %></font></td>
         <td><font size="2"><b>Country</b></font></td>
         <td><font size="2"><%= @parser.E06_09 %></font></td>
         <td><font size="2"><b>Tel</b></font></td>
-        <td><font size="2"><%= @parser.E06_04 %></font></td>
+        <td><font size="2"><%= @parser.E06_17 %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Advanced Directive</b></font></td>
@@ -68,7 +68,7 @@
         <td><font size="2"><b>Duration</b></font></td>
         <td><font size="2"><%= @parser.concat 'E09_06', 'E09_07' %></font></td>
         <td><font size="2"><b>Medical/trauma</b></font></td>
-        <td><font size="2"></font></td>
+        <td><font size="2"><%= @parser.parse_value_of('MedicalTrauma') %></font></td>
         <td><font size="2"><b>Alcohol/Drugs</b></font></td>
         <td><font size="2"><%= @parser.E12_19 %></font></td>
       </tr>
@@ -126,15 +126,15 @@
         <tr>
           <td><font size="2"><%= e14.E14_01 %></font></td>
           <td><font size="2"><%= e14.E14_22 %></font></td>
-          <td><font size="2">&nbsp;</font></td>
-          <td><font size="2">&nbsp;</font></td>
+          <td><font size="2"><%= e14.E14_29 %></font></td>
+          <td><font size="2"><%= e14.E14_30 %></font></td>
           <td><font size="2"><%= e14.concat 'E14_04', 'E14_05', 'E14_06' %></font></td>
 
           <td><font size="2"><%= [(e14.E14_07 || e14.E14_08), e14.E14_10].compact.join(' ') %></font></td>
           <td><font size="2"><%= e14.concat 'E14_11', 'E14_12' %></font></td>
           <td><font size="2"><%= e14.E14_09 %></font></td>
-          <td><font size="2">&nbsp;</font></td>
-          <td><font size="2">&nbsp;</font></td>
+          <td><font size="2"><%= e14.E14_13 %></font></td>
+          <td><font size="2"><%= e14.E14_31 %></font></td>
 
           <td><font size="2"><%= e14.E14_14 %></font></td>
           <td><font size="2"><%= e14.concat 'E14_20', 'E14_21' %></font></td>
@@ -160,7 +160,7 @@
         <tr>
           <td colspan="1"><font size="2"><%= e14.E14_01 %></font></td>
           <td colspan="7"><font size="2"><%= e14.E14_03 %></font></td>
-          <td colspan="8"><font size="2">&nbsp;</font></td>
+          <td colspan="8"><font size="2"><%= e14.E14_33 %></td>
         </tr>
       <% end %>
 
@@ -188,14 +188,14 @@
               <% end %>
             </font>
           </td>
-          <td colspan="2"><font size="2"></font></td>
+          <td colspan="2"><font size="2">E18_09 or E19_09 to be mapped to name</font></td>
         </tr>
       <% end %>
 
       <tr>
         <td colspan="16"><font color="blue" size="3">Initial Assessment</font></td>
       </tr>
-      <% @parser.parse_cluster('E16').each do |e16| %>
+      <% @parser.parse_assessments.each do |assessment| %>
         <tr>
           <td colspan="2"><font size="2"><b>Category</b></font></td>
           <td colspan="6"><font size="2"><b>Comments</b></font></td>
@@ -204,103 +204,103 @@
         </tr>
         <tr>
           <td colspan="2"><font size="2"><b>Mental Status</b></font></td>
-          <td colspan="6"><font size="2"></font></td>
+          <td colspan="6"><font size="2"><%= assessment.E16_25 %></font></td>
           <td colspan="2"><font size="2">Mental Status</font></td>
-          <td colspan="6"><font size="2"><%= e16.E16_23 %></font></td>
+          <td colspan="6"><font size="2"><%= assessment.E16_23 %></font></td>
         </tr>
         <tr>
           <td colspan="2"><font size="2"><b>Skin</b></font></td>
-          <td colspan="6"><font size="2">&nbsp;</font></td>
+          <td colspan="6"><font size="2"><%= assessment.E16_26 %></font></td>
           <td colspan="2"><font size="2">Skin</font></td>
-          <td colspan="6"><font size="2"><%= e16.E16_04 %></font></td>
+          <td colspan="6"><font size="2"><%= assessment.concat('E16_04', 'E15_01') %></font></td>
         </tr>
         <tr>
           <td colspan="2" rowspan="3"><font size="2"><b>HEENT</b></font></td>
-          <td colspan="6" rowspan="3"><font size="2"><b>&nbsp;</b></font></td>
+          <td colspan="6" rowspan="3"><font size="2"><%= assessment.E16_27 %></font></td>
           <td colspan="2"><font size="2">Head/Face</font></td>
-          <td colspan="6"><font size="2"><%= e16.E16_05 %></font></td>
+          <td colspan="6"><font size="2"><%= assessment.concat('E16_05', 'E15_02', 'E15_03') %></font></td>
         </tr>
         <tr>
           <td colspan="2"><font size="2">Eyes</font></td>
-          <td colspan="6"><font size="2"><%= e16.E16_05 || e16.E16_22 %></font></td>
+          <td colspan="6"><font size="2"><%= assessment.concat('E16_21', 'E16_22') %></font></td>
         </tr>
         <tr>
           <td colspan="2"><font size="2">Neck</font></td>
-          <td colspan="6"><font size="2"><%= e16.E16_06 %></font></td>
+          <td colspan="6"><font size="2"><%= assessment.E16_06 %></font></td>
         </tr>
         <tr>
           <td colspan="2" rowspan="3"><font size="2"><b>Chest</b></font></td>
-          <td colspan="6" rowspan="3"><font size="2"><b>&nbsp;</b></font></td>
+          <td colspan="6" rowspan="3"><font size="2"><%= assessment.E16_28 %></font></td>
           <td colspan="2"><font size="2">Chest</font></td>
-          <td colspan="6"><font size="2"></font></td>
+          <td colspan="6"><font size="2"><%= assessment.E15_05 %></font></td>
         </tr>
         <tr>
           <td colspan="2"><font size="2">Heart Sounds</font></td>
-          <td colspan="6"><font size="2"><%= e16.E16_08 %></font></td>
+          <td colspan="6"><font size="2"><%= assessment.E16_08 %></font></td>
         </tr>
         <tr>
           <td colspan="2"><font size="2">Lung Sounds</font></td>
-          <td colspan="6"><font size="2"><%= e16.E16_07 %></font></td>
+          <td colspan="6"><font size="2"><%= assessment.E16_07 %></font></td>
         </tr>
         <tr>
           <td colspan="2" rowspan="5"><font size="2"><b>Abdomen</b></font></td>
-          <td colspan="6" rowspan="5"><font size="2"><b>&nbsp;</b></font></td>
+          <td colspan="6" rowspan="5"><font size="2"><%= assessment.E16_29 %></font></td>
           <td colspan="2"><font size="2">General</font></td>
-          <td colspan="6"><font size="2"><%= e16.E16_13 %></font></td>
+          <td colspan="6"><font size="2"><%= assessment.concat('E16_13', 'E15_06') %></font></td>
         </tr>
         <tr>
           <td colspan="2"><font size="2">Left Upper</font></td>
-          <td colspan="6"><font size="2"><%= e16.E16_09 %></font></td>
+          <td colspan="6"><font size="2"><%= assessment.E16_09 %></font></td>
         </tr>
         <tr>
           <td colspan="2"><font size="2">Right Upper</font></td>
-          <td colspan="6"><font size="2"><%= e16.E16_11 %></font></td>
+          <td colspan="6"><font size="2"><%= assessment.E16_11 %></font></td>
         </tr>
         <tr>
           <td colspan="2"><font size="2">Left Lower</font></td>
-          <td colspan="6"><font size="2"><%= e16.E16_10 %></font></td>
+          <td colspan="6"><font size="2"><%= assessment.E16_10 %></font></td>
         </tr>
         <tr>
           <td colspan="2"><font size="2">Right Lower</font></td>
-          <td colspan="6"><font size="2"><%= e16.E16_12 %></font></td>
+          <td colspan="6"><font size="2"><%= assessment.E16_12 %></font></td>
         </tr>
         <tr>
           <td colspan="2" rowspan="3"><font size="2"><b>Back</b></font></td>
-          <td colspan="6" rowspan="3"><font size="2"><b>&nbsp;</b></font></td>
+          <td colspan="6" rowspan="3"><font size="2"><%= assessment.E16_30 %></font></td>
           <td colspan="2"><font size="2">Cervical</font></td>
-          <td colspan="6"><font size="2"><%= e16.E16_14 %></font></td>
+          <td colspan="6"><font size="2"><%= assessment.E16_14 %></font></td>
         </tr>
         <tr>
           <td colspan="2"><font size="2">Thoracic</font></td>
-          <td colspan="6"><font size="2"></font></td>
+          <td colspan="6"><font size="2"><%= assessment.E15_07 %></font></td>
         </tr>
         <tr>
           <td colspan="2"><font size="2">Lumbar/Sacral</font></td>
-          <td colspan="6"><font size="2"><%= e16.E16_16 %></font></td>
+          <td colspan="6"><font size="2"><%= assessment.E16_16 %></font></td>
         </tr>
         <tr>
           <td colspan="2"><font size="2"><b>Pelvis/GU/GI</b></font></td>
-          <td colspan="6"><font size="2">&nbsp;</font></td>
+          <td colspan="6"><font size="2"><%= assessment.E16_31 %></font></td>
           <td colspan="2"><font size="2">Pelvis/GU/GI</font></td>
-          <td colspan="6"><font size="2"><%= e16.E16_13 %></font></td>
+          <td colspan="6"><font size="2"><%= assessment.concat('E16_13', 'E15_09') %></font></td>
         </tr>
         <tr>
           <td colspan="2" rowspan="6"><font size="2"><b>Extremities</b></font></td>
-          <td colspan="6" rowspan="6"><font size="2"><b>&nbsp;</b></font></td>
+          <td colspan="6" rowspan="6"><font size="2"><%= assessment.E16_32 %></font></td>
           <td colspan="2"><font size="2">Left Arm</font></td>
-          <td colspan="6"><font size="2"><%= e16.E16_19 %></font></td>
+          <td colspan="6"><font size="2"><%= assessment.E16_19 %></font></td>
         </tr>
         <tr>
           <td colspan="2"><font size="2">Right Arm</font></td>
-          <td colspan="6"><font size="2"><%= e16.E16_17 %></font></td>
+          <td colspan="6"><font size="2"><%= assessment.E16_17 %></font></td>
         </tr>
         <tr>
           <td colspan="2"><font size="2">Left Leg</font></td>
-          <td colspan="6"><font size="2"><%= e16.E16_20 %></font></td>
+          <td colspan="6"><font size="2"><%= assessment.E16_20 %></font></td>
         </tr>
         <tr>
           <td colspan="2"><font size="2">Right Leg</font></td>
-          <td colspan="6"><font size="2"><%= e16.E16_18 %></font></td>
+          <td colspan="6"><font size="2"><%= assessment.E16_18 %></font></td>
         </tr>
         <tr>
           <td colspan="2"><font size="2">Pulse</font></td>
@@ -312,14 +312,15 @@
         </tr>
         <tr>
           <td colspan="2"><font size="2"><b>Neurological</b></font></td>
-          <td colspan="6"><font size="2">&nbsp;</font></td>
+          <td colspan="6"><font size="2"><%= assessment.E16_33 %></font></td>
           <td colspan="2"><font size="2">Neurological</font></td>
-          <td colspan="6"><font size="2"><%= e16.E16_24 %></font></td>
+          <td colspan="6"><font size="2"><%= assessment.E16_24 %></font></td>
         </tr>
       </tbody>
     </table><br>
-    <font size="2"><b>Assessment Time:</b><%= e16.E16_03 %></font><br>
+    <font size="2"><b>Assessment Time:</b><%= assessment.E16_03 %></font><br>
   <% end %>
+
   <table border="1" cellspacing="0" width="700">
     <tbody>
       <tr>
@@ -355,7 +356,7 @@
       </tr>
       <tr>
         <td><font size="2"><b>Address 2</b></font></td>
-        <td><font size="2">&nbsp;</font></td>
+        <td><font size="2"><%= @parser.parse_value_of('IncidentAddress2') %></font></td>
         <td><font size="2"><b>Transported To</b></font></td>
         <td><font size="2"><%= @parser.E20_01 %></font></td>
         <td><font size="2"><b>En Route</b></font></td>
@@ -365,13 +366,13 @@
         <td><font size="2"><b>City</b></font></td>
         <td><font size="2"><%= @parser.E08_12 %></font></td>
         <td><font size="2"><b>Requested By</b></font></td>
-        <td><font size="2"></font></td>
+        <td><font size="2"><%= @parser.parse_value_of('Requested By') %></font></td>
         <td><font size="2"><b>Resp on Scene</b></font></td>
         <td><font size="2"><%= @parser.E05_06 %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>State</b></font></td>
-        <td><font size="2"><%= @parser.E08_14 %></font></td>
+        <td><font size="2"><%= @parser.parse_state('E08_14') %></font></td>
         <td><font size="2"><b>Destination</b></font></td>
         <td><font size="2"><%= @parser.E20_17 %></font></td>
         <td><font size="2"><b>On Scene</b></font></td>
@@ -389,7 +390,7 @@
         <td><font size="2"><b>Medic Unit</b></font></td>
         <td><font size="2"><%= @parser.E02_03 %></font></td>
         <td><font size="2"><b>Address 2</b></font></td>
-        <td><font size="2">&nbsp;</font></td>
+        <td><font size="2"><%= @parser.parse_value_of('DestinationAddress2') %></font></td>
         <td><font size="2"><b>Depart Scene</b></font></td>
         <td><font size="2"><%= @parser.E05_09 %></font></td>
       </tr>
@@ -411,7 +412,7 @@
       </tr>
       <tr>
         <td><font size="2"><b>Shift</b></font></td>
-        <td><font size="2"></font></td>
+        <td><font size="2"><%= @parser.parse_value_of('Shift') %></td>
         <td><font size="2"><b>Zip</b></font></td>
         <td><font size="2"><%= @parser.E20_07 %></font></td>
         <td><font size="2"><b>Incident Close</b></font></td>
@@ -427,13 +428,13 @@
       </tr>
       <tr>
         <td><font size="2"><b>Level of Service</b></font></td>
-        <td><font size="2"></font></td>
+        <td><font size="2"><%= @parser.parse_value_of('Level of Service') %></td>
         <td><font size="2"><b>Condition at Destination</b></font></td>
         <td colspan="3"><font size="2"><%= @parser.E20_15 %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Destination Record #</b></font></td>
-        <td colspan="5"><font size="2"><%= @parser.E20_13 %></font></td>
+        <td colspan="5"><font size="2"><%= @parser.E12_03 %></font></td>
       </tr>
     </tbody>
   </table><br>

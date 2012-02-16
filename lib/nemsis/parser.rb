@@ -69,7 +69,23 @@ module Nemsis
       element_spec = @@spec[element]
 
       puts element if element_spec.nil?
-      parse(element_spec)
+      results = parse(element_spec)
+
+      results.is_a?(Array) ? results.first : results
+    end
+
+    def parse_time(element)
+      time_str = parse_element(element)
+
+      Time.parse(time_str).strftime("%Y-%m-%d %H:%M") rescue nil
+    end
+
+    def parse_state(element)
+      state_code = parse_element(element)
+
+      state_codes = {"42"=>"PA", "01"=>"AL", "02"=>"AK", "04"=>"AZ", "05"=>"AR", "06"=>"CA", "08"=>"CO", "09"=>"CT", "10"=>"DE", "11"=>"DC", "12"=>"FL", "13"=>"GA", "15"=>"HI", "16"=>"ID", "17"=>"IL", "18"=>"IN", "19"=>"IA", "20"=>"KS", "21"=>"KY", "22"=>"LA", "23"=>"ME", "24"=>"MD", "25"=>"MA", "26"=>"MI", "27"=>"MN", "28"=>"MS", "29"=>"MO", "30"=>"MT", "31"=>"NE", "32"=>"NV", "33"=>"NH", "34"=>"NJ", "35"=>"NM", "36"=>"NY", "37"=>"NC", "38"=>"ND", "39"=>"OH", "40"=>"OK", "41"=>"OR", "44"=>"RI", "45"=>"SC", "46"=>"SD", "47"=>"TN", "48"=>"TX", "49"=>"UT", "50"=>"VT", "51"=>"VA", "53"=>"WA", "54"=>"WV", "55"=>"WI", "56"=>"WY", "60"=>"AS", "66"=>"GU", "69"=>"MP", "72"=>"PR", "74"=>"UM", "78"=>"VI"}
+
+      state_codes[state_code] || state_code
     end
 
     def parse_field(field_name)
@@ -94,6 +110,10 @@ module Nemsis
       end
 
       result
+    end
+
+    def parse_value_of(key)
+      parse_pair('E23_11', 'E23_09')[key] rescue nil
     end
     
     def parse_cluster(element)
@@ -121,6 +141,30 @@ module Nemsis
       end
 
       results
+    end
+
+    def parse_assessments
+      # Assessments elements are E15 and E16.  There would be just one E15 and
+      # many E16 elements.  Sort E16 element clusters by time E16_03, and the
+      # first one would be Initial Assessment.  The single E15 element is always
+      # part of the initial assessment, so it will need to be combined with the
+      # earliest E16.
+      e15_clusters  = parse_cluster('E15')
+      e15_initial_assessment = e15_clusters.shift
+
+      e16_clusters = parse_clusters('E16')
+      e16_clusters = e16_clusters.sort_by {|c| Time.parse(c.sub_element('03')) rescue Time.now}
+      e16_initial_assessment = e16_clusters.shift
+
+      initial_assessment_node = Nokogiri::XML::Node.new("E15_E16", xml_doc)
+      initial_assessment_node.add_child e15_initial_assessment.xml_doc.root
+      initial_assessment_node.add_child e16_initial_assessment.xml_doc.root
+
+      initial_assessment = Nemsis::Parser.new(initial_assessment_node.to_s)
+
+      assessments = [initial_assessment, e16_clusters].flatten
+  
+      assessments
     end
 
     def root_element_name
