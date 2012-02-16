@@ -4409,6 +4409,49 @@ E14_28:
   is_multi_entry: 1
   name: PEDIATRIC TRAUMA SCORE
   node: E14_28
+E14_29:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 1
+  name: PATIENT SIDE
+  node: E14_29
+E14_30:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 1
+  name: PATIENT POSTURE
+  node: E14_30
+E14_31:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 1
+  name: CARBON MONOXIDE READING
+  node: E14_31
+E14_32:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 1
+  name: SUSPECTED MYOCARDIAL INFARCTION
+  node: E14_32
+E14_33:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 1
+  name: 12-LEAD EKG COMMENTS
+  node: E14_33
 E15_01:
   allow_null: 1
   data_entry_method: multiple-choice
@@ -5133,6 +5176,69 @@ E16_24:
   is_multi_entry: 1
   name: NEUROLOGICAL ASSESSMENT
   node: E16_24
+E16_25:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 1
+  name: MENTAL STATUS COMMENTS
+  node: E16_25
+E16_26:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 1
+  name: SKIN COMMENTS
+  node: E16_26
+E16_27:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 1
+  name: HEAD EAR EYES NOSE AND THROAT COMMENTS
+  node: E16_27
+E16_28:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 1
+  name: CHEST COMMENTS
+  node: E16_28
+E16_29:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 1
+  name: ABDOMEN COMMENTS
+  node: E16_29
+E16_30:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 1
+  name: BACK COMMENTS
+  node: E16_30
+E16_31:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 1
+  name: PELVIS/GU/GI COMMENTS
+  node: E16_31
+E16_32:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 1
+  name: EXTREMITIES COMMENTS
+  node: E16_32
+E16_33:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 1
+  name: NEUROLOGICAL COMMENTS
+  node: E16_33
 E17_01:
   allow_null: 1
   data_entry_method: multiple-choice
