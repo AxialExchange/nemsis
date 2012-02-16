@@ -1476,12 +1476,12 @@ E02_04:
   data_entry_method: single-choice National Element
   data_type: combo
   field_values:
+    30: 911 Response (Scene)
     35: Intercept
     40: Interfacility Transfer
     45: Medical Transport
     50: Mutual Aid
     55: Standby
-    911: Response (Scene)
   is_multi_entry: 0
   name: TYPE OF SERVICE REQUESTED
   node: E02_04
