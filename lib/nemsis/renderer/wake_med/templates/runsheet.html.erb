@@ -124,7 +124,7 @@
 
       <% @parser.parse_cluster('E14').sort_by{|e14| Time.parse(e14.E14_01) rescue Time.now}.each do |e14| %>
         <tr>
-          <td><font size="2"><%= e14.E14_01 %></font></td>
+          <td><font size="2"><%= e14.parse_time('E14_01') %></font></td>
           <td><font size="2"><%= e14.E14_22 %></font></td>
           <td><font size="2"><%= e14.E14_29 %></font></td>
           <td><font size="2"><%= e14.E14_30 %></font></td>
@@ -158,7 +158,7 @@
 
       <% @parser.parse_cluster('E14').sort_by{|e14| Time.parse(e14.E14_01) rescue Time.now}.each do |e14| %>
         <tr>
-          <td colspan="1"><font size="2"><%= e14.E14_01 %></font></td>
+          <td colspan="1"><font size="2"><%= e14.parse_time('E14_01') %></font></td>
           <td colspan="7"><font size="2"><%= e14.E14_03 %></font></td>
           <td colspan="8"><font size="2"><%= e14.E14_33 %></td>
         </tr>
@@ -176,7 +176,7 @@
 
       <% @parser.parse_clusters('E18', 'E19').sort_by{|c| Time.parse(c.sub_element('01')) rescue Time.now}.each do |cluster| %>
         <tr>
-          <td><font size="2"><%= cluster.sub_element('01') %></font></td>
+          <td><font size="2"><%= Time.parse(cluster.sub_element('01')).strftime('%Y-%m-%d %H:%M') rescue nil %></font></td>
           <td colspan="2"><font size="2"><%= cluster.sub_element('03') %></font></td>
           <td colspan="11">
             <font size="2">
@@ -318,7 +318,7 @@
         </tr>
       </tbody>
     </table><br>
-    <font size="2"><b>Assessment Time:</b><%= assessment.E16_03 %></font><br>
+    <font size="2"><b>Assessment Time:</b><%= assessment.parse_time('E16_03') %></font><br>
   <% end %>
 
   <table border="1" cellspacing="0" width="700">
@@ -344,7 +344,7 @@
         <td><font size="2"><b>Disposition</b></font></td>
         <td><font size="2"><%= @parser.concat('E20_10', 'E20_14') %></font></td>
         <td><font size="2"><b>Call Received</b></font></td>
-        <td><font size="2"><%= @parser.E05_01 %></font></td>
+        <td><font size="2"><%= @parser.parse_time('E05_01') %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Adress</b></font></td>
@@ -352,7 +352,7 @@
         <td><font size="2"><b>Transport Due To</b></font></td>
         <td><font size="2"><%= @parser.E20_16 %></font></td>
         <td><font size="2"><b>Dispatched</b></font></td>
-        <td><font size="2"><%= @parser.E05_04 %></font></td>
+        <td><font size="2"><%= @parser.parse_time('E05_04') %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Address 2</b></font></td>
@@ -360,7 +360,7 @@
         <td><font size="2"><b>Transported To</b></font></td>
         <td><font size="2"><%= @parser.E20_01 %></font></td>
         <td><font size="2"><b>En Route</b></font></td>
-        <td><font size="2"><%= @parser.E05_05 %></font></td>
+        <td><font size="2"><%= @parser.parse_time('E05_05') %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>City</b></font></td>
@@ -368,7 +368,7 @@
         <td><font size="2"><b>Requested By</b></font></td>
         <td><font size="2"><%= @parser.parse_value_of('Requested By') %></font></td>
         <td><font size="2"><b>Resp on Scene</b></font></td>
-        <td><font size="2"><%= @parser.E05_06 %></font></td>
+        <td><font size="2"><%= @parser.parse_time('E05_06') %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>State</b></font></td>
@@ -384,7 +384,7 @@
         <td><font size="2"><b>Address</b></font></td>
         <td><font size="2"><%= @parser.E20_03 %></font></td>
         <td><font size="2"><b>At Patient</b></font></td>
-        <td><font size="2"><%= @parser.E05_07 %></font></td>
+        <td><font size="2"><%= @parser.parse_time('E05_07') %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Medic Unit</b></font></td>
@@ -392,7 +392,7 @@
         <td><font size="2"><b>Address 2</b></font></td>
         <td><font size="2"><%= @parser.parse_value_of('DestinationAddress2') %></font></td>
         <td><font size="2"><b>Depart Scene</b></font></td>
-        <td><font size="2"><%= @parser.E05_09 %></font></td>
+        <td><font size="2"><%= @parser.parse_time('E05_09') %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Run Type</b></font></td>
@@ -400,7 +400,7 @@
         <td><font size="2"><b>City</b></font></td>
         <td><font size="2"><%= @parser.E20_04 %></font></td>
         <td><font size="2"><b>At Destination</b></font></td>
-        <td><font size="2"><%= @parser.E05_10 %></font></td>
+        <td><font size="2"><%= @parser.parse_time('E05_10') %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Priority Scene</b></font></td>
@@ -408,7 +408,7 @@
         <td><font size="2"><b>State</b></font></td>
         <td><font size="2"><%= @parser.E20_05 %></font></td>
         <td><font size="2"><b>Pt. Transferred</b></font></td>
-        <td><font size="2"><%= @parser.E05_08 %></font></td>
+        <td><font size="2"><%= @parser.parse_time('E05_08') %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Shift</b></font></td>
@@ -416,7 +416,7 @@
         <td><font size="2"><b>Zip</b></font></td>
         <td><font size="2"><%= @parser.E20_07 %></font></td>
         <td><font size="2"><b>Incident Close</b></font></td>
-        <td><font size="2"><%= @parser.E05_11 %></font></td>
+        <td><font size="2"><%= @parser.parse_time('E05_11') %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Zone</b></font></td>
@@ -424,7 +424,7 @@
         <td><font size="2"><b>Zone</b></font></td>
         <td><font size="2"><%= @parser.E20_09 %></font></td>
         <td><font size="2"><b>In District</b></font></td>
-        <td><font size="2"><%= @parser.E05_13 %></font></td>
+        <td><font size="2"><%= @parser.parse_time('E05_13') %></font></td>
       </tr>
       <tr>
         <td><font size="2"><b>Level of Service</b></font></td>
