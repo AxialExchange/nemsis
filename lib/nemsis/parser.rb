@@ -32,8 +32,16 @@ module Nemsis
               # Note: data_type possible values are
               # ["text", "combo", "date/time", "number", "date", "combo or text", "binary"]
               if element_spec['data_type'] =~ /(text|combo|combo or text)/i && 
-                 value =~ /^\d+$/ && 
+                 value =~ /^-?\d+$/ && 
                  !element_spec['field_values'].nil?
+
+                element_spec['field_values'].merge!(
+                  -10 => '',   # Not Known
+                  -15 => '',   # Not Reporting
+                  -20 => '',   # Not Recorded
+                  -25 => '',   # Not Applicable
+                   -5 => ''    # Not Available 
+                )
 
                 mapped_value = element_spec['field_values'][value.to_i]
                 
@@ -49,8 +57,16 @@ module Nemsis
           value = node.text
 
           if element_spec['data_type'] =~ /(text|combo)/i && 
-             value =~ /^\d+$/ && 
+             value =~ /^-?\d+$/ && 
              !element_spec['field_values'].nil?
+
+            element_spec['field_values'].merge!(
+              -10 => '',   # Not Known
+              -15 => '',   # Not Reporting
+              -20 => '',   # Not Recorded
+              -25 => '',   # Not Applicable
+               -5 => ''    # Not Available 
+            )
 
             mapped_value = element_spec['field_values'][value.to_i]
             

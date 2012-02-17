@@ -27,6 +27,10 @@ describe Nemsis::Parser do
       it 'should return string for coded element' do
         p.parse_element('E06_12').should == 'White'
       end
+
+      it 'should return nil for default negative values' do
+        p.parse_element('E06_11').should == ''
+      end
     end
 
     describe 'dynamic method' do
