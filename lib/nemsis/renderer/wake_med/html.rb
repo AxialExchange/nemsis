@@ -4,7 +4,8 @@ module Nemsis
       class HTML
         attr_accessor :parser 
        
-        def initialize(nemsis_parser) 
+        def initialize(nemsis_parser)
+          raise ArgumentError.new('Rendered initiation requires a Parser instance passed in') if nemsis_parser.nil? or !nemsis_parser.is_a?(Nemsis::Parser)
           self.parser = nemsis_parser 
         end 
        

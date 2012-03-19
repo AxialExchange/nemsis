@@ -6412,3 +6412,40 @@ E23_11:
   is_multi_entry: 1
   name: RESEARCH SURVEY FIELD TITLE
   node: E23_11
+E24_01:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: IS TRAUMA ACTIVATION
+  node: E24_01
+E24_02:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: date/time
+  is_multi_entry: 1
+  name: ACTIVATION TIME
+  node: E24_02
+E24_03:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: REASON NOT ACTIVATED
+  node: E24_03
+E24_04:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 1
+  name: TRAUMA LEVEL
+  node: E24_04

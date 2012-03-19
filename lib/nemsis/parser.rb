@@ -13,6 +13,7 @@ module Nemsis
     @@spec = YAML::load(File.read(spec_yaml))
 
     def initialize(xml_str)
+      raise ArgumentError.new('Parser initiation requires XML String argument') if xml_str.nil? or xml_str.size == 0
       self.xml_str = xml_str
       self.xml_doc = Nokogiri::XML(xml_str)
       xml_doc.remove_namespaces!

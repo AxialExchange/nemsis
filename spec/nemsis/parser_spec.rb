@@ -5,8 +5,9 @@ describe Nemsis::Parser do
     describe '.initialize' do
       it 'returns nil with no arguments' do
         expect {
-          parser = Nemsis::Parser.new
+          @parser = Nemsis::Parser.new()
         }.to raise_error
+        @parser.should be_nil
       end
     end
   end

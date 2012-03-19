@@ -160,7 +160,7 @@
         <tr>
           <td colspan="1"><font size="2"><%= e14.parse_time('E14_01') %></font></td>
           <td colspan="7"><font size="2"><%= e14.E14_03 %></font></td>
-          <td colspan="8"><font size="2"><%= e14.E14_33 %></td>
+          <td colspan="8"><font size="2"><%= e14.E14_33 %></font></td>
         </tr>
       <% end %>
 
@@ -412,7 +412,7 @@
       </tr>
       <tr>
         <td><font size="2"><b>Shift</b></font></td>
-        <td><font size="2"><%= @parser.parse_value_of('Shift') %></td>
+        <td><font size="2"><%= @parser.parse_value_of('Shift') %></font></td>
         <td><font size="2"><b>Zip</b></font></td>
         <td><font size="2"><%= @parser.E20_07 %></font></td>
         <td><font size="2"><b>Incident Close</b></font></td>
@@ -428,7 +428,7 @@
       </tr>
       <tr>
         <td><font size="2"><b>Level of Service</b></font></td>
-        <td><font size="2"><%= @parser.parse_value_of('Level of Service') %></td>
+        <td><font size="2"><%= @parser.parse_value_of('Level of Service') %></font></td>
         <td><font size="2"><b>Condition at Destination</b></font></td>
         <td colspan="3"><font size="2"><%= @parser.E20_15 %></font></td>
       </tr>
@@ -648,5 +648,110 @@
         <td><font size="2"><b>Medical Necessity</b></font></td>
         <td colspan="3"><font size="2">&nbsp;</font></td>
       </tr>
+    </tbody>
+  </table>
+  <table border="1" cellspacing="0" width="700">
+    <tbody>
+      <tr>
+        <td colspan="4"><font color="blue" size="3">Specialty Patient</font></td>
+      </tr>
+      <tr>
+        <td><font size="2"><b>PCS</b></font></td>
+        <td><font size="2">&nbsp;</font></td>
+        <td><font size="2"><b>Trauma Activation</b></font></td>
+        <td><font size="2"><%= @parser.E24_01 %></font></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table border="1" cellspacing="0" width="700">
+    <tbody>
+    <tr>
+      <td colspan="6"><font color="blue" size="3">Specialty Patient - ACS</font></td>
+    </tr>
+    <tr>
+      <td colspan="2"><font size="2">12-Lead Transmission: </font></td>
+      <td colspan="4">&nbsp;</td>
+    </tr>
+    <tr>
+      <td><font size="2">12 Lead</font></td>
+      <td><font size="2"> </font></td>
+      <td colspan="4">&nbsp;</td>
+    </tr>
+    <tr>
+      <td><font size="2"><b>Lead I:</b></font></td>
+      <td><font size="2"> </font></td>
+      <td><font size="2"><b>V1:</b></font></td>
+      <td><font size="2"> </font></td>
+      <td><font size="2"><b>V4R:</b></font></td>
+      <td><font size="2"> </font></td>
+    </tr>
+    <tr>
+      <td><font size="2"><b>Lead II:</b></font></td>
+      <td><font size="2"> </font></td>
+      <td><font size="2"><b>V2:</b></font></td>
+      <td><font size="2"> </font></td>
+      <td><font size="2"><b>V5R:</b></font></td>
+      <td><font size="2"> </font></td>
+    </tr>
+    <tr>
+      <td><font size="2"><b>Lead III:</b></font></td>
+      <td><font size="2"> </font></td>
+      <td><font size="2"><b>V3:</b></font></td>
+      <td><font size="2"> </font></td>
+      <td><font size="2"><b>V6R:</b></font></td>
+      <td><font size="2"> </font></td>
+    </tr>
+    <tr>
+      <td><font size="2"><b>AVL:</b></font></td>
+      <td><font size="2"> </font></td>
+      <td><font size="2"><b>V4:</b></font></td>
+      <td><font size="2"> </font></td>
+      <td><font size="2"><b>V7:</b></font></td>
+      <td><font size="2"> </font></td>
+    </tr>
+    <tr>
+      <td><font size="2"><b>AVR:</b></font></td>
+      <td><font size="2"> </font></td>
+      <td><font size="2"><b>V5:</b></font></td>
+      <td><font size="2"> </font></td>
+      <td><font size="2"><b>V8:</b></font></td>
+      <td><font size="2"> </font></td>
+    </tr>
+    <tr>
+      <td><font size="2"><b>AVF:</b></font></td>
+      <td><font size="2"> </font></td>
+      <td><font size="2"><b>V6:</b></font></td>
+      <td><font size="2"> </font></td>
+      <td><font size="2"><b>V9:</b></font></td>
+      <td><font size="2"> </font></td>
+    </tr>
+    <tr>
+      <td><font size="2"><b>OPQRST:</b></font></td>
+      <td><font size="2"> </font></td>
+      <td colspan="2"><font size="2"><b>Inclusion Criteria</b></font></td>
+      <td colspan="2"><font size="2"><b>Exclusion Criteria:</b></font></td>
+      <td><font size="2"> </font></td>
+    </tr>
+    <tr>
+      <td><font size="2"><b>Onset:</b></font></td>
+      <td><font size="2"> </font></td>
+      <td colspan="2"><font size="2"> </font></td>
+      <td colspan="2"><font size="2"> </font></td>
+    </tr>
+    <tr>
+      <td><font size="2"><b>Provoke:</b></font></td>
+      <td><font size="2"> </font></td>
+      <td><font size="2"><b>Quality:</b></font></td>
+      <td><font size="2"> </font></td>
+      <td><font size="2"><b>Radiation:</b></font></td>
+      <td><font size="2"> </font></td>
+    </tr>
+    <tr>
+      <td><font size="2"><b>Severity:</b></font></td>
+      <td><font size="2"> </font></td>
+      <td><font size="2"><b>Time:</b></font></td>
+      <td colspan="3"><font size="2"> </font></td>
+    </tr>
     </tbody>
   </table>
