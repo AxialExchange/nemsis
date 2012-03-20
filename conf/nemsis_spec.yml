@@ -6449,3 +6449,90 @@ E24_04:
   is_multi_entry: 1
   name: TRAUMA LEVEL
   node: E24_04
+E24_05:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    500001: None
+    500002: Age < 15 or > 55
+    500003: Environmental Factors
+    500004: Medical Illness
+    500005: Pregnancy > 3 Months
+    500006: Urgent Extremity
+    500007: Bleeding Disorder
+    500008: Provider Suspicion
+    500009: ESRD with Dialysis
+  is_multi_entry: 1
+  name: OTHER CONDITIONS OR RISK FACTORS
+  node: E24_05
+E24_06:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    500101:    None
+    500102:    GCS <= 13
+    500103:    HR > 120
+    500104:    RR < 10 or > 29
+    500105:    RR < 20 (infant)
+    500106:    SBP < 90
+  is_multi_entry: 1
+  name: PHYSIOLOGIC CONDITIONS OR RISKS
+  node: E24_06
+E24_07:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    500201:   None
+    2085:     Intrusion>12”(occupant) 
+    2085:     Intrusion>18”(any) 
+    2060:     Death (Same Vehicle) 
+    2065:     Ejection 
+    2075:     Roll Over 
+    500207:   Ped Struck > 20 mph
+    500208:   Fall > 20ft (Ped > 10ft)
+    500209:   Motorcycle/ATV > 20 mph
+    500210:   Extrication > 20 min.
+  is_multi_entry: 1
+  name: MECHANICAL CONDITIONS OR RISKS
+  node: E24_07
+E24_08:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    500301: None 
+    500302: Open Skull Fracture 
+    500303: Flail Chest 
+    500304: Penetrating Trauma 
+    500305: Spinal Injury/Paralysis 
+    500306: Pelvic Fracture 
+    500307: Amputation 
+    500308: Significant Burns 
+    500309: > 1 Prox Long Bone FX 
+    500310: Mangled Extremity
+  is_multi_entry: 1
+  name: ANATOMIC CONDITIONS OR RISKS
+  node: E24_08

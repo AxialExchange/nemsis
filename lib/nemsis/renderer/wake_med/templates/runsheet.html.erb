@@ -56,12 +56,20 @@
           background-color: #dcdcdc;
       }
 
-          /* ACS Section label cell */
+          /* Narrow label cell */
       td.label-narrow {
           text-align: left;
           font-weight: bold;
           background-color: #dcdcdc;
           width: 10%;
+      }
+
+          /* Medium label cell */
+      td.label-medium {
+          text-align: left;
+          font-weight: bold;
+          background-color: #dcdcdc;
+          width: 25%;
       }
 
       -->
@@ -247,7 +255,7 @@
 </tr>
 </thead>
 <tr>
-  <td><b>Time</b></td>
+  <td class="label">Time</td>
   <td class="label" colspan="2">Treatment</td>
   <td class="label" colspan="11">Description</td>
   <td class="label" colspan="2">Provider</td>
@@ -707,45 +715,45 @@
   </thead>
   <tbody>
   <tr>
-    <td class="label">PAN</td>
+    <td class="label-medium">PAN</td>
     <td>&nbsp;</td>
-    <td class="label">Sending Physician</td>
+    <td class="label-medium">Sending Physician</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td class="label">PCS</td>
+    <td class="label-medium">PCS</td>
     <td>&nbsp;</td>
-    <td class="label">Sending Record #</td>
+    <td class="label-medium">Sending Record #</td>
     <td><%= @parser.E12_02 %></td>
   </tr>
   <tr>
-    <td class="label">ABN</td>
+    <td class="label-medium">ABN</td>
     <td>&nbsp;</td>
-    <td class="label">Receiving Physician</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td class="label">CMS Service Level</td>
-    <td>&nbsp;</td>
-    <td class="label">Condition Code</td>
+    <td class="label-medium">Receiving Physician</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td class="label">ICD-9 Code</td>
+    <td class="label-medium">CMS Service Level</td>
     <td>&nbsp;</td>
-    <td class="label">Condition Modifier Code</td>
+    <td class="label-medium">Condition Code</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td class="label">Transfer Reason</td>
+    <td class="label-medium">ICD-9 Code</td>
+    <td>&nbsp;</td>
+    <td class="label-medium">Condition Modifier Code</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="label-medium">Transfer Reason</td>
     <td colspan="3">&nbsp;</td>
   </tr>
   <tr>
-    <td class="label">Other/Services</td>
+    <td class="label-medium">Other/Services</td>
     <td colspan="3">&nbsp;</td>
   </tr>
   <tr>
-    <td class="label">Medical Necessity</td>
+    <td class="label-medium">Medical Necessity</td>
     <td colspan="3">&nbsp;</td>
   </tr>
   </tbody>
@@ -753,15 +761,39 @@
 <table>
   <thead>
   <tr>
-    <th colspan="4">Specialty Patient</th>
+    <th colspan="4">Specialty Patient&mdash;Trauma Criteria</th>
   </tr>
   </thead>
   <tbody>
   <tr>
-    <td class="label">PCS</td>
-    <td>&nbsp;</td>
+    <td class="label">Anatomic</td>
+    <td><%= @parser.E24_08 %></td>
     <td class="label">Trauma Activation</td>
     <td><%= @parser.E24_01 %></td>
+  </tr>
+  <tr>
+    <td class="label">Physiologic</td>
+    <td><%= @parser.E24_06 %></td>
+    <td class="label">Time</td>
+    <td><%= @parser.E24_02 %></td>
+  </tr>
+  <tr>
+    <td class="label">Mechanical</td>
+    <td><%= @parser.E24_07 %></td>
+    <td class="label">Date</td>
+    <td><%= @parser.E24_02 %></td>
+  </tr>
+  <tr>
+    <td class="label">Other Conditions</td>
+    <td><%= @parser.E24_05 %></td>
+    <td class="label">Trauma Level</td>
+    <td><%= @parser.E24_04 %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td class="label">Reason not Activated</td>
+    <td><%= @parser.E24_03 %></td>
   </tr>
   </tbody>
 </table>
