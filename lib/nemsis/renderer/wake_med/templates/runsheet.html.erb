@@ -1,757 +1,876 @@
-  <h4>Wake County EMS System - Patient Care Record</h4>
-  <font size="2">
-    <b>Date:</b> 9/25/2011<br>
-    <b>Incident #:</b>123456<br>
-    <br>
-  </font>
-  <table border="1" cellspacing="0" width="700">
-    <tbody>
-      <tr>
-        <td colspan="14"><font color="blue" size="3">Patient Information</font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Last</b></font></td>
-        <td><font size="2"><%= @parser.E06_01 %></font></td>
-        <td><font size="2"><b>First</b></font></td>
-        <td><font size="2"><%= @parser.E06_02 %></font></td>
-        <td><font size="2"><b>Middle</b></font></td>
-        <td><font size="2"><%= @parser.E06_03 %></font></td>
-        <td><font size="2"><b>DOB</b></font></td>
-        <td><font size="2"><%= @parser.E06_16 %></font></td>
-        <td><font size="2"><b>Gender</b></font></td>
-        <td><font size="2"><%= @parser.E06_11 %></font></td>
-        <td><font size="2"><b>Weight</b></font></td>
-        <td><font size="2"><%= @parser.E16_01 %> kg</font></td>
-        <td><font size="2"><b>SSN</b></font></td>
-        <td><font size="2"><%= @parser.E06_10 %></font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Address</b></font></td>
-        <td><font size="2"><%= @parser.E06_04 %></font></td>
-        <td><font size="2"><b>Address 2</b></font></td>
-        <td><font size="2">E23_09 fieldname to be determined</font></td>
-        <td><font size="2"><b>City</b></font></td>
-        <td><font size="2"><%= @parser.E06_05 %></font></td>
-        <td><font size="2"><b>State</b></font></td>
-        <td><font size="2"><%= @parser.parse_state('E06_07') %></font></td>
-        <td><font size="2"><b>Zip</b></font></td>
-        <td><font size="2"><%= @parser.E06_08 %></font></td>
-        <td><font size="2"><b>Country</b></font></td>
-        <td><font size="2"><%= @parser.E06_09 %></font></td>
-        <td><font size="2"><b>Tel</b></font></td>
-        <td><font size="2"><%= @parser.E06_17 %></font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Advanced Directive</b></font></td>
-        <td colspan="13"><font size="2"><%= @parser.E12_07 %></font></td>
-      </tr>
+<HEAD>
+  <STYLE type="text/css">
+      <!--
+
+          /*p, h4, table {font-family: "Lucida Grande", verdana, arial, helvetica, sans-serif;}*/
+          /*p, h4, table {font-family: Tahoma, Geneva, sans-serif}*/
+      p, h4, table {
+          font-family: "Trebuchet MS", Helvetica, sans-serif
+      }
+
+      p {
+          font-size: small;
+      }
+
+      H4 {
+          color: black
+      }
+
+          /* Each section can be a table */
+      table, tbody, tr {
+          border: 2px;
+          border-style: solid;
+          border-color: black;
+          width: 700;
+          color: black;
+          margin: 0;
+          padding: 0px;
+      }
+
+          /* The section can have a bold heading row */
+      th {
+          color: yellow;
+          background-color: #6495ed;
+          font-size: medium;
+      }
+
+          /* Default table cell for values */
+      td {
+          border: 1px;
+          border-style: groove;
+          border-color: black;
+          font-size: small;
+      }
+
+          /* Default label cell */
+      td.label {
+          text-align: left;
+          font-weight: bold;
+          background-color: #dcdcdc;
+      }
+
+          /* Label on top of column */
+      td.label-top {
+          text-align: center;
+          font-weight: bold;
+          background-color: #dcdcdc;
+      }
+
+          /* ACS Section label cell */
+      td.label-narrow {
+          text-align: left;
+          font-weight: bold;
+          background-color: #dcdcdc;
+          width: 10%;
+      }
+
+      -->
+  </STYLE>
+</HEAD>
+
+<h4>Wake County EMS System - Patient Care Record</h4>
+<p>
+  <b>Date:</b> 9/25/2011<br>
+  <b>Incident #:</b>123456<br>
+  <br>
+</p>
+<table>
+  <thead>
+  <tr>
+    <th colspan="14">Patient Information</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="label">Last</td>
+    <td><%= @parser.E06_01 %></td>
+    <td class="label">First</td>
+    <td><%= @parser.E06_02 %></td>
+    <td class="label">Middle</td>
+    <td><%= @parser.E06_03 %></td>
+    <td class="label">DOB</td>
+    <td><%= @parser.E06_16 %></td>
+    <td class="label">Gender</td>
+    <td><%= @parser.E06_11 %></td>
+    <td class="label">Weight</td>
+    <td><%= @parser.E16_01 %> kg</td>
+    <td class="label">SSN</td>
+    <td><%= @parser.E06_10 %></td>
+  </tr>
+  <tr>
+    <td class="label">Address</td>
+    <td><%= @parser.E06_04 %></td>
+    <td class="label">Address 2</td>
+    <td>E23_09 fieldname to be determined</td>
+    <td class="label">City</td>
+    <td><%= @parser.E06_05 %></td>
+    <td class="label">State</td>
+    <td><%= @parser.parse_state('E06_07') %></td>
+    <td class="label">Zip</td>
+    <td><%= @parser.E06_08 %></td>
+    <td class="label">Country</td>
+    <td><%= @parser.E06_09 %></td>
+    <td class="label">Tel</td>
+    <td><%= @parser.E06_17 %></td>
+  </tr>
+  <tr>
+    <td class="label">Advanced Directive</td>
+    <td colspan="13"><%= @parser.E12_07 %></td>
+  </tr>
+  </tbody>
+</table><br>
+<table>
+  <thead>
+  <tr>
+    <th colspan="8">Clinical Impression</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="label">Primary Impression</td>
+    <td><%= @parser.E09_15 %></td>
+    <td class="label">Chief Complaint</td>
+    <td><%= @parser.E09_05 %></td>
+    <td class="label">Injury</td>
+    <td><%= @parser.concat 'E10_01', 'E10_02', 'E10_03' %></td>
+    <td class="label">Barriers of Care</td>
+    <td><%= @parser.E12_01 %></td>
+  </tr>
+  <tr>
+    <td class="label">Secondary Impression</td>
+    <td><%= @parser.E09_16 %></td>
+    <td class="label">Duration</td>
+    <td><%= @parser.concat 'E09_06', 'E09_07' %></td>
+    <td class="label">Medical/trauma</td>
+    <td><%= @parser.parse_value_of('MedicalTrauma') %></td>
+    <td class="label">Alcohol/Drugs</td>
+    <td><%= @parser.E12_19 %></td>
+  </tr>
+  <tr>
+    <td class="label">Signs &amp; Symptoms</td>
+    <td colspan="7"><%= @parser.concat 'E09_13', 'E09_14' %></td>
+  </tr>
+  </tbody>
+</table><br>
+<table>
+<thead>
+<tr>
+  <th colspan="16">Medication/Allergies/History</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td class="label">Medications</td>
+  <td colspan="15"><%= @parser.concat 'E12_14', 'E12_15', 'E12_16' %></td>
+</tr>
+<tr>
+  <td class="label">Allergies</td>
+  <td colspan="15"><%= @parser.concat 'E12_08', 'E12_09' %></td>
+</tr>
+<tr>
+  <td class="label">History</td>
+  <td colspan="15"><%= @parser.E12_10 %></td>
+</tr>
+
+<tr>
+  <th colspan="16">Vital Signs</th>
+</tr>
+<tr>
+  <td class="label-top">Time</td>
+  <td class="label-top">AVPU</td>
+  <td class="label-top">Side</td>
+  <td class="label-top">POS</td>
+  <td class="label-top">BP</td>
+
+  <td class="label-top">Pulse</td>
+  <td class="label-top">RR</td>
+  <td class="label-top">SPO2</td>
+  <td class="label-top">ETCO2</td>
+  <td class="label-top">CO</td>
+
+  <td class="label-top">BG</td>
+  <td class="label-top">Temp</td>
+  <td class="label-top">Pain</td>
+  <td class="label-top">GCS</td>
+  <td class="label-top">RTS</td>
+
+  <td class="label-top"><b>PTS</b></td>
+</tr>
+
+<% @parser.parse_cluster('E14').sort_by { |e14| Time.parse(e14.E14_01) rescue Time.now }.each do |e14| %>
+    <tr>
+      <td><%= e14.parse_time('E14_01') %></td>
+      <td><%= e14.E14_22 %></td>
+      <td><%= e14.E14_29 %></td>
+      <td><%= e14.E14_30 %></td>
+      <td><%= e14.concat 'E14_04', 'E14_05', 'E14_06' %></td>
+
+      <td><%= [(e14.E14_07 || e14.E14_08), e14.E14_10].compact.join(' ') %></td>
+      <td><%= e14.concat 'E14_11', 'E14_12' %></td>
+      <td><%= e14.E14_09 %></td>
+      <td><%= e14.E14_13 %></td>
+      <td><%= e14.E14_31 %></td>
+
+      <td><%= e14.E14_14 %></td>
+      <td><%= e14.concat 'E14_20', 'E14_21' %></td>
+      <td><%= e14.E14_23 %></td>
+      <td><%= e14.E14_19 %></td>
+      <td><%= e14.E14_27 %></td>
+
+      <td><%= e14.E14_28 %></td>
+
+    </tr>
+<% end %>
+
+<thead>
+<tr>
+  <th colspan="16">ECG</th>
+</tr>
+</thead>
+<tr>
+  <td class="label" colspan="1">Time</td>
+  <td class="label" colspan="7">3-Lead ECG</td>
+  <td class="label" colspan="8">12-Lead ECG</td>
+</tr>
+
+<% @parser.parse_cluster('E14').sort_by { |e14| Time.parse(e14.E14_01) rescue Time.now }.each do |e14| %>
+    <tr>
+      <td colspan="1"><%= e14.parse_time('E14_01') %></td>
+      <td colspan="7"><%= e14.E14_03 %></td>
+      <td colspan="8"><%= e14.E14_33 %></td>
+    </tr>
+<% end %>
+
+<thead>
+<tr>
+  <th colspan="16">Flow Chart</th>
+</tr>
+</thead>
+<tr>
+  <td><b>Time</b></td>
+  <td class="label" colspan="2">Treatment</td>
+  <td class="label" colspan="11">Description</td>
+  <td class="label" colspan="2">Provider</td>
+</tr>
+
+<% @parser.parse_clusters('E18', 'E19').sort_by { |c| Time.parse(c.sub_element('01')) rescue Time.now }.each do |cluster| %>
+    <tr>
+      <td><%= Time.parse(cluster.sub_element('01')).strftime('%Y-%m-%d %H:%M') rescue nil %></td>
+      <td colspan="2"><%= cluster.sub_element('03') %></td>
+      <td colspan="11">
+        <p>
+          <% if cluster.root_element_name == 'E18' %>
+              <%= cluster.concat 'E18_05', 'E18_06' %>;
+              <%= cluster.E18_07 %>;
+              <%= cluster.E18_08 %>;
+          <% elsif cluster.root_element_name == 'E19' %>
+          <% end %>
+        </p>
+      </td>
+      <td colspan="2">E18_09 or E19_09 to be mapped to name</td>
+    </tr>
+<% end %>
+
+<thead>
+<tr>
+  <th colspan="16">Initial Assessment</th>
+</tr>
+</thead>
+<% @parser.parse_assessments.each do |assessment| %>
+    <tr>
+      <td class="label" colspan="2">Category</td>
+      <td class="label" colspan="6">Comments</td>
+      <td class="label" colspan="2">Abnormalities</td>
+      <td class="label" colspan="6">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="label" colspan="2">Mental Status</td>
+      <td colspan="6"><%= assessment.E16_25 %></td>
+      <td class="label" colspan="2">Mental Status</td>
+      <td colspan="6"><%= assessment.E16_23 %></td>
+    </tr>
+    <tr>
+      <td class="label" colspan="2">Skin</td>
+      <td colspan="6"><%= assessment.E16_26 %></td>
+      <td class="label" colspan="2">Skin</td>
+      <td colspan="6"><%= assessment.concat('E16_04', 'E15_01') %></td>
+    </tr>
+    <tr>
+      <td class="label" colspan="2" rowspan="3">HEENT</td>
+      <td colspan="6" rowspan="3"><%= assessment.E16_27 %></td>
+      <td class="label" colspan="2">Head/Face</td>
+      <td colspan="6"><%= assessment.concat('E16_05', 'E15_02', 'E15_03') %></td>
+    </tr>
+    <tr>
+      <td class="label" colspan="2">Eyes</td>
+      <td colspan="6"><%= assessment.concat('E16_21', 'E16_22') %></td>
+    </tr>
+    <tr>
+      <td class="label" colspan="2">Neck</td>
+      <td colspan="6"><%= assessment.E16_06 %></td>
+    </tr>
+    <tr>
+      <td class="label" colspan="2" rowspan="3">Chest</td>
+      <td colspan="6" rowspan="3"><%= assessment.E16_28 %></td>
+      <td class="label" colspan="2">Chest</td>
+      <td colspan="6"><%= assessment.E15_05 %></td>
+    </tr>
+    <tr>
+      <td class="label" colspan="2">Heart Sounds</td>
+      <td colspan="6"><%= assessment.E16_08 %></td>
+    </tr>
+    <tr>
+      <td class="label" colspan="2">Lung Sounds</td>
+      <td colspan="6"><%= assessment.E16_07 %></td>
+    </tr>
+    <tr>
+      <td class="label" colspan="2" rowspan="5">Abdomen</td>
+      <td colspan="6" rowspan="5"><%= assessment.E16_29 %></td>
+      <td class="label" colspan="2">General</td>
+      <td colspan="6"><%= assessment.concat('E16_13', 'E15_06') %></td>
+    </tr>
+    <tr>
+      <td class="label" colspan="2">Left Upper</td>
+      <td colspan="6"><%= assessment.E16_09 %></td>
+    </tr>
+    <tr>
+      <td class="label" colspan="2">Right Upper</td>
+      <td colspan="6"><%= assessment.E16_11 %></td>
+    </tr>
+    <tr>
+      <td class="label" colspan="2">Left Lower</td>
+      <td colspan="6"><%= assessment.E16_10 %></td>
+    </tr>
+    <tr>
+      <td class="label" colspan="2">Right Lower</td>
+      <td colspan="6"><%= assessment.E16_12 %></td>
+    </tr>
+    <tr>
+      <td class="label" colspan="2" rowspan="3">Back</td>
+      <td colspan="6" rowspan="3"><%= assessment.E16_30 %></td>
+      <td class="label" colspan="2">Cervical</td>
+      <td colspan="6"><%= assessment.E16_14 %></td>
+    </tr>
+    <tr>
+      <td class="label" colspan="2">Thoracic</td>
+      <td colspan="6"><%= assessment.E15_07 %></td>
+    </tr>
+    <tr>
+      <td class="label" colspan="2">Lumbar/Sacral</td>
+      <td colspan="6"><%= assessment.E16_16 %></td>
+    </tr>
+    <tr>
+      <td class="label" colspan="2">Pelvis/GU/GI</td>
+      <td colspan="6"><%= assessment.E16_31 %></td>
+      <td class="label" colspan="2">Pelvis/GU/GI</td>
+      <td colspan="6"><%= assessment.concat('E16_13', 'E15_09') %></td>
+    </tr>
+    <tr>
+      <td class="label" colspan="2" rowspan="6">Extremities</td>
+      <td colspan="6" rowspan="6"><%= assessment.E16_32 %></td>
+      <td class="label" colspan="2">Left Arm</td>
+      <td colspan="6"><%= assessment.E16_19 %></td>
+    </tr>
+    <tr>
+      <td class="label" colspan="2">Right Arm</td>
+      <td colspan="6"><%= assessment.E16_17 %></td>
+    </tr>
+    <tr>
+      <td class="label" colspan="2">Left Leg</td>
+      <td colspan="6"><%= assessment.E16_20 %></td>
+    </tr>
+    <tr>
+      <td class="label" colspan="2">Right Leg</td>
+      <td colspan="6"><%= assessment.E16_18 %></td>
+    </tr>
+    <tr>
+      <td class="label" colspan="2">Pulse</td>
+      <td colspan="6"></td>
+    </tr>
+    <tr>
+      <td class="label" colspan="2">Capillary Refill</td>
+      <td colspan="6"></td>
+    </tr>
+    <tr>
+      <td class="label" colspan="2">Neurological</td>
+      <td colspan="6"><%= assessment.E16_33 %></td>
+      <td class="label" colspan="2">Neurological</td>
+      <td colspan="6"><%= assessment.E16_24 %></td>
+    </tr>
     </tbody>
-  </table><br>
-  <table border="1" cellspacing="0" width="700">
-    <tbody>
-      <tr>
-        <td colspan="8"><font color="blue" size="3">Clinical Impression</font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Primary Impression</b></font></td>
-        <td><font size="2"><%= @parser.E09_15 %></font></td>
-        <td><font size="2"><b>Chief Complaint</b></font></td>
-        <td><font size="2"><%= @parser.E09_05 %></font></td>
-        <td><font size="2"><b>Injury</b></font></td>
-        <td><font size="2"><%= @parser.concat 'E10_01', 'E10_02', 'E10_03' %></font></td>
-        <td><font size="2"><b>Barriers of Care</b></font></td>
-        <td><font size="2"><%= @parser.E12_01 %></font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Secondary Impression</b></font></td>
-        <td><font size="2"><%= @parser.E09_16 %></font></td>
-        <td><font size="2"><b>Duration</b></font></td>
-        <td><font size="2"><%= @parser.concat 'E09_06', 'E09_07' %></font></td>
-        <td><font size="2"><b>Medical/trauma</b></font></td>
-        <td><font size="2"><%= @parser.parse_value_of('MedicalTrauma') %></font></td>
-        <td><font size="2"><b>Alcohol/Drugs</b></font></td>
-        <td><font size="2"><%= @parser.E12_19 %></font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Signs &amp; Symptoms</b></font></td>
-        <td colspan="7"><font size="2"><%= @parser.concat 'E09_13', 'E09_14' %></font></td>
-      </tr>
-    </tbody>
-  </table><br>
-  <table border="1" cellspacing="0" width="700">
-    <tbody>
-      <tr>
-        <td colspan="16"><font color="blue" size=
-        "3">Medication/Allergies/History</font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Medications</b></font></td>
-        <td colspan="15"><font size="2"><%= @parser.concat 'E12_14', 'E12_15', 'E12_16' %></font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Allergies</b></font></td>
-        <td colspan="15"><font size="2"><%= @parser.concat 'E12_08', 'E12_09' %></font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>History</b></font></td>
-        <td colspan="15"><font size="2"><%= @parser.E12_10 %></font></td>
-      </tr>
-
-      <tr>
-        <td colspan="16"><font color="blue" size="3">Vital Signs</font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Time</b></font></td>
-        <td><font size="2"><b>AVPU</b></font></td>
-        <td><font size="2"><b>Side</b></font></td>
-        <td><font size="2"><b>POS</b></font></td>
-        <td><font size="2"><b>BP</b></font></td>
-
-        <td><font size="2"><b>Pulse</b></font></td>
-        <td><font size="2"><b>RR</b></font></td>
-        <td><font size="2"><b>SPO2</b></font></td>
-        <td><font size="2"><b>ETCO2</b></font></td>
-        <td><font size="2"><b>CO</b></font></td>
-
-        <td><font size="2"><b>BG</b></font></td>
-        <td><font size="2"><b>Temp</b></font></td>
-        <td><font size="2"><b>Pain</b></font></td>
-        <td><font size="2"><b>GCS</b></font></td>
-        <td><font size="2"><b>RTS</b></font></td>
-
-        <td><font size="2"><b>PTS</b></font></td>
-      </tr>
-
-      <% @parser.parse_cluster('E14').sort_by{|e14| Time.parse(e14.E14_01) rescue Time.now}.each do |e14| %>
-        <tr>
-          <td><font size="2"><%= e14.parse_time('E14_01') %></font></td>
-          <td><font size="2"><%= e14.E14_22 %></font></td>
-          <td><font size="2"><%= e14.E14_29 %></font></td>
-          <td><font size="2"><%= e14.E14_30 %></font></td>
-          <td><font size="2"><%= e14.concat 'E14_04', 'E14_05', 'E14_06' %></font></td>
-
-          <td><font size="2"><%= [(e14.E14_07 || e14.E14_08), e14.E14_10].compact.join(' ') %></font></td>
-          <td><font size="2"><%= e14.concat 'E14_11', 'E14_12' %></font></td>
-          <td><font size="2"><%= e14.E14_09 %></font></td>
-          <td><font size="2"><%= e14.E14_13 %></font></td>
-          <td><font size="2"><%= e14.E14_31 %></font></td>
-
-          <td><font size="2"><%= e14.E14_14 %></font></td>
-          <td><font size="2"><%= e14.concat 'E14_20', 'E14_21' %></font></td>
-          <td><font size="2"><%= e14.E14_23 %></font></td>
-          <td><font size="2"><%= e14.E14_19 %></font></td>
-          <td><font size="2"><%= e14.E14_27 %></font></td>
-
-          <td><font size="2"><%= e14.E14_28 %></font></td>
-
-        </tr>
-      <% end %>
-
-      <tr>
-        <td colspan="16"><font color="blue" size="3">ECG</font></td>
-      </tr>
-      <tr>
-        <td colspan="1"><font size="2"><b>Time</b></font></td>
-        <td colspan="7"><font size="2"><b>3-Lead ECG</b></font></td>
-        <td colspan="8"><font size="2"><b>12-Lead ECG</b></font></td>
-      </tr>
-
-      <% @parser.parse_cluster('E14').sort_by{|e14| Time.parse(e14.E14_01) rescue Time.now}.each do |e14| %>
-        <tr>
-          <td colspan="1"><font size="2"><%= e14.parse_time('E14_01') %></font></td>
-          <td colspan="7"><font size="2"><%= e14.E14_03 %></font></td>
-          <td colspan="8"><font size="2"><%= e14.E14_33 %></font></td>
-        </tr>
-      <% end %>
-
-      <tr>
-        <td colspan="16"><font color="blue" size="3">Flow Chart</font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Time</b></font></td>
-        <td colspan="2"><font size="2"><b>Treatment</b></font></td>
-        <td colspan="11"><font size="2"><b>Description</b></font></td>
-        <td colspan="2"><font size="2"><b>Provider</b></font></td>
-      </tr>
-
-      <% @parser.parse_clusters('E18', 'E19').sort_by{|c| Time.parse(c.sub_element('01')) rescue Time.now}.each do |cluster| %>
-        <tr>
-          <td><font size="2"><%= Time.parse(cluster.sub_element('01')).strftime('%Y-%m-%d %H:%M') rescue nil %></font></td>
-          <td colspan="2"><font size="2"><%= cluster.sub_element('03') %></font></td>
-          <td colspan="11">
-            <font size="2">
-              <% if cluster.root_element_name == 'E18'  %>
-                <%= cluster.concat 'E18_05', 'E18_06' %>;
-                <%= cluster.E18_07 %>; 
-                <%= cluster.E18_08 %>; 
-              <% elsif cluster.root_element_name == 'E19'  %>
-              <% end %>
-            </font>
-          </td>
-          <td colspan="2"><font size="2">E18_09 or E19_09 to be mapped to name</font></td>
-        </tr>
-      <% end %>
-
-      <tr>
-        <td colspan="16"><font color="blue" size="3">Initial Assessment</font></td>
-      </tr>
-      <% @parser.parse_assessments.each do |assessment| %>
-        <tr>
-          <td colspan="2"><font size="2"><b>Category</b></font></td>
-          <td colspan="6"><font size="2"><b>Comments</b></font></td>
-          <td colspan="2"><font size="2"><b>Abnormalities</b></font></td>
-          <td colspan="6"><font size="2">&nbsp;</font></td>
-        </tr>
-        <tr>
-          <td colspan="2"><font size="2"><b>Mental Status</b></font></td>
-          <td colspan="6"><font size="2"><%= assessment.E16_25 %></font></td>
-          <td colspan="2"><font size="2">Mental Status</font></td>
-          <td colspan="6"><font size="2"><%= assessment.E16_23 %></font></td>
-        </tr>
-        <tr>
-          <td colspan="2"><font size="2"><b>Skin</b></font></td>
-          <td colspan="6"><font size="2"><%= assessment.E16_26 %></font></td>
-          <td colspan="2"><font size="2">Skin</font></td>
-          <td colspan="6"><font size="2"><%= assessment.concat('E16_04', 'E15_01') %></font></td>
-        </tr>
-        <tr>
-          <td colspan="2" rowspan="3"><font size="2"><b>HEENT</b></font></td>
-          <td colspan="6" rowspan="3"><font size="2"><%= assessment.E16_27 %></font></td>
-          <td colspan="2"><font size="2">Head/Face</font></td>
-          <td colspan="6"><font size="2"><%= assessment.concat('E16_05', 'E15_02', 'E15_03') %></font></td>
-        </tr>
-        <tr>
-          <td colspan="2"><font size="2">Eyes</font></td>
-          <td colspan="6"><font size="2"><%= assessment.concat('E16_21', 'E16_22') %></font></td>
-        </tr>
-        <tr>
-          <td colspan="2"><font size="2">Neck</font></td>
-          <td colspan="6"><font size="2"><%= assessment.E16_06 %></font></td>
-        </tr>
-        <tr>
-          <td colspan="2" rowspan="3"><font size="2"><b>Chest</b></font></td>
-          <td colspan="6" rowspan="3"><font size="2"><%= assessment.E16_28 %></font></td>
-          <td colspan="2"><font size="2">Chest</font></td>
-          <td colspan="6"><font size="2"><%= assessment.E15_05 %></font></td>
-        </tr>
-        <tr>
-          <td colspan="2"><font size="2">Heart Sounds</font></td>
-          <td colspan="6"><font size="2"><%= assessment.E16_08 %></font></td>
-        </tr>
-        <tr>
-          <td colspan="2"><font size="2">Lung Sounds</font></td>
-          <td colspan="6"><font size="2"><%= assessment.E16_07 %></font></td>
-        </tr>
-        <tr>
-          <td colspan="2" rowspan="5"><font size="2"><b>Abdomen</b></font></td>
-          <td colspan="6" rowspan="5"><font size="2"><%= assessment.E16_29 %></font></td>
-          <td colspan="2"><font size="2">General</font></td>
-          <td colspan="6"><font size="2"><%= assessment.concat('E16_13', 'E15_06') %></font></td>
-        </tr>
-        <tr>
-          <td colspan="2"><font size="2">Left Upper</font></td>
-          <td colspan="6"><font size="2"><%= assessment.E16_09 %></font></td>
-        </tr>
-        <tr>
-          <td colspan="2"><font size="2">Right Upper</font></td>
-          <td colspan="6"><font size="2"><%= assessment.E16_11 %></font></td>
-        </tr>
-        <tr>
-          <td colspan="2"><font size="2">Left Lower</font></td>
-          <td colspan="6"><font size="2"><%= assessment.E16_10 %></font></td>
-        </tr>
-        <tr>
-          <td colspan="2"><font size="2">Right Lower</font></td>
-          <td colspan="6"><font size="2"><%= assessment.E16_12 %></font></td>
-        </tr>
-        <tr>
-          <td colspan="2" rowspan="3"><font size="2"><b>Back</b></font></td>
-          <td colspan="6" rowspan="3"><font size="2"><%= assessment.E16_30 %></font></td>
-          <td colspan="2"><font size="2">Cervical</font></td>
-          <td colspan="6"><font size="2"><%= assessment.E16_14 %></font></td>
-        </tr>
-        <tr>
-          <td colspan="2"><font size="2">Thoracic</font></td>
-          <td colspan="6"><font size="2"><%= assessment.E15_07 %></font></td>
-        </tr>
-        <tr>
-          <td colspan="2"><font size="2">Lumbar/Sacral</font></td>
-          <td colspan="6"><font size="2"><%= assessment.E16_16 %></font></td>
-        </tr>
-        <tr>
-          <td colspan="2"><font size="2"><b>Pelvis/GU/GI</b></font></td>
-          <td colspan="6"><font size="2"><%= assessment.E16_31 %></font></td>
-          <td colspan="2"><font size="2">Pelvis/GU/GI</font></td>
-          <td colspan="6"><font size="2"><%= assessment.concat('E16_13', 'E15_09') %></font></td>
-        </tr>
-        <tr>
-          <td colspan="2" rowspan="6"><font size="2"><b>Extremities</b></font></td>
-          <td colspan="6" rowspan="6"><font size="2"><%= assessment.E16_32 %></font></td>
-          <td colspan="2"><font size="2">Left Arm</font></td>
-          <td colspan="6"><font size="2"><%= assessment.E16_19 %></font></td>
-        </tr>
-        <tr>
-          <td colspan="2"><font size="2">Right Arm</font></td>
-          <td colspan="6"><font size="2"><%= assessment.E16_17 %></font></td>
-        </tr>
-        <tr>
-          <td colspan="2"><font size="2">Left Leg</font></td>
-          <td colspan="6"><font size="2"><%= assessment.E16_20 %></font></td>
-        </tr>
-        <tr>
-          <td colspan="2"><font size="2">Right Leg</font></td>
-          <td colspan="6"><font size="2"><%= assessment.E16_18 %></font></td>
-        </tr>
-        <tr>
-          <td colspan="2"><font size="2">Pulse</font></td>
-          <td colspan="6"><font size="2"></font></td>
-        </tr>
-        <tr>
-          <td colspan="2"><font size="2">Capillary Refill</font></td>
-          <td colspan="6"><font size="2"></font></td>
-        </tr>
-        <tr>
-          <td colspan="2"><font size="2"><b>Neurological</b></font></td>
-          <td colspan="6"><font size="2"><%= assessment.E16_33 %></font></td>
-          <td colspan="2"><font size="2">Neurological</font></td>
-          <td colspan="6"><font size="2"><%= assessment.E16_24 %></font></td>
-        </tr>
-      </tbody>
     </table><br>
-    <font size="2"><b>Assessment Time:</b><%= assessment.parse_time('E16_03') %></font><br>
+    <b>Assessment Time:</b><%= assessment.parse_time('E16_03') %>
+    <br>
+<% end %>
+
+<table>
+  <thead>
+  <tr>
+    <th>Narrative</th>
+  </tr>
+  <tr>
+    <td><%= @parser.E13_01 %></td>
+  </tr>
+  </thead>
+</table>
+<br>
+<table>
+  <thead>
+  <tr>
+    <th class="label" colspan="2">Incident Details</th>
+    <th class="label" colspan="2">Destination Details</th>
+    <th class="label" colspan="2">Incident Times</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="label">Location</td>
+    <td><%= @parser.E08_07 %></td>
+    <td class="label">Disposition</td>
+    <td><%= @parser.concat('E20_10', 'E20_14') %></td>
+    <td class="label">Call Received</td>
+    <td><%= @parser.parse_time('E05_01') %></td>
+  </tr>
+  <tr>
+    <td class="label">Address</td>
+    <td><%= @parser.E08_11 %></td>
+    <td class="label">Transport Due To</td>
+    <td><%= @parser.E20_16 %></td>
+    <td class="label">Dispatched</td>
+    <td><%= @parser.parse_time('E05_04') %></td>
+  </tr>
+  <tr>
+    <td class="label">Address 2</td>
+    <td><%= @parser.parse_value_of('IncidentAddress2') %></td>
+    <td class="label">Transported To</td>
+    <td><%= @parser.E20_01 %></td>
+    <td class="label">En Route</td>
+    <td><%= @parser.parse_time('E05_05') %></td>
+  </tr>
+  <tr>
+    <td class="label">City</td>
+    <td><%= @parser.E08_12 %></td>
+    <td class="label">Requested By</td>
+    <td><%= @parser.parse_value_of('Requested By') %></td>
+    <td class="label">Resp on Scene</td>
+    <td><%= @parser.parse_time('E05_06') %></td>
+  </tr>
+  <tr>
+    <td class="label">State</td>
+    <td><%= @parser.parse_state('E08_14') %></td>
+    <td class="label">Destination</td>
+    <td><%= @parser.E20_17 %></td>
+    <td class="label">On Scene</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td class="label">Zip</td>
+    <td><%= @parser.E08_15 %></td>
+    <td class="label">Address</td>
+    <td><%= @parser.E20_03 %></td>
+    <td class="label">At Patient</td>
+    <td><%= @parser.parse_time('E05_07') %></td>
+  </tr>
+  <tr>
+    <td class="label">Medic Unit</td>
+    <td><%= @parser.E02_03 %></td>
+    <td class="label">Address 2</td>
+    <td><%= @parser.parse_value_of('DestinationAddress2') %></td>
+    <td class="label">Depart Scene</td>
+    <td><%= @parser.parse_time('E05_09') %></td>
+  </tr>
+  <tr>
+    <td class="label">Run Type</td>
+    <td><%= @parser.E02_04 %></td>
+    <td class="label">City</td>
+    <td><%= @parser.E20_04 %></td>
+    <td class="label">At Destination</td>
+    <td><%= @parser.parse_time('E05_10') %></td>
+  </tr>
+  <tr>
+    <td class="label">Priority Scene</td>
+    <td><%= @parser.E02_20 %></td>
+    <td class="label">State</td>
+    <td><%= @parser.E20_05 %></td>
+    <td class="label">Pt. Transferred</td>
+    <td><%= @parser.parse_time('E05_08') %></td>
+  </tr>
+  <tr>
+    <td class="label">Shift</td>
+    <td><%= @parser.parse_value_of('Shift') %></td>
+    <td class="label">Zip</td>
+    <td><%= @parser.E20_07 %></td>
+    <td class="label">Incident Close</td>
+    <td><%= @parser.parse_time('E05_11') %></td>
+  </tr>
+  <tr>
+    <td class="label">Zone</td>
+    <td>&nbsp;</td>
+    <td class="label">Zone</td>
+    <td><%= @parser.E20_09 %></td>
+    <td class="label">In District</td>
+    <td><%= @parser.parse_time('E05_13') %></td>
+  </tr>
+  <tr>
+    <td class="label">Level of Service</td>
+    <td><%= @parser.parse_value_of('Level of Service') %></td>
+    <td class="label">Condition at Destination</td>
+    <td colspan="3"><%= @parser.E20_15 %></td>
+  </tr>
+  <tr>
+    <td class="label">Destination Record #</td>
+    <td colspan="5"><%= @parser.E12_03 %></td>
+  </tr>
+  </tbody>
+</table>
+<br>
+<table>
+  <thead>
+  <tr>
+    <th colspan="4">Crew Members</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="label-top"><b>Personnel</b></td>
+    <td class="label-top"><b>Certification Number</b></td>
+    <td class="label-top"><b>Role</b></td>
+    <td class="label-top"><b>Certification Level</b></td>
+  </tr>
+  <% @parser.parse_cluster('E04').each do |e04| %>
+      <tr>
+        <td></td>
+        <td><%= e04.E04_01 %></td>
+        <td><%= e04.E04_02 %></td>
+        <td><%= e04.E04_03 %></td>
+      </tr>
   <% end %>
+  </tbody>
+</table>
+<br>
+<table>
+  <thead>
+  <tr>
+    <th colspan="8">Insurance Details</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="label">Insured's Name</td>
+    <td><%= @parser.concat 'E07_11', 'E07_12', 'E07_13' %></td>
+    <td class="label">State</td>
+    <td>NC</td>
+    <td class="label">Medicare</td>
+    <td>&nbsp;</td>
+    <td class="label">Secondary Ins</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="label">Relationship to Patient</td>
+    <td><%= @parser.E07_14 %></td>
+    <td class="label">Zip</td>
+    <td>&nbsp;</td>
+    <td class="label">Medicaid</td>
+    <td>&nbsp;</td>
+    <td class="label">Policy #</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td class="label">Address 1</td>
+    <td>&nbsp;</td>
+    <td class="label">Country</td>
+    <td>&nbsp;</td>
+    <td class="label">Primary Insurance</td>
+    <td><%= @parser.E07_03 %></td>
+    <td class="label">Group #</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td class="label">Address 2</td>
+    <td>&nbsp;</td>
+    <td class="label">Phone</td>
+    <td>&nbsp;</td>
+    <td class="label">Group #</td>
+    <td><%= @parser.E07_09 %></td>
+    <td class="label">Contact</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="label">Address 3</td>
+    <td>&nbsp;</td>
+    <td class="label">Primary Payer</td>
+    <td><%= @parser.E07_01 %></td>
+    <td class="label">Policy #</td>
+    <td><%= @parser.E07_10 %></td>
+    <td class="label">Dispatch Nature</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="label">City</td>
+    <td>Raleigh</td>
+    <td class="label">Employer</td>
+    <td><%= @parser.E07_27 %></td>
+    <td class="label">Job Related Injury</td>
+    <td><%= @parser.E07_15 %></td>
+    <td class="label">Response Urgency</td>
+    <td>&nbsp;</td>
+  </tr>
+  </tbody>
+</table>
+<br>
+<table>
+  <thead>
+  <tr>
+    <th colspan="4">Mileage</th>
+    <th colspan="2">Delays</th>
+    <th colspan="2">Additional Agencies</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="label">Scene</td>
+    <td><%= @parser.E02_17 %></td>
+    <td class="label">Start</td>
+    <td><%= @parser.E02_16 %></td>
+    <td class="label">Category</td>
+    <td class="label">Delays</td>
+    <td colspan="2"><%= @parser.concat 'E08_01', 'E08_02' %></td>
+  </tr>
+  <tr>
+    <td class="label">Destination</td>
+    <td><%= @parser.E02_18 %></td>
+    <td class="label">End</td>
+    <td><%= @parser.E02_19 %></td>
+    <td class="label">Dispatch Delays</td>
+    <td><%= @parser.E02_06 %></td>
+  </tr>
+  <tr>
+    <td class="label">Loaded Miles</td>
+    <td><%= @parser.E02_18.to_i - @parser.E02_17.to_i %></td>
+    <td class="label">Total Miles</td>
+    <td><%= @parser.E02_19.to_i - @parser.E02_16.to_i %></td>
+  </tr>
+  </tbody>
+</table>
+<br>
+<table>
+  <thead>
+  <tr>
+    <th colspan="6">Next of Kin</th>
+    <th colspan="3">Personal Items</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="label">Next of Kin Name</td>
+    <td><%= @parser.concat 'E07_18', 'E07_19', 'E07_20' %></td>
+    <td class="label">Address 1</td>
+    <td><%= @parser.E07_21 %></td>
+    <td class="label">City</td>
+    <td><%= @parser.E07_22 %></td>
+    <td class="label">Item</td>
+    <td class="label">Given To</td>
+    <td class="label">Comment</td>
+  </tr>
+  <tr>
+    <td class="label">Relationship to Patient</td>
+    <td><%= @parser.E07_26 %></td>
+    <td class="label">Address 2</td>
+    <td>&nbsp;</td>
+    <td class="label">State</td>
+    <td>&nbsp;</td>
+    <td>Clothing</td>
+    <td>Spouse</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="label">Phone</td>
+    <td><%= @parser.E07_25 %></td>
+    <td class="label">Address 3</td>
+    <td>&nbsp;</td>
+    <td class="label">Zip</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="4">&nbsp;</td>
+    <td class="label">Country</td>
+    <td>&nbsp;</td>
+  </tr>
+  </tbody>
+</table>
+<br>
+<table>
+  <thead>
+  <tr>
+    <th colspan="4">Transfer Details</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="label">PAN</td>
+    <td>&nbsp;</td>
+    <td class="label">Sending Physician</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="label">PCS</td>
+    <td>&nbsp;</td>
+    <td class="label">Sending Record #</td>
+    <td><%= @parser.E12_02 %></td>
+  </tr>
+  <tr>
+    <td class="label">ABN</td>
+    <td>&nbsp;</td>
+    <td class="label">Receiving Physician</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="label">CMS Service Level</td>
+    <td>&nbsp;</td>
+    <td class="label">Condition Code</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="label">ICD-9 Code</td>
+    <td>&nbsp;</td>
+    <td class="label">Condition Modifier Code</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="label">Transfer Reason</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="label">Other/Services</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="label">Medical Necessity</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  </tbody>
+</table>
+<table>
+  <thead>
+  <tr>
+    <th colspan="4">Specialty Patient</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="label">PCS</td>
+    <td>&nbsp;</td>
+    <td class="label">Trauma Activation</td>
+    <td><%= @parser.E24_01 %></td>
+  </tr>
+  </tbody>
+</table>
 
-  <table border="1" cellspacing="0" width="700">
-    <tbody>
-      <tr>
-        <td><font color="blue" size="3">Narrative</font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><%= @parser.E13_01 %></font></td>
-      </tr>
-    </tbody>
-  </table><br>
-  <table border="1" cellspacing="0" width="700">
-    <tbody>
-      <tr>
-        <td colspan="2"><font color="blue" size="3">Incident Details</font></td>
-        <td colspan="2"><font color="blue" size="3">Destination Details</font></td>
-        <td colspan="2"><font color="blue" size="3">Incident Times</font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Location</b></font></td>
-        <td><font size="2"><%= @parser.E08_07 %></font></td>
-        <td><font size="2"><b>Disposition</b></font></td>
-        <td><font size="2"><%= @parser.concat('E20_10', 'E20_14') %></font></td>
-        <td><font size="2"><b>Call Received</b></font></td>
-        <td><font size="2"><%= @parser.parse_time('E05_01') %></font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Adress</b></font></td>
-        <td><font size="2"><%= @parser.E08_11 %></font></td>
-        <td><font size="2"><b>Transport Due To</b></font></td>
-        <td><font size="2"><%= @parser.E20_16 %></font></td>
-        <td><font size="2"><b>Dispatched</b></font></td>
-        <td><font size="2"><%= @parser.parse_time('E05_04') %></font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Address 2</b></font></td>
-        <td><font size="2"><%= @parser.parse_value_of('IncidentAddress2') %></font></td>
-        <td><font size="2"><b>Transported To</b></font></td>
-        <td><font size="2"><%= @parser.E20_01 %></font></td>
-        <td><font size="2"><b>En Route</b></font></td>
-        <td><font size="2"><%= @parser.parse_time('E05_05') %></font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>City</b></font></td>
-        <td><font size="2"><%= @parser.E08_12 %></font></td>
-        <td><font size="2"><b>Requested By</b></font></td>
-        <td><font size="2"><%= @parser.parse_value_of('Requested By') %></font></td>
-        <td><font size="2"><b>Resp on Scene</b></font></td>
-        <td><font size="2"><%= @parser.parse_time('E05_06') %></font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>State</b></font></td>
-        <td><font size="2"><%= @parser.parse_state('E08_14') %></font></td>
-        <td><font size="2"><b>Destination</b></font></td>
-        <td><font size="2"><%= @parser.E20_17 %></font></td>
-        <td><font size="2"><b>On Scene</b></font></td>
-        <td><font size="2"></font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Zip</b></font></td>
-        <td><font size="2"><%= @parser.E08_15 %></font></td>
-        <td><font size="2"><b>Address</b></font></td>
-        <td><font size="2"><%= @parser.E20_03 %></font></td>
-        <td><font size="2"><b>At Patient</b></font></td>
-        <td><font size="2"><%= @parser.parse_time('E05_07') %></font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Medic Unit</b></font></td>
-        <td><font size="2"><%= @parser.E02_03 %></font></td>
-        <td><font size="2"><b>Address 2</b></font></td>
-        <td><font size="2"><%= @parser.parse_value_of('DestinationAddress2') %></font></td>
-        <td><font size="2"><b>Depart Scene</b></font></td>
-        <td><font size="2"><%= @parser.parse_time('E05_09') %></font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Run Type</b></font></td>
-        <td><font size="2"><%= @parser.E02_04 %></font></td>
-        <td><font size="2"><b>City</b></font></td>
-        <td><font size="2"><%= @parser.E20_04 %></font></td>
-        <td><font size="2"><b>At Destination</b></font></td>
-        <td><font size="2"><%= @parser.parse_time('E05_10') %></font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Priority Scene</b></font></td>
-        <td><font size="2"><%= @parser.E02_20 %></font></td>
-        <td><font size="2"><b>State</b></font></td>
-        <td><font size="2"><%= @parser.E20_05 %></font></td>
-        <td><font size="2"><b>Pt. Transferred</b></font></td>
-        <td><font size="2"><%= @parser.parse_time('E05_08') %></font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Shift</b></font></td>
-        <td><font size="2"><%= @parser.parse_value_of('Shift') %></font></td>
-        <td><font size="2"><b>Zip</b></font></td>
-        <td><font size="2"><%= @parser.E20_07 %></font></td>
-        <td><font size="2"><b>Incident Close</b></font></td>
-        <td><font size="2"><%= @parser.parse_time('E05_11') %></font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Zone</b></font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2"><b>Zone</b></font></td>
-        <td><font size="2"><%= @parser.E20_09 %></font></td>
-        <td><font size="2"><b>In District</b></font></td>
-        <td><font size="2"><%= @parser.parse_time('E05_13') %></font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Level of Service</b></font></td>
-        <td><font size="2"><%= @parser.parse_value_of('Level of Service') %></font></td>
-        <td><font size="2"><b>Condition at Destination</b></font></td>
-        <td colspan="3"><font size="2"><%= @parser.E20_15 %></font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Destination Record #</b></font></td>
-        <td colspan="5"><font size="2"><%= @parser.E12_03 %></font></td>
-      </tr>
-    </tbody>
-  </table><br>
-  <table border="1" cellspacing="0" width="700">
-    <tbody>
-      <tr>
-        <td colspan="4"><font color="blue" size="3">Crew Members</font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Personnel</b></font></td>
-        <td><font size="2"><b>Certification Number</b></font></td>
-        <td><font size="2"><b>Role</b></font></td>
-        <td><font size="2"><b>Certification Level</b></font></td>
-      </tr>
-      <% @parser.parse_cluster('E04').each do |e04| %>
-        <tr>
-          <td><font size="2"></font></td>
-          <td><font size="2"><%= e04.E04_01 %></font></td>
-          <td><font size="2"><%= e04.E04_02 %></font></td>
-          <td><font size="2"><%= e04.E04_03 %></font></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table><br>
-  <table border="1" cellspacing="0" width="700">
-    <tbody>
-      <tr>
-        <td colspan="8"><font color="blue" size="3">Insurance Details</font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Insured's Name</b></font></td>
-        <td><font size="2"><%= @parser.concat 'E07_11', 'E07_12', 'E07_13' %></font></td>
-        <td><font size="2"><b>State</b></font></td>
-        <td><font size="2">NC</font></td>
-        <td><font size="2"><b>Medicare</b></font></td>
-        <td>&nbsp;</td>
-        <td><font size="2"><b>Secondary Ins</b></font></td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Relationship to Patient</b></font></td>
-        <td><font size="2"><%= @parser.E07_14 %></font></td>
-        <td><font size="2"><b>Zip</b></font></td>
-        <td>&nbsp;</td>
-        <td><font size="2"><b>Medicaid</b></font></td>
-        <td>&nbsp;</td>
-        <td><font size="2"><b>Policy #</b></font></td>
-        <td><font size="2"></font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Address 1</b></font></td>
-        <td>&nbsp;</td>
-        <td><font size="2"><b>Country</b></font></td>
-        <td>&nbsp;</td>
-        <td><font size="2"><b>Primary Insurance</b></font></td>
-        <td><font size="2"><%= @parser.E07_03 %></font></td>
-        <td><font size="2"><b>Group #</b></font></td>
-        <td><font size="2"></font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Address 2</b></font></td>
-        <td>&nbsp;</td>
-        <td><font size="2"><b>Phone</b></font></td>
-        <td>&nbsp;</td>
-        <td><font size="2"><b>Group #</b></font></td>
-        <td><font size="2"><%= @parser.E07_09 %></font></td>
-        <td><font size="2"><b>Contact</b></font></td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Address 3</b></font></td>
-        <td>&nbsp;</td>
-        <td><font size="2"><b>Primary Payer</b></font></td>
-        <td><font size="2"><%= @parser.E07_01 %></font></td>
-        <td><font size="2"><b>Policy #</b></font></td>
-        <td><font size="2"><%= @parser.E07_10 %></font></td>
-        <td><font size="2"><b>Dispatch Nature</b></font></td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>City</b></font></td>
-        <td><font size="2">Raleigh</font></td>
-        <td><font size="2"><b>Employer</b></font></td>
-        <td><font size="2"><%= @parser.E07_27 %></font></td>
-        <td><font size="2"><b>Job Related Injury</b></font></td>
-        <td><font size="2"><%= @parser.E07_15 %></font></td>
-        <td><font size="2"><b>Response Urgency</b></font></td>
-        <td>&nbsp;</td>
-      </tr>
-    </tbody>
-  </table><br>
-  <table border="1" cellspacing="0" width="700">
-    <tbody>
-      <tr>
-        <td colspan="4"><font color="blue" size="3">Mileage</font></td>
-        <td colspan="2"><font color="blue" size="3">Delays</font></td>
-        <td colspan="2"><font color="blue" size="3">Additional Agencies</font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Scene</b></font></td>
-        <td><font size="2"><%= @parser.E02_17 %></font></td>
-        <td><font size="2"><b>Start</b></font></td>
-        <td><font size="2"><%= @parser.E02_16 %></font></td>
-        <td><font size="2"><b>Category</b></font></td>
-        <td><font size="2"><b>Delays</b></font></td>
-        <td colspan="2"><font size="2"><%= @parser.concat 'E08_01', 'E08_02' %></font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Destination</b></font></td>
-        <td><font size="2"><%= @parser.E02_18 %></font></td>
-        <td><font size="2"><b>End</b></font></td>
-        <td><font size="2"><%= @parser.E02_19 %></font></td>
-        <td><font size="2">Dispatch Delays</font></td>
-        <td><font size="2"><%= @parser.E02_06 %></font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Loaded Miles</b></font></td>
-        <td><font size="2"><%= @parser.E02_18.to_i - @parser.E02_17.to_i %></font></td>
-        <td><font size="2"><b>Total Miles</b></font></td>
-        <td><font size="2"><%= @parser.E02_19.to_i - @parser.E02_16.to_i %></font></td>
-      </tr>
-    </tbody>
-  </table><br>
-  <table border="1" cellspacing="0" width="700">
-    <tbody>
-      <tr>
-        <td colspan="6"><font color="blue" size="3">Next of Kin</font></td>
-        <td colspan="3"><font color="blue" size="3">Personal Items</font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Next of Kin Name</b></font></td>
-        <td><font size="2"><%= @parser.concat 'E07_18', 'E07_19', 'E07_20' %></font></td>
-        <td><font size="2"><b>Address 1</b></font></td>
-        <td><font size="2"><%= @parser.E07_21 %></font></td>
-        <td><font size="2"><b>City</b></font></td>
-        <td><font size="2"><%= @parser.E07_22 %></font></td>
-        <td><font size="2"><b>Item</b></font></td>
-        <td><font size="2"><b>Given To</b></font></td>
-        <td><font size="2"><b>Comment</b></font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Relationship to Patient</b></font></td>
-        <td><font size="2"><%= @parser.E07_26 %></font></td>
-        <td><font size="2"><b>Address 2</b></font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2"><b>State</b></font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2">Clothing</font></td>
-        <td><font size="2">Spouse</font></td>
-        <td><font size="2">&nbsp;</font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Phone</b></font></td>
-        <td><font size="2"><%= @parser.E07_25 %></font></td>
-        <td><font size="2"><b>Address 3</b></font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2"><b>Zip</b></font></td>
-        <td><font size="2">&nbsp;</font></td>
-      </tr>
-      <tr>
-        <td colspan="4"><font size="2">&nbsp;</font></td>
-        <td><font size="2"><b>Country</b></font></td>
-        <td><font size="2">&nbsp;</font></td>
-      </tr>
-    </tbody>
-  </table><br>
-  <table border="1" cellspacing="0" width="700">
-    <tbody>
-      <tr>
-        <td colspan="4"><font color="blue" size="3">Transfer Details</font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>PAN</b></font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2"><b>Sending Physician</b></font></td>
-        <td><font size="2">&nbsp;</font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>PCS</b></font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2"><b>Sending Record #</b></font></td>
-        <td><font size="2"><%= @parser.E12_02 %></font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>ABN</b></font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2"><b>Receiving Physician</b></font></td>
-        <td><font size="2">&nbsp;</font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>CMS Service Level</b></font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2"><b>Condition Code</b></font></td>
-        <td><font size="2">&nbsp;</font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>ICD-9 Code</b></font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2"><b>Condition Modifier Code</b></font></td>
-        <td><font size="2">&nbsp;</font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Transfer Reason</b></font></td>
-        <td colspan="3"><font size="2">&nbsp;</font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Other/Services</b></font></td>
-        <td colspan="3"><font size="2">&nbsp;</font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>Medical Necessity</b></font></td>
-        <td colspan="3"><font size="2">&nbsp;</font></td>
-      </tr>
-    </tbody>
-  </table>
-  <table border="1" cellspacing="0" width="700">
-    <tbody>
-      <tr>
-        <td colspan="4"><font color="blue" size="3">Specialty Patient</font></td>
-      </tr>
-      <tr>
-        <td><font size="2"><b>PCS</b></font></td>
-        <td><font size="2">&nbsp;</font></td>
-        <td><font size="2"><b>Trauma Activation</b></font></td>
-        <td><font size="2"><%= @parser.E24_01 %></font></td>
-      </tr>
-    </tbody>
-  </table>
-
-  <table border="1" cellspacing="0" width="700">
-    <tbody>
-    <tr>
-      <td colspan="6"><font color="blue" size="3">Specialty Patient - ACS</font></td>
-    </tr>
-    <tr>
-      <td colspan="2"><font size="2">12-Lead Transmission: </font></td>
-      <td colspan="4">&nbsp;</td>
-    </tr>
-    <tr>
-      <td><font size="2">12 Lead</font></td>
-      <td><font size="2"> </font></td>
-      <td colspan="4">&nbsp;</td>
-    </tr>
-    <tr>
-      <td><font size="2"><b>Lead I:</b></font></td>
-      <td><font size="2"> </font></td>
-      <td><font size="2"><b>V1:</b></font></td>
-      <td><font size="2"> </font></td>
-      <td><font size="2"><b>V4R:</b></font></td>
-      <td><font size="2"> </font></td>
-    </tr>
-    <tr>
-      <td><font size="2"><b>Lead II:</b></font></td>
-      <td><font size="2"> </font></td>
-      <td><font size="2"><b>V2:</b></font></td>
-      <td><font size="2"> </font></td>
-      <td><font size="2"><b>V5R:</b></font></td>
-      <td><font size="2"> </font></td>
-    </tr>
-    <tr>
-      <td><font size="2"><b>Lead III:</b></font></td>
-      <td><font size="2"> </font></td>
-      <td><font size="2"><b>V3:</b></font></td>
-      <td><font size="2"> </font></td>
-      <td><font size="2"><b>V6R:</b></font></td>
-      <td><font size="2"> </font></td>
-    </tr>
-    <tr>
-      <td><font size="2"><b>AVL:</b></font></td>
-      <td><font size="2"> </font></td>
-      <td><font size="2"><b>V4:</b></font></td>
-      <td><font size="2"> </font></td>
-      <td><font size="2"><b>V7:</b></font></td>
-      <td><font size="2"> </font></td>
-    </tr>
-    <tr>
-      <td><font size="2"><b>AVR:</b></font></td>
-      <td><font size="2"> </font></td>
-      <td><font size="2"><b>V5:</b></font></td>
-      <td><font size="2"> </font></td>
-      <td><font size="2"><b>V8:</b></font></td>
-      <td><font size="2"> </font></td>
-    </tr>
-    <tr>
-      <td><font size="2"><b>AVF:</b></font></td>
-      <td><font size="2"> </font></td>
-      <td><font size="2"><b>V6:</b></font></td>
-      <td><font size="2"> </font></td>
-      <td><font size="2"><b>V9:</b></font></td>
-      <td><font size="2"> </font></td>
-    </tr>
-    <tr>
-      <td><font size="2"><b>OPQRST:</b></font></td>
-      <td><font size="2"> </font></td>
-      <td colspan="2"><font size="2"><b>Inclusion Criteria</b></font></td>
-      <td colspan="2"><font size="2"><b>Exclusion Criteria:</b></font></td>
-      <td><font size="2"> </font></td>
-    </tr>
-    <tr>
-      <td><font size="2"><b>Onset:</b></font></td>
-      <td><font size="2"> </font></td>
-      <td colspan="2"><font size="2"> </font></td>
-      <td colspan="2"><font size="2"> </font></td>
-    </tr>
-    <tr>
-      <td><font size="2"><b>Provoke:</b></font></td>
-      <td><font size="2"> </font></td>
-      <td><font size="2"><b>Quality:</b></font></td>
-      <td><font size="2"> </font></td>
-      <td><font size="2"><b>Radiation:</b></font></td>
-      <td><font size="2"> </font></td>
-    </tr>
-    <tr>
-      <td><font size="2"><b>Severity:</b></font></td>
-      <td><font size="2"> </font></td>
-      <td><font size="2"><b>Time:</b></font></td>
-      <td colspan="3"><font size="2"> </font></td>
-    </tr>
-    </tbody>
-  </table>
+<table>
+  <thead>
+  <tr>
+    <th colspan="6">Specialty Patient - ACS</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="label" colspan="2">12-Lead Transmission:</td>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="label" width="20%">12 Lead</td>
+    <td></td>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="label-narrow">Lead I:</td>
+    <td></td>
+    <td class="label-narrow">V1:</td>
+    <td></td>
+    <td class="label-narrow">V4R:</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td class="label-narrow">Lead II:</td>
+    <td></td>
+    <td class="label-narrow">V2:</td>
+    <td></td>
+    <td class="label-narrow">V5R:</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td class="label-narrow">Lead III:</td>
+    <td></td>
+    <td class="label-narrow">V3:</td>
+    <td></td>
+    <td class="label-narrow">V6R:</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td class="label-narrow">AVL:</td>
+    <td></td>
+    <td class="label-narrow">V4:</td>
+    <td></td>
+    <td class="label-narrow">V7:</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td class="label-narrow">AVR:</td>
+    <td></td>
+    <td class="label-narrow">V5:</td>
+    <td></td>
+    <td class="label-narrow">V8:</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td class="label-narrow">AVF:</td>
+    <td></td>
+    <td class="label-narrow">V6:</td>
+    <td></td>
+    <td class="label-narrow">V9:</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td class="label-narrow">OPQRST:</td>
+    <td></td>
+    <td class="label" colspan="2">Inclusion Criteria</td>
+    <td class="label" colspan="2">Exclusion Criteria:</td>
+  </tr>
+  <tr>
+    <td class="label-narrow">Onset:</td>
+    <td></td>
+    <td colspan="2">>= 18 years of age</td>
+    <td colspan="2">History of Stroke</td>
+  </tr>
+  <tr>
+    <td class="label-narrow">Provoke:</td>
+    <td></td>
+    <td colspan="2"></td>
+    <td colspan="2"></td>
+  </tr>
+  <tr>
+    <td class="label-narrow">Quality:</td>
+    <td></td>
+    <td colspan="2"></td>
+    <td colspan="2"></td>
+  </tr>
+  <tr>
+    <td class="label-narrow">Radiation:</td>
+    <td></td>
+    <td colspan="2"></td>
+    <td colspan="2"></td>
+  </tr>
+  <tr>
+    <td class="label-narrow">Severity:</td>
+    <td></td>
+    <td colspan="2"></td>
+    <td colspan="2"></td>
+  </tr>
+  <tr>
+    <td class="label-narrow">Time:</td>
+    <td></td>
+    <td colspan="2"></td>
+    <td colspan="2"></td>
+  </tr>
+  </tbody>
+</table>

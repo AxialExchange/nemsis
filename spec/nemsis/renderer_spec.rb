@@ -15,8 +15,8 @@ describe Nemsis::Renderer do
   end
 
   context 'instance methods' do
+    let(:sample_xml_file) {File.expand_path('../../data/sample_3.xml', __FILE__)}
     let(:p) {
-      sample_xml_file = File.expand_path('../../data/sample_3.xml', __FILE__)
       xml_str = File.read(sample_xml_file)
 
       Nemsis::Parser.new(xml_str)
@@ -27,6 +27,11 @@ describe Nemsis::Renderer do
     describe '#render_html' do
       it 'returns not nil' do
         html.should_not be_nil
+        file_name = "#{sample_xml_file.gsub('.xml','')}-#{Time.now.strftime("%d%b")}.html"
+        file = File.open(file_name, 'w+')
+        file.puts html
+        file.close
+        puts "Open this in your browser to check: file://localhost#{file_name}"
       end
 
       it 'has title section' do
@@ -34,7 +39,7 @@ describe Nemsis::Renderer do
       end
 
       it 'has specialty patient trauma criteria' do
-        html.should =~ /<b>Trauma Activation<\/b>/
+        html.should =~ /Trauma Activation/
         html.should =~ /Specialty Patient/
       end
     end
