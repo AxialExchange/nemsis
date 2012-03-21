@@ -21,10 +21,11 @@
           border: 2px;
           border-style: solid;
           border-color: black;
+          border-spacing: 0px;
           width: 700;
           color: black;
           margin: 0;
-          padding: 0px;
+          padding: 1px;
       }
 
           /* The section can have a bold heading row */
@@ -32,6 +33,9 @@
           color: yellow;
           background-color: #6495ed;
           font-size: medium;
+          border-color: black;
+          border-style: solid;
+          border-width: 1px;
       }
 
           /* Default table cell for values */
@@ -40,6 +44,7 @@
           border-style: groove;
           border-color: black;
           font-size: small;
+          padding: 2px;
       }
 
           /* Default label cell */
@@ -126,7 +131,8 @@
     <td colspan="13"><%= @parser.E12_07 %></td>
   </tr>
   </tbody>
-</table><br>
+</table>
+<br>
 <table>
   <thead>
   <tr>
@@ -149,9 +155,9 @@
     <td><%= @parser.E09_16 %></td>
     <td class="label">Duration</td>
     <td><%= @parser.concat 'E09_06', 'E09_07' %></td>
-    <td class="label">Medical/trauma</td>
+    <td class="label">Medical/ Trauma</td>
     <td><%= @parser.parse_value_of('MedicalTrauma') %></td>
-    <td class="label">Alcohol/Drugs</td>
+    <td class="label">Alcohol/ Drugs</td>
     <td><%= @parser.E12_19 %></td>
   </tr>
   <tr>
@@ -159,7 +165,8 @@
     <td colspan="7"><%= @parser.concat 'E09_13', 'E09_14' %></td>
   </tr>
   </tbody>
-</table><br>
+</table>
+<br>
 <table>
 <thead>
 <tr>
@@ -410,6 +417,7 @@
     <b>Assessment Time:</b><%= assessment.parse_time('E16_03') %>
     <br>
 <% end %>
+<br>
 
 <table>
   <thead>
@@ -758,45 +766,50 @@
   </tr>
   </tbody>
 </table>
-<table>
-  <thead>
-  <tr>
-    <th colspan="4">Specialty Patient&mdash;Trauma Criteria</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td class="label">Anatomic</td>
-    <td><%= @parser.E24_08 %></td>
-    <td class="label">Trauma Activation</td>
-    <td><%= @parser.E24_01 %></td>
-  </tr>
-  <tr>
-    <td class="label">Physiologic</td>
-    <td><%= @parser.E24_06 %></td>
-    <td class="label">Time</td>
-    <td><%= @parser.E24_02 %></td>
-  </tr>
-  <tr>
-    <td class="label">Mechanical</td>
-    <td><%= @parser.E24_07 %></td>
-    <td class="label">Date</td>
-    <td><%= @parser.E24_02 %></td>
-  </tr>
-  <tr>
-    <td class="label">Other Conditions</td>
-    <td><%= @parser.E24_05 %></td>
-    <td class="label">Trauma Level</td>
-    <td><%= @parser.E24_04 %></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td class="label">Reason not Activated</td>
-    <td><%= @parser.E24_03 %></td>
-  </tr>
-  </tbody>
-</table>
+<br>
+
+<div id="TraumaCriteria">
+  <table>
+    <thead>
+    <tr>
+      <th colspan="4">Specialty Patient&mdash;Trauma Criteria</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="label">Anatomic</td>
+      <td><%= @parser.E24_08 %></td>
+      <td class="label">Trauma Activation</td>
+      <td><%= @parser.E24_01 %></td>
+    </tr>
+    <tr>
+      <td class="label">Physiologic</td>
+      <td><%= @parser.E24_06 %></td>
+      <td class="label">Time</td>
+      <td><%= @parser.E24_02 %></td>
+    </tr>
+    <tr>
+      <td class="label">Mechanical</td>
+      <td><%= @parser.E24_07 %></td>
+      <td class="label">Date</td>
+      <td><%= @parser.E24_02 %></td>
+    </tr>
+    <tr>
+      <td class="label">Other Conditions</td>
+      <td><%= @parser.E24_05 %></td>
+      <td class="label">Trauma Level</td>
+      <td><%= @parser.E24_04 %></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td class="label">Reason not Activated</td>
+      <td><%= @parser.E24_03 %></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<br>
 
 <table>
   <thead>
