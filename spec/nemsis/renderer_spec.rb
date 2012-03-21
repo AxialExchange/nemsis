@@ -38,9 +38,9 @@ describe Nemsis::Renderer do
         html.should =~ /^\s*<h4>Wake County EMS System - Patient Care Record/
       end
 
-      it 'has specialty patient trauma criteria' do
-        html.should =~ /Trauma Activation/
-        html.should =~ /Specialty Patient/
+      context 'specialty patient section' do
+        it('has specialty patient') { html.should =~ /Specialty Patient/ }
+        it('has specialty patient trauma criteria') { html.should =~ /Trauma Activation/ }
       end
     end
 
