@@ -768,154 +768,221 @@
 </table>
 <br>
 
-<div id="TraumaCriteria">
-  <table>
-    <thead>
-    <tr>
-      <th colspan="4">Specialty Patient&mdash;Trauma Criteria</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td class="label">Anatomic</td>
-      <td><%= @parser.E24_08 %></td>
-      <td class="label">Trauma Activation</td>
-      <td><%= @parser.E24_01 %></td>
-    </tr>
-    <tr>
-      <td class="label">Physiologic</td>
-      <td><%= @parser.E24_06 %></td>
-      <td class="label">Time</td>
-      <td><%= @parser.E24_02 %></td>
-    </tr>
-    <tr>
-      <td class="label">Mechanical</td>
-      <td><%= @parser.E24_07 %></td>
-      <td class="label">Date</td>
-      <td><%= @parser.E24_02 %></td>
-    </tr>
-    <tr>
-      <td class="label">Other Conditions</td>
-      <td><%= @parser.E24_05 %></td>
-      <td class="label">Trauma Level</td>
-      <td><%= @parser.E24_04 %></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td class="label">Reason not Activated</td>
-      <td><%= @parser.E24_03 %></td>
-    </tr>
-    </tbody>
-  </table>
-</div>
-<br>
+<div id="SpecialtyPatient">
 
-<table>
-  <thead>
-  <tr>
-    <th colspan="6">Specialty Patient - ACS</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td class="label" colspan="2">12-Lead Transmission:</td>
-    <td colspan="4">&nbsp;</td>
-  </tr>
-  <tr>
-    <td class="label" width="20%">12 Lead</td>
-    <td></td>
-    <td colspan="4">&nbsp;</td>
-  </tr>
-  <tr>
-    <td class="label-narrow">Lead I:</td>
-    <td></td>
-    <td class="label-narrow">V1:</td>
-    <td></td>
-    <td class="label-narrow">V4R:</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td class="label-narrow">Lead II:</td>
-    <td></td>
-    <td class="label-narrow">V2:</td>
-    <td></td>
-    <td class="label-narrow">V5R:</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td class="label-narrow">Lead III:</td>
-    <td></td>
-    <td class="label-narrow">V3:</td>
-    <td></td>
-    <td class="label-narrow">V6R:</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td class="label-narrow">AVL:</td>
-    <td></td>
-    <td class="label-narrow">V4:</td>
-    <td></td>
-    <td class="label-narrow">V7:</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td class="label-narrow">AVR:</td>
-    <td></td>
-    <td class="label-narrow">V5:</td>
-    <td></td>
-    <td class="label-narrow">V8:</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td class="label-narrow">AVF:</td>
-    <td></td>
-    <td class="label-narrow">V6:</td>
-    <td></td>
-    <td class="label-narrow">V9:</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td class="label-narrow">OPQRST:</td>
-    <td></td>
-    <td class="label" colspan="2">Inclusion Criteria</td>
-    <td class="label" colspan="2">Exclusion Criteria:</td>
-  </tr>
-  <tr>
-    <td class="label-narrow">Onset:</td>
-    <td></td>
-    <td colspan="2">>= 18 years of age</td>
-    <td colspan="2">History of Stroke</td>
-  </tr>
-  <tr>
-    <td class="label-narrow">Provoke:</td>
-    <td></td>
-    <td colspan="2"></td>
-    <td colspan="2"></td>
-  </tr>
-  <tr>
-    <td class="label-narrow">Quality:</td>
-    <td></td>
-    <td colspan="2"></td>
-    <td colspan="2"></td>
-  </tr>
-  <tr>
-    <td class="label-narrow">Radiation:</td>
-    <td></td>
-    <td colspan="2"></td>
-    <td colspan="2"></td>
-  </tr>
-  <tr>
-    <td class="label-narrow">Severity:</td>
-    <td></td>
-    <td colspan="2"></td>
-    <td colspan="2"></td>
-  </tr>
-  <tr>
-    <td class="label-narrow">Time:</td>
-    <td></td>
-    <td colspan="2"></td>
-    <td colspan="2"></td>
-  </tr>
-  </tbody>
-</table>
+  <div id="SpecialtyPatientACS">
+    <table>
+      <thead>
+      <tr>
+        <th colspan="6">Specialty Patient - ACS</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td colspan="2">&nbsp;</td>
+        <td class="label" colspan="4">12-Lead Transmission:</td>
+      </tr>
+      <tr>
+        <td class="label" width="20%">12 Lead</td>
+        <td></td>
+        <td colspan="4">&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="label-narrow">Lead I:</td>
+        <td></td>
+        <td class="label-narrow">V1:</td>
+        <td></td>
+        <td class="label-narrow">V4R:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="label-narrow">Lead II:</td>
+        <td></td>
+        <td class="label-narrow">V2:</td>
+        <td></td>
+        <td class="label-narrow">V5R:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="label-narrow">Lead III:</td>
+        <td></td>
+        <td class="label-narrow">V3:</td>
+        <td></td>
+        <td class="label-narrow">V6R:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="label-narrow">AVL:</td>
+        <td></td>
+        <td class="label-narrow">V4:</td>
+        <td></td>
+        <td class="label-narrow">V7:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="label-narrow">AVR:</td>
+        <td></td>
+        <td class="label-narrow">V5:</td>
+        <td></td>
+        <td class="label-narrow">V8:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="label-narrow">AVF:</td>
+        <td></td>
+        <td class="label-narrow">V6:</td>
+        <td></td>
+        <td class="label-narrow">V9:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td class="label-narrow">OPQRST:</td>
+        <td class="label" colspan="2">Inclusion Criteria</td>
+        <td class="label" colspan="2">Exclusion Criteria:</td>
+      </tr>
+      <tr>
+        <td class="label-narrow">Onset:</td>
+        <td></td>
+        <td colspan="2">>= 18 years of age</td>
+        <td colspan="2">History of Stroke</td>
+      </tr>
+      <tr>
+        <td class="label-narrow">Provoke:</td>
+        <td></td>
+        <td colspan="2"></td>
+        <td colspan="2"></td>
+      </tr>
+      <tr>
+        <td class="label-narrow">Quality:</td>
+        <td></td>
+        <td colspan="2"></td>
+        <td colspan="2"></td>
+      </tr>
+      <tr>
+        <td class="label-narrow">Radiation:</td>
+        <td></td>
+        <td colspan="2"></td>
+        <td colspan="2"></td>
+      </tr>
+      <tr>
+        <td class="label-narrow">Severity:</td>
+        <td></td>
+        <td colspan="2"></td>
+        <td colspan="2"></td>
+      </tr>
+      <tr>
+        <td class="label-narrow">Time:</td>
+        <td></td>
+        <td colspan="2"></td>
+        <td colspan="2"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="SpecialtyPatientAirway">
+    <table>
+      <thead>
+      <tr>
+        <th colspan="4">Specialty Patient&mdash;Advanced Airway</th>
+      </tr>
+      <tr>
+        <td class="label">Mallampati Class</td>
+        <td><%=  @parser.E25_01 %></td>
+        <td class="label">Airway Grading</td>
+        <td><%=  @parser.E25_02 %></td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="label">Indications</td>
+        <td class="label">Monitoring</td>
+        <td class="label">Rescue</td>
+        <td class="label">Reasons Failed Intubation</td>
+      </tr>
+      <tr>
+        <td><%= @parser.E25_03.join(', ') %></td>
+        <td><%= @parser.E25_04.join(', ') %></td>
+        <td><%= @parser.E25_05.join(', ') %></td>
+        <td><%= @parser.E25_06.join(', ') %></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <br>
+
+  <div id="SpecialtyPatientBurns">
+  </div>
+  <br>
+
+  <div id="SpecialtyPatientStroke">
+  </div>
+  <br>
+
+  <div id="SpecialtyPatientCPR">
+  </div>
+  <br>
+
+  <div id="SpecialtyPatientMVC">
+  </div>
+  <br>
+
+  <div id="SpecialtyPatientTrauma">
+    <table>
+      <thead>
+      <tr>
+        <th colspan="4">Specialty Patient&mdash;Trauma Criteria</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="label">Anatomic</td>
+        <td><%= @parser.E24_08 %></td>
+        <td class="label">Trauma Activation</td>
+        <td><%= @parser.E24_01 %></td>
+      </tr>
+      <tr>
+        <td class="label">Physiologic</td>
+        <td><%= @parser.E24_06 %></td>
+        <td class="label">Time</td>
+        <td><%= @parser.E24_02 %></td>
+      </tr>
+      <tr>
+        <td class="label">Mechanical</td>
+        <td><%= @parser.E24_07 %></td>
+        <td class="label">Date</td>
+        <td><%= @parser.E24_02 %></td>
+      </tr>
+      <tr>
+        <td class="label">Other Conditions</td>
+        <td><%= @parser.E24_05 %></td>
+        <td class="label">Trauma Level</td>
+        <td><%= @parser.E24_04 %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td class="label">Reason not Activated</td>
+        <td><%= @parser.E24_03 %></td>
+      </tr>
+      </tbody>
+    </table>
+    <br>
+  </div>
+  <div id="SpecialtyPatientObstetrical">
+  </div>
+  <br>
+
+  <div id="SpecialtyPatientSpinal">
+  </div>
+  <br>
+
+  <div id="SpecialtyPatientInfluenza">
+  </div>
+  <br>
+
+  <div id="SpecialtyPatientSAD">
+  </div>
+  <br>
+
+</div>
