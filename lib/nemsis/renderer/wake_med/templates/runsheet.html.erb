@@ -901,10 +901,14 @@
         <td class="label">Reasons Failed Intubation</td>
       </tr>
       <tr>
-        <td><%= @parser.E25_03.join(', ') %></td>
-        <td><%= @parser.E25_04.join(', ') %></td>
-        <td><%= @parser.E25_05.join(', ') %></td>
-        <td><%= @parser.E25_06.join(', ') %></td>
+        <td><%= val = @parser.E25_03
+                val.is_a?(Array) ? val.join(', ') : val %></td>
+        <td><%= val = @parser.E25_04
+                val.is_a?(Array) ? val.join(', ') : val %></td>
+        <td><%= val = @parser.E25_05
+                val.is_a?(Array) ? val.join(', ') : val %></td>
+        <td><%= val = @parser.E25_06
+                val.is_a?(Array) ? val.join(', ') : val %></td>
       </tr>
       </tbody>
     </table>
