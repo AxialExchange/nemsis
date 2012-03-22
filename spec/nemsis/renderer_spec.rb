@@ -41,6 +41,7 @@ describe Nemsis::Renderer do
       context 'specialty patient section' do
         it('has specialty patient') { html.should =~ /Specialty Patient/ }
         it('has specialty patient trauma criteria') { html.should =~ /Trauma Activation/ }
+        it('has specialty patient airway') { html.should =~ /Advanced Airway/ }
       end
     end
 

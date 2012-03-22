@@ -10,7 +10,7 @@ module Nemsis
     end
 
     spec_yaml = File.expand_path('../../../conf/nemsis_spec.yml', __FILE__)
-    @@spec = YAML::load(File.read(spec_yaml))
+    @@spec    = YAML::load(File.read(spec_yaml))
 
     def initialize(xml_str)
       raise ArgumentError.new('Parser initiation requires XML String argument') if xml_str.nil? or xml_str.size == 0
@@ -25,56 +25,62 @@ module Nemsis
       begin
         nodes = xml_doc.xpath(xpath) or return
         case element_spec['is_multi_entry']
-        when 1
-          values = []
+          when 1
+            #if element_spec["node"] == "E25_03"
+            #  puts "multi for #{element_spec["node"]}"
+            #end
+            values = []
             nodes.each do |node|
               value = node.text
 
               # Note: data_type possible values are
               # ["text", "combo", "date/time", "number", "date", "combo or text", "binary"]
-              if element_spec['data_type'] =~ /(text|combo|combo or text)/i && 
-                 value =~ /^-?\d+$/ && 
-                 !element_spec['field_values'].nil?
+              if element_spec['data_type'] =~ /(text|combo|combo or text)/i &&
+                  value =~ /^-?\d+$/ &&
+                  !element_spec['field_values'].nil?
 
                 element_spec['field_values'].merge!(
-                  -10 => '',   # Not Known
-                  -15 => '',   # Not Reporting
-                  -20 => '',   # Not Recorded
-                  -25 => '',   # Not Applicable
-                   -5 => ''    # Not Available 
+                    -10 => '', # Not Known
+                    -15 => '', # Not Reporting
+                    -20 => '', # Not Recorded
+                    -25 => '', # Not Applicable
+                    -5  => '' # Not Available
                 )
 
                 mapped_value = element_spec['field_values'][value.to_i]
-                
+
                 value = mapped_value unless mapped_value.nil?
               end
 
               values << value
             end
+            #if element_spec["node"] == "E25_03"
+            #  puts "values: #{values.inspect}"
+            #end
 
-          return values
-        else
-          node = nodes.first or return
-          value = node.text
+            return values
+          else
+            node = nodes.first or return
+            value = node.text
 
-          if element_spec['data_type'] =~ /(text|combo)/i && 
-             value =~ /^-?\d+$/ && 
-             !element_spec['field_values'].nil?
+            if element_spec['data_type'] =~ /(text|combo)/i &&
+                value =~ /^-?\d+$/ &&
+                !element_spec['field_values'].nil?
 
-            element_spec['field_values'].merge!(
-              -10 => '',   # Not Known
-              -15 => '',   # Not Reporting
-              -20 => '',   # Not Recorded
-              -25 => '',   # Not Applicable
-               -5 => ''    # Not Available 
-            )
+              element_spec['field_values'].merge!(
+                  -10 => '', # Not Known
+                  -15 => '', # Not Reporting
+                  -20 => '', # Not Recorded
+                  -25 => '', # Not Applicable
+                  -5  => '' # Not Available
+              )
 
-            mapped_value = element_spec['field_values'][value.to_i]
-            
-            value = mapped_value unless mapped_value.nil?
-          end
+              mapped_value = element_spec['field_values'][value.to_i]
 
-          return value
+              value = mapped_value unless mapped_value.nil?
+            end
+
+            return value
         end
 
       rescue => err
@@ -100,29 +106,29 @@ module Nemsis
     def parse_state(element)
       state_code = parse_element(element)
 
-      state_codes = {"42"=>"PA", "01"=>"AL", "02"=>"AK", "04"=>"AZ", "05"=>"AR", "06"=>"CA", "08"=>"CO", "09"=>"CT", "10"=>"DE", "11"=>"DC", "12"=>"FL", "13"=>"GA", "15"=>"HI", "16"=>"ID", "17"=>"IL", "18"=>"IN", "19"=>"IA", "20"=>"KS", "21"=>"KY", "22"=>"LA", "23"=>"ME", "24"=>"MD", "25"=>"MA", "26"=>"MI", "27"=>"MN", "28"=>"MS", "29"=>"MO", "30"=>"MT", "31"=>"NE", "32"=>"NV", "33"=>"NH", "34"=>"NJ", "35"=>"NM", "36"=>"NY", "37"=>"NC", "38"=>"ND", "39"=>"OH", "40"=>"OK", "41"=>"OR", "44"=>"RI", "45"=>"SC", "46"=>"SD", "47"=>"TN", "48"=>"TX", "49"=>"UT", "50"=>"VT", "51"=>"VA", "53"=>"WA", "54"=>"WV", "55"=>"WI", "56"=>"WY", "60"=>"AS", "66"=>"GU", "69"=>"MP", "72"=>"PR", "74"=>"UM", "78"=>"VI"}
+      state_codes = {"42" => "PA", "01" => "AL", "02" => "AK", "04" => "AZ", "05" => "AR", "06" => "CA", "08" => "CO", "09" => "CT", "10" => "DE", "11" => "DC", "12" => "FL", "13" => "GA", "15" => "HI", "16" => "ID", "17" => "IL", "18" => "IN", "19" => "IA", "20" => "KS", "21" => "KY", "22" => "LA", "23" => "ME", "24" => "MD", "25" => "MA", "26" => "MI", "27" => "MN", "28" => "MS", "29" => "MO", "30" => "MT", "31" => "NE", "32" => "NV", "33" => "NH", "34" => "NJ", "35" => "NM", "36" => "NY", "37" => "NC", "38" => "ND", "39" => "OH", "40" => "OK", "41" => "OR", "44" => "RI", "45" => "SC", "46" => "SD", "47" => "TN", "48" => "TX", "49" => "UT", "50" => "VT", "51" => "VA", "53" => "WA", "54" => "WV", "55" => "WI", "56" => "WY", "60" => "AS", "66" => "GU", "69" => "MP", "72" => "PR", "74" => "UM", "78" => "VI"}
 
       state_codes[state_code] || state_code
     end
 
     def parse_field(field_name)
       element_spec = @@spec.values.
-                            select{|v| v['name'] == field_name}.
-                            first
+          select { |v| v['name'] == field_name }.
+          first
 
       parse(element_spec)
     end
 
     def parse_pair(name_element, value_element)
       name_element_spec = @@spec[name_element]
-      names = parse(name_element_spec)
+      names             = parse(name_element_spec)
 
       value_element_spec = @@spec[value_element]
-      values = parse(value_element_spec)
+      values             = parse(value_element_spec)
 
       result = {}
       begin
-        names.size.times {|i| result[names[i]] = values[i]}
+        names.size.times { |i| result[names[i]] = values[i] }
       rescue
       end
 
@@ -132,10 +138,10 @@ module Nemsis
     def parse_value_of(key)
       parse_pair('E23_11', 'E23_09')[key] rescue nil
     end
-    
+
     def parse_cluster(element)
-      xpath = "//#{element}"
-      nodes = xml_doc.xpath(xpath)
+      xpath    = "//#{element}"
+      nodes    = xml_doc.xpath(xpath)
       # puts nodes.count
 
       clusters = []
@@ -166,11 +172,11 @@ module Nemsis
       # first one would be Initial Assessment.  The single E15 element is always
       # part of the initial assessment, so it will need to be combined with the
       # earliest E16.
-      e15_clusters  = parse_cluster('E15')
+      e15_clusters           = parse_cluster('E15')
       e15_initial_assessment = e15_clusters.shift
 
-      e16_clusters = parse_clusters('E16')
-      e16_clusters = e16_clusters.sort_by {|c| Time.parse(c.sub_element('03')) rescue Time.now}
+      e16_clusters           = parse_clusters('E16')
+      e16_clusters           = e16_clusters.sort_by { |c| Time.parse(c.sub_element('03')) rescue Time.now }
       e16_initial_assessment = e16_clusters.shift
 
       initial_assessment_node = Nokogiri::XML::Node.new("E15_E16", xml_doc)
@@ -180,7 +186,7 @@ module Nemsis
       initial_assessment = Nemsis::Parser.new(initial_assessment_node.to_s)
 
       assessments = [initial_assessment, e16_clusters].flatten
-  
+
       assessments
     end
 
@@ -200,7 +206,18 @@ module Nemsis
 
     def method_missing(method_sym, *arguments, &block)
       if method_sym.to_s =~ /^[A-Z]\d{2}(_\d{2})?/
-        parse_element(method_sym.to_s)
+        element = method_sym.to_s
+        # Calling this method directly causes legitimate multi-value fields to be truncated!
+        #parse_element(element)
+
+        results = parse(@@spec[element])
+
+        if results.is_a?(Array) then
+          results.size == 0 ? results = "" : results.size == 1 ? results.first : results
+        else
+          results
+        end
+
       else
         super
       end

@@ -6417,10 +6417,10 @@ E24_01:
   data_entry_method: single-choice
   data_type: combo
   field_values:
-    -10: Not Known
-    -15: Not Reporting
-    -20: Not Recorded
     -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
     -5: Not Available
     0: No
     1: Yes
@@ -6454,10 +6454,10 @@ E24_05:
   data_entry_method: multiple-choice
   data_type: combo
   field_values:
-    -10: Not Known
-    -15: Not Reporting
-    -20: Not Recorded
     -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
     -5: Not Available
     500001: None
     500002: Age < 15 or > 55
@@ -6501,8 +6501,8 @@ E24_07:
     -10: Not Known
     -5: Not Available
     500201:   None
-    2085:     Intrusion>12”(occupant) 
-    2085:     Intrusion>18”(any) 
+    2085:     Intrusion >12" (occupant)
+    2085:     Intrusion >18" (any)
     2060:     Death (Same Vehicle) 
     2065:     Ejection 
     2075:     Roll Over 
@@ -6536,3 +6536,109 @@ E24_08:
   is_multi_entry: 1
   name: ANATOMIC CONDITIONS OR RISKS
   node: E24_08
+E25_01:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: MALLAMPATI CLASS
+  node: E25_01
+E25_02:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: AIRWAY GRADING
+  node: E25_02
+E25_03:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5:  Not Available
+    500401: Apnea/Agonal Respirations
+    500402: Airway Reflexes Compromised
+    500403: Ventilatory Effort Compromised
+    500404: Injury/Trauma to Airway
+    500405: Potential for Future Airway Complications
+    500406: Other
+  is_multi_entry: 1
+  name: INDICATIONS
+  node: E25_03
+
+E25_04:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5:  Not Available
+    500501: EtCO2
+    500502: CPR
+    500503: ECG
+    500504: IV
+    500505: SpO2
+    500506: Bougie
+    500507: C - Collar
+    500508: Airflow Meter
+    500509: Other
+  is_multi_entry: 1
+  name: INDICATIONS
+  node: E25_04
+
+E25_05:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5:  Not Available
+    500601: BVM
+    500602: Combitube/King Airway
+    500603: LMA
+    500604: Needle Jet Ventilation
+    500605: Cricothroidotomy
+    500606: Retrograde Intubation
+    500607: Other
+  is_multi_entry: 1
+  name: INDICATIONS
+  node: E25_05
+
+E25_06:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5:  Not Available
+    500701: Inadequate Patient Relaxation
+    500702: Inability to Expose Vocal Cords
+    500703: Patient Anatomy
+    500704: Orofacial Trauma
+    500705: Blood, Vomitus, or Secretions in Airway
+    500706: Inability to Access Patient
+    500707: Arrived at Destination Prior to Intubation
+    500708: Equipment Failure
+    500709: Other
+    500710: N/A
+  is_multi_entry: 1
+  name: INDICATIONS
+  node: E25_06
+
+
+
