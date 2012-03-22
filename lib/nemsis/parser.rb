@@ -204,20 +204,10 @@ module Nemsis
       end.compact.join(' ')
     end
 
+    # Return a string
     def method_missing(method_sym, *arguments, &block)
       if method_sym.to_s =~ /^[A-Z]\d{2}(_\d{2})?/
-        element = method_sym.to_s
-        # Calling this method directly causes legitimate multi-value fields to be truncated!
-        #parse_element(element)
-
-        results = parse(@@spec[element])
-
-        if results.is_a?(Array) then
-          results.size == 0 ? results = "" : results.size == 1 ? results.first : results
-        else
-          results
-        end
-
+        Array(parse(@@spec[method_sym.to_s])).join(', ') rescue ''
       else
         super
       end

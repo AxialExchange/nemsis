@@ -38,6 +38,16 @@ describe Nemsis::Parser do
       it 'should treat method name as element name' do
         p.E06_01.should == p.parse_element('E06_01')
       end
+
+      it 'should return an empty string for a missing data element' do
+        p.E25_00.should == ""
+      end
+      it 'should return a string for single values' do
+        p.E25_01.should == "Class 1"
+      end
+      it 'should return an array as a comma-separated list for multiple values' do
+        p.E25_03.should == "Ventilatory Effort Compromised, Injury/Trauma to Airway"
+      end
     end
 
     describe '#parse_field' do
