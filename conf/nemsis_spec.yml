@@ -6640,5 +6640,91 @@ E25_06:
   name: INDICATIONS
   node: E25_06
 
+E26_01:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: TOTAL BODY SURFACE AREA PERCENTAGE
+  node: E26_01
+
+E26_02:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: FIRST DEGREE BODY SURFACE AREA PERCENTAGE
+  node: E26_02
+
+E26_03:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: SECOND DEGREE BODY SURFACE AREA PERCENTAGE
+  node: E26_03
+
+E26_04:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: THIRD DEGREE BODY SURFACE AREA PERCENTAGE
+  node: E26_04
+
+E27_01:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: date/time
+  is_multi_entry: 0
+  name: ONSET OF SIGNS AND SYMPTOMS DATE AND TIME
+  node: E27_01
+
+E27_02:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: SCREENING CRITERIA MET
+  node: E27_02
+
+E27_03:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: FACIAL DROOP
+  node: E27_03
+
+E27_04:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: ARM DRIFT
+  node: E27_04
+
+E27_05:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: SPEECH
+  node: E27_05
 
 

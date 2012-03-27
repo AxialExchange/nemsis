@@ -20,7 +20,7 @@ E99_0:
   allow_null: 1
   data_entry_method: ~
   data_type: date/time
-  is_multi_entry: 1
+  is_multi_entry: 0
   name: ACTIVATION TIME
   node: E99_0
 

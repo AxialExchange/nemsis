@@ -675,29 +675,36 @@
   </table>
 <br>
 
-<%= start_table "Specialty Patient Burns" %>
+<%= start_table "Specialty Patient &mdash; Burns" %>
     <thead>
     <%= start_row %>
-      <%= heading "Specialty Patient &mdash; Burns", 4 %>
+      <%= heading "Specialty Patient &mdash; Burns", 8 %>
     </tr>
     </thead>
     <tbody>
     <%= start_row %>
-      <%= label "To Be Supplied" %>
+      <%= labeled_cell_narrow "1st Degree", "#{@parser.E26_02}%" %>
+      <%= labeled_cell_narrow "2nd Degree", "#{@parser.E26_03}%" %>
+      <%= labeled_cell_narrow "3rd Degree", "#{@parser.E26_04}%" %>
+      <%= labeled_cell_narrow "Total BSA",  "#{@parser.E26_01}%" %>
     </tr>
     </tbody>
 </table>
 <br>
 
-<%= start_table "SpecialtyPatientStroke" %>
+<%= start_table "Specialty Patient &mdash; Stroke" %>
     <thead>
     <%= start_row %>
-      <%= heading "Specialty Patient &mdash; Stroke", 4 %>
+      <%= heading "Specialty Patient &mdash; Stroke", 10 %>
     </tr>
     </thead>
     <tbody>
     <%= start_row %>
-      <%= label "To Be Supplied" %>
+        <%= labeled_cell_narrow "Onset", @parser.parse_time('E27_01') %>
+        <%= labeled_cell_narrow "Screening Met", @parser.E27_02 %>
+        <%= labeled_cell_narrow "Facial Droop", @parser.E27_03 %>
+        <%= labeled_cell_narrow "Arm Drift",  @parser.E27_04 %>
+        <%= labeled_cell_narrow "Speech",  @parser.E27_05 %>
     </tr>
     </tbody>
 </table>
@@ -734,7 +741,7 @@
 <%= start_table "Specialty Patient &mdash; Trauma Criteria" %>
     <thead>
     <%= start_row %>
-      <%= heading "Specialty Patient &mdash; Trauma Criteria" %>
+      <%= heading "Specialty Patient &mdash; Trauma Criteria", 4 %>
     </tr>
     </thead>
     <tbody>
