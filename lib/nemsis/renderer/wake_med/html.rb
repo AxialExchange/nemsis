@@ -10,7 +10,7 @@ module Nemsis
           self.parser = nemsis_parser 
         end 
 
-        # Set fancy_html to true to get a more colorfull set of HTML results
+        # Set fancy_html to true to get a more colorful set of HTML results
         def render(fancy_html=false)
           @fancy_html = fancy_html
           erb_file = File.expand_path('../templates/runsheet.html.erb', __FILE__) 
