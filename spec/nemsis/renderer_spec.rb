@@ -23,7 +23,7 @@ describe Nemsis::Renderer do
   end
 
   context 'instance methods' do
-    let(:sample_xml_file) {File.expand_path('../../data/sample_3.xml', __FILE__)}
+    let(:sample_xml_file) {File.expand_path('../../data/sample_v_1_13.xml', __FILE__)}
     let(:p) {
       xml_str = File.read(sample_xml_file)
 
