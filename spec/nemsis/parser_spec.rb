@@ -58,7 +58,10 @@ describe Nemsis::Parser do
 
     describe '#parse_time' do
       it 'should parse time to standard format' do
-        p.parse_time('E14_01').should == '2012-01-31 18:23'
+        p.parse_time('E14_01', true).should == '2012-01-31 18:23'
+      end
+      it 'should parse time to shortened format' do
+        p.parse_time('E14_01').should == '18:23'
       end
     end
 
