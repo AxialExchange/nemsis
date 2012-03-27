@@ -97,10 +97,14 @@ module Nemsis
       results.is_a?(Array) ? results.first : results
     end
 
-    def parse_time(element)
+    def parse_time(element, full=false)
       time_str = parse_element(element)
 
-      Time.parse(time_str).strftime("%Y-%m-%d %H:%M") rescue nil
+      if full
+        Time.parse(time_str).strftime("%Y-%m-%d %H:%M") rescue nil
+      else
+        Time.parse(time_str).strftime("%H:%M") rescue nil
+      end
     end
 
     def parse_state(element)
@@ -204,20 +208,10 @@ module Nemsis
       end.compact.join(' ')
     end
 
+    # Return a string
     def method_missing(method_sym, *arguments, &block)
       if method_sym.to_s =~ /^[A-Z]\d{2}(_\d{2})?/
-        element = method_sym.to_s
-        # Calling this method directly causes legitimate multi-value fields to be truncated!
-        #parse_element(element)
-
-        results = parse(@@spec[element])
-
-        if results.is_a?(Array) then
-          results.size == 0 ? results = "" : results.size == 1 ? results.first : results
-        else
-          results
-        end
-
+        Array(parse(@@spec[method_sym.to_s])).join(', ') rescue ''
       else
         super
       end
