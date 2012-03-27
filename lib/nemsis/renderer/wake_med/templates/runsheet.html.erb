@@ -17,6 +17,14 @@
      end
    end
 
+   def borderless_cell(label, value)
+     if @fancy_html
+       text = "<td class='no-border'><b>#{label}</b></td><td class='no-border'>#{value}</td>"
+     else
+       text = "<td border='0'><font size='2'><b>#{label}</b></font><td border='0'><font size='2'>#{value}</font></td>"
+     end
+   end
+
    def start_row(options="")
      if @fancy_html
        text = "<tr #{(options.empty?) ? '' : options}>"
@@ -236,12 +244,9 @@
 <p>
   <%= borderless_table %>
       <%= start_row %>
-        <td class="no-border"><b>Name:</b></td>
-        <td class="no-border"><%= "#{@parser.E06_01}, #{@parser.E06_02}" %></td>
-        <td class="no-border"><b>Incident #:</b></td>
-        <td class="no-border"><%= @parser.E02_02 %></td>
-        <td class="no-border"><b>Date:</b></td>
-        <td class="no-border"><%= @parser.parse_time('E05_03', true) %></td>
+        <%= borderless_cell "Name:", "#{@parser.E06_01}, #{@parser.E06_02}" %>
+        <%= borderless_cell "Incident #:", @parser.E02_02 %>
+        <%= borderless_cell "Date:", @parser.parse_time('E05_03', true) %>
       </tr>
     </table>
 </p>
