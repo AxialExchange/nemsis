@@ -1,3 +1,147 @@
+<%
+   @fancy_html ||= false
+
+   def start_table(options="")
+     if @fancy_html
+       text = "<table #{(options.empty?) ? '' : options}>"
+     else
+       text = "<table border='1' cellspacing='0' width='700'>"
+     end
+   end
+
+   def borderless_table
+     if @fancy_html
+       text = "<table class='no-border'>"
+     else
+       text = "<table border='0' cellspacing='0' width='700'>"
+     end
+   end
+
+   def start_row(options="")
+     if @fancy_html
+       text = "<tr #{(options.empty?) ? '' : options}>"
+     else
+       text = "<tr>"
+     end
+   end
+
+   def label(label, colspan=0)
+     if @fancy_html
+       text = "    <td class='label' #{(colspan > 0) ? "colspan='#{colspan}'" : '' } >#{label}</td>"
+     else
+       text = "    <td #{(colspan > 0) ? "colspan='#{colspan}'" : '' } ><font size='2'><b>#{label}</b></font></td>"
+     end
+     text
+   end
+
+   def label_with_style(style, label, rowspan=0)
+     if @fancy_html
+       text = "<td class='#{style}' #{(rowspan > 0) ? "rowspan='#{rowspan}'" : '' }>#{label}</td>"
+     else
+       text = case style
+                when 'label'
+                  "<td #{(rowspan > 0) ? "rowspan='#{rowspan}'" : '' }><font size='2'><b>#{label}</b></font></td>"
+                when 'label-medium'
+                  "<td width='25%' #{(rowspan > 0) ? "rowspan='#{rowspan}'" : '' }><font size='2'><b>#{label}</b></font></td>"
+                when 'label-narrow'
+                  "<td width='10%' #{(rowspan > 0) ? "rowspan='#{rowspan}'" : '' }><font size='2'><b>#{label}</b></font></td>"
+                else
+                  "<td #{(rowspan > 0) ? "rowspan='#{rowspan}'" : '' }><font size='2'><b>#{label}</b></font></td>"
+              end
+       text
+     end
+   end
+
+   def tall_label(label, rowspan=0)
+     label_with_style('label', label, rowspan)
+   end
+
+   def label_top(label, colspan=0)
+     if @fancy_html
+       text = "    <td class='label-top' #{(colspan > 0) ? "colspan='#{colspan}'" : '' }>#{label}</td>"
+     else
+       text = "    <td #{(colspan > 0) ? "colspan='#{colspan}'" : '' }><font size='2'><b>#{label}</b></font></td>"
+     end
+     text
+   end
+
+   def heading(label, colspan=0)
+     if @fancy_html
+       text = "    <th #{(colspan > 0) ? "colspan='#{colspan}'" : '' }>#{label}</th>"
+     else
+       text = "    <th #{(colspan > 0) ? "colspan='#{colspan}'" : '' }><font color='blue' size='3'>#{label}</font></th>"
+     end
+     text
+   end
+
+   def cell(value, colspan=0, rowspan=0)
+     if @fancy_html
+       text = "    <td class='value' #{(colspan > 0) ? "colspan='#{colspan}'" : '' } #{(rowspan > 0) ? "rowspan='#{rowspan}'" : '' }>#{value}</td>"
+     else
+       text = "    <td #{(colspan > 0) ? "colspan='#{colspan}'" : '' } #{(rowspan > 0) ? "rowspan='#{rowspan}'" : '' }><font size='2'>#{value}</font></td>"
+     end
+     text
+   end
+
+   def labeled_cell_with_style(style, label, value, colspan=0)
+     text = "#{label_with_style(style, label)} #{cell(value, colspan)}"
+   end
+
+   def labeled_cell(label, value, colspan=0)
+     labeled_cell_with_style('label', label, value, colspan)
+   end
+
+   def labeled_cell_medium(label, value, colspan=0)
+     labeled_cell_with_style('label-medium', label, value, colspan)
+   end
+
+   def labeled_cell_narrow(label, value, colspan=0)
+     labeled_cell_with_style('label-narrow', label, value, colspan)
+   end
+
+   # An attempt to control HTML generation in one spot.
+   #def convert_style_to_html(text)
+   #  if text.index('label-narrow')
+   #    text.gsub!("class='label-narrow'", "")
+   #    puts text
+   #  end
+   #  text
+   #end
+
+   # Return a set of rows
+   def list(the_hash)
+     return if the_hash.nil? || the_hash.empty?
+     text = ""
+     the_hash.each do |k,v|
+       text += "<tr>#{labeled_cell(k,v)}</tr>\n"
+     end
+     text
+   end
+
+   # Helper method to make it easy to display only those delays that are present
+   def list_of_delays
+     list = {}
+     list.merge!(get_delay("Dispatch", @parser.E02_06))
+     list.merge!(get_delay("Response", @parser.E02_07))
+     list.merge!(get_delay("Scene", @parser.E02_08))
+     list.merge!(get_delay("Transport", @parser.E02_09))
+     list.merge!(get_delay("Turn-Around", @parser.E02_10))
+     list
+   end
+
+   def get_delay(type, value)
+     return {} if value.empty?
+     delay = {type => value}
+     delay
+   end
+
+   # Return a list of ;-separated items
+   def concat_list(items)
+     items.select { |v| !v.strip!.nil? }.join('; ')
+   end
+
+%>
+<% if @fancy_html %>
 <HEAD>
   <STYLE type="text/css">
       <!--
@@ -18,7 +162,7 @@
 
           /* Each section can be a table */
       table, tbody, tr {
-          border: 2px;
+          border: 1px;
           border-style: solid;
           border-color: black;
           border-spacing: 0px;
@@ -41,8 +185,8 @@
           /* Default table cell for values */
       td {
           border: 1px;
-          border-style: groove;
-          border-color: black;
+          border-style: solid;
+          border-color: #737373;
           font-size: small;
           padding: 2px;
       }
@@ -76,693 +220,599 @@
           background-color: #dcdcdc;
           width: 25%;
       }
+      .no-border {
+          border: 1px;
+          border-style: none;
+          border-color: red;
+          border-spacing: 0px;
+      }
 
       -->
   </STYLE>
 </HEAD>
+<% end %>
 
 <h4>Wake County EMS System - Patient Care Record</h4>
 <p>
-  <b>Date:</b> 9/25/2011<br>
-  <b>Incident #:</b>123456<br>
-  <br>
+  <%= borderless_table %>
+      <%= start_row %>
+        <td class="no-border"><b>Name:</b></td>
+        <td class="no-border"><%= "#{@parser.E06_01}, #{@parser.E06_02}" %></td>
+        <td class="no-border"><b>Incident #:</b></td>
+        <td class="no-border"><%= @parser.E02_02 %></td>
+        <td class="no-border"><b>Date:</b></td>
+        <td class="no-border"><%= @parser.parse_time('E05_03', true) %></td>
+      </tr>
+    </table>
 </p>
-<table>
+<%= start_table %>
   <thead>
-  <tr>
-    <th colspan="14">Patient Information</th>
+  <%= start_row %>
+    <%= heading "Patient Information", 14 %>
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <td class="label">Last</td>
-    <td><%= @parser.E06_01 %></td>
-    <td class="label">First</td>
-    <td><%= @parser.E06_02 %></td>
-    <td class="label">Middle</td>
-    <td><%= @parser.E06_03 %></td>
-    <td class="label">DOB</td>
-    <td><%= @parser.E06_16 %></td>
-    <td class="label">Gender</td>
-    <td><%= @parser.E06_11 %></td>
-    <td class="label">Weight</td>
-    <td><%= @parser.E16_01 %> kg</td>
-    <td class="label">SSN</td>
-    <td><%= @parser.E06_10 %></td>
+  <%= start_row %>
+    <%= labeled_cell "Last", @parser.E06_01 %>
+    <%= labeled_cell "First", @parser.E06_02 %>
+    <%= labeled_cell "Middle", @parser.E06_03 %>
+    <%= labeled_cell "DOB", @parser.E06_16 %>
+    <%= labeled_cell "Gender", @parser.E06_11 %>
+    <%= labeled_cell "Weight", "#{@parser.E16_01} kg" %>
+    <%= labeled_cell "SSN", @parser.E06_10 %>
   </tr>
-  <tr>
-    <td class="label">Address</td>
-    <td><%= @parser.E06_04 %></td>
-    <td class="label">Address 2</td>
-    <td>E23_09 fieldname to be determined</td>
-    <td class="label">City</td>
-    <td><%= @parser.E06_05 %></td>
-    <td class="label">State</td>
-    <td><%= @parser.parse_state('E06_07') %></td>
-    <td class="label">Zip</td>
-    <td><%= @parser.E06_08 %></td>
-    <td class="label">Country</td>
-    <td><%= @parser.E06_09 %></td>
-    <td class="label">Tel</td>
-    <td><%= @parser.E06_17 %></td>
+  <%= start_row %>
+    <%= labeled_cell "Address", @parser.E06_04 %>
+    <%= labeled_cell "Address 2", "E23_09 field TBD" %>
+    <%= labeled_cell "City", @parser.E06_05 %>
+    <%= labeled_cell "State", @parser.parse_state('E06_07') %>
+    <%= labeled_cell "Zip", @parser.E06_08 %>
+    <%= labeled_cell "Country", @parser.E06_09 %>
+    <%= labeled_cell "Tel", @parser.E06_17 %>
   </tr>
-  <tr>
-    <td class="label">Advanced Directive</td>
-    <td colspan="13"><%= @parser.E12_07 %></td>
+  <%= start_row %>
+    <%= labeled_cell "Advanced Directive", @parser.E12_07, 13 %>
   </tr>
   </tbody>
 </table>
 <br>
-<table>
+<%= start_table %>
   <thead>
-  <tr>
-    <th colspan="8">Clinical Impression</th>
+  <%= start_row %>
+    <%= heading "Clinical Impression", 8 %>
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <td class="label">Primary Impression</td>
-    <td><%= @parser.E09_15 %></td>
-    <td class="label">Chief Complaint</td>
-    <td><%= @parser.E09_05 %></td>
-    <td class="label">Injury</td>
-    <td><%= @parser.concat 'E10_01', 'E10_02', 'E10_03' %></td>
-    <td class="label">Barriers of Care</td>
-    <td><%= @parser.E12_01 %></td>
+  <%= start_row %>
+    <%= labeled_cell "Primary Impression", @parser.E09_15 %>
+    <%= labeled_cell "Chief Complaint", @parser.E09_05 %>
+    <%= labeled_cell "Injury", (@parser.concat 'E10_01', 'E10_02', 'E10_03') %>
+    <%= labeled_cell "Barriers of Care", @parser.E12_01 %>
   </tr>
-  <tr>
-    <td class="label">Secondary Impression</td>
-    <td><%= @parser.E09_16 %></td>
-    <td class="label">Duration</td>
-    <td><%= @parser.concat 'E09_06', 'E09_07' %></td>
-    <td class="label">Medical/ Trauma</td>
-    <td><%= @parser.parse_value_of('MedicalTrauma') %></td>
-    <td class="label">Alcohol/ Drugs</td>
-    <td><%= @parser.E12_19 %></td>
+  <%= start_row %>
+    <%= labeled_cell "Secondary Impression", @parser.E09_16 %>
+    <%= labeled_cell "Duration", (@parser.concat 'E09_06', 'E09_07') %>
+    <%= labeled_cell "Medical/ Trauma", @parser.parse_value_of('MedicalTrauma') %>
+    <%= labeled_cell "Alcohol/ Drugs", @parser.E12_19 %>
   </tr>
-  <tr>
-    <td class="label">Signs &amp; Symptoms</td>
-    <td colspan="7"><%= @parser.concat 'E09_13', 'E09_14' %></td>
+  <%= start_row %>
+    <%= labeled_cell "Signs &amp; Symptoms", (@parser.concat 'E09_13', 'E09_14'), 7 %>
   </tr>
   </tbody>
 </table>
 <br>
-<table>
-<thead>
-<tr>
-  <th colspan="16">Medication/Allergies/History</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td class="label">Medications</td>
-  <td colspan="15"><%= @parser.concat 'E12_14', 'E12_15', 'E12_16' %></td>
-</tr>
-<tr>
-  <td class="label">Allergies</td>
-  <td colspan="15"><%= @parser.concat 'E12_08', 'E12_09' %></td>
-</tr>
-<tr>
-  <td class="label">History</td>
-  <td colspan="15"><%= @parser.E12_10 %></td>
-</tr>
-
-<tr>
-  <th colspan="16">Vital Signs</th>
-</tr>
-<tr>
-  <td class="label-top">Time</td>
-  <td class="label-top">AVPU</td>
-  <td class="label-top">Side</td>
-  <td class="label-top">POS</td>
-  <td class="label-top">BP</td>
-
-  <td class="label-top">Pulse</td>
-  <td class="label-top">RR</td>
-  <td class="label-top">SPO2</td>
-  <td class="label-top">ETCO2</td>
-  <td class="label-top">CO</td>
-
-  <td class="label-top">BG</td>
-  <td class="label-top">Temp</td>
-  <td class="label-top">Pain</td>
-  <td class="label-top">GCS</td>
-  <td class="label-top">RTS</td>
-
-  <td class="label-top"><b>PTS</b></td>
-</tr>
-
-<% @parser.parse_cluster('E14').sort_by { |e14| Time.parse(e14.E14_01) rescue Time.now }.each do |e14| %>
-    <tr>
-      <td><%= e14.parse_time('E14_01') %></td>
-      <td><%= e14.E14_22 %></td>
-      <td><%= e14.E14_29 %></td>
-      <td><%= e14.E14_30 %></td>
-      <td><%= e14.concat 'E14_04', 'E14_05', 'E14_06' %></td>
-
-      <td><%= [(e14.E14_07 || e14.E14_08), e14.E14_10].compact.join(' ') %></td>
-      <td><%= e14.concat 'E14_11', 'E14_12' %></td>
-      <td><%= e14.E14_09 %></td>
-      <td><%= e14.E14_13 %></td>
-      <td><%= e14.E14_31 %></td>
-
-      <td><%= e14.E14_14 %></td>
-      <td><%= e14.concat 'E14_20', 'E14_21' %></td>
-      <td><%= e14.E14_23 %></td>
-      <td><%= e14.E14_19 %></td>
-      <td><%= e14.E14_27 %></td>
-
-      <td><%= e14.E14_28 %></td>
-
-    </tr>
-<% end %>
-
-<thead>
-<tr>
-  <th colspan="16">ECG</th>
-</tr>
-</thead>
-<tr>
-  <td class="label" colspan="1">Time</td>
-  <td class="label" colspan="7">3-Lead ECG</td>
-  <td class="label" colspan="8">12-Lead ECG</td>
-</tr>
-
-<% @parser.parse_cluster('E14').sort_by { |e14| Time.parse(e14.E14_01) rescue Time.now }.each do |e14| %>
-    <tr>
-      <td colspan="1"><%= e14.parse_time('E14_01') %></td>
-      <td colspan="7"><%= e14.E14_03 %></td>
-      <td colspan="8"><%= e14.E14_33 %></td>
-    </tr>
-<% end %>
-
-<thead>
-<tr>
-  <th colspan="16">Flow Chart</th>
-</tr>
-</thead>
-<tr>
-  <td class="label">Time</td>
-  <td class="label" colspan="2">Treatment</td>
-  <td class="label" colspan="11">Description</td>
-  <td class="label" colspan="2">Provider</td>
-</tr>
-
-<% @parser.parse_clusters('E18', 'E19').sort_by { |c| Time.parse(c.sub_element('01')) rescue Time.now }.each do |cluster| %>
-    <tr>
-      <td><%= Time.parse(cluster.sub_element('01')).strftime('%Y-%m-%d %H:%M') rescue nil %></td>
-      <td colspan="2"><%= cluster.sub_element('03') %></td>
-      <td colspan="11">
-        <p>
-          <% if cluster.root_element_name == 'E18' %>
-              <%= cluster.concat 'E18_05', 'E18_06' %>;
-              <%= cluster.E18_07 %>;
-              <%= cluster.E18_08 %>;
-          <% elsif cluster.root_element_name == 'E19' %>
-          <% end %>
-        </p>
-      </td>
-      <td colspan="2">E18_09 or E19_09 to be mapped to name</td>
-    </tr>
-<% end %>
-
-<thead>
-<tr>
-  <th colspan="16">Initial Assessment</th>
-</tr>
-</thead>
-<% @parser.parse_assessments.each do |assessment| %>
-    <tr>
-      <td class="label" colspan="2">Category</td>
-      <td class="label" colspan="6">Comments</td>
-      <td class="label" colspan="2">Abnormalities</td>
-      <td class="label" colspan="6">&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="label" colspan="2">Mental Status</td>
-      <td colspan="6"><%= assessment.E16_25 %></td>
-      <td class="label" colspan="2">Mental Status</td>
-      <td colspan="6"><%= assessment.E16_23 %></td>
-    </tr>
-    <tr>
-      <td class="label" colspan="2">Skin</td>
-      <td colspan="6"><%= assessment.E16_26 %></td>
-      <td class="label" colspan="2">Skin</td>
-      <td colspan="6"><%= assessment.concat('E16_04', 'E15_01') %></td>
-    </tr>
-    <tr>
-      <td class="label" colspan="2" rowspan="3">HEENT</td>
-      <td colspan="6" rowspan="3"><%= assessment.E16_27 %></td>
-      <td class="label" colspan="2">Head/Face</td>
-      <td colspan="6"><%= assessment.concat('E16_05', 'E15_02', 'E15_03') %></td>
-    </tr>
-    <tr>
-      <td class="label" colspan="2">Eyes</td>
-      <td colspan="6"><%= assessment.concat('E16_21', 'E16_22') %></td>
-    </tr>
-    <tr>
-      <td class="label" colspan="2">Neck</td>
-      <td colspan="6"><%= assessment.E16_06 %></td>
-    </tr>
-    <tr>
-      <td class="label" colspan="2" rowspan="3">Chest</td>
-      <td colspan="6" rowspan="3"><%= assessment.E16_28 %></td>
-      <td class="label" colspan="2">Chest</td>
-      <td colspan="6"><%= assessment.E15_05 %></td>
-    </tr>
-    <tr>
-      <td class="label" colspan="2">Heart Sounds</td>
-      <td colspan="6"><%= assessment.E16_08 %></td>
-    </tr>
-    <tr>
-      <td class="label" colspan="2">Lung Sounds</td>
-      <td colspan="6"><%= assessment.E16_07 %></td>
-    </tr>
-    <tr>
-      <td class="label" colspan="2" rowspan="5">Abdomen</td>
-      <td colspan="6" rowspan="5"><%= assessment.E16_29 %></td>
-      <td class="label" colspan="2">General</td>
-      <td colspan="6"><%= assessment.concat('E16_13', 'E15_06') %></td>
-    </tr>
-    <tr>
-      <td class="label" colspan="2">Left Upper</td>
-      <td colspan="6"><%= assessment.E16_09 %></td>
-    </tr>
-    <tr>
-      <td class="label" colspan="2">Right Upper</td>
-      <td colspan="6"><%= assessment.E16_11 %></td>
-    </tr>
-    <tr>
-      <td class="label" colspan="2">Left Lower</td>
-      <td colspan="6"><%= assessment.E16_10 %></td>
-    </tr>
-    <tr>
-      <td class="label" colspan="2">Right Lower</td>
-      <td colspan="6"><%= assessment.E16_12 %></td>
-    </tr>
-    <tr>
-      <td class="label" colspan="2" rowspan="3">Back</td>
-      <td colspan="6" rowspan="3"><%= assessment.E16_30 %></td>
-      <td class="label" colspan="2">Cervical</td>
-      <td colspan="6"><%= assessment.E16_14 %></td>
-    </tr>
-    <tr>
-      <td class="label" colspan="2">Thoracic</td>
-      <td colspan="6"><%= assessment.E15_07 %></td>
-    </tr>
-    <tr>
-      <td class="label" colspan="2">Lumbar/Sacral</td>
-      <td colspan="6"><%= assessment.E16_16 %></td>
-    </tr>
-    <tr>
-      <td class="label" colspan="2">Pelvis/GU/GI</td>
-      <td colspan="6"><%= assessment.E16_31 %></td>
-      <td class="label" colspan="2">Pelvis/GU/GI</td>
-      <td colspan="6"><%= assessment.concat('E16_13', 'E15_09') %></td>
-    </tr>
-    <tr>
-      <td class="label" colspan="2" rowspan="6">Extremities</td>
-      <td colspan="6" rowspan="6"><%= assessment.E16_32 %></td>
-      <td class="label" colspan="2">Left Arm</td>
-      <td colspan="6"><%= assessment.E16_19 %></td>
-    </tr>
-    <tr>
-      <td class="label" colspan="2">Right Arm</td>
-      <td colspan="6"><%= assessment.E16_17 %></td>
-    </tr>
-    <tr>
-      <td class="label" colspan="2">Left Leg</td>
-      <td colspan="6"><%= assessment.E16_20 %></td>
-    </tr>
-    <tr>
-      <td class="label" colspan="2">Right Leg</td>
-      <td colspan="6"><%= assessment.E16_18 %></td>
-    </tr>
-    <tr>
-      <td class="label" colspan="2">Pulse</td>
-      <td colspan="6"></td>
-    </tr>
-    <tr>
-      <td class="label" colspan="2">Capillary Refill</td>
-      <td colspan="6"></td>
-    </tr>
-    <tr>
-      <td class="label" colspan="2">Neurological</td>
-      <td colspan="6"><%= assessment.E16_33 %></td>
-      <td class="label" colspan="2">Neurological</td>
-      <td colspan="6"><%= assessment.E16_24 %></td>
-    </tr>
-    </tbody>
-    </table><br>
-    <b>Assessment Time:</b><%= assessment.parse_time('E16_03') %>
-    <br>
-<% end %>
+<%= start_table %>
+  <thead>
+  <%= start_row %>
+    <%= heading "Medication/Allergies/History", 16 %>
+  </tr>
+  </thead>
+  <tbody>
+  <%= start_row %>
+    <%= labeled_cell_medium "Medications", (@parser.concat 'E12_14', 'E12_15', 'E12_16'), 15 %>
+  </tr>
+  <%= start_row %>
+    <%= labeled_cell_medium "Allergies", (@parser.concat 'E12_08', 'E12_09'), 15 %>
+  </tr>
+  <%= start_row %>
+    <%= labeled_cell_medium "History", @parser.E12_10, 15 %>
+  </tr>
+  </tbody>
+</table>
 <br>
 
-<table>
+<%= start_table %>
+
+  <%= start_row %>
+    <%= heading "Vital Signs", 16 %>
+  </tr>
+  <%= start_row %>
+    <%= label_top "Time" %>
+    <%= label_top "AVPU" %>
+    <%= label_top "Side" %>
+    <%= label_top "POS" %>
+    <%= label_top "BP" %>
+    <%= label_top "Pulse" %>
+    <%= label_top "RR" %>
+    <%= label_top "SPO2" %>
+    <%= label_top "ETCO2" %>
+    <%= label_top "CO" %>
+    <%= label_top "BG" %>
+    <%= label_top "Temp" %>
+    <%= label_top "Pain" %>
+    <%= label_top "GCS" %>
+    <%= label_top "RTS" %>
+    <%= label_top "<b>PTS</b>" %>
+  </tr>
+
+  <% @parser.parse_cluster('E14').sort_by { |e14| Time.parse(e14.E14_01) rescue Time.now }.each do |e14| %>
+      <%= start_row %>
+        <%= cell (e14.parse_time('E14_01')) %>
+        <%= cell (e14.E14_22) %>
+        <%= cell (e14.E14_29) %>
+        <%= cell (e14.E14_30) %>
+        <%= cell ((e14.concat 'E14_04', 'E14_05', 'E14_06')) %>
+        <%= cell ([(e14.E14_07 || e14.E14_08), e14.E14_10].compact.join(' ')) %>
+        <%= cell ((e14.concat 'E14_11', 'E14_12')) %>
+        <%= cell (e14.E14_09) %>
+        <%= cell (e14.E14_13) %>
+        <%= cell (e14.E14_31) %>
+        <%= cell (e14.E14_14) %>
+        <%= cell ((e14.concat 'E14_20', 'E14_21')) %>
+        <%= cell (e14.E14_23) %>
+        <%= cell (e14.E14_19) %>
+        <%= cell (e14.E14_27) %>
+        <%= cell (e14.E14_28) %>
+      </tr>
+  <% end %>
+
+</table>
+<br>
+
+<%= start_table %>
   <thead>
-  <tr>
+  <%= start_row %>
+    <%= heading "ECG", 3 %>
+  </tr>
+  </thead>
+  <%= start_row %>
+    <%= label "Time" %>
+    <%= label "3-Lead ECG" %>
+    <%= label "12-Lead ECG" %>
+  </tr>
+
+  <% @parser.parse_cluster('E14').sort_by { |e14| Time.parse(e14.E14_01) rescue Time.now }.each do |e14| %>
+      <%= start_row %>
+        <%= cell (e14.parse_time('E14_01')) %>
+        <%= cell (e14.E14_03) %>
+        <%= cell (e14.E14_33) %>
+      </tr>
+  <% end %>
+</table>
+<br>
+
+<%= start_table %>
+  <thead>
+  <%= start_row %>
+    <%= heading "Flow Chart", 4 %>
+  </tr>
+  </thead>
+  <%= start_row %>
+    <%= label "Time" %>
+    <%= label "Treatment" %>
+    <%= label "Description" %>
+    <%= label "Provider" %>
+  </tr>
+
+  <% @parser.parse_clusters('E18', 'E19').sort_by { |c| Time.parse(c.sub_element('01')) rescue Time.now }.each do |cluster| %>
+      <%= start_row %>
+        <td><%= Time.parse(cluster.sub_element('01')).strftime('%Y-%m-%d %H:%M') rescue nil %></td>
+        <%= cell (cluster.sub_element('03')) %>
+        <td>
+          <p>
+            <% if cluster.root_element_name == 'E18' %>
+                <%= concat_list [(cluster.concat 'E18_05', 'E18_06'), cluster.E18_07, cluster.E18_08] %>
+            <% elsif cluster.root_element_name == 'E19' %>
+            <% end %>
+          </p>
+        </td>
+        <td>E18_09 or E19_09 to be mapped to name</td>
+      </tr>
+  <% end %>
+</table>
+<br>
+
+<% assessments = @parser.parse_assessments
+   unless assessments.empty?
+%>
+    <%= start_table %>
+      <thead>
+      <%= start_row %>
+        <%= heading "Initial Assessment", 4 %>
+      </tr>
+      </thead>
+      <tbody>
+      <% assessments.each do |assessment| %>
+          <%= start_row %>
+            <%= label "Category" %>
+            <%= label "Comments" %>
+            <%= label "&nbsp;" %>
+            <%= label "Abnormalities" %>
+          </tr>
+          <%= start_row %>
+            <%= labeled_cell "Mental Status", (assessment.E16_25) %>
+            <%= labeled_cell "Mental Status", (assessment.E16_23) %>
+          </tr>
+          <%= start_row %>
+            <%= labeled_cell "Skin", (assessment.E16_26) %>
+            <%= labeled_cell "Skin", (assessment.concat('E16_04', 'E15_01')) %>
+          </tr>
+          <%= start_row %>
+            <%= tall_label "HEENT", 3 %>
+            <%= cell assessment.E16_27, 1, 3 %>
+            <%= labeled_cell "Head/Face", (assessment.concat('E16_05', 'E15_02', 'E15_03')) %>
+          </tr>
+          <%= start_row %>
+            <%= labeled_cell "Eyes", (assessment.concat('E16_21', 'E16_22')) %>
+          </tr>
+          <%= start_row %>
+            <%= labeled_cell "Neck", (assessment.E16_06) %>
+          </tr>
+          <%= start_row %>
+            <%= tall_label "Chest", 3 %>
+            <%= cell assessment.E16_28, 1, 3 %>
+            <%= labeled_cell "Chest", (assessment.E15_05) %>
+          </tr>
+          <%= start_row %>
+            <%= labeled_cell "Heart Sounds", (assessment.E16_08) %>
+          </tr>
+          <%= start_row %>
+            <%= labeled_cell "Lung Sounds", (assessment.E16_07) %>
+          </tr>
+          <%= start_row %>
+            <%= tall_label "Abdomen", 5 %>
+            <%= cell assessment.E16_29, 1, 5 %>
+            <%= labeled_cell "General", (assessment.concat('E16_13', 'E15_06')) %>
+          </tr>
+          <%= start_row %>
+            <%= labeled_cell "Left Upper", (assessment.E16_09) %>
+          </tr>
+          <%= start_row %>
+            <%= labeled_cell "Right Upper", (assessment.E16_11) %>
+          </tr>
+          <%= start_row %>
+            <%= labeled_cell "Left Lower", (assessment.E16_10) %>
+          </tr>
+          <%= start_row %>
+            <%= labeled_cell "Right Lower", (assessment.E16_12) %>
+          </tr>
+          <%= start_row %>
+            <%= tall_label "Back", 3 %>
+            <%= cell assessment.E16_30, 1, 3 %>
+            <%= labeled_cell "Cervical", (assessment.E16_14) %>
+          </tr>
+          <%= start_row %>
+            <%= labeled_cell "Thoracic", (assessment.E15_07) %>
+          </tr>
+          <%= start_row %>
+            <%= labeled_cell "Lumbar/Sacral", (assessment.E16_16) %>
+          </tr>
+          <%= start_row %>
+            <%= label "Pelvis/GU/GI" %>
+            <%= cell (assessment.E16_31) %>
+            <%= labeled_cell "Pelvis/GU/GI", (assessment.concat('E16_13', 'E15_09')) %>
+          </tr>
+          <%= start_row %>
+            <%= tall_label "Extremities", 6 %>
+            <%= cell assessment.E16_32, 1, 6 %>
+            <%= labeled_cell "Left Arm", (assessment.E16_19) %>
+          </tr>
+          <%= start_row %>
+            <%= labeled_cell "Right Arm", (assessment.E16_17) %>
+          </tr>
+          <%= start_row %>
+            <%= labeled_cell "Left Leg", (assessment.E16_20) %>
+          </tr>
+          <%= start_row %>
+            <%= labeled_cell "Right Leg", (assessment.E16_18) %>
+          </tr>
+          <%= start_row %>
+            <%= labeled_cell "Pulse", "TBD" %>
+          </tr>
+          <%= start_row %>
+            <%= labeled_cell "Capillary Refill", "TBD" %>
+          </tr>
+          <%= start_row %>
+            <%= labeled_cell "Neurological", (assessment.E16_33) %>
+            <%= labeled_cell "Neurological", (assessment.E16_24) %>
+          </tr>
+          <%= start_row %>
+            <%= labeled_cell "Assessment Time", assessment.parse_time('E16_03'), 3 %>
+          </tr>
+          </tbody>
+          </table>
+          <br>
+      <% end %>
+<% end %>
+
+<% unless @parser.E13_01.empty? %>
+<%= start_table %>
+  <thead>
+  <%= start_row %>
     <th>Narrative</th>
   </tr>
-  <tr>
-    <td><%= @parser.E13_01 %></td>
+  <%= start_row %>
+    <%= cell (@parser.E13_01) %>
   </tr>
   </thead>
 </table>
 <br>
-<table>
+<% end %>
+
+<%= start_table %>
   <thead>
-  <tr>
-    <th class="label" colspan="2">Incident Details</th>
-    <th class="label" colspan="2">Destination Details</th>
-    <th class="label" colspan="2">Incident Times</th>
+  <%= start_row %>
+    <%= heading "Incident Details", 2 %>
+    <%= heading "Destination Details", 2 %>
+    <%= heading "Incident Times", 2 %>
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <td class="label">Location</td>
-    <td><%= @parser.E08_07 %></td>
-    <td class="label">Disposition</td>
-    <td><%= @parser.concat('E20_10', 'E20_14') %></td>
-    <td class="label">Call Received</td>
-    <td><%= @parser.parse_time('E05_01') %></td>
+  <%= start_row %>
+    <%= labeled_cell "Location", @parser.E08_07 %>
+    <%= labeled_cell "Disposition", @parser.concat('E20_10', 'E20_14') %>
+    <%= labeled_cell "Call Received", @parser.parse_time('E05_01') %>
   </tr>
-  <tr>
-    <td class="label">Address</td>
-    <td><%= @parser.E08_11 %></td>
-    <td class="label">Transport Due To</td>
-    <td><%= @parser.E20_16 %></td>
-    <td class="label">Dispatched</td>
-    <td><%= @parser.parse_time('E05_04') %></td>
+  <%= start_row %>
+    <%= labeled_cell "Address", @parser.E08_11 %>
+    <%= labeled_cell "Transport Due To", @parser.E20_16 %>
+    <%= labeled_cell "Dispatched", @parser.parse_time('E05_04') %>
   </tr>
-  <tr>
-    <td class="label">Address 2</td>
-    <td><%= @parser.parse_value_of('IncidentAddress2') %></td>
-    <td class="label">Transported To</td>
-    <td><%= @parser.E20_01 %></td>
-    <td class="label">En Route</td>
-    <td><%= @parser.parse_time('E05_05') %></td>
+  <%= start_row %>
+    <%= labeled_cell "Address 2", @parser.parse_value_of('IncidentAddress2') %>
+    <%= labeled_cell "Transported To", @parser.E20_01 %>
+    <%= labeled_cell "En Route", @parser.parse_time('E05_05') %>
   </tr>
-  <tr>
-    <td class="label">City</td>
-    <td><%= @parser.E08_12 %></td>
-    <td class="label">Requested By</td>
-    <td><%= @parser.parse_value_of('Requested By') %></td>
-    <td class="label">Resp on Scene</td>
-    <td><%= @parser.parse_time('E05_06') %></td>
+  <%= start_row %>
+    <%= labeled_cell "City", @parser.E08_12 %>
+    <%= labeled_cell "Requested By", @parser.parse_value_of('Requested By') %>
+    <%= labeled_cell "Resp on Scene", @parser.parse_time('E05_06') %>
   </tr>
-  <tr>
-    <td class="label">State</td>
-    <td><%= @parser.parse_state('E08_14') %></td>
-    <td class="label">Destination</td>
-    <td><%= @parser.E20_17 %></td>
-    <td class="label">On Scene</td>
-    <td></td>
+  <%= start_row %>
+    <%= labeled_cell "State", @parser.parse_state('E08_14') %>
+    <%= labeled_cell "Destination", @parser.E20_17 %>
+    <%= labeled_cell "On Scene", "" %>
   </tr>
-  <tr>
-    <td class="label">Zip</td>
-    <td><%= @parser.E08_15 %></td>
-    <td class="label">Address</td>
-    <td><%= @parser.E20_03 %></td>
-    <td class="label">At Patient</td>
-    <td><%= @parser.parse_time('E05_07') %></td>
+  <%= start_row %>
+    <%= labeled_cell "Zip", @parser.E08_15 %>
+    <%= labeled_cell "Address", @parser.E20_03 %>
+    <%= labeled_cell "At Patient", @parser.parse_time('E05_07') %>
   </tr>
-  <tr>
-    <td class="label">Medic Unit</td>
-    <td><%= @parser.E02_03 %></td>
-    <td class="label">Address 2</td>
-    <td><%= @parser.parse_value_of('DestinationAddress2') %></td>
-    <td class="label">Depart Scene</td>
-    <td><%= @parser.parse_time('E05_09') %></td>
+  <%= start_row %>
+    <%= labeled_cell "Medic Unit", @parser.E02_03 %>
+    <%= labeled_cell "Address 2", @parser.parse_value_of('DestinationAddress2') %>
+    <%= labeled_cell "Depart Scene", @parser.parse_time('E05_09') %>
   </tr>
-  <tr>
-    <td class="label">Run Type</td>
-    <td><%= @parser.E02_04 %></td>
-    <td class="label">City</td>
-    <td><%= @parser.E20_04 %></td>
-    <td class="label">At Destination</td>
-    <td><%= @parser.parse_time('E05_10') %></td>
+  <%= start_row %>
+    <%= labeled_cell "Run Type", @parser.E02_04 %>
+    <%= labeled_cell "City", @parser.E20_04 %>
+    <%= labeled_cell "At Destination", @parser.parse_time('E05_10') %>
   </tr>
-  <tr>
-    <td class="label">Priority Scene</td>
-    <td><%= @parser.E02_20 %></td>
-    <td class="label">State</td>
-    <td><%= @parser.E20_05 %></td>
-    <td class="label">Pt. Transferred</td>
-    <td><%= @parser.parse_time('E05_08') %></td>
+  <%= start_row %>
+    <%= labeled_cell "Priority Scene", @parser.E02_20 %>
+    <%= labeled_cell "State", @parser.E20_05 %>
+    <%= labeled_cell "Pt. Transferred", @parser.parse_time('E05_08') %>
   </tr>
-  <tr>
-    <td class="label">Shift</td>
-    <td><%= @parser.parse_value_of('Shift') %></td>
-    <td class="label">Zip</td>
-    <td><%= @parser.E20_07 %></td>
-    <td class="label">Incident Close</td>
-    <td><%= @parser.parse_time('E05_11') %></td>
+  <%= start_row %>
+    <%= labeled_cell "Shift", @parser.parse_value_of('Shift') %>
+    <%= labeled_cell "Zip", @parser.E20_07 %>
+    <%= labeled_cell "Incident Close", @parser.parse_time('E05_11') %>
   </tr>
-  <tr>
-    <td class="label">Zone</td>
-    <td>&nbsp;</td>
-    <td class="label">Zone</td>
-    <td><%= @parser.E20_09 %></td>
-    <td class="label">In District</td>
-    <td><%= @parser.parse_time('E05_13') %></td>
+  <%= start_row %>
+    <%= labeled_cell "Zone", '' %>
+    <%= labeled_cell "Zone", @parser.E20_09 %>
+    <%= labeled_cell "In District", @parser.parse_time('E05_13') %>
   </tr>
-  <tr>
-    <td class="label">Level of Service</td>
-    <td><%= @parser.parse_value_of('Level of Service') %></td>
-    <td class="label">Condition at Destination</td>
-    <td colspan="3"><%= @parser.E20_15 %></td>
+  <%= start_row %>
+    <%= labeled_cell "Level of Service", @parser.parse_value_of('Level of Service') %>
+    <%= labeled_cell "Condition at Destination", @parser.E20_15, 3 %>
   </tr>
-  <tr>
-    <td class="label">Destination Record #</td>
-    <td colspan="5"><%= @parser.E12_03 %></td>
+  <%= start_row %>
+    <%= labeled_cell "Destination Record #", @parser.E12_03, 5 %>
   </tr>
   </tbody>
 </table>
 <br>
-<table>
+<%= start_table %>
   <thead>
-  <tr>
-    <th colspan="4">Crew Members</th>
+  <%= start_row %>
+    <%= heading "Crew Members", 4 %>
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <td class="label-top"><b>Personnel</b></td>
-    <td class="label-top"><b>Certification Number</b></td>
-    <td class="label-top"><b>Role</b></td>
-    <td class="label-top"><b>Certification Level</b></td>
+  <%= start_row %>
+    <%= label_top "<b>Personnel</b>" %>
+    <%= label_top "<b>Certification Number</b>" %>
+    <%= label_top "<b>Role</b>" %>
+    <%= label_top "<b>Certification Level</b>" %>
   </tr>
   <% @parser.parse_cluster('E04').each do |e04| %>
-      <tr>
+      <%= start_row %>
         <td></td>
-        <td><%= e04.E04_01 %></td>
-        <td><%= e04.E04_02 %></td>
-        <td><%= e04.E04_03 %></td>
+        <%= cell (e04.E04_01) %>
+        <%= cell (e04.E04_02) %>
+        <%= cell (e04.E04_03) %>
       </tr>
   <% end %>
   </tbody>
 </table>
 <br>
-<table>
+<%= start_table %>
   <thead>
-  <tr>
-    <th colspan="8">Insurance Details</th>
+  <%= start_row %>
+    <%= heading "Insurance Details", 8 %>
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <td class="label">Insured's Name</td>
-    <td><%= @parser.concat 'E07_11', 'E07_12', 'E07_13' %></td>
-    <td class="label">State</td>
-    <td>NC</td>
-    <td class="label">Medicare</td>
-    <td>&nbsp;</td>
-    <td class="label">Secondary Ins</td>
-    <td>&nbsp;</td>
+  <%= start_row %>
+    <%= labeled_cell "Insured's Name", (@parser.concat 'E07_11', 'E07_12', 'E07_13') %>
+    <%= labeled_cell "State", "NC" %>
+    <%= labeled_cell "Medicare", " " %>
+    <%= labeled_cell "Secondary Ins", "&nbsp;" %>
   </tr>
-  <tr>
-    <td class="label">Relationship to Patient</td>
-    <td><%= @parser.E07_14 %></td>
-    <td class="label">Zip</td>
-    <td>&nbsp;</td>
-    <td class="label">Medicaid</td>
-    <td>&nbsp;</td>
-    <td class="label">Policy #</td>
-    <td></td>
+  <%= start_row %>
+    <%= labeled_cell "Relationship to Patient", @parser.E07_14 %>
+    <%= labeled_cell "Zip", " " %>
+    <%= labeled_cell "Medicaid", " " %>
+    <%= labeled_cell "Policy #", "" %>
   </tr>
-  <tr>
-    <td class="label">Address 1</td>
-    <td>&nbsp;</td>
-    <td class="label">Country</td>
-    <td>&nbsp;</td>
-    <td class="label">Primary Insurance</td>
-    <td><%= @parser.E07_03 %></td>
-    <td class="label">Group #</td>
-    <td></td>
+  <%= start_row %>
+    <%= labeled_cell "Address 1", "&nbsp;" %>
+    <%= labeled_cell "Country", " " %>
+    <%= labeled_cell "Primary Insurance", @parser.E07_03 %>
+    <%= labeled_cell "Group #", "" %>
   </tr>
-  <tr>
-    <td class="label">Address 2</td>
-    <td>&nbsp;</td>
-    <td class="label">Phone</td>
-    <td>&nbsp;</td>
-    <td class="label">Group #</td>
-    <td><%= @parser.E07_09 %></td>
-    <td class="label">Contact</td>
-    <td>&nbsp;</td>
+  <%= start_row %>
+    <%= labeled_cell "Address 2", "&nbsp;" %>
+    <%= labeled_cell "Phone", " " %>
+    <%= labeled_cell "Group #", @parser.E07_09 %>
+    <%= labeled_cell "Contact", " " %>
   </tr>
-  <tr>
-    <td class="label">Address 3</td>
-    <td>&nbsp;</td>
-    <td class="label">Primary Payer</td>
-    <td><%= @parser.E07_01 %></td>
-    <td class="label">Policy #</td>
-    <td><%= @parser.E07_10 %></td>
-    <td class="label">Dispatch Nature</td>
-    <td>&nbsp;</td>
+  <%= start_row %>
+    <%= labeled_cell "Address 3", "&nbsp;" %>
+    <%= labeled_cell "Primary Payer", @parser.E07_01 %>
+    <%= labeled_cell "Policy #", @parser.E07_10 %>
+    <%= labeled_cell "Dispatch Nature", "&nbsp;" %>
   </tr>
-  <tr>
-    <td class="label">City</td>
-    <td>Raleigh</td>
-    <td class="label">Employer</td>
-    <td><%= @parser.E07_27 %></td>
-    <td class="label">Job Related Injury</td>
-    <td><%= @parser.E07_15 %></td>
-    <td class="label">Response Urgency</td>
-    <td>&nbsp;</td>
+  <%= start_row %>
+    <%= labeled_cell "City", "Raleigh" %>
+    <%= labeled_cell "Employer", @parser.E07_27 %>
+    <%= labeled_cell "Job Related Injury", @parser.E07_15 %>
+    <%= labeled_cell "Response Urgency", "&nbsp;" %>
   </tr>
   </tbody>
 </table>
 <br>
-<table>
-  <thead>
-  <tr>
-    <th colspan="4">Mileage</th>
-    <th colspan="2">Delays</th>
-    <th colspan="2">Additional Agencies</th>
-  </tr>
-  </thead>
+<%= start_table %>
   <tbody>
-  <tr>
-    <td class="label">Scene</td>
-    <td><%= @parser.E02_17 %></td>
-    <td class="label">Start</td>
-    <td><%= @parser.E02_16 %></td>
-    <td class="label">Category</td>
-    <td class="label">Delays</td>
-    <td colspan="2"><%= @parser.concat 'E08_01', 'E08_02' %></td>
-  </tr>
-  <tr>
-    <td class="label">Destination</td>
-    <td><%= @parser.E02_18 %></td>
-    <td class="label">End</td>
-    <td><%= @parser.E02_19 %></td>
-    <td class="label">Dispatch Delays</td>
-    <td><%= @parser.E02_06 %></td>
-  </tr>
-  <tr>
-    <td class="label">Loaded Miles</td>
-    <td><%= @parser.E02_18.to_i - @parser.E02_17.to_i %></td>
-    <td class="label">Total Miles</td>
-    <td><%= @parser.E02_19.to_i - @parser.E02_16.to_i %></td>
+  <%= start_row %>
+    <%= heading "Mileage" %>
+    <%= labeled_cell "Scene", @parser.E02_17 %>
+    <%= labeled_cell "Start", @parser.E02_16 %>
+    <%= labeled_cell "Destination", @parser.E02_18 %>
+    <%= labeled_cell "End", @parser.E02_19 %>
+    <%= labeled_cell "Loaded Miles", @parser.E02_18.to_i - @parser.E02_17.to_i %>
+    <%= labeled_cell "Total Miles", @parser.E02_19.to_i - @parser.E02_16.to_i %>
   </tr>
   </tbody>
 </table>
 <br>
-<table>
+<% additional_agencies = @parser.concat 'E08_01', 'E08_02'
+   unless additional_agencies.empty?
+%>
+    <%= start_table %>
+      <tbody>
+      <%= start_row %>
+        <%= heading "Additional Agencies" %>
+        <%= cell (additional_agencies) %>
+      </tr>
+      </tbody>
+    </table>
+    <br>
+<% end %>
+<% delays = list_of_delays
+   unless delays.empty?
+%>
+    <%= start_table %>
+      <thead>
+      <%= start_row %>
+        <%= heading "Delays", 2 %>
+      </tr>
+      </thead>
+      <tbody>
+      <%= list delays %>
+      </tbody>
+    </table>
+    <br>
+<% end %>
+
+<% next_of_kin = concat_list [@parser.concat('E07_18', 'E07_19', 'E07_20'), @parser.E07_26, @parser.E07_25]
+   next_of_kin_address = concat_list [@parser.E07_21, @parser.E07_22, @parser.E07_23]
+   unless next_of_kin.empty? and next_of_kin_address.empty?
+%>
+<%= start_table %>
   <thead>
-  <tr>
-    <th colspan="6">Next of Kin</th>
-    <th colspan="3">Personal Items</th>
+  <%= start_row %>
+    <%= heading "Next of Kin/Closest Relation/Guardian", 2 %>
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <td class="label">Next of Kin Name</td>
-    <td><%= @parser.concat 'E07_18', 'E07_19', 'E07_20' %></td>
-    <td class="label">Address 1</td>
-    <td><%= @parser.E07_21 %></td>
-    <td class="label">City</td>
-    <td><%= @parser.E07_22 %></td>
-    <td class="label">Item</td>
-    <td class="label">Given To</td>
-    <td class="label">Comment</td>
+  <%= start_row %>
+    <%= labeled_cell_narrow "Next of Kin Name", next_of_kin %>
   </tr>
-  <tr>
-    <td class="label">Relationship to Patient</td>
-    <td><%= @parser.E07_26 %></td>
-    <td class="label">Address 2</td>
-    <td>&nbsp;</td>
-    <td class="label">State</td>
-    <td>&nbsp;</td>
-    <td>Clothing</td>
-    <td>Spouse</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td class="label">Phone</td>
-    <td><%= @parser.E07_25 %></td>
-    <td class="label">Address 3</td>
-    <td>&nbsp;</td>
-    <td class="label">Zip</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td colspan="4">&nbsp;</td>
-    <td class="label">Country</td>
-    <td>&nbsp;</td>
+  <%= start_row %>
+    <%= labeled_cell_narrow "Address", next_of_kin_address %>
   </tr>
   </tbody>
 </table>
 <br>
-<table>
+<% end %>
+
+<%= start_table %>
   <thead>
-  <tr>
-    <th colspan="4">Transfer Details</th>
+  <%= start_row %>
+    <%= heading "Personal Items", 3 %>
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <td class="label-medium">PAN</td>
-    <td>&nbsp;</td>
-    <td class="label-medium">Sending Physician</td>
-    <td>&nbsp;</td>
+  <%= start_row %>
+    <%= label "Item" %>
+    <%= label "Given To" %>
+    <%= label "Comment" %>
   </tr>
-  <tr>
-    <td class="label-medium">PCS</td>
-    <td>&nbsp;</td>
-    <td class="label-medium">Sending Record #</td>
-    <td><%= @parser.E12_02 %></td>
+  <%= start_row %>
+    <%= cell "TBD" %>
+    <%= cell "TBD" %>
+    <%= cell "TBD" %>
   </tr>
-  <tr>
-    <td class="label-medium">ABN</td>
-    <td>&nbsp;</td>
-    <td class="label-medium">Receiving Physician</td>
-    <td>&nbsp;</td>
+  </tbody>
+</table>
+<br>
+<%= start_table %>
+  <thead>
+  <%= start_row %>
+    <%= heading "Transfer Details", 4 %>
   </tr>
-  <tr>
-    <td class="label-medium">CMS Service Level</td>
-    <td>&nbsp;</td>
-    <td class="label-medium">Condition Code</td>
-    <td>&nbsp;</td>
+  </thead>
+  <tbody>
+  <%= start_row %>
+    <%= labeled_cell_medium "PAN", "&nbsp;" %>
+    <%= labeled_cell_medium "Sending Physician", "&nbsp;" %>
   </tr>
-  <tr>
-    <td class="label-medium">ICD-9 Code</td>
-    <td>&nbsp;</td>
-    <td class="label-medium">Condition Modifier Code</td>
-    <td>&nbsp;</td>
+  <%= start_row %>
+    <%= labeled_cell_medium "PCS", "&nbsp;" %>
+    <%= labeled_cell_medium "Sending Record #", @parser.E12_02 %>
   </tr>
-  <tr>
-    <td class="label-medium">Transfer Reason</td>
-    <td colspan="3">&nbsp;</td>
+  <%= start_row %>
+    <%= labeled_cell_medium "ABN", "&nbsp;" %>
+    <%= labeled_cell_medium "Receiving Physician", "&nbsp;" %>
   </tr>
-  <tr>
-    <td class="label-medium">Other/Services</td>
-    <td colspan="3">&nbsp;</td>
+  <%= start_row %>
+    <%= labeled_cell_medium "CMS Service Level", "&nbsp;" %>
+    <%= labeled_cell_medium "Condition Code", "&nbsp;" %>
   </tr>
-  <tr>
-    <td class="label-medium">Medical Necessity</td>
-    <td colspan="3">&nbsp;</td>
+  <%= start_row %>
+    <%= labeled_cell_medium "ICD-9 Code", "&nbsp;" %>
+    <%= labeled_cell_medium "Condition Modifier Code", "&nbsp;" %>
+  </tr>
+  <%= start_row %>
+    <%= labeled_cell_medium "Transfer Reason", "&nbsp;", 3 %>
+  </tr>
+  <%= start_row %>
+    <%= labeled_cell_medium "Other/Services", "&nbsp;", 3 %>
+  </tr>
+  <%= start_row %>
+    <%= labeled_cell_medium "Medical Necessity", "&nbsp;", 3 %>
   </tr>
   </tbody>
 </table>
@@ -770,223 +820,197 @@
 
 <div id="SpecialtyPatient">
 
-  <div id="SpecialtyPatientACS">
-    <table>
-      <thead>
-      <tr>
-        <th colspan="6">Specialty Patient - ACS</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td colspan="2">&nbsp;</td>
-        <td class="label" colspan="4">12-Lead Transmission:</td>
-      </tr>
-      <tr>
-        <td class="label" width="20%">12 Lead</td>
-        <td></td>
-        <td colspan="4">&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="label-narrow">Lead I:</td>
-        <td></td>
-        <td class="label-narrow">V1:</td>
-        <td></td>
-        <td class="label-narrow">V4R:</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td class="label-narrow">Lead II:</td>
-        <td></td>
-        <td class="label-narrow">V2:</td>
-        <td></td>
-        <td class="label-narrow">V5R:</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td class="label-narrow">Lead III:</td>
-        <td></td>
-        <td class="label-narrow">V3:</td>
-        <td></td>
-        <td class="label-narrow">V6R:</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td class="label-narrow">AVL:</td>
-        <td></td>
-        <td class="label-narrow">V4:</td>
-        <td></td>
-        <td class="label-narrow">V7:</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td class="label-narrow">AVR:</td>
-        <td></td>
-        <td class="label-narrow">V5:</td>
-        <td></td>
-        <td class="label-narrow">V8:</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td class="label-narrow">AVF:</td>
-        <td></td>
-        <td class="label-narrow">V6:</td>
-        <td></td>
-        <td class="label-narrow">V9:</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td class="label-narrow">OPQRST:</td>
-        <td class="label" colspan="2">Inclusion Criteria</td>
-        <td class="label" colspan="2">Exclusion Criteria:</td>
-      </tr>
-      <tr>
-        <td class="label-narrow">Onset:</td>
-        <td></td>
-        <td colspan="2">>= 18 years of age</td>
-        <td colspan="2">History of Stroke</td>
-      </tr>
-      <tr>
-        <td class="label-narrow">Provoke:</td>
-        <td></td>
-        <td colspan="2"></td>
-        <td colspan="2"></td>
-      </tr>
-      <tr>
-        <td class="label-narrow">Quality:</td>
-        <td></td>
-        <td colspan="2"></td>
-        <td colspan="2"></td>
-      </tr>
-      <tr>
-        <td class="label-narrow">Radiation:</td>
-        <td></td>
-        <td colspan="2"></td>
-        <td colspan="2"></td>
-      </tr>
-      <tr>
-        <td class="label-narrow">Severity:</td>
-        <td></td>
-        <td colspan="2"></td>
-        <td colspan="2"></td>
-      </tr>
-      <tr>
-        <td class="label-narrow">Time:</td>
-        <td></td>
-        <td colspan="2"></td>
-        <td colspan="2"></td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+<div id="SpecialtyPatientACS">
+  <%= start_table %>
+    <thead>
+    <%= start_row %>
+      <%= heading "Specialty Patient &mdash; ACS", 6 %>
+    </tr>
+    </thead>
+    <tbody>
+    <%= start_row %>
+      <%=  cell "", 2 %>
+      <%= label "12-Lead Transmission:", 4 %>
+    </tr>
+    <%= start_row %>
+      <%= labeled_cell_narrow "12 Lead", "" %>
+      <%=  cell "", 4 %>
+    </tr>
+    <%= start_row %>
+      <%= labeled_cell_narrow "Lead I:", "" %>
+      <%= labeled_cell_narrow "V1:", "" %>
+      <%= labeled_cell_narrow "V4R:", "" %>
+    </tr>
+    <%= start_row %>
+      <%= labeled_cell_narrow "Lead II:", "" %>
+      <%= labeled_cell_narrow "V2:", "" %>
+      <%= labeled_cell_narrow "V5R:", "" %>
+    </tr>
+    <%= start_row %>
+      <%= labeled_cell_narrow "Lead III:", "" %>
+      <%= labeled_cell_narrow "V3:", "" %>
+      <%= labeled_cell_narrow "V6R:", "" %>
+    </tr>
+    <%= start_row %>
+      <%= labeled_cell_narrow "AVL:", "" %>
+      <%= labeled_cell_narrow "V4:", "" %>
+      <%= labeled_cell_narrow "V7:", "" %>
+    </tr>
+    <%= start_row %>
+      <%= labeled_cell_narrow "AVR:", "" %>
+      <%= labeled_cell_narrow "V5:", "" %>
+      <%= labeled_cell_narrow "V8:", "" %>
+    </tr>
+    <%= start_row %>
+      <%= labeled_cell_narrow "AVF:", "" %>
+      <%= labeled_cell_narrow "V6:", "" %>
+      <%= labeled_cell_narrow "V9:", "" %>
+    </tr>
+    <%= start_row %>
+      <%= label "OPQRST:" %>
+      <%= cell "" %>
+      <%= label "Inclusion Criteria", 2 %>
+      <%= label "Exclusion Criteria:", 2 %>
+    </tr>
+    <%= start_row %>
+      <%= labeled_cell_narrow "Onset:", "" %>
+      <%= cell "", 2 %>
+      <%= cell "", 2 %>
+    </tr>
+    <%= start_row %>
+      <%= labeled_cell_narrow "Provoke:", "" %>
+      <%= cell "", 2 %>
+      <%= cell "", 2 %>
+    </tr>
+    <%= start_row %>
+      <%= labeled_cell_narrow "Quality:", "" %>
+      <%= cell "", 2 %>
+      <%= cell "", 2 %>
+    </tr>
+    <%= start_row %>
+      <%= labeled_cell_narrow "Radiation:", "" %>
+      <%= cell "", 2 %>
+      <%= cell "", 2 %>
+    </tr>
+    <%= start_row %>
+      <%= labeled_cell_narrow "Severity:", "" %>
+      <%= cell "", 2 %>
+      <%= cell "", 2 %>
+    </tr>
+    <%= start_row %>
+      <%= labeled_cell_narrow "Time:", "" %>
+      <%= cell "", 2 %>
+      <%= cell "", 2 %>
+    </tr>
+    </tbody>
+  </table>
+  <br>
+</div>
+
   <div id="SpecialtyPatientAirway">
-    <table>
-      <thead>
-      <tr>
-        <th colspan="4">Specialty Patient&mdash;Advanced Airway</th>
-      </tr>
-      <tr>
-        <td class="label">Mallampati Class</td>
-        <td><%=  @parser.E25_01 %></td>
-        <td class="label">Airway Grading</td>
-        <td><%=  @parser.E25_02 %></td>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td class="label">Indications</td>
-        <td class="label">Monitoring</td>
-        <td class="label">Rescue</td>
-        <td class="label">Reasons Failed Intubation</td>
-      </tr>
-      <tr>
-        <td><%= val = @parser.E25_03
-                val.is_a?(Array) ? val.join(', ') : val %></td>
-        <td><%= val = @parser.E25_04
-                val.is_a?(Array) ? val.join(', ') : val %></td>
-        <td><%= val = @parser.E25_05
-                val.is_a?(Array) ? val.join(', ') : val %></td>
-        <td><%= val = @parser.E25_06
-                val.is_a?(Array) ? val.join(', ') : val %></td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-  <br>
+  <%= start_table %>
+    <thead>
+    <%= start_row %>
+      <%= heading "Specialty Patient &mdash; Advanced Airway", 4 %>
+    </tr>
+    <%= start_row %>
+      <%= labeled_cell "Mallampati Class", @parser.E25_01 %>
+      <%= labeled_cell "Airway Grading", @parser.E25_02 %>
+    </tr>
+    </thead>
+    <tbody>
+    <%= start_row %>
+      <%= label "Indications" %>
+      <%= label "Monitoring" %>
+      <%= label "Rescue" %>
+      <%= label "Reasons Failed Intubation" %>
+    </tr>
+    <%= start_row %>
+      <%= val = @parser.E25_03
+          val.is_a?(Array) ? val.join(', ') : val
+          cell val
+      %>
+      <%= val = @parser.E25_04
+          val.is_a?(Array) ? val.join(', ') : val
+          cell val
+      %>
+      <%= val = @parser.E25_05
+          val.is_a?(Array) ? val.join(', ') : val
+          cell val
+      %>
+      <%= val = @parser.E25_06
+          val.is_a?(Array) ? val.join(', ') : val
+          cell val
+      %>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<br>
 
-  <div id="SpecialtyPatientBurns">
-  </div>
-  <br>
+<div id="SpecialtyPatientBurns">
+</div>
+<br>
 
-  <div id="SpecialtyPatientStroke">
-  </div>
-  <br>
+<div id="SpecialtyPatientStroke">
+</div>
+<br>
 
-  <div id="SpecialtyPatientCPR">
-  </div>
-  <br>
+<div id="SpecialtyPatientCPR">
+</div>
+<br>
 
-  <div id="SpecialtyPatientMVC">
-  </div>
-  <br>
+<div id="SpecialtyPatientMVC">
+</div>
+<br>
 
-  <div id="SpecialtyPatientTrauma">
-    <table>
-      <thead>
-      <tr>
-        <th colspan="4">Specialty Patient&mdash;Trauma Criteria</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td class="label">Anatomic</td>
-        <td><%= @parser.E24_08 %></td>
-        <td class="label">Trauma Activation</td>
-        <td><%= @parser.E24_01 %></td>
-      </tr>
-      <tr>
-        <td class="label">Physiologic</td>
-        <td><%= @parser.E24_06 %></td>
-        <td class="label">Time</td>
-        <td><%= @parser.E24_02 %></td>
-      </tr>
-      <tr>
-        <td class="label">Mechanical</td>
-        <td><%= @parser.E24_07 %></td>
-        <td class="label">Date</td>
-        <td><%= @parser.E24_02 %></td>
-      </tr>
-      <tr>
-        <td class="label">Other Conditions</td>
-        <td><%= @parser.E24_05 %></td>
-        <td class="label">Trauma Level</td>
-        <td><%= @parser.E24_04 %></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td class="label">Reason not Activated</td>
-        <td><%= @parser.E24_03 %></td>
-      </tr>
-      </tbody>
-    </table>
-    <br>
-  </div>
-  <div id="SpecialtyPatientObstetrical">
-  </div>
+<div id="SpecialtyPatientTrauma">
+  <%= start_table %>
+    <thead>
+    <%= start_row %>
+      <%= heading "Specialty Patient &mdash; Trauma Criteria", 4 %>
+    </tr>
+    </thead>
+    <tbody>
+    <%= start_row %>
+      <%= labeled_cell "Anatomic", @parser.E24_08 %>
+      <%= labeled_cell "Trauma Activation", @parser.E24_01 %>
+    </tr>
+    <%= start_row %>
+      <%= labeled_cell "Physiologic", @parser.E24_06 %>
+      <%= labeled_cell "Time", @parser.E24_02 %>
+    </tr>
+    <%= start_row %>
+      <%= labeled_cell "Mechanical", @parser.E24_07 %>
+      <%= labeled_cell "Date", @parser.E24_02 %>
+    </tr>
+    <%= start_row %>
+      <%= labeled_cell "Other Conditions", @parser.E24_05 %>
+      <%= labeled_cell "Trauma Level", @parser.E24_04 %>
+    </tr>
+    <%= start_row %>
+      <td></td>
+      <td></td>
+      <%= labeled_cell "Reason not Activated", @parser.E24_03 %>
+    </tr>
+    </tbody>
+  </table>
   <br>
+</div>
+<div id="SpecialtyPatientObstetrical">
+</div>
+<br>
 
-  <div id="SpecialtyPatientSpinal">
-  </div>
-  <br>
+<div id="SpecialtyPatientSpinal">
+</div>
+<br>
 
-  <div id="SpecialtyPatientInfluenza">
-  </div>
-  <br>
+<div id="SpecialtyPatientInfluenza">
+</div>
+<br>
 
-  <div id="SpecialtyPatientSAD">
-  </div>
-  <br>
+<div id="SpecialtyPatientSAD">
+</div>
+<br>
 
 </div>

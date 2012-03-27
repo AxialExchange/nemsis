@@ -97,10 +97,14 @@ module Nemsis
       results.is_a?(Array) ? results.first : results
     end
 
-    def parse_time(element)
+    def parse_time(element, full=false)
       time_str = parse_element(element)
 
-      Time.parse(time_str).strftime("%Y-%m-%d %H:%M") rescue nil
+      if full
+        Time.parse(time_str).strftime("%Y-%m-%d %H:%M") rescue nil
+      else
+        Time.parse(time_str).strftime("%H:%M") rescue nil
+      end
     end
 
     def parse_state(element)
