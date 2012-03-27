@@ -532,7 +532,7 @@
             <%= labeled_cell "Neurological", (assessment.E16_24) %>
           </tr>
           <%= start_row %>
-            <%= labeled_cell "Assessment Time", assessment.parse_time('E16_03'), 3 %>
+            <%= labeled_cell "Assessment Time", assessment.parse_time('E16_03', true), 3 %>
           </tr>
           </tbody>
           </table>
@@ -559,78 +559,56 @@
     </thead>
     <tbody>
     <%= start_row %>
-      <%=  cell "", 2 %>
-      <%= label "12-Lead Transmission:", 4 %>
+      <%= labeled_cell_narrow "12 Lead", @parser.E28_27 %>
+      <%=  cell @parser.parse_time('E28_28', true), 4 %>
     </tr>
     <%= start_row %>
-      <%= labeled_cell_narrow "12 Lead", "" %>
-      <%=  cell "", 4 %>
+      <%= labeled_cell_narrow "Lead I:", @parser.E28_07 %>
+      <%= labeled_cell_narrow "V1:", @parser.E28_13 %>
+      <%= labeled_cell_narrow "V4R:", @parser.E28_19 %>
     </tr>
     <%= start_row %>
-      <%= labeled_cell_narrow "Lead I:", "" %>
-      <%= labeled_cell_narrow "V1:", "" %>
-      <%= labeled_cell_narrow "V4R:", "" %>
+      <%= labeled_cell_narrow "Lead II:", @parser.E28_08 %>
+      <%= labeled_cell_narrow "V2:", @parser.E28_14 %>
+      <%= labeled_cell_narrow "V5R:", @parser.E28_20 %>
     </tr>
     <%= start_row %>
-      <%= labeled_cell_narrow "Lead II:", "" %>
-      <%= labeled_cell_narrow "V2:", "" %>
-      <%= labeled_cell_narrow "V5R:", "" %>
+      <%= labeled_cell_narrow "Lead III:", @parser.E28_09 %>
+      <%= labeled_cell_narrow "V3:", @parser.E28_15 %>
+      <%= labeled_cell_narrow "V6R:", @parser.E28_21 %>
     </tr>
     <%= start_row %>
-      <%= labeled_cell_narrow "Lead III:", "" %>
-      <%= labeled_cell_narrow "V3:", "" %>
-      <%= labeled_cell_narrow "V6R:", "" %>
+      <%= labeled_cell_narrow "AVL:", @parser.E28_11 %>
+      <%= labeled_cell_narrow "V4:", @parser.E28_16 %>
+      <%= labeled_cell_narrow "V7:", @parser.E28_22 %>
     </tr>
     <%= start_row %>
-      <%= labeled_cell_narrow "AVL:", "" %>
-      <%= labeled_cell_narrow "V4:", "" %>
-      <%= labeled_cell_narrow "V7:", "" %>
+      <%= labeled_cell_narrow "AVR:", @parser.E28_10 %>
+      <%= labeled_cell_narrow "V5:", @parser.E28_17 %>
+      <%= labeled_cell_narrow "V8:", @parser.E28_23 %>
     </tr>
     <%= start_row %>
-      <%= labeled_cell_narrow "AVR:", "" %>
-      <%= labeled_cell_narrow "V5:", "" %>
-      <%= labeled_cell_narrow "V8:", "" %>
+      <%= labeled_cell_narrow "AVF:", @parser.E28_12 %>
+      <%= labeled_cell_narrow "V6:", @parser.E28_18 %>
+      <%= labeled_cell_narrow "V9:", @parser.E28_24 %>
     </tr>
     <%= start_row %>
-      <%= labeled_cell_narrow "AVF:", "" %>
-      <%= labeled_cell_narrow "V6:", "" %>
-      <%= labeled_cell_narrow "V9:", "" %>
-    </tr>
-    <%= start_row %>
-      <%= label "OPQRST:" %>
       <%= cell "" %>
-      <%= label "Inclusion Criteria", 2 %>
-      <%= label "Exclusion Criteria:", 2 %>
+      <%= label_top "OPQRST:", 5 %>
     </tr>
     <%= start_row %>
-      <%= labeled_cell_narrow "Onset:", "" %>
-      <%= cell "", 2 %>
-      <%= cell "", 2 %>
+      <%= labeled_cell_narrow "Onset:", @parser.E28_01 %>
+      <%= labeled_cell_narrow "Provoke:", @parser.E28_02 %>
+      <%= labeled_cell_narrow "Quality:", @parser.E28_03 %>
     </tr>
     <%= start_row %>
-      <%= labeled_cell_narrow "Provoke:", "" %>
-      <%= cell "", 2 %>
-      <%= cell "", 2 %>
+      <%= labeled_cell_narrow "Radiation:", @parser.E28_04 %>
+      <%= labeled_cell_narrow "Severity:", @parser.E28_05 %>
+      <%= labeled_cell_narrow "Time:", @parser.E28_06 %>
     </tr>
     <%= start_row %>
-      <%= labeled_cell_narrow "Quality:", "" %>
-      <%= cell "", 2 %>
-      <%= cell "", 2 %>
-    </tr>
-    <%= start_row %>
-      <%= labeled_cell_narrow "Radiation:", "" %>
-      <%= cell "", 2 %>
-      <%= cell "", 2 %>
-    </tr>
-    <%= start_row %>
-      <%= labeled_cell_narrow "Severity:", "" %>
-      <%= cell "", 2 %>
-      <%= cell "", 2 %>
-    </tr>
-    <%= start_row %>
-      <%= labeled_cell_narrow "Time:", "" %>
-      <%= cell "", 2 %>
-      <%= cell "", 2 %>
+    <%= labeled_cell_narrow "Inclusion Criteria:", @parser.E28_25, 2 %>
+    <%= labeled_cell_narrow "Exclusion Criteria:", @parser.E28_26, 2 %>
     </tr>
     </tbody>
   </table>

@@ -53,14 +53,6 @@ E99_0:
     -10: Not Known
     -5: Not Available
     500001: None
-    500002: Age < 15 or > 55
-    500003: Environmental Factors
-    500004: Medical Illness
-    500005: Pregnancy > 3 Months
-    500006: Urgent Extremity
-    500007: Bleeding Disorder
-    500008: Provider Suspicion
-    500009: ESRD with Dialysis
   is_multi_entry: 1
   name: OTHER CONDITIONS OR RISK FACTORS
   node: E99_0

@@ -6727,4 +6727,471 @@ E27_05:
   name: SPEECH
   node: E27_05
 
+E28_01:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    500801: Sudden
+    500802: Gradual
+  is_multi_entry: 0
+  name: ONSET
+  node: E28_01
+
+E28_02:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: PROVOKE
+  node: E28_02
+
+E28_03:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    500901: Sharp
+    500902: Dull
+    500903: Changing
+    500904: Steady
+    500905: Pressure
+  is_multi_entry: 0
+  name: QUALITY
+  node: E28_03
+
+E28_04:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    501001: Arm
+    501002: Jaw
+    501003: Back
+    501004: Other
+    501005: None
+    501006: Neck
+  is_multi_entry: 0
+  name: RADIATE
+  node: E28_04
+
+E28_05:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    99001:  1
+    99002:  2
+    99003:  3
+    99004:  4
+    99005:  5
+    99006:  6
+    99007:  7
+    99008:  8
+    99009:  9
+    99010: 10
+  is_multi_entry: 0
+  name: RADIATE
+  node: E28_05
+
+E28_06:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: date/time
+  is_multi_entry: 0
+  name: OPQRST TIME
+  node: E28_06
+
+E28_07:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    501101: Normal
+    501102: ST Elevation
+    501103: ST Depression
+  is_multi_entry: 0
+  name: 12 LEAD I
+  node: E28_07
+
+E28_08:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    501101: Normal
+    501102: ST Elevation
+    501103: ST Depression
+  is_multi_entry: 0
+  name: 12 LEAD II
+  node: E28_08
+
+E28_09:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    501101: Normal
+    501102: ST Elevation
+    501103: ST Depression
+  is_multi_entry: 0
+  name: 12 LEAD III
+  node: E28_09
+
+E28_10:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    501101: Normal
+    501102: ST Elevation
+    501103: ST Depression
+  is_multi_entry: 0
+  name: 12 LEAD aVR
+  node: E28_10
+
+E28_11:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    501101: Normal
+    501102: ST Elevation
+    501103: ST Depression
+  is_multi_entry: 0
+  name: 12 LEAD aVL
+  node: E28_11
+
+E28_12:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    501101: Normal
+    501102: ST Elevation
+    501103: ST Depression
+  is_multi_entry: 0
+  name: 12 LEAD aVF
+  node: E28_12
+
+E28_13:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    501101: Normal
+    501102: ST Elevation
+    501103: ST Depression
+  is_multi_entry: 0
+  name: 12 LEAD V1
+  node: E28_13
+
+E28_14:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    501101: Normal
+    501102: ST Elevation
+    501103: ST Depression
+  is_multi_entry: 0
+  name: 12 LEAD V2
+  node: E28_14
+
+E28_15:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    501101: Normal
+    501102: ST Elevation
+    501103: ST Depression
+  is_multi_entry: 0
+  name: 12 LEAD V3
+  node: E28_15
+
+E28_16:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    501101: Normal
+    501102: ST Elevation
+    501103: ST Depression
+  is_multi_entry: 0
+  name: 12 LEAD V4
+  node: E28_16
+
+E28_17:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    501101: Normal
+    501102: ST Elevation
+    501103: ST Depression
+  is_multi_entry: 0
+  name: 12 LEAD V5
+  node: E28_17
+
+E28_18:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    501101: Normal
+    501102: ST Elevation
+    501103: ST Depression
+  is_multi_entry: 0
+  name: 12 LEAD V6
+  node: E28_18
+
+E28_19:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    501101: Normal
+    501102: ST Elevation
+    501103: ST Depression
+  is_multi_entry: 0
+  name: 12 LEAD V4R
+  node: E28_19
+
+E28_20:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    501101: Normal
+    501102: ST Elevation
+    501103: ST Depression
+  is_multi_entry: 0
+  name: 12 LEAD V5R
+  node: E28_20
+
+E28_21:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    501101: Normal
+    501102: ST Elevation
+    501103: ST Depression
+  is_multi_entry: 0
+  name: 12 LEAD V6R
+  node: E28_21
+
+E28_22:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    501101: Normal
+    501102: ST Elevation
+    501103: ST Depression
+  is_multi_entry: 0
+  name: 12 LEAD V7
+  node: E28_22
+
+E28_23:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    501101: Normal
+    501102: ST Elevation
+    501103: ST Depression
+  is_multi_entry: 0
+  name: 12 LEAD V8
+  node: E28_23
+
+E28_24:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    501101: Normal
+    501102: ST Elevation
+    501103: ST Depression
+  is_multi_entry: 0
+  name: 12 LEAD V9
+  node: E28_24
+
+E28_25:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    501201: >= 18 Years of Age
+    501202: Ischemic Discomfort > 30
+    501203: ST Elevation
+  is_multi_entry: 1
+  name: THROMBOLYTIC CHECKLIST INCLUSION CRITERIA
+  node: E28_25
+
+E28_26:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    501301: History of Stroke
+    501302: Intracranial Neoplasm, AVM, Aneurysm
+    501303: Recent History of Major Surgery/Trauma
+    501304: BP Systolic > 180 or Diastolic > 110
+    501305: Cardiogenic Shock
+    501306: Oral Anticoagulation within 3 Days
+    501307: Symptoms Suggesting Dissecting AAA
+    501308: Pregnancy
+  is_multi_entry: 1
+  name: THROMBOLYTIC CHECKLIST EXCLUSION CRITERIA
+  node: E28_26
+
+E28_27:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: 12 LEAD TRANSMISSION
+  node: E28_27
+
+E28_28:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: date/time
+  is_multi_entry: 0
+  name: TRANSMISSION TIME
+  node: E28_28
+
+
+
 
