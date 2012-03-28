@@ -24,62 +24,19 @@ module Nemsis
 
       begin
         nodes = xml_doc.xpath(xpath) or return
+
+        #puts element_spec.inspect if ["E23_08", "E29_03", "E24_01"].include?(element_spec["node"])
+
         case element_spec['is_multi_entry']
           when 1
-            #if element_spec["node"] == "E25_03"
-            #  puts "multi for #{element_spec["node"]}"
-            #end
             values = []
             nodes.each do |node|
-              value = node.text
-
-              # Note: data_type possible values are
-              # ["text", "combo", "date/time", "number", "date", "combo or text", "binary"]
-              if element_spec['data_type'] =~ /(text|combo|combo or text)/i &&
-                  value =~ /^-?\d+$/ &&
-                  !element_spec['field_values'].nil?
-
-                element_spec['field_values'].merge!(
-                    -10 => '', # Not Known
-                    -15 => '', # Not Reporting
-                    -20 => '', # Not Recorded
-                    -25 => '', # Not Applicable
-                    -5  => '' # Not Available
-                )
-
-                mapped_value = element_spec['field_values'][value.to_i]
-
-                value = mapped_value unless mapped_value.nil?
-              end
-
-              values << value
+              values << get_value(element_spec, node)
             end
-            #if element_spec["node"] == "E25_03"
-            #  puts "values: #{values.inspect}"
-            #end
-
             return values
           else
             node = nodes.first or return
-            value = node.text
-
-            if element_spec['data_type'] =~ /(text|combo)/i &&
-                value =~ /^-?\d+$/ &&
-                !element_spec['field_values'].nil?
-
-              element_spec['field_values'].merge!(
-                  -10 => '', # Not Known
-                  -15 => '', # Not Reporting
-                  -20 => '', # Not Recorded
-                  -25 => '', # Not Applicable
-                  -5  => '' # Not Available
-              )
-
-              mapped_value = element_spec['field_values'][value.to_i]
-
-              value = mapped_value unless mapped_value.nil?
-            end
-
+            value = get_value(element_spec, node)
             return value
         end
 
@@ -88,10 +45,50 @@ module Nemsis
       end
     end
 
+    def get_value(element_spec, node)
+      value = node.text
+
+      if element_spec['data_type'] =~ /(text|combo|combo or text)/i &&
+          value =~ /^-?\d+$/ &&
+          !element_spec['field_values'].nil?
+
+        # Blank out "Not Recorded" values
+        element_spec['field_values'].merge!(
+            -10 => '', # Not Known
+            -15 => '', # Not Reporting
+            -20 => '', # Not Recorded
+            -25 => '', # Not Applicable
+            -5  => '' # Not Available
+        )
+        #if ["E23_08", "E29_03", "E24_01"].include?(element_spec["node"])
+        #  puts " [S] Lookup #{value.to_i} in #{element_spec["node"]} values: #{element_spec['field_values'].inspect}"
+        #end
+        mapped_value = case value.to_i
+                         when 0
+                           'No'
+                         when 1
+                           'Yes'
+                         else
+                           element_spec['field_values'][value.to_i]
+                       end
+
+        value = mapped_value unless mapped_value.nil?
+      end
+
+      value
+    end
+
+    def get(element)
+      element_spec = @@spec[element]
+      name = element_spec["name"]
+      value = parse_element(element)
+      {:name => name, :value => value}
+    end
+
     def parse_element(element)
       element_spec = @@spec[element]
 
-      puts element if element_spec.nil?
+      puts "NOTICE: '#{element}' is null!!" if element_spec.nil?
       results = parse(element_spec)
 
       results.is_a?(Array) ? results.first : results

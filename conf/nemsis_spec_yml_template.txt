@@ -6,38 +6,38 @@ and replace "99" with the proper field number.
 ------------------------------------------
 
 # Data [STRING]
-E99_0:
+E31_0:
   allow_null: 0
   data_entry_method: ~
   data_type: text
   field_values: {}
   is_multi_entry: 0
-  name: REASON NOT ACTIVATED
-  node: E99_0
+  name:
+  node: E31_0
 
 # Data [INTEGER]
-E99_0:
+E31_0:
   allow_null: 1
   data_entry_method: ~
   data_type: number
   is_multi_entry: 1
-  name: CARBON MONOXIDE READING
-  node: E99_0
+  name:
+  node: E31_0
 
 # Data [date/time]
-E99_0:
+E31_0:
   allow_null: 1
   data_entry_method: ~
   data_type: date/time
   is_multi_entry: 0
-  name: ACTIVATION TIME
-  node: E99_0
+  name:
+  node: E31_0
 
 # Data [combo] single-choice
-E99_0:
+E31_0:
   allow_null: 1
   data_entry_method: single-choice
-  data_type: combo
+  data_type: text
   field_values:
     -25: Not Applicable
     -20: Not Recorded
@@ -47,11 +47,11 @@ E99_0:
     0: No
     1: Yes
   is_multi_entry: 0
-  name: IS TRAUMA ACTIVATION
-  node: E99_0
+  name:
+  node: E31_0
 
 # Data [combo] Multiple Choice
-E99_0:
+E31_0:
   allow_null: 1
   data_entry_method: multiple-choice
   data_type: combo
@@ -63,5 +63,5 @@ E99_0:
     -5: Not Available
     500001: None
   is_multi_entry: 1
-  name: OTHER CONDITIONS OR RISK FACTORS
-  node: E99_0
+  name:
+  node: E31_0

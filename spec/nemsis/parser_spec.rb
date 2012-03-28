@@ -20,6 +20,20 @@ describe Nemsis::Parser do
       Nemsis::Parser.new(xml_str) 
     }
 
+    describe '#get' do
+      it 'should return key/value hash' do
+        p.get('E06_01').class.should == Hash
+      end
+      it 'should return key/value element name' do
+        p.get('E06_01')[:name].should == "LAST NAME"
+      end
+      it 'should return key/value element text value' do
+        p.get('E06_01')[:value].should == "ZERO"
+      end
+      it 'should return key/value element lookup value' do
+        p.get('E24_01')[:value].should == "YES"
+      end
+    end
     describe '#parse_element' do
       it 'should return string for non-coded element' do
         p.parse_element('E06_01').should == 'ZERO'
@@ -31,6 +45,10 @@ describe Nemsis::Parser do
 
       it 'should return nil for default negative values' do
         p.parse_element('E06_11').should == ''
+      end
+
+      it 'should return lookup value' do
+        p.parse_element('E24_01').should == "YES"
       end
     end
 
@@ -48,6 +66,11 @@ describe Nemsis::Parser do
       it 'should return an array as a comma-separated list for multiple values' do
         p.E25_03.should == "Ventilatory Effort Compromised, Injury/Trauma to Airway"
       end
+      it 'should return lookup value' do
+        p.E29_03.should == ">20 Minutes"
+        p.E23_08.should == "No"
+        p.E24_01.should == "YES"
+      end
     end
 
     describe '#parse_field' do
@@ -57,7 +80,7 @@ describe Nemsis::Parser do
     end
 
     describe '#parse_time' do
-      it 'should parse time to standard format' do
+      it 'should parse time to standard/long format' do
         p.parse_time('E14_01', true).should == '2012-01-31 18:23'
       end
       it 'should parse time to shortened format' do

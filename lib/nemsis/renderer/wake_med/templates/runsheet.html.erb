@@ -25,6 +25,22 @@
      end
    end
 
+   # Create a grid of Label/Value pairs
+   def row(*fields)
+     text = start_row
+     fields.each do |field|
+       #puts "Field = #{field}"
+       if field.empty?
+         text += cell("")
+         text += cell("")
+       else
+         element = @parser.get(field)
+         text += labeled_cell(element[:name], @parser.send(field))
+       end
+     end
+     text += '</tr>'
+   end
+
    def start_row(options="")
      if @fancy_html
        text = "<tr #{(options.empty?) ? '' : options}>"
@@ -149,95 +165,96 @@
    end
 
 %>
+
 <% if @fancy_html %>
-<HEAD>
-  <STYLE type="text/css">
-      <!--
+    <HEAD>
+      <STYLE type="text/css">
+          <!--
 
-          /*p, h4, table {font-family: "Lucida Grande", verdana, arial, helvetica, sans-serif;}*/
-          /*p, h4, table {font-family: Tahoma, Geneva, sans-serif}*/
-      p, h4, table {
-          font-family: "Trebuchet MS", Helvetica, sans-serif
-      }
+              /*p, h4, table {font-family: "Lucida Grande", verdana, arial, helvetica, sans-serif;}*/
+              /*p, h4, table {font-family: Tahoma, Geneva, sans-serif}*/
+          p, h4, table {
+              font-family: "Trebuchet MS", Helvetica, sans-serif
+          }
 
-      p {
-          font-size: small;
-      }
+          p {
+              font-size: small;
+          }
 
-      H4 {
-          color: black
-      }
+          H4 {
+              color: black
+          }
 
-          /* Each section can be a table */
-      table, tbody, tr {
-          border: 1px;
-          border-style: solid;
-          border-color: black;
-          border-spacing: 0px;
-          width: 700;
-          color: black;
-          margin: 0;
-          padding: 1px;
-      }
+              /* Each section can be a table */
+          table, tbody, tr {
+              border: 1px;
+              border-style: solid;
+              border-color: black;
+              border-spacing: 0px;
+              width: 700;
+              color: black;
+              margin: 0;
+              padding: 1px;
+          }
 
-          /* The section can have a bold heading row */
-      th {
-          color: yellow;
-          background-color: #6495ed;
-          font-size: medium;
-          border-color: black;
-          border-style: solid;
-          border-width: 1px;
-      }
+              /* The section can have a bold heading row */
+          th {
+              color: yellow;
+              background-color: #6495ed;
+              font-size: medium;
+              border-color: black;
+              border-style: solid;
+              border-width: 1px;
+          }
 
-          /* Default table cell for values */
-      td {
-          border: 1px;
-          border-style: solid;
-          border-color: #737373;
-          font-size: small;
-          padding: 2px;
-      }
+              /* Default table cell for values */
+          td {
+              border: 1px;
+              border-style: solid;
+              border-color: #737373;
+              font-size: small;
+              padding: 2px;
+          }
 
-          /* Default label cell */
-      td.label {
-          text-align: left;
-          font-weight: bold;
-          background-color: #dcdcdc;
-      }
+              /* Default label cell */
+          td.label {
+              text-align: left;
+              font-weight: bold;
+              background-color: #dcdcdc;
+          }
 
-          /* Label on top of column */
-      td.label-top {
-          text-align: center;
-          font-weight: bold;
-          background-color: #dcdcdc;
-      }
+              /* Label on top of column */
+          td.label-top {
+              text-align: center;
+              font-weight: bold;
+              background-color: #dcdcdc;
+          }
 
-          /* Narrow label cell */
-      td.label-narrow {
-          text-align: left;
-          font-weight: bold;
-          background-color: #dcdcdc;
-          width: 10%;
-      }
+              /* Narrow label cell */
+          td.label-narrow {
+              text-align: left;
+              font-weight: bold;
+              background-color: #dcdcdc;
+              width: 10%;
+          }
 
-          /* Medium label cell */
-      td.label-medium {
-          text-align: left;
-          font-weight: bold;
-          background-color: #dcdcdc;
-          width: 25%;
-      }
-      .no-border {
-          border: 1px;
-          border-style: none;
-          border-color: red;
-          border-spacing: 0px;
-      }
+              /* Medium label cell */
+          td.label-medium {
+              text-align: left;
+              font-weight: bold;
+              background-color: #dcdcdc;
+              width: 25%;
+          }
+          .no-border {
+              border: 1px;
+              border-style: none;
+              border-color: red;
+              border-spacing: 0px;
+          }
 
-      -->
-  </STYLE>
-</HEAD>
+          -->
+      </STYLE>
+    </HEAD>
 <% end %>
 
 <h4>Wake County EMS System - Patient Care Record</h4>
@@ -832,16 +849,24 @@
 </table>
 <br>
 
-<%= start_table "SpecialtyPatientInfluenza" %>
+<%= start_table "Specialty Patient &mdash; Influenza Screening" %>
     <thead>
     <%= start_row %>
-      <%= heading "Specialty Patient &mdash; Influenza Screening" %>
+      <%= heading "Specialty Patient &mdash; Influenza Screening", 4 %>
     </tr>
     </thead>
     <tbody>
+    <%= row 'E30_01', '' %>
     <%= start_row %>
-      <%= label "To Be Supplied" %>
+    <%= labeled_cell_narrow "Symptoms", "" %>
+    <%= labeled_cell "History", "" %>
     </tr>
+    <%= row 'E30_03', 'E30_08' %>
+    <%= row 'E30_04', 'E30_09' %>
+    <%= row 'E30_05', 'E30_10' %>
+    <%= row 'E30_06', 'E30_11' %>
+    <%= row 'E30_07', '' %>
+    <%= row 'E30_02', '' %>
     </tbody>
 </table>
 <br>

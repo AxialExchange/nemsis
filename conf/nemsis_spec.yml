@@ -1377,21 +1377,6 @@ D09_05:
   is_multi_entry: 1
   name: DEVICE PURCHASE DATE
   node: D09_05
-DEATH E23_05:
-  allow_null: 1
-  data_entry_method: single-choice
-  data_type: combo
-  field_values:
-    -10: Not Known
-    -15: Not Reporting
-    -20: Not Recorded
-    -25: Not Applicable
-    -5: Not Available
-    0: No
-    1: Yes
-  is_multi_entry: 0
-  name: SUSPECTED CONTACT WITH BLOOD/BODY FLUIDS OF EMS INJURY OR
-  node: DEATH E23_05
 E00:
   allow_null: 0
   data_entry_method: single-choice
@@ -6325,6 +6310,21 @@ E23_04:
   is_multi_entry: 1
   name: 'SUSPECTED INTENTIONAL, OR UNINTENTIONAL DISASTER'
   node: E23_04
+E23_05:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: 'SUSPECTED CONTACT WITH BLOOD/BODY FLUIDS OF EMS INJURY OR DEATH'
+  node: E23_05
 E23_06:
   allow_null: 1
   data_entry_method: multiple-choice
@@ -6346,7 +6346,7 @@ E23_06:
     5580: Death
     5585: None
   is_multi_entry: 1
-  name: 'TYPE OF SUSPECTED BLOOD/BODY FLUID EXPOSURE, INJURY, OR'
+  name: 'TYPE OF SUSPECTED BLOOD/BODY FLUID EXPOSURE, INJURY, OR DEATH'
   node: E23_06
 E23_07:
   allow_null: 1
@@ -6369,15 +6369,15 @@ E23_08:
   data_entry_method: single-choice
   data_type: combo
   field_values:
-    -10: Not Known
-    -15: Not Reporting
-    -20: Not Recorded
     -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
     -5: Not Available
     0: No
     1: Yes
   is_multi_entry: 0
-  name: REQUIRED REPORTABLE CONDITIONS
+  name: 'REQUIRED REPORTABLE CONDITIONS'
   node: E23_08
 E23_09:
   allow_null: 1
@@ -7240,7 +7240,7 @@ E29_03:
     -15: Not Reporting
     -10: Not Known
     -5: Not Available
-    2390: >20 Minutes
+    2390: '>20 Minutes'
     2395: 15-20 Minutes
     2400: 10-15 Minutes
     2405: 8-10 Minutes
@@ -7683,6 +7683,174 @@ E29_30:
   is_multi_entry: 0
   name: RESUSCITATION
   node: E29_30
+
+E30_01:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: date/time
+  is_multi_entry: 0
+  name: Onset of signs/symptoms
+  node: E30_01
+
+E30_02:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: Flu suspected
+  node: E30_02
+
+E30_03:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: Fever over 100 degrees
+  node: E30_03
+
+E30_04:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: Cough
+  node: E30_04
+
+E30_05:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: Sore throat
+  node: E30_05
+
+E30_06:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: Runny nose
+  node: E30_06
+
+E30_07:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: Nasal congestion
+  node: E30_07
+
+E30_08:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: Living with someone with symptoms
+  node: E30_08
+
+E30_09:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: Traveled outside the country in past 2 weeks
+  node: E30_09
+
+E30_10:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: Vaccinated for influenza this year
+  node: E30_10
+
+E30_11:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: Taking antiviral medication
+  node: E30_11
 
 
 
