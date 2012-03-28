@@ -63,6 +63,9 @@ describe Nemsis::Parser do
       it 'should return a string for single values' do
         p.E25_01.should == "Class 1"
       end
+      it 'should return a full date/time value' do
+        p.E31_11.should == p.parse_time('E31_11', true)
+      end
       it 'should return an array as a comma-separated list for multiple values' do
         p.E25_03.should == "Ventilatory Effort Compromised, Injury/Trauma to Airway"
       end
@@ -70,6 +73,12 @@ describe Nemsis::Parser do
         p.E29_03.should == ">20 Minutes"
         p.E23_08.should == "No"
         p.E24_01.should == "YES"
+      end
+      it 'should return an integer' do
+        p.E31_04.should == "1"
+      end
+      it 'should return a decimal' do
+        p.E31_09.should == "91"
       end
     end
 

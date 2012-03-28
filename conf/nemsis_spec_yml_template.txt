@@ -15,12 +15,12 @@ E31_0:
   name:
   node: E31_0
 
-# Data [INTEGER]
+# Data [INTEGER/DECIMAL]
 E31_0:
   allow_null: 1
   data_entry_method: ~
   data_type: number
-  is_multi_entry: 1
+  is_multi_entry: 0
   name:
   node: E31_0
 

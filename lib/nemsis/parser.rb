@@ -45,39 +45,6 @@ module Nemsis
       end
     end
 
-    def get_value(element_spec, node)
-      value = node.text
-
-      if element_spec['data_type'] =~ /(text|combo|combo or text)/i &&
-          value =~ /^-?\d+$/ &&
-          !element_spec['field_values'].nil?
-
-        # Blank out "Not Recorded" values
-        element_spec['field_values'].merge!(
-            -10 => '', # Not Known
-            -15 => '', # Not Reporting
-            -20 => '', # Not Recorded
-            -25 => '', # Not Applicable
-            -5  => '' # Not Available
-        )
-        #if ["E23_08", "E29_03", "E24_01"].include?(element_spec["node"])
-        #  puts " [S] Lookup #{value.to_i} in #{element_spec["node"]} values: #{element_spec['field_values'].inspect}"
-        #end
-        mapped_value = case value.to_i
-                         when 0
-                           'No'
-                         when 1
-                           'Yes'
-                         else
-                           element_spec['field_values'][value.to_i]
-                       end
-
-        value = mapped_value unless mapped_value.nil?
-      end
-
-      value
-    end
-
     def get(element)
       element_spec = @@spec[element]
       name = element_spec["name"]
@@ -221,5 +188,48 @@ module Nemsis
         super
       end
     end
+
+    def get_value(element_spec, node)
+      value = node.text
+
+      # Note: data_type possible values are
+      # ["text", "combo", "date/time", "number", "date", "combo or text", "binary"]
+      if element_spec['data_type'] =~ /(text|combo|combo or text)/i &&
+          value =~ /^-?\d+$/ &&
+          !element_spec['field_values'].nil?
+
+        # Blank out "Not Recorded" values
+        element_spec['field_values'].merge!(
+            -10 => '', # Not Known
+            -15 => '', # Not Reporting
+            -20 => '', # Not Recorded
+            -25 => '', # Not Applicable
+            -5  => '' # Not Available
+        )
+        #if ["E23_08", "E29_03", "E24_01"].include?(element_spec["node"])
+        #  puts " [S] Lookup #{value.to_i} in #{element_spec["node"]} values: #{element_spec['field_values'].inspect}"
+        #end
+        mapped_value = case value.to_i
+                         when 0
+                           'No'
+                         when 1
+                           'Yes'
+                         else
+                           element_spec['field_values'][value.to_i]
+                       end
+
+        value = mapped_value unless mapped_value.nil?
+      elsif element_spec['data_type'] =~ /(date|time)/i
+        value = Time.parse(value).strftime("%Y-%m-%d %H:%M") rescue nil
+      elsif element_spec['data_type'] =~ /number/i
+        digits = 2
+        f = sprintf("%.1e", value).to_f
+        i = f.to_i
+        value = (i == f ? i : f)
+      end
+
+      value
+    end
+
   end
 end

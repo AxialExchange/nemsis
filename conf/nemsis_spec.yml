@@ -7823,7 +7823,7 @@ E30_09:
 E30_10:
   allow_null: 1
   data_entry_method: single-choice
-  data_type: text
+  data_type: combo
   field_values:
     -25: Not Applicable
     -20: Not Recorded
@@ -7852,6 +7852,242 @@ E30_11:
   name: Taking antiviral medication
   node: E30_11
 
+E31_01:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: Is patient injured
+  node: E31_01
+
+E31_02:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    501801: Aircraft
+    501802: All – Terrain Vehicle
+    501803: Automobile
+    501804: Motocycle
+    501805: Other
+    501806: Watercraft
+    501807: Snowmobile
+    501808: Moped
+  is_multi_entry: 0
+  name: Vehicle Type
+  node: E31_02
+
+E31_03:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    2145: Driver
+    2150: Left Rear
+    2155: Middle
+    2165: Right
+  is_multi_entry: 0
+  name: Position in vehicle
+  node: E31_03
+
+E31_04:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 0
+  name: Seat Row Number
+  node: E31_04
+
+E31_05:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    501901: Clear
+    501902: Fog
+    501903: Overcast
+    501904: Rain
+    501905: Snow/Sleet
+  is_multi_entry: 0
+  name: Weather
+  node: E31_05
+
+E31_06:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: Law enforcement case number
+  node: E31_06
+
+E31_07:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: Is extrication required
+  node: E31_07
+
+E31_08:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: Extrication Comments
+  node: E31_08
+
+E31_09:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 0
+  name: Est. Speed (mph)
+  node: E31_09
+
+E31_10:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    2215: No Air Bag(s) Present
+    2220: No Air Bag(s) Deployed
+    2225: Air Bag(s) Deployed
+  is_multi_entry: 0
+  name: Airbag deployment status
+  node: E31_10
+
+E31_11:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: date/time
+  is_multi_entry: 0
+  name: Extrication Time
+  node: E31_11
+
+E31_12:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    2065: Ejection
+    2075: Roll Over
+    2070: Fire
+    2060: Death (Same Vehicle)
+    2085: 'Intrusion > 12”'
+    2080: Side Post Deformity
+    2055: Dash Deformity
+    2090: Steering Wheel Deformity
+    2095: Windshield Spider/Star
+  is_multi_entry: 0
+  name: Collision Indicators
+  node: E31_12
+
+E31_13:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    2170: Child Restraint
+    2175: Eye Protection
+    2180: Helmet Worn
+    2185: Lap Belt
+    2187: None
+    2190: Other
+    2195: Personal Flotation Device
+    2200: Protective Clothing
+    2205: Protective Gear
+    2210: Shoulder Belt
+  is_multi_entry: 0
+  name: Safet Devices
+  node: E31_13
+
+E31_14:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    2100: Center Front
+    2105: Center Rear
+    2110: Left Front
+    2115: Left Rear
+    2120: Left Side
+    2125: Right Front
+    2130: Right Rear
+    2135: Right Side
+    2140: Roll Over
+  is_multi_entry: 0
+  name: Damage Location
+  node: E31_14
+
+E31_15:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    2225: Front Deployed
+    2230: Rear Deployed
+    2235: Other Deployed
+  is_multi_entry: 0
+  name: Airbag Deployment Location
+  node: E31_15
 
 
 
