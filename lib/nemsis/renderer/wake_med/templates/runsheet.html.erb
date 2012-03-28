@@ -696,7 +696,63 @@
     </thead>
     <tbody>
     <%= start_row %>
-      <%= label "To Be Supplied" %>
+    <%= labeled_cell_medium "Cardiac Arrest", @parser.E29_01 %>
+    <%= labeled_cell_medium "Prearrival CPR Instructions", @parser.E29_20 %>
+    </tr>
+    <%= start_row %>
+    <%= labeled_cell_medium "Cardiac Arrest Etiology", @parser.E29_02 %>
+    <%= labeled_cell_medium "First Defibrillated By", @parser.E29_21 %>
+    </tr>
+    <%= start_row %>
+    <%= labeled_cell_medium "Estimated Time of Arrest", @parser.E29_03 %>
+    <%= labeled_cell_medium "Time of First Defib", @parser.E29_22 %>
+    </tr>
+    <%= start_row %>
+    <%= labeled_cell_medium "Est Time Collapse to 911", @parser.E29_17 %>
+    <%= labeled_cell_medium "Initial ECG Rhythm", @parser.E29_09 %>
+    </tr>
+    <%= start_row %>
+    <%= labeled_cell_medium "Est Time Collapse to CPR", @parser.E29_18 %>
+    <%= labeled_cell_medium "Rhythm at Destination", @parser.E29_11 %>
+    </tr>
+    <%= start_row %>
+    <%= labeled_cell_medium "Arrest Witnessed By", @parser.E29_04 %>
+    <%= labeled_cell_medium "Hypothermia", @parser.E29_23 %>
+    </tr>
+    <%= start_row %>
+    <%= labeled_cell_medium "CPR Initiated By", @parser.E29_05 %>
+    <%= labeled_cell_medium "End of Event", @parser.E29_22 %>
+    </tr>
+    <%= start_row %>
+    <%= labeled_cell_medium "Time 1st CPR", @parser.E29_26 %>
+    <%= labeled_cell_medium "ROSC", @parser.E29_10 %>
+    </tr>
+    <%= start_row %>
+    <%= labeled_cell_medium "CPR Feedback", @parser.E29_27 %>
+    <%= labeled_cell_medium "ROSC Time", @parser.E29_19 %>
+    </tr>
+    <%= start_row %>
+    <%= labeled_cell_medium "ITD Used", @parser.E29_28 %>
+    <%= labeled_cell_medium "ROSC Occurred", @parser.E29_29 %>
+    </tr>
+    <%= start_row %>
+    <%= labeled_cell_medium "Applied AED", @parser.E29_06 %>
+    <%= labeled_cell_medium "Resuscitation Discontinued", @parser.E29_12 %>
+    </tr>
+    <%= start_row %>
+    <%= labeled_cell_medium "Applied By", @parser.E29_07 %>
+    <%= labeled_cell_medium "Discontinued Reason", @parser.E29_13 %>
+    </tr>
+    <%= start_row %>
+    <%= labeled_cell_medium "Defibrillated", @parser.E29_25 %>
+    <%= labeled_cell_medium "Resuscitation Attempted", "#{@parser.E29_20} #{@parser.E29_30}" %>
+    </tr>
+    <%= start_row %>
+      <%= heading "In-Field Pronouncement", 4 %>
+    </tr>
+    <tr>
+      <%= labeled_cell_narrow "Expired",  @parser.E29_14 %>
+      <%= cell "#{@parser.parse_time('E29_15') } #{@parser.E29_16}", 2 %>
     </tr>
     </tbody>
 </table>

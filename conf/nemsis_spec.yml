@@ -7192,6 +7192,498 @@ E28_28:
   name: TRANSMISSION TIME
   node: E28_28
 
+E29_01:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    2240: Yes, Prior to EMS Arrival
+    2245: Yes, After EMS Arrival
+  is_multi_entry: 0
+  name: CARDIAC ARREST
+  node: E29_01
+
+E29_02:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    -2: SIDS
+    2250: Presumed Cardiac
+    2255: Trauma
+    2260: Drowning
+    2265: Respiratory
+    2270: Electrocution
+    2275: Other
+  is_multi_entry: 0
+  name: CARDIAC ARREST ETIOLOGY
+  node: E29_02
+
+E29_03:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    2390: >20 Minutes
+    2395: 15-20 Minutes
+    2400: 10-15 Minutes
+    2405: 8-10 Minutes
+    2410: 6-8 Minutes
+    2415: 4-6 Minutes
+    2420: 2-4 Minutes
+    2425: 0-2 Minutes
+  is_multi_entry: 0
+  name: ESTIMATED TIME OF ARREST
+  node: E29_03
+
+E29_04:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    2310: Witnessed by Healthcare Provider
+    2315: Bystander
+    2320: Not Witnessed
+  is_multi_entry: 0
+  name: ARREST WITNESSED BY
+  node: E29_04
+
+E29_05:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    501401: Bystander
+    501402: Family
+    501403: EMS
+    501404: Medical/Health Care Provider
+    501405: Law Enforcement
+    501406: Other
+  is_multi_entry: 0
+  name: CPR INITIATED BY
+  node: E29_05
+
+E29_06:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: AED USED PRIOR TO ARRIVAL
+  node: E29_06
+
+E29_07:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    501401: Bystander
+    501402: Family
+    501403: EMS
+    501404: Medical/Health Care Provider
+    501405: Law Enforcement
+    501406: Other
+  is_multi_entry: 0
+  name: AED USED BY
+  node: E29_07
+
+E29_08:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: RESUSCITATION ATTEMPTED
+  node: E29_08
+
+E29_09:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    2325: Asystole
+    2330: Bradycardia
+    2335: Normal Sinus Rhythm
+    2340: Other
+    2345: PEA
+    2350: Unknown AED Non-Shockable Rhythm
+    2355: Unknown AED Shockable Rhythm
+    2360: Ventricular Fibrillation
+    2365: Ventricular Tachycardia
+  is_multi_entry: 0
+  name: INITIAL ECG RHYTHM
+  node: E29_09
+
+E29_10:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    2380: No
+    2370: Yes, Prior to ED Arrival Only
+    2375: Yes, Prior to ED Arrival and at the ED
+  is_multi_entry: 0
+  name: ROSC
+  node: E29_10
+
+E29_11:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    2455: 12 Lead ECG - Anterior Ischemia
+    2460: 12 Lead ECG - Inferior Ischemia
+    2465: 12 Lead ECG - Lateral Ischemia
+    2470: Agonal/Idioventricular
+    2475: Artifact
+    2480: Asystole
+    2485: Atrial Fibrillation/Flutter
+    2490: AV Block - 1st Degree
+    2495: AV Block - 2nd Degree - Type 1
+    2500: AV Block - 2nd Degree - Type 2
+    2505: AV Block - 3rd Degree
+    2510: Junctional
+    2515: Left Bundle Branch Block
+    2520: Normal Sinus Rhythm
+    2525: Other
+    2530: Paced Rhythm
+    2535: PEA
+    2540: Premature Atrial Contractions
+    2545: Premature Ventricular Contractions
+    2550: Right Bundle Branch Block
+    2555: Sinus Arrhythmia
+    2560: Sinus Bradycardia
+    2565: Sinus Tachycardia
+    2570: Supraventricular Tachycardia
+    2575: Torsades De Points
+    2580: Unknown AED Non-Shockable Rhythm
+    2585: Unknown AED Shockable Rhythm
+    2590: Ventricular Fibrillation
+    2595: Ventricular Tachycardia
+    2455: 12 Lead ECG - Septal Ischemia
+  is_multi_entry: 0
+  name: RHYTHM AT DESTINATION
+  node: E29_11
+
+E29_12:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: date/time
+  is_multi_entry: 0
+  name: RESUSCITATION DISCONTINUED DATE TIME
+  node: E29_12
+
+E29_13:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    2430: DNR
+    2435: Medical Control Order
+    2440: Obvious Signs of Death
+    2445: Protocol/Policy Requirements Completed
+    2450: Return of Spontaneous Circulation (pulse or BP Noted)
+  is_multi_entry: 0
+  name: DISCONTINUATION REASON
+  node: E29_13
+
+E29_14:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: FIELD PRONOUNCEMENT EXPIRED
+  node: E29_14
+
+E29_15:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: date/time
+  is_multi_entry: 0
+  name: FIELD PRONOUNCEMENT DATE TIME
+  node: E29_15
+
+E29_16:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: FIELD PRONOUNCEMENT PHYSICIAN
+  node: E29_16
+
+E29_17:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 1
+  name: ESTIMATED TIME FROM COLLAPSE TO 911
+  node: E29_17
+
+E29_18:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 1
+  name: ESTIMATED TIME FROM COLLAPSE TO CPR
+  node: E29_18
+
+E29_19:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: date/time
+  is_multi_entry: 0
+  name: RETURN OF SPONTANEOUS CIRCULATION DATE TIME
+  node: E29_19
+
+E29_20:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: PRE-ARRIVAL CPR INSTRUCTIONS
+  node: E29_20
+
+E29_21:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    501502: Bystander
+    501503: Family
+    501504: EMS
+    501505: First Responder
+    501506: Law Enforcement
+    501507: Medical/Health Care Provider
+  is_multi_entry: 0
+  name: FIRST DEFIBRILLATION BY
+  node: E29_21
+
+E29_22:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: date/time
+  is_multi_entry: 0
+  name: TIME OF FIRST DEFIBRILLATION
+  node: E29_22
+
+E29_23:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: HYPOTHERMIA PROVIDED
+  node: E29_23
+
+E29_24:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    501601: Pronounced in the Field
+    501602: Pronounced in the ED
+    501603: Effort Ceased due to DNR
+    501604: Ongoing Resuscitation in ED
+  is_multi_entry: 0
+  name: END OF EVENT
+  node: E29_24
+
+E29_25:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: DEFIBRILLATION
+  node: E29_25
+
+E29_26:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: date/time
+  is_multi_entry: 0
+  name: TIME OF FIRST CPR
+  node: E29_26
+
+E29_27:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: CPR FEEDBACK
+  node: E29_27
+
+E29_28:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: ITD USED
+  node: E29_28
+
+E29_29:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    501601: Never
+    501602: After Bystander CPR only
+    501603: After Bystander Defib Shock
+    501604: After EMS CPR Only
+    501605: After EMS Defib Shock
+    501606: After EMS ALS
+    501607: Unknown
+  is_multi_entry: 0
+  name: ROSC OCCURRED
+  node: E29_29
+
+E29_30:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    2280: Attempted Defibrillation
+    2285: Attempted Ventilation
+    2290: Initiated Chest Compressions
+    2295: Not Attempted – Considered Futile
+    2300: Not Attempted – DNR Orders
+    2305: Not Attempted – Signs of Circulation
+  is_multi_entry: 0
+  name: RESUSCITATION
+  node: E29_30
+
 
 
 

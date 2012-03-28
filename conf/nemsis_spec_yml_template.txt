@@ -15,6 +15,15 @@ E99_0:
   name: REASON NOT ACTIVATED
   node: E99_0
 
+# Data [INTEGER]
+E99_0:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 1
+  name: CARBON MONOXIDE READING
+  node: E99_0
+
 # Data [date/time]
 E99_0:
   allow_null: 1
