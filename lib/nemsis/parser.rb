@@ -47,13 +47,16 @@ module Nemsis
 
     # niche method, only returns a single value
     def index(element)
+      text = ''
+
       begin
         nodes = xml_doc.xpath("//#{@@spec[element]['node']}") or return -99
-        return nodes[0].text
-
+        text = nodes.first.text if nodes.size > 0
       rescue => err
         puts "Error: parsing xpath [#{xpath}] #{err}"
       end
+
+      text
     end
 
     def name(element)
