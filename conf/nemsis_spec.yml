@@ -6425,14 +6425,14 @@ E24_01:
     0: No
     1: Yes
   is_multi_entry: 0
-  name: IS TRAUMA ACTIVATION
+  name: 'Trauma Activation'
   node: E24_01
 E24_02:
   allow_null: 1
   data_entry_method: ~
   data_type: date/time
   is_multi_entry: 1
-  name: ACTIVATION TIME
+  name: 'Date/Time'
   node: E24_02
 E24_03:
   allow_null: 0
@@ -6440,14 +6440,14 @@ E24_03:
   data_type: text
   field_values: {}
   is_multi_entry: 0
-  name: REASON NOT ACTIVATED
+  name: Reason not Activated
   node: E24_03
 E24_04:
   allow_null: 1
   data_entry_method: ~
   data_type: text
   is_multi_entry: 1
-  name: TRAUMA LEVEL
+  name: Trauma Level
   node: E24_04
 E24_05:
   allow_null: 1
@@ -6469,7 +6469,7 @@ E24_05:
     500008: Provider Suspicion
     500009: ESRD with Dialysis
   is_multi_entry: 1
-  name: OTHER CONDITIONS OR RISK FACTORS
+  name: Other Conditions
   node: E24_05
 E24_06:
   allow_null: 1
@@ -6488,7 +6488,7 @@ E24_06:
     500105:    RR < 20 (infant)
     500106:    SBP < 90
   is_multi_entry: 1
-  name: PHYSIOLOGIC CONDITIONS OR RISKS
+  name: Physiologic
   node: E24_06
 E24_07:
   allow_null: 1
@@ -6511,7 +6511,7 @@ E24_07:
     500209:   Motorcycle/ATV > 20 mph
     500210:   Extrication > 20 min.
   is_multi_entry: 1
-  name: MECHANICAL CONDITIONS OR RISKS
+  name: Mechanical
   node: E24_07
 E24_08:
   allow_null: 1
@@ -6534,7 +6534,7 @@ E24_08:
     500309: > 1 Prox Long Bone FX 
     500310: Mangled Extremity
   is_multi_entry: 1
-  name: ANATOMIC CONDITIONS OR RISKS
+  name: Anatomic
   node: E24_08
 E25_01:
   allow_null: 0
@@ -8615,4 +8615,100 @@ E33_10:
   is_multi_entry: 0
   name: Score
   node: E33_10
+
+E34_01:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: 'Immobilization Recommended?'
+  node: E34_01
+
+E34_02:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: 'Altered Mental Status'
+  node: E34_02
+
+E34_03:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: 'Evidence of Alcohol/Drug Impairment'
+  node: E34_03
+
+E34_04:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: 'Distracting Injury'
+  node: E34_04
+
+E34_05:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: 'Neurologic Deficit'
+  node: E34_05
+
+E34_06:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: 'Spinal Pain/Tenderness'
+  node: E34_06
 

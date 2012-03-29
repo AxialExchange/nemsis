@@ -818,27 +818,10 @@
     </tr>
     </thead>
     <tbody>
-    <%= start_row %>
-      <%= labeled_cell "Anatomic", @parser.E24_08 %>
-      <%= labeled_cell "Trauma Activation", @parser.E24_01 %>
-    </tr>
-    <%= start_row %>
-      <%= labeled_cell "Physiologic", @parser.E24_06 %>
-      <%= labeled_cell "Time", @parser.parse_time('E24_02')%>
-    </tr>
-    <%= start_row %>
-      <%= labeled_cell "Mechanical", @parser.E24_07 %>
-      <%= labeled_cell "Date", @parser.parse_date('E24_02') %>
-    </tr>
-    <%= start_row %>
-      <%= labeled_cell "Other Conditions", @parser.E24_05 %>
-      <%= labeled_cell "Trauma Level", @parser.E24_04 %>
-    </tr>
-    <%= start_row %>
-      <td></td>
-      <td></td>
-      <%= labeled_cell "Reason not Activated", @parser.E24_03 %>
-    </tr>
+    <%=  row 'E24_08', 'E24_01' %>
+    <%=  row 'E24_06', 'E24_02' %>
+    <%=  row 'E24_07', 'E24_04' %>
+    <%=  row 'E24_05', 'E24_03' %>
     </tbody>
 </table>
 <br>
@@ -881,16 +864,15 @@
 </table>
 <br>
 
-<%= start_table "SpecialtyPatientSpinal" %>
+<%= start_table "Specialty Patient &mdash; Spinal Immobilization" %>
     <thead>
     <%= start_row %>
-      <%= heading "Specialty Patient &mdash; Spinal Immobilization" %>
+      <%= heading "Specialty Patient &mdash; Spinal Immobilization", 12 %>
     </tr>
     </thead>
     <tbody>
-    <%= start_row %>
-      <%= label "To Be Supplied" %>
-    </tr>
+    <%= row 'E34_01','E34_02','E34_03' %>
+    <%= row 'E34_04','E34_05','E34_06' %>
     </tbody>
 </table>
 <br>
@@ -917,7 +899,7 @@
 </table>
 <br>
 
-<%= start_table "SpecialtyPatientSAD" %>
+<%= start_table "Specialty Patient &mdash; SAD (Psychiatric Ax)" %>
     <thead>
     <%= start_row %>
       <%= heading "Specialty Patient &mdash; SAD (Psychiatric Ax)", 4 %>
