@@ -920,12 +920,26 @@
 <%= start_table "SpecialtyPatientSAD" %>
     <thead>
     <%= start_row %>
-      <%= heading "Specialty Patient &mdash; SAD (Psychiatric Ax)" %>
+      <%= heading "Specialty Patient &mdash; SAD (Psychiatric Ax)", 4 %>
     </tr>
     </thead>
     <tbody>
+    <%= row 'E33_01', 'E33_06' %>
+    <%= row 'E33_02', 'E33_07' %>
+    <%= row 'E33_03', 'E33_08' %>
+    <%= row 'E33_04', 'E33_09' %>
     <%= start_row %>
-      <%= label "To Be Supplied" %>
+    <%
+       score = @parser.E33_10.to_i
+       if score <= 4
+         risk_assessment_scale = "Low"
+       elsif score == 5 or score == 6
+         risk_assessment_scale = "Medium"
+       else
+         risk_assessment_scale = "High"
+       end
+    %>
+      <%= labeled_cell @parser.name('E33_05'), @parser.E33_05 %><%= labeled_cell "#{@parser.name('E33_10')} (#{@parser.E33_10})", risk_assessment_scale %>
     </tr>
     </tbody>
 </table>

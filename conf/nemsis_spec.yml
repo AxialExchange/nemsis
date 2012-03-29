@@ -8461,3 +8461,158 @@ E32_30:
   name: Score
   node: E32_30
 
+E33_01:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: Gender Male
+  node: E33_01
+
+E33_02:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: 'Age 24 to 45 or 65+'
+  node: E33_02
+
+E33_03:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: 'Depression: Diagnosed Depression'
+  node: E33_03
+
+E33_04:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: 'Substance Abuse: Abused Alcohol or Drugs'
+  node: E33_04
+
+E33_05:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: 'Rationality: Psychotic or Disorganized'
+  node: E33_05
+
+E33_06:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: 'Support: Severely Isolated'
+  node: E33_06
+
+E33_07:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: 'Organized Plan: Specific Lethal Plan'
+  node: E33_07
+
+E33_08:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: 'Sickness: Major Illness'
+  node: E33_08
+
+E33_09:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    1: Single
+    2: Widowed
+    3: Separated
+    4: Divorced
+    5: Married
+  is_multi_entry: 0
+  name: 'Spouse'
+  node: E33_09
+
+E33_10:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 0
+  name: Score
+  node: E33_10
+
