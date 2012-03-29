@@ -6,35 +6,35 @@ and replace "99" with the proper field number.
 ------------------------------------------
 
 # Data [STRING]
-E31_0:
+E32_0:
   allow_null: 0
   data_entry_method: ~
   data_type: text
   field_values: {}
   is_multi_entry: 0
   name:
-  node: E31_0
+  node: E32_0
 
 # Data [INTEGER/DECIMAL]
-E31_0:
+E32_0:
   allow_null: 1
   data_entry_method: ~
   data_type: number
   is_multi_entry: 0
   name:
-  node: E31_0
+  node: E32_0
 
 # Data [date/time]
-E31_0:
+E32_0:
   allow_null: 1
   data_entry_method: ~
   data_type: date/time
   is_multi_entry: 0
   name:
-  node: E31_0
+  node: E32_0
 
 # Data [combo] single-choice
-E31_0:
+E32_0:
   allow_null: 1
   data_entry_method: single-choice
   data_type: text
@@ -48,10 +48,10 @@ E31_0:
     1: Yes
   is_multi_entry: 0
   name:
-  node: E31_0
+  node: E32_0
 
 # Data [combo] Multiple Choice
-E31_0:
+E32_0:
   allow_null: 1
   data_entry_method: multiple-choice
   data_type: combo
@@ -64,4 +64,4 @@ E31_0:
     500001: None
   is_multi_entry: 1
   name:
-  node: E31_0
+  node: E32_0

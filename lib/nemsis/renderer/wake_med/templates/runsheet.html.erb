@@ -1,3 +1,10 @@
+
+<!--
+    NOTE: The later Specialty Tables began to use the latest incarnation of table generation row().
+
+    TODO: consider refactoring the other tables to use the simple syntax.
+-->
+
 <%
    @fancy_html ||= false
 
@@ -25,7 +32,7 @@
      end
    end
 
-   # Create a grid of Label/Value pairs
+   # Create a grid of Label/Value pairs using the name from the YML file as the label
    def row(*fields)
      text = start_row
      fields.each do |field|
@@ -38,6 +45,26 @@
          text += labeled_cell(element[:name], @parser.send(field))
        end
      end
+     text += '</tr>'
+   end
+
+   # Specialized row version for the Obstetrical table
+   def ob_row(field1, field2, field3, field4)
+     text = start_row
+     element = @parser.get(field1)
+     text += labeled_cell(element[:name], @parser.send(field1))
+     if field2.empty?
+       text += cell("")
+       text += cell("")
+     else
+       element = @parser.get(field2)
+       text += labeled_cell(element[:name], @parser.send(field2))
+     end
+     element = @parser.get(field3)
+     text += labeled_cell(element[:name], @parser.index(field3))
+     element = @parser.get(field4)
+     text += cell @parser.index(field4)
+
      text += '</tr>'
    end
 
@@ -122,15 +149,6 @@
    def labeled_cell_narrow(label, value, colspan=0)
      labeled_cell_with_style('label-narrow', label, value, colspan)
    end
-
-   # An attempt to control HTML generation in one spot.
-   #def convert_style_to_html(text)
-   #  if text.index('label-narrow')
-   #    text.gsub!("class='label-narrow'", "")
-   #    puts text
-   #  end
-   #  text
-   #end
 
    # Return a set of rows
    def list(the_hash)
@@ -806,11 +824,11 @@
     </tr>
     <%= start_row %>
       <%= labeled_cell "Physiologic", @parser.E24_06 %>
-      <%= labeled_cell "Time", @parser.E24_02 %>
+      <%= labeled_cell "Time", @parser.parse_time('E24_02')%>
     </tr>
     <%= start_row %>
       <%= labeled_cell "Mechanical", @parser.E24_07 %>
-      <%= labeled_cell "Date", @parser.E24_02 %>
+      <%= labeled_cell "Date", @parser.parse_date('E24_02') %>
     </tr>
     <%= start_row %>
       <%= labeled_cell "Other Conditions", @parser.E24_05 %>
@@ -828,12 +846,36 @@
 <%= start_table "SpecialtyPatientObstetrical" %>
     <thead>
     <%= start_row %>
-      <%= heading "Specialty Patient &mdash; Obstetrical" %>
+      <%= heading "Specialty Patient &mdash; Obstetrical", 7 %>
     </tr>
     </thead>
     <tbody>
     <%= start_row %>
-      <%= label "To Be Supplied" %>
+    <%= labeled_cell @parser.name('E32_01'), @parser.E32_01 %><%= labeled_cell @parser.name('E32_09'), @parser.E32_09 %><%= label "APGAR" %><%= label "1 Min" %><%= label "5 Min" %>
+    </tr>
+    <%= ob_row('E32_02', 'E32_10', 'E32_19', 'E32_25') %>
+    <%= ob_row('E32_03', 'E32_11', 'E32_20', 'E32_26') %>
+    <%= ob_row('E32_04', 'E32_12', 'E32_21', 'E32_27') %>
+    <%= ob_row('E32_05', 'E32_13', 'E32_22', 'E32_28') %>
+    <%= ob_row('E32_06', 'E32_14', 'E32_23', 'E32_29') %>
+    <%= ob_row('E32_07',       '', 'E32_24', 'E32_30') %>
+    <%= start_row %>
+    <% high_risk_info = @parser.E32_08 %>
+      <%= labeled_cell "High Risk Pregnancy", high_risk_info, 6 %>
+    </tr>
+    <%= start_row %>
+    <%
+       #complication_info = %w(E32_15 E32_16 E32_17 E32_18).collect {|e| el=@parser.get(e); (el[:value] =~ /yes/i) ? el[:name] : nil }.join('; ')
+       names = []
+       %w(E32_15 E32_16 E32_17 E32_18).each do |e|
+         el = @parser.get(e)
+         if el[:value] =~ /yes/i
+           names << el[:name]
+         end
+       end
+       complication_info = names.join('; ')
+    %>
+      <%= labeled_cell "Complications", complication_info, 6 %>
     </tr>
     </tbody>
 </table>

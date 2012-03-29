@@ -45,6 +45,21 @@ module Nemsis
       end
     end
 
+    # niche method, only returns a single value
+    def index(element)
+      begin
+        nodes = xml_doc.xpath("//#{@@spec[element]['node']}") or return -99
+        return nodes[0].text
+
+      rescue => err
+        puts "Error: parsing xpath [#{xpath}] #{err}"
+      end
+    end
+
+    def name(element)
+      get(element)[:name]
+    end
+
     def get(element)
       element_spec = @@spec[element]
       name = element_spec["name"]
@@ -68,6 +83,16 @@ module Nemsis
         Time.parse(time_str).strftime("%Y-%m-%d %H:%M") rescue nil
       else
         Time.parse(time_str).strftime("%H:%M") rescue nil
+      end
+    end
+
+    def parse_date(element, full=true)
+      date_str = parse_element(element)
+
+      if full
+        Time.parse(date_str).strftime("%Y-%m-%d") rescue nil
+      else
+        Time.parse(date_str).strftime("%m-%d") rescue nil
       end
     end
 
@@ -193,7 +218,7 @@ module Nemsis
       value = node.text
 
       # Note: data_type possible values are
-      # ["text", "combo", "date/time", "number", "date", "combo or text", "binary"]
+      # ["text", "combo", "date/time", "number", "date", "time", "combo or text", "binary"]
       if element_spec['data_type'] =~ /(text|combo|combo or text)/i &&
           value =~ /^-?\d+$/ &&
           !element_spec['field_values'].nil?
@@ -209,23 +234,25 @@ module Nemsis
         #if ["E23_08", "E29_03", "E24_01"].include?(element_spec["node"])
         #  puts " [S] Lookup #{value.to_i} in #{element_spec["node"]} values: #{element_spec['field_values'].inspect}"
         #end
-        mapped_value = case value.to_i
-                         when 0
-                           'No'
-                         when 1
-                           'Yes'
-                         else
-                           element_spec['field_values'][value.to_i]
-                       end
+        mapped_value = element_spec['field_values'][value.to_i]
+        case mapped_value
+          when false
+            mapped_value = 'No'
+          when true
+            mapped_value = 'Yes'
+        end
 
         value = mapped_value unless mapped_value.nil?
-      elsif element_spec['data_type'] =~ /(date|time)/i
+      elsif element_spec['data_type'] =~ /date\/time/i
         value = Time.parse(value).strftime("%Y-%m-%d %H:%M") rescue nil
+      elsif element_spec['data_type'] =~ /date/i
+        value = Time.parse(value).strftime("%Y-%m-%d") rescue nil
+      elsif element_spec['data_type'] =~ /time/i
+        value = Time.parse(value).strftime("%H:%M") rescue nil
       elsif element_spec['data_type'] =~ /number/i
-        digits = 2
-        f = sprintf("%.1e", value).to_f
-        i = f.to_i
-        value = (i == f ? i : f)
+        f      = sprintf("%.1e", value).to_f
+        i      = f.to_i
+        value  = (i == f ? i : f)
       end
 
       value

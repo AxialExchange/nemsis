@@ -6367,7 +6367,7 @@ E23_07:
 E23_08:
   allow_null: 1
   data_entry_method: single-choice
-  data_type: combo
+  data_type: text
   field_values:
     -25: Not Applicable
     -20: Not Recorded
@@ -7428,7 +7428,7 @@ E29_11:
 E29_12:
   allow_null: 1
   data_entry_method: ~
-  data_type: date/time
+  data_type: time
   is_multi_entry: 0
   name: RESUSCITATION DISCONTINUED DATE TIME
   node: E29_12
@@ -7471,7 +7471,7 @@ E29_14:
 E29_15:
   allow_null: 1
   data_entry_method: ~
-  data_type: date/time
+  data_type: time
   is_multi_entry: 0
   name: FIELD PRONOUNCEMENT DATE TIME
   node: E29_15
@@ -7504,7 +7504,7 @@ E29_18:
 E29_19:
   allow_null: 1
   data_entry_method: ~
-  data_type: date/time
+  data_type: time
   is_multi_entry: 0
   name: RETURN OF SPONTANEOUS CIRCULATION DATE TIME
   node: E29_19
@@ -7548,7 +7548,7 @@ E29_21:
 E29_22:
   allow_null: 1
   data_entry_method: ~
-  data_type: date/time
+  data_type: time
   is_multi_entry: 0
   name: TIME OF FIRST DEFIBRILLATION
   node: E29_22
@@ -7606,7 +7606,7 @@ E29_25:
 E29_26:
   allow_null: 1
   data_entry_method: ~
-  data_type: date/time
+  data_type: time
   is_multi_entry: 0
   name: TIME OF FIRST CPR
   node: E29_26
@@ -7687,7 +7687,7 @@ E29_30:
 E30_01:
   allow_null: 1
   data_entry_method: ~
-  data_type: date/time
+  data_type: time
   is_multi_entry: 0
   name: Onset of signs/symptoms
   node: E30_01
@@ -7997,7 +7997,7 @@ E31_10:
 E31_11:
   allow_null: 1
   data_entry_method: ~
-  data_type: date/time
+  data_type: time
   is_multi_entry: 0
   name: Extrication Time
   node: E31_11
@@ -8089,5 +8089,375 @@ E31_15:
   name: Airbag Deployment Location
   node: E31_15
 
+E32_01:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 0
+  name: Gravida
+  node: E32_01
 
+E32_02:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 0
+  name: Para
+  node: E32_02
+
+E32_03:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 0
+  name: Abortions
+  node: E32_03
+
+E32_04:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: date
+  is_multi_entry: 0
+  name: Last Menstrual Period
+  node: E32_04
+
+E32_05:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: date
+  is_multi_entry: 0
+  name: Due Date
+  node: E32_05
+
+E32_06:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: Prenatal Care
+  node: E32_06
+
+E32_07:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: OB Physician
+  node: E32_07
+
+E32_08:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    502001: Gestational Diabetes
+    502002: Hypertensive Disorders (PIH or Preeclampsia)
+    502003: Multiple Births
+    502004: Placenta Problems (Previa or Abruption)
+    502005: Preterm Labor
+    502006: Vaginal Bleeding (First Trimester)
+  is_multi_entry: 1
+  name: High-risk Pregnancy
+  node: E32_08
+
+E32_09:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: Membrane Intact
+  node: E32_09
+
+E32_10:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: date/time
+  is_multi_entry: 0
+  name: Labor Onset
+  node: E32_10
+
+E32_11:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 0
+  name: Contraction Dur. (sec)
+  node: E32_11
+
+E32_12:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 0
+  name: Frequency (min)
+  node: E32_12
+
+E32_13:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: date/time
+  is_multi_entry: 0
+  name: Time of Birth
+  node: E32_13
+
+E32_14:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: date/time
+  is_multi_entry: 0
+  name: Placental Delivery
+  node: E32_14
+
+E32_15:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: Breech
+  node: E32_15
+
+E32_16:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: Meconium Staining
+  node: E32_16
+
+E32_17:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: Prolapsed Cord
+  node: E32_17
+
+E32_18:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: Uncontrolled Bleeding
+  node: E32_18
+
+E32_19:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No Response
+    1: Some Motion
+    2: Cry
+  is_multi_entry: 0
+  name: Activity
+  node: E32_19
+
+E32_20:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: Absent
+    1: '< 100'
+    2: '> 100'
+  is_multi_entry: 0
+  name: Pulse
+  node: E32_20
+
+E32_21:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: Limp
+    1: Some Flexion
+    2: Good Flexion
+  is_multi_entry: 0
+  name: Grimace
+  node: E32_21
+
+E32_22:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: Blue, Pale
+    1: Body Pink, Extremities Blue
+    2: Pink
+  is_multi_entry: 0
+  name: Appearance
+  node: E32_22
+
+E32_23:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: Absent
+    1: Weak Cry
+    2: Strong Cry
+  is_multi_entry: 0
+  name: Respiration
+  node: E32_23
+
+E32_24:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 0
+  name: Score
+  node: E32_24
+
+# ---
+E32_25:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No Response
+    1: Some Motion
+    2: Cry
+  is_multi_entry: 0
+  name: Activity
+  node: E32_25
+
+E32_26:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: Absent
+    1: '< 100'
+    2: '> 100'
+  is_multi_entry: 0
+  name: Pulse
+  node: E32_26
+
+E32_27:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: Limp
+    1: Some Flexion
+    2: Good Flexion
+  is_multi_entry: 0
+  name: Grimace
+  node: E32_27
+
+E32_28:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: Blue, Pale
+    1: Body Pink, Extremities Blue
+    2: Pink
+  is_multi_entry: 0
+  name: Appearance
+  node: E32_28
+
+E32_29:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: Absent
+    1: Weak Cry
+    2: Strong Cry
+  is_multi_entry: 0
+  name: Respiration
+  node: E32_29
+
+E32_30:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 0
+  name: Score
+  node: E32_30
 

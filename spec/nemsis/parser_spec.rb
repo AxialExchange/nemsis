@@ -34,6 +34,17 @@ describe Nemsis::Parser do
         p.get('E24_01')[:value].should == "YES"
       end
     end
+    describe '#name' do
+      it "should return the name" do
+        p.name('E32_01').should == "Gravida"
+      end
+    end
+    describe '#index' do
+      it "should return the index into the lookup table" do
+        p.index('E24_05').should == "500003"
+        p.index('E32_28').should == "2"
+      end
+    end
     describe '#parse_element' do
       it 'should return string for non-coded element' do
         p.parse_element('E06_01').should == 'ZERO'
@@ -64,7 +75,13 @@ describe Nemsis::Parser do
         p.E25_01.should == "Class 1"
       end
       it 'should return a full date/time value' do
-        p.E31_11.should == p.parse_time('E31_11', true)
+        p.E32_10.should == p.parse_time('E32_10', true)
+      end
+      it 'should return a date value' do
+        p.E32_05.should == p.parse_date('E32_05')
+      end
+      it 'should return a time value' do
+        p.E31_11.should == p.parse_time('E31_11')
       end
       it 'should return an array as a comma-separated list for multiple values' do
         p.E25_03.should == "Ventilatory Effort Compromised, Injury/Trauma to Airway"
@@ -94,6 +111,12 @@ describe Nemsis::Parser do
       end
       it 'should parse time to shortened format' do
         p.parse_time('E14_01').should == '18:23'
+      end
+    end
+
+    describe '#parse_date' do
+      it 'should parse time to standard date-only format' do
+        p.parse_date('E14_01', true).should == '2012-01-31'
       end
     end
 
