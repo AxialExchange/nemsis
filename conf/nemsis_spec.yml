@@ -1829,6 +1829,32 @@ E04_03:
   is_multi_entry: 1
   name: CREW MEMBER LEVEL
   node: E04_03
+E04_04:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: Last Name
+  node: E04_04
+E04_05:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: First Name
+  node: E04_05
 E05_01:
   allow_null: 1
   data_entry_method: ~
@@ -6531,7 +6557,7 @@ E24_08:
     500306: Pelvic Fracture 
     500307: Amputation 
     500308: Significant Burns 
-    500309: > 1 Prox Long Bone FX 
+    500309: '> 1 Prox Long Bone FX'
     500310: Mangled Extremity
   is_multi_entry: 1
   name: Anatomic
