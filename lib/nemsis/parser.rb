@@ -63,13 +63,6 @@ module Nemsis
       get(element)[:name]
     end
 
-    def get(element)
-      element_spec = @@spec[element]
-      name = element_spec["name"]
-      value = parse_element(element)
-      {:name => name, :value => value}
-    end
-
     def parse_element(element)
       element_spec = @@spec[element]
 
@@ -107,12 +100,14 @@ module Nemsis
       state_codes[state_code] || state_code
     end
 
+    # This is a dangerous method, as there could be multiple fields with the same name (like Last Name))
     def parse_field(field_name)
       element_spec = @@spec.values.
-          select { |v| v['name'] == field_name }.
+          #select { |v| v['name'].upcase == field_name.upcase }.
+          select { |v| (v['name']) =~ /^#{field_name}$/i }.
           first
-
-      parse(element_spec)
+      #puts "ES for #{field_name}: #{element_spec.inspect}"
+      self.send(element_spec['node'])
     end
 
     def parse_pair(name_element, value_element)
@@ -138,7 +133,7 @@ module Nemsis
     def parse_cluster(element)
       xpath    = "//#{element}"
       nodes    = xml_doc.xpath(xpath)
-      # puts nodes.count
+      #puts "cluster count: #{nodes.count}" if element == 'E04'
 
       clusters = []
       begin
@@ -200,10 +195,78 @@ module Nemsis
       end.compact.join(' ')
     end
 
+    # Return a hash representing the field and its value
+    def get(element)
+      element_spec = @@spec[element]
+      return {} if element_spec.nil?
+      {:name => element_spec["name"], :value => parse_element(element)}
+    end
+
+    # It is getting hard to know what to call things... and that is never a good sign for a clean API.
+    # This returns an array of key-value pairs for each element group. Each array item has the list of fields.
+    # The possible fields are based on the yml spec entries (not on the data itself).
+    def get_children(element)
+      results = []
+      return children if element.nil? or element.empty?
+
+      matching_spec_elements = @@spec.to_a.select { |v| v[0].upcase.index(element.upcase) == 0 }
+      element_keys = matching_spec_elements.map {|s| s[0]}
+      #puts "Expect to find: #{element_keys}"
+      nodes = xml_doc.xpath('//E04')
+      nodes.each do |node|
+        children = {}
+        local_parser = Nemsis::Parser.new(node.to_s)
+        element_keys.each do |key|
+          value = local_parser.parse_element(key)
+          value ||= ''
+          #puts "\t#{key}: '#{value}'"
+          children[key] = value
+        end
+        results << children
+      end
+      results
+    end
+
+    # The primary intent of this method is to enable a quick check to see if a section of the HTML should
+    # be rendered (if has_content == true) or hidden.
+    # Constraint: It expects D01 or E01 format. F100 will not work.
+    def has_content(*elements)
+      data_exists = false
+      elements.each do |element|
+        #puts "Checking #{element}"
+        # Check for the case of a class of elements; i.e., E32
+        if element.upcase =~ /^[D|E]\d\d$/
+          nodes = xml_doc.xpath("//#{element}")
+          # Maybe I don't get it, but this seems like an arduous way to use Nokogiri -- jon
+          nodes.each do |node|
+            node.children.each do |child|
+              next unless child.is_a?(Nokogiri::XML::Element)
+              value = child.children
+              unless value.nil? or value.empty?
+                #puts "    Found: #{child.name} = #{value}"
+                data_exists = true
+                break
+              end
+            end
+          end
+        else
+          value = parse_element(element)
+          unless value.nil? or value.empty?
+            #puts "    Found: #{value}"
+            data_exists = true
+            break
+          end
+        end
+      end
+      data_exists
+    end
+
     # Return a string
     def method_missing(method_sym, *arguments, &block)
       if method_sym.to_s =~ /^[A-Z]\d{2}(_\d{2})?/
         Array(parse(@@spec[method_sym.to_s])).join(', ') rescue ''
+      elsif method_sym.to_s =~ /^concat/
+        instance_eval(method_sym.to_s) rescue ''
       else
         super
       end
@@ -260,6 +323,5 @@ module Nemsis
 
       value
     end
-
   end
 end

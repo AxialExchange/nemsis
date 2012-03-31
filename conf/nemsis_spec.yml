@@ -1957,7 +1957,7 @@ E06_01:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 0
-  name: LAST NAME
+  name: 'LAST NAME'
   node: E06_01
 E06_02:
   allow_null: 1
@@ -1970,7 +1970,7 @@ E06_02:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 0
-  name: FIRST NAME
+  name: 'FIRST NAME'
   node: E06_02
 E06_03:
   allow_null: 1

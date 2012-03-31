@@ -586,144 +586,153 @@
 <br>
 <% end %>
 
-  <%= start_table "Specialty Patient &mdash; ACS" %>
-    <thead>
-    <%= start_row%>
-      <%= heading "Specialty Patient &mdash; ACS", 6 %>
-    </tr>
-    </thead>
-    <tbody>
-    <%= start_row %>
-      <%= labeled_cell_narrow "12 Lead", @parser.E28_27 %>
-      <%=  cell @parser.parse_time('E28_28', true), 4 %>
-    </tr>
-    <%= start_row %>
-      <%= labeled_cell_narrow "Lead I:", @parser.E28_07 %>
-      <%= labeled_cell_narrow "V1:", @parser.E28_13 %>
-      <%= labeled_cell_narrow "V4R:", @parser.E28_19 %>
-    </tr>
-    <%= start_row %>
-      <%= labeled_cell_narrow "Lead II:", @parser.E28_08 %>
-      <%= labeled_cell_narrow "V2:", @parser.E28_14 %>
-      <%= labeled_cell_narrow "V5R:", @parser.E28_20 %>
-    </tr>
-    <%= start_row %>
-      <%= labeled_cell_narrow "Lead III:", @parser.E28_09 %>
-      <%= labeled_cell_narrow "V3:", @parser.E28_15 %>
-      <%= labeled_cell_narrow "V6R:", @parser.E28_21 %>
-    </tr>
-    <%= start_row %>
-      <%= labeled_cell_narrow "AVL:", @parser.E28_11 %>
-      <%= labeled_cell_narrow "V4:", @parser.E28_16 %>
-      <%= labeled_cell_narrow "V7:", @parser.E28_22 %>
-    </tr>
-    <%= start_row %>
-      <%= labeled_cell_narrow "AVR:", @parser.E28_10 %>
-      <%= labeled_cell_narrow "V5:", @parser.E28_17 %>
-      <%= labeled_cell_narrow "V8:", @parser.E28_23 %>
-    </tr>
-    <%= start_row %>
-      <%= labeled_cell_narrow "AVF:", @parser.E28_12 %>
-      <%= labeled_cell_narrow "V6:", @parser.E28_18 %>
-      <%= labeled_cell_narrow "V9:", @parser.E28_24 %>
-    </tr>
-    <%= start_row %>
-      <%= cell "" %>
-      <%= label_top "OPQRST:", 5 %>
-    </tr>
-    <%= start_row %>
-      <%= labeled_cell_narrow "Onset:", @parser.E28_01 %>
-      <%= labeled_cell_narrow "Provoke:", @parser.E28_02 %>
-      <%= labeled_cell_narrow "Quality:", @parser.E28_03 %>
-    </tr>
-    <%= start_row %>
-      <%= labeled_cell_narrow "Radiation:", @parser.E28_04 %>
-      <%= labeled_cell_narrow "Severity:", @parser.E28_05 %>
-      <%= labeled_cell_narrow "Time:", @parser.E28_06 %>
-    </tr>
-    <%= start_row %>
-    <%= labeled_cell_narrow "Inclusion Criteria:", @parser.E28_25, 2 %>
-    <%= labeled_cell_narrow "Exclusion Criteria:", @parser.E28_26, 2 %>
-    </tr>
-    </tbody>
-  </table>
-  <br>
+<% if @parser.has_content('E28') %>
+    <%= start_table "Specialty Patient &mdash; ACS" %>
+        <thead>
+        <%= start_row%>
+          <%= heading "Specialty Patient &mdash; ACS", 6 %>
+        </tr>
+        </thead>
+        <tbody>
+        <%= start_row %>
+          <%= labeled_cell_narrow "12 Lead", @parser.E28_27 %>
+          <%=  cell @parser.parse_time('E28_28', true), 4 %>
+        </tr>
+        <%= start_row %>
+          <%= labeled_cell_narrow "Lead I:", @parser.E28_07 %>
+          <%= labeled_cell_narrow "V1:", @parser.E28_13 %>
+          <%= labeled_cell_narrow "V4R:", @parser.E28_19 %>
+        </tr>
+        <%= start_row %>
+          <%= labeled_cell_narrow "Lead II:", @parser.E28_08 %>
+          <%= labeled_cell_narrow "V2:", @parser.E28_14 %>
+          <%= labeled_cell_narrow "V5R:", @parser.E28_20 %>
+        </tr>
+        <%= start_row %>
+          <%= labeled_cell_narrow "Lead III:", @parser.E28_09 %>
+          <%= labeled_cell_narrow "V3:", @parser.E28_15 %>
+          <%= labeled_cell_narrow "V6R:", @parser.E28_21 %>
+        </tr>
+        <%= start_row %>
+          <%= labeled_cell_narrow "AVL:", @parser.E28_11 %>
+          <%= labeled_cell_narrow "V4:", @parser.E28_16 %>
+          <%= labeled_cell_narrow "V7:", @parser.E28_22 %>
+        </tr>
+        <%= start_row %>
+          <%= labeled_cell_narrow "AVR:", @parser.E28_10 %>
+          <%= labeled_cell_narrow "V5:", @parser.E28_17 %>
+          <%= labeled_cell_narrow "V8:", @parser.E28_23 %>
+        </tr>
+        <%= start_row %>
+          <%= labeled_cell_narrow "AVF:", @parser.E28_12 %>
+          <%= labeled_cell_narrow "V6:", @parser.E28_18 %>
+          <%= labeled_cell_narrow "V9:", @parser.E28_24 %>
+        </tr>
+        <%= start_row %>
+          <%= cell "" %>
+          <%= label_top "OPQRST:", 5 %>
+        </tr>
+        <%= start_row %>
+          <%= labeled_cell_narrow "Onset:", @parser.E28_01 %>
+          <%= labeled_cell_narrow "Provoke:", @parser.E28_02 %>
+          <%= labeled_cell_narrow "Quality:", @parser.E28_03 %>
+        </tr>
+        <%= start_row %>
+          <%= labeled_cell_narrow "Radiation:", @parser.E28_04 %>
+          <%= labeled_cell_narrow "Severity:", @parser.E28_05 %>
+          <%= labeled_cell_narrow "Time:", @parser.E28_06 %>
+        </tr>
+        <%= start_row %>
+        <%= labeled_cell_narrow "Inclusion Criteria:", @parser.E28_25, 2 %>
+        <%= labeled_cell_narrow "Exclusion Criteria:", @parser.E28_26, 2 %>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+<% end %>
 
-  <%= start_table "Specialty Patient &mdash; Advanced Airway" %>
-    <thead>
-    <%= start_row %>
-      <%= heading "Specialty Patient &mdash; Advanced Airway", 4 %>
-    </tr>
-    <%= start_row %>
-      <%= labeled_cell "Mallampati Class", @parser.E25_01 %>
-      <%= labeled_cell "Airway Grading", @parser.E25_02 %>
-    </tr>
-    </thead>
-    <tbody>
-    <%= start_row %>
-      <%= label "Indications" %>
-      <%= label "Monitoring" %>
-      <%= label "Rescue" %>
-      <%= label "Reasons Failed Intubation" %>
-    </tr>
-    <%= start_row %>
-      <%= val = @parser.E25_03
-          val.is_a?(Array) ? val.join(', ') : val
-          cell val
-      %>
-      <%= val = @parser.E25_04
-          val.is_a?(Array) ? val.join(', ') : val
-          cell val
-      %>
-      <%= val = @parser.E25_05
-          val.is_a?(Array) ? val.join(', ') : val
-          cell val
-      %>
-      <%= val = @parser.E25_06
-          val.is_a?(Array) ? val.join(', ') : val
-          cell val
-      %>
-    </tr>
-    </tbody>
-  </table>
-<br>
+<% if @parser.has_content('E25') %>
+    <%= start_table "Specialty Patient &mdash; Advanced Airway" %>
+        <thead>
+        <%= start_row %>
+          <%= heading "Specialty Patient &mdash; Advanced Airway", 4 %>
+        </tr>
+        <%= start_row %>
+          <%= labeled_cell "Mallampati Class", @parser.E25_01 %>
+          <%= labeled_cell "Airway Grading", @parser.E25_02 %>
+        </tr>
+        </thead>
+        <tbody>
+        <%= start_row %>
+          <%= label "Indications" %>
+          <%= label "Monitoring" %>
+          <%= label "Rescue" %>
+          <%= label "Reasons Failed Intubation" %>
+        </tr>
+        <%= start_row %>
+          <%= val = @parser.E25_03
+              val.is_a?(Array) ? val.join(', ') : val
+              cell val
+          %>
+          <%= val = @parser.E25_04
+              val.is_a?(Array) ? val.join(', ') : val
+              cell val
+          %>
+          <%= val = @parser.E25_05
+              val.is_a?(Array) ? val.join(', ') : val
+              cell val
+          %>
+          <%= val = @parser.E25_06
+              val.is_a?(Array) ? val.join(', ') : val
+              cell val
+          %>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+<% end %>
 
-<%= start_table "Specialty Patient &mdash; Burns" %>
-    <thead>
-    <%= start_row %>
-      <%= heading "Specialty Patient &mdash; Burns", 8 %>
-    </tr>
-    </thead>
-    <tbody>
-    <%= start_row %>
-      <%= labeled_cell_narrow "1st Degree", "#{@parser.E26_02}%" %>
-      <%= labeled_cell_narrow "2nd Degree", "#{@parser.E26_03}%" %>
-      <%= labeled_cell_narrow "3rd Degree", "#{@parser.E26_04}%" %>
-      <%= labeled_cell_narrow "Total BSA",  "#{@parser.E26_01}%" %>
-    </tr>
-    </tbody>
-</table>
-<br>
+<% if @parser.has_content('E26') %>
+    <%= start_table "Specialty Patient &mdash; Burns" %>
+        <thead>
+        <%= start_row %>
+          <%= heading "Specialty Patient &mdash; Burns", 8 %>
+        </tr>
+        </thead>
+        <tbody>
+        <%= start_row %>
+          <%= labeled_cell_narrow "1st Degree", "#{@parser.E26_02}%" %>
+          <%= labeled_cell_narrow "2nd Degree", "#{@parser.E26_03}%" %>
+          <%= labeled_cell_narrow "3rd Degree", "#{@parser.E26_04}%" %>
+          <%= labeled_cell_narrow "Total BSA",  "#{@parser.E26_01}%" %>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+<% end %>
 
-<%= start_table "Specialty Patient &mdash; Stroke" %>
-    <thead>
-    <%= start_row %>
-      <%= heading "Specialty Patient &mdash; Stroke", 10 %>
-    </tr>
-    </thead>
-    <tbody>
-    <%= start_row %>
-        <%= labeled_cell_narrow "Onset", @parser.parse_time('E27_01') %>
-        <%= labeled_cell_narrow "Screening Met", @parser.E27_02 %>
-        <%= labeled_cell_narrow "Facial Droop", @parser.E27_03 %>
-        <%= labeled_cell_narrow "Arm Drift",  @parser.E27_04 %>
-        <%= labeled_cell_narrow "Speech",  @parser.E27_05 %>
-    </tr>
-    </tbody>
-</table>
-<br>
+<% if @parser.has_content('E27') %>
+    <%= start_table "Specialty Patient &mdash; Stroke" %>
+        <thead>
+        <%= start_row %>
+          <%= heading "Specialty Patient &mdash; Stroke", 10 %>
+        </tr>
+        </thead>
+        <tbody>
+        <%= start_row %>
+            <%= labeled_cell_narrow "Onset", @parser.parse_time('E27_01') %>
+            <%= labeled_cell_narrow "Screening Met", @parser.E27_02 %>
+            <%= labeled_cell_narrow "Facial Droop", @parser.E27_03 %>
+            <%= labeled_cell_narrow "Arm Drift",  @parser.E27_04 %>
+            <%= labeled_cell_narrow "Speech",  @parser.E27_05 %>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+<% end %>
 
-<%= start_table "SpecialtyPatientCPR" %>
+<% if @parser.has_content('E29') %>
+    <%= start_table "Specialty Patient &mdash; CPR" %>
     <thead>
     <%= start_row %>
       <%= heading "Specialty Patient &mdash; CPR", 4 %>
@@ -792,8 +801,10 @@
     </tbody>
 </table>
 <br>
+<% end %>
 
-<%= start_table "SpecialtyPatientMVC" %>
+<% if @parser.has_content('E31') %>
+<%= start_table "Specialty Patient &mdash; Motor Vehicle Collision" %>
     <thead>
     <%= start_row %>
       <%= heading "Specialty Patient &mdash; Motor Vehicle Collision", 4 %>
@@ -810,8 +821,9 @@
     </tbody>
 </table>
 <br>
-
-<%= start_table "Specialty Patient &mdash; Trauma Criteria" %>
+<% end %>
+<% if @parser.has_content('E24') %>
+    <%= start_table "Specialty Patient &mdash; Trauma Criteria" %>
     <thead>
     <%= start_row %>
       <%= heading "Specialty Patient &mdash; Trauma Criteria", 4 %>
@@ -825,8 +837,10 @@
     </tbody>
 </table>
 <br>
+<% end %>
 
-<%= start_table "SpecialtyPatientObstetrical" %>
+<% if @parser.has_content('E32') %>
+<%= start_table "Specialty Patient &mdash; Obstetrical" %>
     <thead>
     <%= start_row %>
       <%= heading "Specialty Patient &mdash; Obstetrical", 7 %>
@@ -863,8 +877,10 @@
     </tbody>
 </table>
 <br>
+<% end %>
 
-<%= start_table "Specialty Patient &mdash; Spinal Immobilization" %>
+<% if @parser.has_content('E34') %>
+    <%= start_table "Specialty Patient &mdash; Spinal Immobilization" %>
     <thead>
     <%= start_row %>
       <%= heading "Specialty Patient &mdash; Spinal Immobilization", 12 %>
@@ -876,8 +892,10 @@
     </tbody>
 </table>
 <br>
+<% end %>
 
-<%= start_table "Specialty Patient &mdash; Influenza Screening" %>
+<% if @parser.has_content('E30') %>
+    <%= start_table "Specialty Patient &mdash; Influenza Screening" %>
     <thead>
     <%= start_row %>
       <%= heading "Specialty Patient &mdash; Influenza Screening", 4 %>
@@ -898,8 +916,10 @@
     </tbody>
 </table>
 <br>
+<% end %>
 
-<%= start_table "Specialty Patient &mdash; SAD (Psychiatric Ax)" %>
+<% if @parser.has_content('E33') %>
+    <%= start_table "Specialty Patient &mdash; SAD (Psychiatric Ax)" %>
     <thead>
     <%= start_row %>
       <%= heading "Specialty Patient &mdash; SAD (Psychiatric Ax)", 4 %>
@@ -926,7 +946,9 @@
     </tbody>
 </table>
 <br>
+<% end %>
 
+<% if @parser.has_content('E05') %>
 <%= start_table "Incident Details" %>
   <thead>
   <%= start_row %>
@@ -1001,6 +1023,9 @@
   </tbody>
 </table>
 <br>
+<% end %>
+
+<% if @parser.has_content('E04') %>
 <%= start_table "Crew Members" %>
   <thead>
   <%= start_row %>
@@ -1016,7 +1041,7 @@
   </tr>
   <% @parser.parse_cluster('E04').each do |e04| %>
       <%= start_row %>
-        <td></td>
+        <%= cell ("#{e04.E04_05} #{e04.E04_04}") %>
         <%= cell (e04.E04_01) %>
         <%= cell (e04.E04_02) %>
         <%= cell (e04.E04_03) %>
@@ -1025,6 +1050,9 @@
   </tbody>
 </table>
 <br>
+<% end %>
+
+<% if @parser.has_content('E07') %>
 <%= start_table "Insurance Details" %>
   <thead>
   <%= start_row %>
@@ -1032,45 +1060,59 @@
   </tr>
   </thead>
   <tbody>
+  <%#= row 'E07_11', '', '', '' %>
+  <%#= row 'E07_14', '', '', '' %>
+  <%#= row '', '', 'E07_03', '' %>
+  <%#= row '', '', 'E07_09', '' %>
+  <%#= row '', 'E07_01', 'E07_10', '' %>
+  <%#= row '', 'E07_27', 'E07_15', '' %>
+  <%#= start_row %>
+    <%= labeled_cell_medium "Insured's Name", (@parser.concat 'E07_11', 'E07_12', 'E07_13') %>
+    <%= labeled_cell_medium "State", "" %>
+    <%= labeled_cell_medium "Medicare", " " %>
+    <%= labeled_cell_medium "Secondary Ins", "" %>
+  </tr>
+  <% row 'E07_14', '', '', '' %>
   <%= start_row %>
-    <%= labeled_cell "Insured's Name", (@parser.concat 'E07_11', 'E07_12', 'E07_13') %>
-    <%= labeled_cell "State", "NC" %>
-    <%= labeled_cell "Medicare", " " %>
-    <%= labeled_cell "Secondary Ins", "&nbsp;" %>
+    <%= labeled_cell_medium "Relationship to Patient", @parser.E07_14 %>
+    <%= labeled_cell_medium "Zip", " " %>
+    <%= labeled_cell_medium "Medicaid", " " %>
+    <%= labeled_cell_medium "Policy #", "" %>
+  </tr>
+  <% row %>
+  <%= start_row %>
+    <%= labeled_cell_medium "Address 1", "" %>
+    <%= labeled_cell_medium "Country", " " %>
+    <%= labeled_cell_medium "Primary Insurance", @parser.E07_03 %>
+    <%= labeled_cell_medium "Group #", "" %>
+  <% row %>
   </tr>
   <%= start_row %>
-    <%= labeled_cell "Relationship to Patient", @parser.E07_14 %>
-    <%= labeled_cell "Zip", " " %>
-    <%= labeled_cell "Medicaid", " " %>
-    <%= labeled_cell "Policy #", "" %>
+    <%= labeled_cell_medium "Address 2", "" %>
+    <%= labeled_cell_medium "Phone", " " %>
+    <%= labeled_cell_medium "Group #", @parser.E07_09 %>
+    <%= labeled_cell_medium "Contact", " " %>
+  <% row %>
   </tr>
   <%= start_row %>
-    <%= labeled_cell "Address 1", "&nbsp;" %>
-    <%= labeled_cell "Country", " " %>
-    <%= labeled_cell "Primary Insurance", @parser.E07_03 %>
-    <%= labeled_cell "Group #", "" %>
+    <%= labeled_cell_medium "Address 3", "" %>
+    <%= labeled_cell_medium "Primary Payer", @parser.E07_01 %>
+    <%= labeled_cell_medium "Policy #", @parser.E07_10 %>
+    <%= labeled_cell_medium "Dispatch Nature", "" %>
+  <% row %>
   </tr>
   <%= start_row %>
-    <%= labeled_cell "Address 2", "&nbsp;" %>
-    <%= labeled_cell "Phone", " " %>
-    <%= labeled_cell "Group #", @parser.E07_09 %>
-    <%= labeled_cell "Contact", " " %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell "Address 3", "&nbsp;" %>
-    <%= labeled_cell "Primary Payer", @parser.E07_01 %>
-    <%= labeled_cell "Policy #", @parser.E07_10 %>
-    <%= labeled_cell "Dispatch Nature", "&nbsp;" %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell "City", "Raleigh" %>
-    <%= labeled_cell "Employer", @parser.E07_27 %>
-    <%= labeled_cell "Job Related Injury", @parser.E07_15 %>
-    <%= labeled_cell "Response Urgency", "&nbsp;" %>
+    <%= labeled_cell_medium "City", "" %>
+    <%= labeled_cell_medium "Employer", @parser.E07_27 %>
+    <%= labeled_cell_medium "Job Related Injury", @parser.E07_15 %>
+    <%= labeled_cell_medium "Response Urgency", @parser.E07_33 %>
   </tr>
   </tbody>
 </table>
 <br>
+<% end %>
+
+<% if @parser.has_content('E02') %>
 <%= start_table %>
   <tbody>
   <%= start_row %>
@@ -1085,6 +1127,8 @@
   </tbody>
 </table>
 <br>
+<% end %>
+
 <% additional_agencies = @parser.concat 'E08_01', 'E08_02'
    unless additional_agencies.empty?
 %>
@@ -1136,6 +1180,7 @@
 <br>
 <% end %>
 
+<% unless true %>
 <%= start_table "Personal Items" %>
   <thead>
   <%= start_row %>
@@ -1156,7 +1201,10 @@
   </tbody>
 </table>
 <br>
-<%= start_table "Transfer Details" %>
+<% end %>
+
+<% if @parser.has_content('E12_02') %>
+    <%= start_table "Transfer Details" %>
   <thead>
   <%= start_row %>
     <%= heading "Transfer Details", 4 %>
@@ -1195,5 +1243,5 @@
   </tbody>
 </table>
 <br>
-
+<% end %>
 
