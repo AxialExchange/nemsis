@@ -285,33 +285,21 @@
       </tr>
     </table>
 </p>
+
 <%= start_table "Patient Information" %>
   <thead>
   <%= start_row %>
-    <%= heading "Patient Information", 14 %>
+    <%= heading "Patient Information", 6 %>
   </tr>
   </thead>
   <tbody>
+  <%= row 'E06_01', 'E06_04', 'E06_16' %>
+  <%= row 'E06_02', 'E06_05', 'E16_01' %>
+  <%= row 'E06_03', 'E06_07', 'E06_10' %>
+  <%= row 'E06_11', 'E06_08', 'E06_06' %>
+  <%= row 'E06_14', 'E06_17', 'E06_09' %>
   <%= start_row %>
-    <%= labeled_cell "Last", @parser.E06_01 %>
-    <%= labeled_cell "First", @parser.E06_02 %>
-    <%= labeled_cell "Middle", @parser.E06_03 %>
-    <%= labeled_cell "DOB", @parser.E06_16 %>
-    <%= labeled_cell "Gender", @parser.E06_11 %>
-    <%= labeled_cell "Weight", "#{@parser.E16_01} kg" %>
-    <%= labeled_cell "SSN", @parser.E06_10 %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell "Address", @parser.E06_04 %>
-    <%= labeled_cell "Address 2", "E23_09 field TBD" %>
-    <%= labeled_cell "City", @parser.E06_05 %>
-    <%= labeled_cell "State", @parser.parse_state('E06_07') %>
-    <%= labeled_cell "Zip", @parser.E06_08 %>
-    <%= labeled_cell "Country", @parser.E06_09 %>
-    <%= labeled_cell "Tel", @parser.E06_17 %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell "Advanced Directive", @parser.E12_07, 13 %>
+    <%= labeled_cell "Advanced Directive", @parser.E12_07, 5 %>
   </tr>
   </tbody>
 </table>
@@ -341,25 +329,27 @@
   </tbody>
 </table>
 <br>
+<% if @parser.has_content('E12') %>
 <%= start_table "Medication/Allergies/History" %>
   <thead>
   <%= start_row %>
-    <%= heading "Medication/Allergies/History", 16 %>
+    <%= heading "Medication/Allergies/History", 2 %>
   </tr>
   </thead>
   <tbody>
   <%= start_row %>
-    <%= labeled_cell_medium "Medications", (@parser.concat 'E12_14', 'E12_15', 'E12_16'), 15 %>
+    <%= labeled_cell_medium "Medications", [@parser.E12_14, @parser.E12_15, @parser.E12_16].join('; ') %>
   </tr>
   <%= start_row %>
-    <%= labeled_cell_medium "Allergies", (@parser.concat 'E12_08', 'E12_09'), 15 %>
+    <%= labeled_cell_medium "Allergies", [@parser.E12_08, @parser.E12_09].join('; ') %>
   </tr>
   <%= start_row %>
-    <%= labeled_cell_medium "History", @parser.E12_10, 15 %>
+    <%= labeled_cell_medium "History", @parser.E12_10 %>
   </tr>
   </tbody>
 </table>
 <br>
+<% end %>
 
 <%= start_table "Vital Signs" %>
 
