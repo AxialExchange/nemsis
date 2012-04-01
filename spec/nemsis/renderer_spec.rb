@@ -3,7 +3,7 @@ require 'spec_helper'
 #
 #     html = renderer.render
 
-def write_html_file(type)
+def write_html_file(sample_xml_file, type, html)
   file_name = "#{sample_xml_file.gsub('.xml','')}-#{Time.now.strftime("%d%b")}_#{type}.html"
   file = File.open(file_name, 'w+')
   file.puts html
@@ -22,6 +22,17 @@ describe Nemsis::Renderer do
     end
   end
 
+  context 'generate some sample runsheets' do
+    it 'should render html' do
+      sample_xml_file = File.expand_path('../../data/madison_henry_sample.xml', __FILE__)
+      xml_str = File.read(sample_xml_file)
+      p = Nemsis::Parser.new(xml_str)
+      r = Nemsis::Renderer::WakeMed::HTML.new(p)
+      html = r.render(true)
+      write_html_file(sample_xml_file, "fancy", html)
+    end
+
+  end
   context 'instance methods' do
     let(:sample_xml_file) {File.expand_path('../../data/sample_v_1_13.xml', __FILE__)}
     let(:p) {
@@ -54,7 +65,7 @@ describe Nemsis::Renderer do
         end
 
         it "write to html file" do
-          write_html_file("simple")
+          write_html_file(sample_xml_file, "simple", html)
         end
       end
 
@@ -66,7 +77,7 @@ describe Nemsis::Renderer do
         end
 
         it "write to html file" do
-          write_html_file("fancy")
+          write_html_file(sample_xml_file, "fancy", html)
         end
       end
     end
