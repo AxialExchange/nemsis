@@ -12,39 +12,272 @@ describe Nemsis::Parser do
     end
   end
 
-  context 'instance methods' do
-    let(:p) {
-      sample_xml_file = File.expand_path('../../data/sample_v_1_13.xml', __FILE__)
-      xml_str         = File.read(sample_xml_file)
 
-      Nemsis::Parser.new(xml_str)
+  # This is a mechanism to test the intertwined nature of the spec settings and expected results.
+  context 'instance methods' do
+    let(:spec_yaml) {
+      spec_yaml = <<YML
+E06_01:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: 'LAST NAME'
+  node: E06_01
+E06_02:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: 'First'
+  node: E06_02
+E06_12:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    660: American Indian or Alaska Native
+    665: Asian
+    670: Black or African American
+    675: Native Hawaiian or Other Pacific Islander
+    680: White
+    685: Other Race
+  is_multi_entry: 0
+  name: RACE
+  node: E06_12
+E07_01:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    720: Insurance
+    725: Medicaid
+    730: Medicare
+    735: Not Billed (for any reason)
+    740: Other Government
+    745: Self Pay
+    750: Workers Compensation
+  is_multi_entry: 0
+  name: PRIMARY METHOD OF PAYMENT
+  node: E07_01
+E24_01:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: 'Trauma Activation'
+  node: E24_01
+E24_02:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: date/time
+  is_multi_entry: 1
+  name: 'Date/Time'
+  node: E24_02
+E24_04:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 1
+  name: Trauma Level
+  node: E24_04
+E24_05:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    500001: None
+    500002: Age < 15 or > 55
+    500003: Environmental Factors
+    500004: Medical Illness
+    500005: Pregnancy > 3 Months
+    500006: Urgent Extremity
+    500007: Bleeding Disorder
+    500008: Provider Suspicion
+    500009: ESRD with Dialysis
+  is_multi_entry: 1
+  name: Other Conditions
+  node: E24_05
+E31_04:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 0
+  name: Seat Row Number
+  node: E31_04
+E31_07:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 0
+  name: Parking Speed (MPH)
+  node: E31_07
+E31_08:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 0
+  name: Flight Speed (MPH)
+  node: E31_08
+E31_09:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 0
+  name: Est. Speed (MPH)
+  node: E31_09
+E31_10:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 0
+  name: Drivers Speed (MPH)
+  node: E31_10
+YML
+    }
+    let(:p) {
+      xml_str = <<XML
+<?xml version=" 1.0 " encoding=" UTF-8 " ?>
+<EMSDataSet xmlns=" http ://www.nemsis.org " xmlns:xsi=" http ://www.w3.org/2001/XMLSchema-instance "
+            xsi:schemaLocation=" http ://www.nemsis.org http ://www.nemsis.org/media/XSD/EMSDataSet.xsd ">
+  <Header>
+    <Record>
+      <E06>
+        <E06_01_0>
+          <E06_01>BIRD</E06_01>
+          <E06_02>TWEETY</E06_02>
+          <E06_03>DA</E06_03>
+        </E06_01_0>
+        <E06_12>680</E06_12>
+      </E06>
+      <E07>
+        <E07_01>-20</E07_01>
+      </E07>
+      <E24>
+        <E24_01>YES</E24_01>
+        <E24_02>2012-03-08T17:50:00.0Z</E24_02>
+        <E24_04>Level 1</E24_04>
+        <E24_05>500003</E24_05>
+        <E24_05>500004</E24_05>
+        <E24_06>500101</E24_06>
+        <E24_06>500104</E24_06>
+        <E24_07>2085</E24_07>
+        <E24_07>500208</E24_07>
+        <E24_08>500301</E24_08>
+        <E24_08>500306</E24_08>
+      </E24>
+      <E31>
+        <E31_04>1</E31_04>
+        <E31_07>0.65000</E31_07>
+        <E31_08>9.10000</E31_08>
+        <E31_09>90.60000</E31_09>
+        <E31_10>90.10000</E31_10>
+        <E31_11>2012-03-08T17:57:00.0Z</E31_11>
+      </E31>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+      Nemsis::Parser.new(xml_str, spec_yaml)
     }
 
-    describe '#get' do
-      it 'should return key/value hash' do
-        p.get('E06_01').class.should == Hash
+    describe '#parse' do
+      it 'should handle bad inputs' do
+        expect {p.parse(nil)}.should raise_error
       end
-      it 'should return key/value element name' do
-        p.get('E06_01')[:name].should == "LAST NAME"
+      it 'should handle an element spec hash' do
+        p.parse('E06_01').should == "BIRD"
       end
-      it 'should return key/value element text value' do
-        p.get('E06_01')[:value].should == "BIRD"
-      end
-      it 'should return key/value element lookup value' do
-        p.get('E24_01')[:value].should == "YES"
+      it 'should handle an element name' do
+        p.parse('E06_01').should == "BIRD"
       end
     end
-    describe '#name' do
-      it "should return the name" do
-        p.name('E32_01').should == "Gravida"
+
+    describe '#get_spec' do
+      it 'should return a spec hash for the given element' do
+        p.get_spec('E06_12').class.should == Hash
+        p.get_spec('E06_12')['data_type'].should == 'combo'
+        p.get_spec('E06_12')['data_entry_method'].should == 'single-choice National Element'
+      end
+      it 'should return nil for a non-existent node' do
+        p.get_spec('F00').should be_nil
       end
     end
-    describe '#index' do
-      it "should return the index into the lookup table" do
-        p.index('E24_05').should == "500003"
-        p.index('E32_28').should == "2"
+
+    describe '#get_node_name' do
+      it 'should return a name for the given element' do
+        p.get_node_name('E06_12').class.should == String
+        p.get_node_name('E06_12').should == 'E06_12'
+      end
+      it 'should return nil for a non-existent node' do
+        p.get_node_name('F00').should be_nil
       end
     end
+
+    describe 'method missing' do
+      it 'should treat method name as element name' do
+        p.E06_01.should == p.parse_element('E06_01')
+      end
+
+      it 'should return an empty string for a missing data element' do
+        p.E25_00.should == ""
+      end
+      it 'should return a string for single values' do
+        p.E24_04.should == "Level 1"
+      end
+      it 'should return an array as a comma-separated list for multiple values' do
+        p.E24_05.should include "Environmental Factors"
+        p.E24_05.should include "Medical Illness"
+      end
+      it 'should return lookup value' do
+        p.E06_12.should == "White"
+      end
+      it 'should return an integer' do
+        p.E31_04.should == "1"
+      end
+      it 'should return a decimal' do
+        p.E31_07.should == "0.65"
+        p.E31_08.should == "9.1"
+        p.E31_09.should == "91"
+        p.E31_10.should == "90"
+      end
+    end
+
     describe '#parse_element' do
       it 'should return string for non-coded element' do
         p.parse_element('E06_01').should == 'BIRD'
@@ -63,41 +296,337 @@ describe Nemsis::Parser do
       end
     end
 
-    describe 'dynamic method' do
-      it 'should treat method name as element name' do
-        p.E06_01.should == p.parse_element('E06_01')
+    describe '#get' do
+      it 'should return key/value hash' do
+        p.get('E06_01').class.should == Hash
       end
-
-      it 'should return an empty string for a missing data element' do
-        p.E25_00.should == ""
+      it 'should return key/value element name' do
+        p.get('E06_01')[:name].should == "LAST NAME"
       end
-      it 'should return a string for single values' do
-        p.E25_01.should == "Class 1"
+      it 'should return key/value element text value' do
+        p.get('E06_01')[:value].should == "BIRD"
       end
-      it 'should return a full date/time value' do
-        p.E32_10.should == p.parse_time('E32_10', true)
-      end
-      it 'should return a date value' do
-        p.E32_05.should == p.parse_date('E32_05')
-      end
-      it 'should return a time value' do
-        p.E31_11.should == p.parse_time('E31_11')
-      end
-      it 'should return an array as a comma-separated list for multiple values' do
-        p.E25_03.should == "Ventilatory Effort Compromised, Injury/Trauma to Airway"
-      end
-      it 'should return lookup value' do
-        p.E29_03.should == ">20 Minutes"
-        p.E23_08.should == "No"
-        p.E24_01.should == "YES"
-      end
-      it 'should return an integer' do
-        p.E31_04.should == "1"
-      end
-      it 'should return a decimal' do
-        p.E31_09.should == "90"
+      it 'should return key/value element lookup value' do
+        p.get('E24_01')[:value].should == "YES"
       end
     end
+    describe '#name' do
+      it "should return the name" do
+        p.name('E06_01').should == "LAST NAME"
+        p.name('E06_02').should == "First"
+      end
+    end
+    describe '#index' do
+      it "should return the index into the lookup table" do
+        p.index('E24_05').should == "500003"
+      end
+    end
+  end
+
+  context 'handling dates and times' do
+      let(:spec_yaml) {
+        spec_yaml = <<YML
+E24_01:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: date/time
+  is_multi_entry: 1
+  name: 'Date/Time'
+  node: E24_01
+E24_02:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: date
+  is_multi_entry: 1
+  name: 'Date'
+  node: E24_02
+E24_03:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: time
+  is_multi_entry: 1
+  name: 'Time'
+  node: E24_03
+YML
+      }
+      let(:p) {
+        xml_str = <<XML
+<?xml version=" 1.0 " encoding=" UTF-8 " ?>
+<EMSDataSet xmlns=" http ://www.nemsis.org " xmlns:xsi=" http ://www.w3.org/2001/XMLSchema-instance "
+            xsi:schemaLocation=" http ://www.nemsis.org http ://www.nemsis.org/media/XSD/EMSDataSet.xsd ">
+  <Header>
+    <Record>
+      <E24>
+        <E24_01>2012-03-08T17:50:00.0Z</E24_01>
+        <E24_02>2012-03-08T17:50:00.0Z</E24_02>
+        <E24_03>2012-03-08T17:50:00.0Z</E24_03>
+      </E24>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+        Nemsis::Parser.new(xml_str, spec_yaml)
+      }
+
+      describe 'date/time format should be based on data type by default' do
+        it 'should return a full date/time value' do
+          p.E24_01.should == "2012-03-08 17:50"
+        end
+        it 'should return a date value' do
+          p.E24_02.should == "2012-03-08"
+        end
+        it 'should return a time value' do
+          p.E24_03.should == "17:50"
+        end
+
+      end
+
+      describe 'overriding date/time format' do
+        context 'date/time data type' do
+          it 'should return a full date/time value' do
+            p.parse_time('E24_01', true).should == "2012-03-08 17:50"
+            p.parse_time('E24_01').should == "17:50"
+          end
+          it 'should return a date value' do
+            p.parse_date('E24_01').should == "2012-03-08"
+          end
+          it 'should return a short date value (no year)' do
+            p.parse_date('E24_01', false).should == "03-08"
+          end
+          it 'should return a time value' do
+            p.parse_time('E24_01').should == "17:50"
+          end
+        end
+        context 'date data type' do
+          it 'should not return a full date/time value' do
+            p.parse_time('E24_02', true).should_not == "2012-03-08 17:50"
+          end
+          it 'should return a date value' do
+            p.parse_date('E24_02').should == "2012-03-08"
+          end
+          it 'should not return a time value' do
+            p.parse_time('E24_02').should_not == "17:50"
+          end
+        end
+        context 'time data type' do
+          it 'should not return a full date/time value' do
+            p.parse_time('E24_03', true).should_not == "2012-03-08 17:50"
+          end
+          it 'should not return a date value' do
+            p.parse_date('E24_03').should_not == "2012-03-08"
+          end
+          it 'should return a time value' do
+            p.parse_time('E24_03').should == "17:50"
+          end
+        end
+
+    end
+
+  end
+
+  context 'instance methods' do
+    let(:p) {
+      xml_str         = <<XML
+<?xml version=" 1.0 " encoding=" UTF-8 " ?>
+<EMSDataSet xmlns=" http ://www.nemsis.org " xmlns:xsi=" http ://www.w3.org/2001/XMLSchema-instance "
+            xsi:schemaLocation=" http ://www.nemsis.org http ://www.nemsis.org/media/XSD/EMSDataSet.xsd ">
+  <Header>
+    <Record>
+      <E06>
+        <E06_01_0>
+          <E06_01>BIRD</E06_01>
+          <E06_02>TWEETY</E06_02>
+          <E06_03>DA</E06_03>
+        </E06_01_0>
+        <E06_12>680</E06_12>
+      </E06>
+      <E07>
+        <E07_01>-20</E07_01>
+        <E07_15>0</E07_15>
+        <E07_34>-20</E07_34>
+        <E07_35_0>
+          <E07_35>-20</E07_35>
+        </E07_35_0>
+      </E07>
+      <E08>
+        <E08_03>1100</E08_03>
+        <E08_05>1125</E08_05>
+        <E08_06>0</E08_06>
+        <E08_07>1175</E08_07>
+        <E08_11_0>
+          <E08_11>4500 Blue RidgeRd</E08_11>
+          <E08_14>37</E08_14>
+          <E08_15>27604</E08_15>
+        </E08_11_0>
+      </E08>
+      <E14>
+        <E14_01>2012-03-08T18:45:00.0Z</E14_01>
+      </E14>
+      <E15>
+        <E15_01>3340</E15_01>
+        <E15_05>3340</E15_05>
+        <E15_11>-20</E15_11>
+        <E15_13>3345</E15_13>
+      </E15>
+      <E16>
+        <E16_01>1</E16_01>
+        <E16_00_0>
+          <E16_03>2012-03-08T17:48:00.0Z</E16_03>
+          <E16_04>3425</E16_04>
+          <E16_05>3475</E16_05>
+          <E16_06>3505</E16_06>
+          <E16_07>3535</E16_07>
+          <E16_08>3600</E16_08>
+          <E16_09>3615</E16_09>
+          <E16_10>3645</E16_10>
+          <E16_11>3675</E16_11>
+          <E16_12>3710</E16_12>
+          <E16_13>3740</E16_13>
+          <E16_14>3770</E16_14>
+          <E16_15>3795</E16_15>
+          <E16_16>3820</E16_16>
+          <E16_17>3850</E16_17>
+          <E16_17>3855</E16_17>
+          <E16_17>3860</E16_17>
+          <E16_17>3870</E16_17>
+          <E16_18>3885</E16_18>
+          <E16_18>3890</E16_18>
+          <E16_18>3895</E16_18>
+          <E16_18>3905</E16_18>
+          <E16_19>3920</E16_19>
+          <E16_19>3925</E16_19>
+          <E16_19>3930</E16_19>
+          <E16_19>3940</E16_19>
+          <E16_20>3955</E16_20>
+          <E16_20>3960</E16_20>
+          <E16_20>3965</E16_20>
+          <E16_20>3975</E16_20>
+          <E16_21>3980</E16_21>
+          <E16_22>4030</E16_22>
+          <E16_23>4085</E16_23>
+          <E16_24>4130</E16_24>
+          <E16_28>thats gotta hurt</E16_28>
+          <E16_34>6403</E16_34>
+          <E16_34>6409</E16_34>
+          <E16_34>6415</E16_34>
+          <E16_34>6419</E16_34>
+          <E16_34>8495</E16_34>
+          <E16_35>8501</E16_35>
+          <E16_35>8507</E16_35>
+          <E16_35>8513</E16_35>
+          <E16_35>8517</E16_35>
+        </E16_00_0>
+        <E16_00_0>
+          <E16_03>2012-03-08T18:50:00.0Z</E16_03>
+          <E16_04>3425</E16_04>
+          <E16_05>3475</E16_05>
+          <E16_06>3505</E16_06>
+          <E16_07>3535</E16_07>
+          <E16_08>3600</E16_08>
+          <E16_09>3620</E16_09>
+          <E16_10>3650</E16_10>
+          <E16_11>3680</E16_11>
+          <E16_12>3710</E16_12>
+          <E16_13>3740</E16_13>
+          <E16_14>3770</E16_14>
+          <E16_15>3795</E16_15>
+          <E16_16>3820</E16_16>
+          <E16_17>3845</E16_17>
+          <E16_18>3880</E16_18>
+          <E16_19>3915</E16_19>
+          <E16_20>3950</E16_20>
+          <E16_21>3980</E16_21>
+          <E16_22>4030</E16_22>
+          <E16_23>4085</E16_23>
+          <E16_24>4130</E16_24>
+          <E16_32>testing comments</E16_32>
+        </E16_00_0>
+      </E16>
+      <E23>
+        <E23_01>-20</E23_01>
+        <E23_05>0</E23_05>
+        <E23_06>5540</E23_06>
+        <E23_06>5575</E23_06>
+        <E23_07>5590</E23_07>
+        <E23_07>5595</E23_07>
+        <E23_08>0</E23_08>
+        <E23_09_0>
+          <E23_09></E23_09>
+          <E23_11>DestinationAddress2</E23_11>
+        </E23_09_0>
+        <E23_09_0>
+          <E23_09></E23_09>
+          <E23_11>IncidentAddress2</E23_11>
+        </E23_09_0>
+        <E23_09_0>
+          <E23_09>123123212</E23_09>
+          <E23_11>Patient Number</E23_11>
+        </E23_09_0>
+        <E23_09_0>
+          <E23_09>1232123^1231231</E23_09>
+          <E23_11>Hospital Chart Number</E23_11>
+        </E23_09_0>
+        <E23_09_0>
+          <E23_09>A- 24</E23_09>
+          <E23_11>Shift</E23_11>
+        </E23_09_0>
+        <E23_09_0>
+          <E23_09>Advanced Life Support</E23_09>
+          <E23_11>Level of Service</E23_11>
+        </E23_09_0>
+        <E23_09_0>
+          <E23_09>Bystander</E23_09>
+          <E23_11>Requested By</E23_11>
+        </E23_09_0>
+        <E23_09_0>
+          <E23_09>DE3968F0-688F-4FE6-B0EF-A00E014BCBA4</E23_09>
+          <E23_11>ESOHDE_EnterpriseKey</E23_11>
+        </E23_09_0>
+        <E23_09_0>
+          <E23_09>Trauma</E23_09>
+          <E23_11>MedicalTrauma</E23_11>
+        </E23_09_0>
+        <E23_10>P038756</E23_10>
+      </E23>
+      <E24>
+        <E24_01>YES</E24_01>
+        <E24_02>2012-03-08T17:50:00.0Z</E24_02>
+        <E24_04>Level 1</E24_04>
+        <E24_05>500003</E24_05>
+        <E24_05>500004</E24_05>
+        <E24_06>500101</E24_06>
+        <E24_06>500104</E24_06>
+        <E24_07>2085</E24_07>
+        <E24_07>500208</E24_07>
+        <E24_08>500301</E24_08>
+        <E24_08>500306</E24_08>
+      </E24>
+      <E25>
+        <E25_01>Class 1</E25_01>
+        <E25_02>Grade 2</E25_02>
+        <E25_03>500403</E25_03>
+        <E25_03>500404</E25_03>
+      </E25>
+      <E29>
+        <E29_03>2390</E29_03>
+      </E29>
+      <E31>
+        <E31_04>1</E31_04>
+        <E31_09>90.00000</E31_09>
+        <E31_11>2012-03-08T17:57:00.0Z</E31_11>
+      </E31>
+      <E32>
+        <E32_01>99</E32_01>
+        <E32_05>2012-03-20T04:00:00.0Z</E32_05>
+        <E32_10>2012-03-06T05:00:00.0Z</E32_10>
+        <E32_28>2</E32_28>
+      </E32>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+      Nemsis::Parser.new(xml_str)
+    }
 
     describe '#parse_field' do
       it 'should parse element by full name in nemsis data dictionary (case insensitive)' do
@@ -108,28 +637,13 @@ describe Nemsis::Parser do
         p.parse_field('CREW MEMBER ID').should == p.E04_01
       end
 
-      it "will pick up the first node when there are duplicate node names" do
+      it 'will pick up the first node when there are duplicate node names' do
         p.parse_field('last name').should_not == p.E06_01
         p.parse_field('last name').should == p.E04_04
       end
       it 'should parse element by full name in nemsis data dictionary (case insensitive)' do
         p.parse_field('12 LEAD I').should == p.E28_07
         p.parse_field('12 Lead I').should == p.E28_07
-      end
-    end
-
-    describe '#parse_time' do
-      it 'should parse time to standard/long format' do
-        p.parse_time('E14_01', true).should == '2012-03-08 18:45'
-      end
-      it 'should parse time to shortened format' do
-        p.parse_time('E14_01').should == '18:45'
-      end
-    end
-
-    describe '#parse_date' do
-      it 'should parse time to standard date-only format' do
-        p.parse_date('E14_01', true).should == '2012-03-08'
       end
     end
 
@@ -157,129 +671,141 @@ describe Nemsis::Parser do
       end
     end
 
-    describe "nokogiri" do
-      it "should do what i want" do
-        xml_str = <<XML
-<root>
-  <sitcoms>
-    <sitcom>
-      <name>Married with Children</name>
-      <E04>
-        <character>Al Bundy</character>
-        <character>Bud Bundy</character>
-        <character>Marcy Darcy</character>
-      </E04>
-    </sitcom>
-    <sitcom>
-      <name>Perfect Strangers</name>
-      <E04>
-        <character>Larry Appleton</character>
-        <character>Balki Bartokomous</character>
-      </E04>
-    </sitcom>
-  </sitcoms>
-  <dramas>
-    <drama>
-      <name>The A-Team</name>
-      <E04>
-        <character>John " Hannibal " Smith</character>
-        <character>Templeton " Face " Peck</character>
-        <character>" B.A. " Baracus</character>
-        <character>" Howling Mad " Murdock</character>
-      </E04>
-    </drama>
-  </dramas>
-</root
-XML
-        xml_doc = Nokogiri::XML(xml_str)
-        nodes = xml_doc.xpath('//E04')
-        #puts nodes.count
-        results = []
-        nodes.each_with_index do |node,i|
-          #puts "node ##{i+1}: #{node.name}"
-          c = 0
-
-          node.children.each do |child|
-            #puts "\tChild ##{c+=1}: #{child.name}=> #{child.text}" if child.is_a?(Nokogiri::XML::Element)
-          end
-        end
-
-        #puts "-"*25
-        p = Nemsis::Parser.new(xml_str)
-        #puts = p.get_children('E04').inspect
-
-      end
-    end
-
     describe '#parse_cluster' do
       let(:p2) {
-        xml_str = "
-<root>
-  <E04>
-    <E04_02>585</E04_02>
-    <E04_03>-20</E04_03>
-    <E04_04>TECH SUPPORT</E04_04>
-    <E04_05>ESO</E04_05>
-  </E04>
-  <E04>
-    <E04_01>P038756</E04_01>
-    <E04_02>580</E04_02>
-    <E04_03>6110</E04_03>
-    <E04_04>ADAMS</E04_04>
-    <E04_05>CHRISTOPHER</E04_05>
-  </E04>
-</root>"
+        xml_str = <<XML
+<?xml version=" 1.0 " encoding=" UTF-8 " ?>
+<EMSDataSet xmlns=" http ://www.nemsis.org " xmlns:xsi=" http ://www.w3.org/2001/XMLSchema-instance "
+            xsi:schemaLocation=" http ://www.nemsis.org http ://www.nemsis.org/media/XSD/EMSDataSet.xsd ">
+  <Header>
+    <Record>
+      <E14>
+        <E14_01>2012-03-08T15:30:00.0Z</E14_01>
+        <E14_02>0</E14_02>
+        <E14_04_0>
+          <E14_06>3165</E14_06>
+        </E14_04_0>
+        <E14_10>3180</E14_10>
+        <E14_15_0>
+          <E14_15>4</E14_15>
+          <E14_16>3</E14_16>
+          <E14_17>5</E14_17>
+          <E14_18>3220</E14_18>
+        </E14_15_0>
+        <E14_20_0>
+          <E14_20>38.89</E14_20>
+          <E14_21>3235</E14_21>
+        </E14_20_0>
+        <E14_22>3255</E14_22>
+        <E14_24>3285</E14_24>
+        <E14_26>2</E14_26>
+        <E14_29></E14_29>
+        <E14_30></E14_30>
+        <E14_32>-20</E14_32>
+      </E14>
+      <E14>
+        <E14_01>2012-03-08T15:35:00.0Z</E14_01>
+        <E14_02>0</E14_02>
+        <E14_03>3070</E14_03>
+        <E14_04_0>
+          <E14_06>3155</E14_06>
+        </E14_04_0>
+        <E14_08>92</E14_08>
+        <E14_10>3175</E14_10>
+        <E14_12>3185</E14_12>
+        <E14_15_0>
+          <E14_15>4</E14_15>
+          <E14_16>5</E14_16>
+          <E14_17>6</E14_17>
+        </E14_15_0>
+        <E14_22>3255</E14_22>
+      </E14>
+      <E14>
+        <E14_01>2012-03-08T15:40:00.0Z</E14_01>
+        <E14_02>0</E14_02>
+        <E14_03>3070</E14_03>
+        <E14_04_0>
+          <E14_06>3155</E14_06>
+        </E14_04_0>
+        <E14_08>72</E14_08>
+        <E14_10>3175</E14_10>
+        <E14_12>3185</E14_12>
+        <E14_15_0>
+          <E14_15>4</E14_15>
+          <E14_16>5</E14_16>
+          <E14_17>6</E14_17>
+        </E14_15_0>
+        <E14_22>3255</E14_22>
+      </E14>
+      <E14>
+        <E14_01>2012-03-08T15:45:00.0Z</E14_01>
+        <E14_02>0</E14_02>
+        <E14_03>3070</E14_03>
+        <E14_04_0>
+          <E14_06>3155</E14_06>
+        </E14_04_0>
+        <E14_08>75</E14_08>
+        <E14_10>3175</E14_10>
+        <E14_12>3185</E14_12>
+        <E14_15_0>
+          <E14_15>4</E14_15>
+          <E14_16>5</E14_16>
+          <E14_17>6</E14_17>
+        </E14_15_0>
+        <E14_22>3255</E14_22>
+      </E14>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
         Nemsis::Parser.new(xml_str)
       }
+      let(:results) {p2.parse_cluster('E14')}
 
-      it "should return proper number of records" do
-        results = p2.get_children('E04')
+      it 'should return arrays of Nemsis::Parser for an element name' do
         results.is_a?(Array).should be_true
-        results.size.should == 2
-
-        results[0]['E04_01'].should == ""
-        results[0]['E04_02'].should == "Primary Patient Caregiver"
-        results[0]['E04_03'].should == ""
-        results[0]['E04_04'].should == "TECH SUPPORT"
-        results[0]['E04_05'].should == "ESO"
-
-        results[1]['E04_01'].should == "P038756"
-        results[1]['E04_02'].should == "Driver"
-        results[1]['E04_03'].should == "EMT-Paramedic"
-        results[1]['E04_04'].should == "ADAMS"
-        results[1]['E04_05'].should == "CHRISTOPHER"
+        results.size.should == 4
+        results.first.class.should == Nemsis::Parser
       end
 
-      it 'should return arrays of Nemsis::Parser for a element name' do
-        results = p.parse_cluster('E14')
-        results.is_a?(Array).should be_true
-        results.first.is_a?(Nemsis::Parser).should be_true
+      it 'should allow you to get the same elements from each parser instance' do
+        results[0].E14_01.should == "2012-03-08 15:30"
+        results[1].E14_01.should == "2012-03-08 15:35"
+        results[2].E14_01.should == "2012-03-08 15:40"
+        results[3].E14_01.should == "2012-03-08 15:45"
       end
 
     end
 
     describe '#get_children' do
       let(:p2) {
-        xml_str = "
-<root>
-  <E04>
-    <E04_02>585</E04_02>
-    <E04_03>-20</E04_03>
-    <E04_04>TECH SUPPORT</E04_04>
-    <E04_05>ESO</E04_05>
-  </E04>
-  <E04>
-    <E04_01>P038756</E04_01>
-    <E04_02>580</E04_02>
-    <E04_03>6110</E04_03>
-    <E04_04>ADAMS</E04_04>
-    <E04_05>CHRISTOPHER</E04_05>
-  </E04>
-</root>"
+        xml_str = <<XML
+<?xml version=" 1.0 " encoding=" UTF-8 " ?>
+<EMSDataSet xmlns=" http ://www.nemsis.org " xmlns:xsi=" http ://www.w3.org/2001/XMLSchema-instance "
+            xsi:schemaLocation=" http ://www.nemsis.org http ://www.nemsis.org/media/XSD/EMSDataSet.xsd ">
+  <Header>
+    <Record>
+      <E04>
+        <E04_02>585</E04_02>
+        <E04_03>-20</E04_03>
+        <E04_04>TECH SUPPORT</E04_04>
+        <E04_05>ESO</E04_05>
+      </E04>
+      <E04>
+        <E04_01>P038756</E04_01>
+        <E04_02>580</E04_02>
+        <E04_03>6110</E04_03>
+        <E04_04>ADAMS</E04_04>
+        <E04_05>CHRISTOPHER</E04_05>
+      </E04>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
         Nemsis::Parser.new(xml_str)
 
       }
-      let(:results) {p2.get_children('E04')}
+      let(:results) { p2.get_children('E04') }
 
       it "should return an array of records" do
         results.is_a?(Array).should be_true
@@ -327,11 +853,51 @@ XML
         initial_assessment.E16_01.should == '1'
       end
     end
+
+    describe '#concat' do
+      let(:p2) {
+        xml_str = <<XML
+<?xml version=" 1.0 " encoding=" UTF-8 " ?>
+<EMSDataSet xmlns=" http ://www.nemsis.org " xmlns:xsi=" http ://www.w3.org/2001/XMLSchema-instance "
+            xsi:schemaLocation=" http ://www.nemsis.org http ://www.nemsis.org/media/XSD/EMSDataSet.xsd ">
+  <Header>
+    <Record>
+      <E12>
+      <E12_01>2620</E12_01>
+        <E12_4_0>
+          <E12_06>Jones</ E12_06>
+      <E12_04>Jim</E12_04>
+        </ E12_4_0>
+      <E12_14_0>
+      <E12_14>Accuneb</E12_14>
+          <E12_15_0>
+            <E12_15>23.00</ E12_15>
+      <E12_16>2835</E12_16>
+          </ E12_15_0>
+      <E12_17>-20</E12_17>
+        </ E12_14_0>
+      <E12_18>0</E12_18>
+        <E12_19>2985</ E12_19>
+      <E12_20>1</E12_20>
+      </ E12>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+        Nemsis::Parser.new(xml_str)
+      }
+
+    end
+
     describe '#has_content' do
       let(:p2) {
-        xml_str = "
-<root>
-  <E20_03>10000 Falls of Neuse Rd</E20_03>
+        xml_str = <<XML
+<?xml version=" 1.0 " encoding=" UTF-8 " ?>
+<EMSDataSet xmlns=" http ://www.nemsis.org " xmlns:xsi=" http ://www.w3.org/2001/XMLSchema-instance "
+            xsi:schemaLocation=" http ://www.nemsis.org http ://www.nemsis.org/media/XSD/EMSDataSet.xsd ">
+  <Header>
+    <Record>
+      <E20_03>10000 Falls of Neuse Rd</E20_03>
       <E23>
         <E23_01>-20</E23_01>
         <E23_05>0</E23_05>
@@ -345,7 +911,10 @@ XML
         <E34_06>1</E34_06>
       </E34>
       <E35></E35>
-</root>"
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
         Nemsis::Parser.new(xml_str)
       }
       context 'Single Values' do
@@ -368,6 +937,57 @@ XML
           p2.has_content('E35').should == false
         end
       end
+    end
+
+  end
+
+  describe 'nokogiri larnin' do
+    it 'should do what i mean, not what I say!' do
+      xml_str = <<XML
+<root>
+  <sitcoms>
+    <sitcom>
+      <name>Married with Children</name>
+      <E04>
+        <character>Al Bundy</character>
+        <character>Bud Bundy</character>
+        <character>Marcy Darcy</character>
+      </E04>
+    </sitcom>
+    <sitcom>
+      <name>Perfect Strangers</name>
+      <E04>
+        <character>Larry Appleton</character>
+        <character>Balki Bartokomous</character>
+      </E04>
+    </sitcom>
+  </sitcoms>
+  <dramas>
+    <drama>
+      <name>The A-Team</name>
+      <E04>
+        <character>John " Hannibal " Smith</character>
+        <character>Templeton " Face " Peck</character>
+        <character>" B.A. " Baracus</character>
+        <character>" Howling Mad " Murdock</character>
+      </E04>
+    </drama>
+  </dramas>
+</root
+XML
+      xml_doc = Nokogiri::XML(xml_str)
+      nodes   = xml_doc.xpath('//E04')
+      #puts nodes.count
+      results = []
+      nodes.each_with_index do |node, i|
+        #puts "node ##{i+1}: #{node.name}"
+        c = 0
+
+        node.children.each do |child|
+          #puts "\tChild ##{c+=1}: #{child.name}=> #{child.text}" if child.is_a?(Nokogiri::XML::Element)
+        end
+      end
+
     end
   end
 end
