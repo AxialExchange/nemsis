@@ -5,8 +5,8 @@ require "nemsis/version"
 Gem::Specification.new do |s|
   s.name        = "nemsis"
   s.version     = Nemsis::VERSION
-  s.authors     = ["Guangming Cui"]
-  s.email       = ["gcui@axialexchange.com"]
+  s.authors     = ["Guangming Cui", "Jon Kern"]
+  s.email       = ["gcui@axialexchange.com", "jkern@axialexchange.com"]
   s.homepage    = ""
   s.summary     = %q{NEMSIS Data Parser}
   s.description = %q{Parses NEMSIS (National EMS Information System) Data in XML format}
@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   # specify any dependencies here; for example:
-  # s.add_development_dependency "rspec"
+  s.add_development_dependency "rspec"
   # s.add_runtime_dependency "rest-client"
 
   s.add_dependency 'nokogiri'
