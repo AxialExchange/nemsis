@@ -385,7 +385,7 @@ module Nemsis
     def method_missing(method_sym, *arguments, &block)
       if method_sym.to_s =~ /^[A-Z]\d{2}(_\d{2})?/
         Array(parse(get_spec(method_sym.to_s))).join(', ') rescue ''
-      elsif method_sym.to_s =~ /^concat/
+      elsif method_sym.to_s =~ /^concat/ or method_sym.to_s =~ /^parse_value_of/
         instance_eval(method_sym.to_s) rescue ''
       else
         super

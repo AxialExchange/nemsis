@@ -855,37 +855,31 @@ XML
     end
 
     describe '#concat' do
-      let(:p2) {
+      let(:p) {
         xml_str = <<XML
 <?xml version=" 1.0 " encoding=" UTF-8 " ?>
 <EMSDataSet xmlns=" http ://www.nemsis.org " xmlns:xsi=" http ://www.w3.org/2001/XMLSchema-instance "
             xsi:schemaLocation=" http ://www.nemsis.org http ://www.nemsis.org/media/XSD/EMSDataSet.xsd ">
   <Header>
     <Record>
-      <E12>
-      <E12_01>2620</E12_01>
-        <E12_4_0>
-          <E12_06>Jones</ E12_06>
-      <E12_04>Jim</E12_04>
-        </ E12_4_0>
-      <E12_14_0>
-      <E12_14>Accuneb</E12_14>
-          <E12_15_0>
-            <E12_15>23.00</ E12_15>
-      <E12_16>2835</E12_16>
-          </ E12_15_0>
-      <E12_17>-20</E12_17>
-        </ E12_14_0>
-      <E12_18>0</E12_18>
-        <E12_19>2985</ E12_19>
-      <E12_20>1</E12_20>
-      </ E12>
+      <E04>
+        <E04_02>585</E04_02>
+        <E04_03>-20</E04_03>
+        <E04_04>TECH SUPPORT</E04_04>
+        <E04_05>ESO</E04_05>
+      </E04>
     </Record>
   </Header>
 </EMSDataSet>
 XML
         Nemsis::Parser.new(xml_str)
       }
+      it 'should concatenate field values for multiple entries' do
+        p.concat('E04_05', 'E04_04').should == "ESO TECH SUPPORT"
+      end
+      it 'should return empty when there are no data' do
+        p.concat('E12_08', 'E12_09').should == ""
+      end
 
     end
 

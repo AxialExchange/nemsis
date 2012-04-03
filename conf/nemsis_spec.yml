@@ -3096,7 +3096,7 @@ E09_05:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 0
-  name: CHIEF COMPLAINT
+  name: Chief Complaint
   node: E09_05
 E09_06:
   allow_null: 0
@@ -3307,7 +3307,7 @@ E09_15:
     1740: '959.90- Traumatic injury'
     1745: '623.80- Vaginal hemorrhage'
   is_multi_entry: 0
-  name: PROVIDERS PRIMARY IMPRESSION
+  name: Primary Impression
   node: E09_15
 E09_16:
   allow_null: 1
@@ -3347,7 +3347,7 @@ E09_16:
     1875: '959.90- Traumatic injury'
     1880: '623.80- Vaginal hemorrhage'
   is_multi_entry: 0
-  name: PROVIDER’S SECONDARY IMPRESSION
+  name: Secondary Impression
   node: E09_16
 E10_01:
   allow_null: 1
@@ -3776,7 +3776,7 @@ E12_01:
     2635: Unattended or Unsupervised (including minors)
     2640: Unconscious
   is_multi_entry: 1
-  name: BARRIERS TO PATIENT CARE
+  name: Barriers of Care
   node: E12_01
 E12_02:
   allow_null: 1
@@ -3905,7 +3905,7 @@ E12_10:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 1
-  name: MEDICAL/SURGICAL HISTORY
+  name: History
   node: E12_10
 E12_11:
   allow_null: 1
@@ -4062,7 +4062,7 @@ E12_19:
     3000: Alcohol and/or Drug Paraphernalia at Scene
     3001: None
   is_multi_entry: 1
-  name: ALCOHOL/DRUG USE INDICATORS
+  name: Alcohol/Drugs
   node: E12_19
 E12_20:
   allow_null: 1
@@ -6568,7 +6568,7 @@ E25_01:
   data_type: text
   field_values: {}
   is_multi_entry: 0
-  name: MALLAMPATI CLASS
+  name: Mallampati Class
   node: E25_01
 E25_02:
   allow_null: 0
@@ -6576,7 +6576,7 @@ E25_02:
   data_type: text
   field_values: {}
   is_multi_entry: 0
-  name: AIRWAY GRADING
+  name: Airway Grading
   node: E25_02
 E25_03:
   allow_null: 1
@@ -6595,7 +6595,7 @@ E25_03:
     500405: Potential for Future Airway Complications
     500406: Other
   is_multi_entry: 1
-  name: INDICATIONS
+  name: Indications
   node: E25_03
 
 E25_04:
@@ -6672,7 +6672,7 @@ E26_01:
   data_type: text
   field_values: {}
   is_multi_entry: 0
-  name: TOTAL BODY SURFACE AREA PERCENTAGE
+  name: Total BSA
   node: E26_01
 
 E26_02:
@@ -6681,7 +6681,7 @@ E26_02:
   data_type: text
   field_values: {}
   is_multi_entry: 0
-  name: FIRST DEGREE BODY SURFACE AREA PERCENTAGE
+  name: 1st Degree
   node: E26_02
 
 E26_03:
@@ -6690,7 +6690,7 @@ E26_03:
   data_type: text
   field_values: {}
   is_multi_entry: 0
-  name: SECOND DEGREE BODY SURFACE AREA PERCENTAGE
+  name: 2nd Degree
   node: E26_03
 
 E26_04:
@@ -6699,15 +6699,15 @@ E26_04:
   data_type: text
   field_values: {}
   is_multi_entry: 0
-  name: THIRD DEGREE BODY SURFACE AREA PERCENTAGE
+  name: 3rd Degree
   node: E26_04
 
 E27_01:
   allow_null: 1
   data_entry_method: ~
-  data_type: date/time
+  data_type: time
   is_multi_entry: 0
-  name: ONSET OF SIGNS AND SYMPTOMS DATE AND TIME
+  name: Onset
   node: E27_01
 
 E27_02:
@@ -6723,7 +6723,7 @@ E27_02:
     0: No
     1: Yes
   is_multi_entry: 0
-  name: SCREENING CRITERIA MET
+  name: Screening Criteria Met
   node: E27_02
 
 E27_03:
@@ -6732,7 +6732,7 @@ E27_03:
   data_type: text
   field_values: {}
   is_multi_entry: 0
-  name: FACIAL DROOP
+  name: Facial Droop
   node: E27_03
 
 E27_04:
@@ -6741,7 +6741,7 @@ E27_04:
   data_type: text
   field_values: {}
   is_multi_entry: 0
-  name: ARM DRIFT
+  name: Arm Drift
   node: E27_04
 
 E27_05:
@@ -6750,7 +6750,7 @@ E27_05:
   data_type: text
   field_values: {}
   is_multi_entry: 0
-  name: SPEECH
+  name: Speech
   node: E27_05
 
 E28_01:
@@ -6766,7 +6766,7 @@ E28_01:
     500801: Sudden
     500802: Gradual
   is_multi_entry: 0
-  name: ONSET
+  name: Onset
   node: E28_01
 
 E28_02:
@@ -6775,7 +6775,7 @@ E28_02:
   data_type: text
   field_values: {}
   is_multi_entry: 0
-  name: PROVOKE
+  name: Provoke
   node: E28_02
 
 E28_03:
@@ -6794,7 +6794,7 @@ E28_03:
     500904: Steady
     500905: Pressure
   is_multi_entry: 0
-  name: QUALITY
+  name: Quality
   node: E28_03
 
 E28_04:
@@ -6814,7 +6814,7 @@ E28_04:
     501005: None
     501006: Neck
   is_multi_entry: 0
-  name: RADIATE
+  name: Radiate
   node: E28_04
 
 E28_05:
@@ -6838,7 +6838,7 @@ E28_05:
     99009:  9
     99010: 10
   is_multi_entry: 0
-  name: RADIATE
+  name: Radiate
   node: E28_05
 
 E28_06:
@@ -6863,7 +6863,7 @@ E28_07:
     501102: ST Elevation
     501103: ST Depression
   is_multi_entry: 0
-  name: 12 LEAD I
+  name: 12 Lead I
   node: E28_07
 
 E28_08:
@@ -6880,7 +6880,7 @@ E28_08:
     501102: ST Elevation
     501103: ST Depression
   is_multi_entry: 0
-  name: 12 LEAD II
+  name: 12 Lead II
   node: E28_08
 
 E28_09:
@@ -6897,7 +6897,7 @@ E28_09:
     501102: ST Elevation
     501103: ST Depression
   is_multi_entry: 0
-  name: 12 LEAD III
+  name: 12 Lead III
   node: E28_09
 
 E28_10:
@@ -6914,7 +6914,7 @@ E28_10:
     501102: ST Elevation
     501103: ST Depression
   is_multi_entry: 0
-  name: 12 LEAD aVR
+  name: 12 Lead aVR
   node: E28_10
 
 E28_11:
@@ -6931,7 +6931,7 @@ E28_11:
     501102: ST Elevation
     501103: ST Depression
   is_multi_entry: 0
-  name: 12 LEAD aVL
+  name: 12 Lead aVL
   node: E28_11
 
 E28_12:
@@ -6948,7 +6948,7 @@ E28_12:
     501102: ST Elevation
     501103: ST Depression
   is_multi_entry: 0
-  name: 12 LEAD aVF
+  name: 12 Lead aVF
   node: E28_12
 
 E28_13:
@@ -6965,7 +6965,7 @@ E28_13:
     501102: ST Elevation
     501103: ST Depression
   is_multi_entry: 0
-  name: 12 LEAD V1
+  name: 12 Lead V1
   node: E28_13
 
 E28_14:
@@ -6982,7 +6982,7 @@ E28_14:
     501102: ST Elevation
     501103: ST Depression
   is_multi_entry: 0
-  name: 12 LEAD V2
+  name: 12 Lead V2
   node: E28_14
 
 E28_15:
@@ -6999,7 +6999,7 @@ E28_15:
     501102: ST Elevation
     501103: ST Depression
   is_multi_entry: 0
-  name: 12 LEAD V3
+  name: 12 Lead V3
   node: E28_15
 
 E28_16:
@@ -7016,7 +7016,7 @@ E28_16:
     501102: ST Elevation
     501103: ST Depression
   is_multi_entry: 0
-  name: 12 LEAD V4
+  name: 12 Lead V4
   node: E28_16
 
 E28_17:
@@ -7033,7 +7033,7 @@ E28_17:
     501102: ST Elevation
     501103: ST Depression
   is_multi_entry: 0
-  name: 12 LEAD V5
+  name: 12 Lead V5
   node: E28_17
 
 E28_18:
@@ -7050,7 +7050,7 @@ E28_18:
     501102: ST Elevation
     501103: ST Depression
   is_multi_entry: 0
-  name: 12 LEAD V6
+  name: 12 Lead V6
   node: E28_18
 
 E28_19:
@@ -7067,7 +7067,7 @@ E28_19:
     501102: ST Elevation
     501103: ST Depression
   is_multi_entry: 0
-  name: 12 LEAD V4R
+  name: 12 Lead V4R
   node: E28_19
 
 E28_20:
@@ -7084,7 +7084,7 @@ E28_20:
     501102: ST Elevation
     501103: ST Depression
   is_multi_entry: 0
-  name: 12 LEAD V5R
+  name: 12 Lead V5R
   node: E28_20
 
 E28_21:
@@ -7101,7 +7101,7 @@ E28_21:
     501102: ST Elevation
     501103: ST Depression
   is_multi_entry: 0
-  name: 12 LEAD V6R
+  name: 12 Lead V6R
   node: E28_21
 
 E28_22:
@@ -7118,7 +7118,7 @@ E28_22:
     501102: ST Elevation
     501103: ST Depression
   is_multi_entry: 0
-  name: 12 LEAD V7
+  name: 12 Lead V7
   node: E28_22
 
 E28_23:
@@ -7135,7 +7135,7 @@ E28_23:
     501102: ST Elevation
     501103: ST Depression
   is_multi_entry: 0
-  name: 12 LEAD V8
+  name: 12 Lead V8
   node: E28_23
 
 E28_24:
@@ -7152,7 +7152,7 @@ E28_24:
     501102: ST Elevation
     501103: ST Depression
   is_multi_entry: 0
-  name: 12 LEAD V9
+  name: 12 Lead V9
   node: E28_24
 
 E28_25:
@@ -7169,7 +7169,7 @@ E28_25:
     501202: Ischemic Discomfort > 30
     501203: ST Elevation
   is_multi_entry: 1
-  name: THROMBOLYTIC CHECKLIST INCLUSION CRITERIA
+  name: Inclusion Criteria
   node: E28_25
 
 E28_26:
@@ -7191,7 +7191,7 @@ E28_26:
     501307: Symptoms Suggesting Dissecting AAA
     501308: Pregnancy
   is_multi_entry: 1
-  name: THROMBOLYTIC CHECKLIST EXCLUSION CRITERIA
+  name: Exclusion Criteria
   node: E28_26
 
 E28_27:
@@ -7207,7 +7207,7 @@ E28_27:
     0: No
     1: Yes
   is_multi_entry: 0
-  name: 12 LEAD TRANSMISSION
+  name: 12 Lead Transmission
   node: E28_27
 
 E28_28:
@@ -7232,7 +7232,7 @@ E29_01:
     2240: Yes, Prior to EMS Arrival
     2245: Yes, After EMS Arrival
   is_multi_entry: 0
-  name: CARDIAC ARREST
+  name: Cardiac Arrest
   node: E29_01
 
 E29_02:
@@ -7253,7 +7253,7 @@ E29_02:
     2270: Electrocution
     2275: Other
   is_multi_entry: 0
-  name: CARDIAC ARREST ETIOLOGY
+  name: Cardiac Arrest Etiology
   node: E29_02
 
 E29_03:
@@ -7275,7 +7275,7 @@ E29_03:
     2420: 2-4 Minutes
     2425: 0-2 Minutes
   is_multi_entry: 0
-  name: ESTIMATED TIME OF ARREST
+  name: Est. Time of Arrest
   node: E29_03
 
 E29_04:
@@ -7292,7 +7292,7 @@ E29_04:
     2315: Bystander
     2320: Not Witnessed
   is_multi_entry: 0
-  name: ARREST WITNESSED BY
+  name: Arrest Witnessed By
   node: E29_04
 
 E29_05:
@@ -7312,7 +7312,7 @@ E29_05:
     501405: Law Enforcement
     501406: Other
   is_multi_entry: 0
-  name: CPR INITIATED BY
+  name: CPR Initiated By
   node: E29_05
 
 E29_06:
@@ -7328,7 +7328,7 @@ E29_06:
     0: No
     1: Yes
   is_multi_entry: 0
-  name: AED USED PRIOR TO ARRIVAL
+  name: AED Applied
   node: E29_06
 
 E29_07:
@@ -7348,7 +7348,7 @@ E29_07:
     501405: Law Enforcement
     501406: Other
   is_multi_entry: 0
-  name: AED USED BY
+  name: AED Applied By
   node: E29_07
 
 E29_08:
@@ -7364,7 +7364,7 @@ E29_08:
     0: No
     1: Yes
   is_multi_entry: 0
-  name: RESUSCITATION ATTEMPTED
+  name: Resuscitation Attempted
   node: E29_08
 
 E29_09:
@@ -7387,7 +7387,7 @@ E29_09:
     2360: Ventricular Fibrillation
     2365: Ventricular Tachycardia
   is_multi_entry: 0
-  name: INITIAL ECG RHYTHM
+  name: Initial ECG Rhythm
   node: E29_09
 
 E29_10:
@@ -7448,7 +7448,7 @@ E29_11:
     2595: Ventricular Tachycardia
     2455: 12 Lead ECG - Septal Ischemia
   is_multi_entry: 0
-  name: RHYTHM AT DESTINATION
+  name: Rhythm at Destination
   node: E29_11
 
 E29_12:
@@ -7456,7 +7456,7 @@ E29_12:
   data_entry_method: ~
   data_type: time
   is_multi_entry: 0
-  name: RESUSCITATION DISCONTINUED DATE TIME
+  name: Resuscitation Discontinued
   node: E29_12
 
 E29_13:
@@ -7475,7 +7475,7 @@ E29_13:
     2445: Protocol/Policy Requirements Completed
     2450: Return of Spontaneous Circulation (pulse or BP Noted)
   is_multi_entry: 0
-  name: DISCONTINUATION REASON
+  name: Discontinued Reason
   node: E29_13
 
 E29_14:
@@ -7491,7 +7491,7 @@ E29_14:
     0: No
     1: Yes
   is_multi_entry: 0
-  name: FIELD PRONOUNCEMENT EXPIRED
+  name: Expired
   node: E29_14
 
 E29_15:
@@ -7499,7 +7499,7 @@ E29_15:
   data_entry_method: ~
   data_type: time
   is_multi_entry: 0
-  name: FIELD PRONOUNCEMENT DATE TIME
+  name: Field Pronouncement Date Time
   node: E29_15
 
 E29_16:
@@ -7508,7 +7508,7 @@ E29_16:
   data_type: text
   field_values: {}
   is_multi_entry: 0
-  name: FIELD PRONOUNCEMENT PHYSICIAN
+  name: Field Pronouncement Physician
   node: E29_16
 
 E29_17:
@@ -7516,7 +7516,7 @@ E29_17:
   data_entry_method: ~
   data_type: number
   is_multi_entry: 1
-  name: ESTIMATED TIME FROM COLLAPSE TO 911
+  name: Est. time collapse to 911
   node: E29_17
 
 E29_18:
@@ -7524,7 +7524,7 @@ E29_18:
   data_entry_method: ~
   data_type: number
   is_multi_entry: 1
-  name: ESTIMATED TIME FROM COLLAPSE TO CPR
+  name: Est. time collapse to CPR
   node: E29_18
 
 E29_19:
@@ -7532,7 +7532,7 @@ E29_19:
   data_entry_method: ~
   data_type: time
   is_multi_entry: 0
-  name: RETURN OF SPONTANEOUS CIRCULATION DATE TIME
+  name: ROSC Time
   node: E29_19
 
 E29_20:
@@ -7548,7 +7548,7 @@ E29_20:
     0: No
     1: Yes
   is_multi_entry: 0
-  name: PRE-ARRIVAL CPR INSTRUCTIONS
+  name: Pre-arrival CPR Instructions
   node: E29_20
 
 E29_21:
@@ -7568,7 +7568,7 @@ E29_21:
     501506: Law Enforcement
     501507: Medical/Health Care Provider
   is_multi_entry: 0
-  name: FIRST DEFIBRILLATION BY
+  name: First Defibrillated By
   node: E29_21
 
 E29_22:
@@ -7576,7 +7576,7 @@ E29_22:
   data_entry_method: ~
   data_type: time
   is_multi_entry: 0
-  name: TIME OF FIRST DEFIBRILLATION
+  name: Time of 1st Defib
   node: E29_22
 
 E29_23:
@@ -7592,7 +7592,7 @@ E29_23:
     0: No
     1: Yes
   is_multi_entry: 0
-  name: HYPOTHERMIA PROVIDED
+  name: Hypothermia
   node: E29_23
 
 E29_24:
@@ -7610,7 +7610,7 @@ E29_24:
     501603: Effort Ceased due to DNR
     501604: Ongoing Resuscitation in ED
   is_multi_entry: 0
-  name: END OF EVENT
+  name: End of Event
   node: E29_24
 
 E29_25:
@@ -7626,7 +7626,7 @@ E29_25:
     0: No
     1: Yes
   is_multi_entry: 0
-  name: DEFIBRILLATION
+  name: Defibrillated
   node: E29_25
 
 E29_26:
@@ -7634,7 +7634,7 @@ E29_26:
   data_entry_method: ~
   data_type: time
   is_multi_entry: 0
-  name: TIME OF FIRST CPR
+  name: Time of 1st CPR
   node: E29_26
 
 E29_27:
@@ -7650,7 +7650,7 @@ E29_27:
     0: No
     1: Yes
   is_multi_entry: 0
-  name: CPR FEEDBACK
+  name: CPR Feedback
   node: E29_27
 
 E29_28:
@@ -7666,7 +7666,7 @@ E29_28:
     0: No
     1: Yes
   is_multi_entry: 0
-  name: ITD USED
+  name: ITD Used
   node: E29_28
 
 E29_29:
@@ -7687,7 +7687,7 @@ E29_29:
     501606: After EMS ALS
     501607: Unknown
   is_multi_entry: 0
-  name: ROSC OCCURRED
+  name: ROSC Occurred
   node: E29_29
 
 E29_30:
@@ -7707,7 +7707,7 @@ E29_30:
     2300: Not Attempted – DNR Orders
     2305: Not Attempted – Signs of Circulation
   is_multi_entry: 0
-  name: RESUSCITATION
+  name: Resuscitation
   node: E29_30
 
 E30_01:
@@ -8072,7 +8072,7 @@ E31_13:
     2205: Protective Gear
     2210: Shoulder Belt
   is_multi_entry: 0
-  name: Safet Devices
+  name: Safety Devices
   node: E31_13
 
 E31_14:

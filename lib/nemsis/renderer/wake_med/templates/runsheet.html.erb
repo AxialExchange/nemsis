@@ -7,14 +7,20 @@
 
 <%
    @fancy_html ||= false
+   @show_all_sections ||= true  # Handy for development to set this to true
 
-   def start_table(title="", options="")
+   def start_table(title="", colspan=2, options="")
      if @fancy_html
        text = "<table #{(options.empty?) ? '' : options} #{(title.empty?) ? '' : "title='#{title}'"}>"
      else
        text = "<table border='1' cellspacing='0' width='700' #{(title.empty?) ? '' : "title='#{title}'"}>"
      end
-   end
+     text += '<thead>'
+     text += start_row
+     text += heading(title, colspan) unless title.empty?
+     text += '</tr>'
+     text += '</thead>'
+    end
 
    def borderless_table
      if @fancy_html
@@ -33,6 +39,7 @@
    end
 
    # Create a grid of Label/Value pairs using the name from the YML file as the label
+   # fields can be empty, an element name, or a hash {label => field}
    def row(*fields)
      text = start_row
      fields.each do |field|
@@ -40,6 +47,10 @@
        if field.empty?
          text += cell("")
          text += cell("")
+       elsif field.is_a?(Hash)
+         label = field.keys[0]
+         value = field[label]
+         text += labeled_cell(label, value.empty? ? '' : @parser.send(value))
        else
          element = @parser.get(field)
          text += labeled_cell(element[:name], @parser.send(field))
@@ -276,53 +287,40 @@
 <% end %>
 
 <h4>Wake County EMS System - Patient Care Record</h4>
-<p>
-  <%= borderless_table %>
-      <%= start_row %>
-        <%= borderless_cell "Name:", "#{@parser.E06_01}, #{@parser.E06_02}" %>
-        <%= borderless_cell "Incident #:", @parser.E02_02 %>
-        <%= borderless_cell "Date:", @parser.parse_time('E05_03', true) %>
-      </tr>
-    </table>
-</p>
+<%= borderless_table %>
+    <%= start_row %>
+      <%= borderless_cell "Name:", "#{@parser.E06_01}, #{@parser.E06_02}" %>
+      <%= borderless_cell "Incident #:", @parser.E02_02 %>
+      <%= borderless_cell "Date:", @parser.parse_time('E05_03', true) %>
+    </tr>
+  </table>
 
-<%= start_table "Patient Information" %>
-  <thead>
-  <%= start_row %>
-    <%= heading "Patient Information", 6 %>
-  </tr>
-  </thead>
+<%= title = "Patient Information"
+    start_table title, 6 %>
   <tbody>
+  <!--Last, address, dob-->
   <%= row 'E06_01', 'E06_04', 'E06_16' %>
-  <%= row 'E06_02', 'E06_05', 'E16_01' %>
-  <%= row 'E06_03', 'E06_07', 'E06_10' %>
-  <%= row 'E06_11', 'E06_08', 'E06_06' %>
-  <%= row 'E06_14', 'E06_17', 'E06_09' %>
+  <!--First, city/st/zip, weight-->
+  <%= row 'E06_02', {'City, St ZIP' => "concat('E06_05','E06_07','E06_08')"}, 'E16_01' %>
+  <!--Middle, phone, SSN-->
+  <%= row 'E06_03', 'E06_17', 'E06_10' %>
+  <!--Gender, county, physician -->
+  <%= row 'E06_11', 'E06_06', {'Physician' => "concat('E12_04', 'E12_06')"} %>
+  <!--Age, country-->
+  <%= row 'E06_14', 'E06_09', '' %>
   <%= start_row %>
     <%= labeled_cell "Advanced Directive", @parser.E12_07, 5 %>
   </tr>
   </tbody>
 </table>
 <br>
-<%= start_table "Clinical Impression" %>
-  <thead>
-  <%= start_row %>
-    <%= heading "Clinical Impression", 8 %>
-  </tr>
-  </thead>
+<%= title = "Clinical Impression"
+    start_table title, 8 %>
   <tbody>
-  <%= start_row %>
-    <%= labeled_cell "Primary Impression", @parser.E09_15 %>
-    <%= labeled_cell "Chief Complaint", @parser.E09_05 %>
-    <%= labeled_cell "Injury", (@parser.concat 'E10_01', 'E10_02', 'E10_03') %>
-    <%= labeled_cell "Barriers of Care", @parser.E12_01 %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell "Secondary Impression", @parser.E09_16 %>
-    <%= labeled_cell "Duration", (@parser.concat 'E09_06', 'E09_07') %>
-    <%= labeled_cell "Medical/ Trauma", @parser.parse_value_of('MedicalTrauma') %>
-    <%= labeled_cell "Alcohol/ Drugs", @parser.E12_19 %>
-  </tr>
+    <!-- Primary Impression, Chief Complaint, Injury, Barriers -->
+    <%= row 'E09_15', 'E09_05', {'Injury' => "concat('E10_01', 'E10_02', 'E10_03')"}, 'E12_01' %>
+    <!-- Secondary Impression, Duration, Medical/Trauma, Alcohol/Drugs -->
+    <%= row 'E09_16', {'Duration' => "concat('E09_06', 'E09_07')"}, {'Medical/Trauma' => "parse_value_of('MedicalTrauma')"}, 'E12_19' %>
   <%= start_row %>
     <%= labeled_cell "Signs &amp; Symptoms", (@parser.concat 'E09_13', 'E09_14'), 7 %>
   </tr>
@@ -330,32 +328,20 @@
 </table>
 <br>
 <% if @parser.has_content('E12') %>
-<%= start_table "Medication/Allergies/History" %>
-  <thead>
-  <%= start_row %>
-    <%= heading "Medication/Allergies/History", 2 %>
-  </tr>
-  </thead>
+<%= title = "Medication/Allergies/History"
+    start_table title %>
   <tbody>
-  <%= start_row %>
-    <%= labeled_cell_medium "Medications", [@parser.E12_14, @parser.E12_15, @parser.E12_16].join('; ') %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell_medium "Allergies", [@parser.E12_08, @parser.E12_09].join('; ') %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell_medium "History", @parser.E12_10 %>
-  </tr>
+    <%= row( {"Medications" => "concat('E12_14', 'E12_15', 'E12_16')"}) %>
+    <%= row( {"Allergies" => "concat('E12_08', 'E12_09')"}) %>
+    <%= row( 'E12_10') %>
   </tbody>
 </table>
 <br>
 <% end %>
 
-<%= start_table "Vital Signs" %>
+<%= title = "Vital Signs"
+    start_table title, 16 %>
 
-  <%= start_row %>
-    <%= heading "Vital Signs", 16 %>
-  </tr>
   <%= start_row %>
     <%= label_top "Time" %>
     <%= label_top "AVPU" %>
@@ -395,16 +381,13 @@
         <%= cell (e14.E14_28) %>
       </tr>
   <% end %>
+</tbody>
 
 </table>
 <br>
 
-<%= start_table "ECG" %>
-  <thead>
-  <%= start_row %>
-    <%= heading "ECG", 3 %>
-  </tr>
-  </thead>
+<%= title = "ECG"
+    start_table title, 3 %>
   <%= start_row %>
     <%= label "Time" %>
     <%= label "3-Lead ECG" %>
@@ -418,15 +401,12 @@
         <%= cell (e14.E14_33) %>
       </tr>
   <% end %>
+</tbody>
 </table>
 <br>
 
-<%= start_table "Flow Chart" %>
-  <thead>
-  <%= start_row %>
-    <%= heading "Flow Chart", 4 %>
-  </tr>
-  </thead>
+<%= title = "Flow Chart"
+    start_table title, 4 %>
   <%= start_row %>
     <%= label "Time" %>
     <%= label "Treatment" %>
@@ -449,18 +429,15 @@
         <td>E18_09 or E19_09 to be mapped to name</td>
       </tr>
   <% end %>
+</tbody>
 </table>
 <br>
 
 <% assessments = @parser.parse_assessments
    unless assessments.empty?
 %>
-    <%= start_table "Initial Assessment" %>
-      <thead>
-      <%= start_row %>
-        <%= heading "Initial Assessment", 4 %>
-      </tr>
-      </thead>
+    <%= title = "Initial Assessment"
+        start_table title, 4 %>
       <tbody>
       <% assessments.each do |assessment| %>
           <%= start_row %>
@@ -566,10 +543,11 @@
 <% end %>
 
 <% unless @parser.E13_01.empty? %>
-<%= start_table "Narrative" %>
+<%= title = "Narrative"
+    start_table title %>
   <thead>
   <%= start_row %>
-    <%= heading "Narrative" %><%= cell (@parser.E13_01) %>
+    <%= heading title %><%= cell (@parser.E13_01) %>
   </tr>
   </thead>
 </table>
@@ -577,12 +555,8 @@
 <% end %>
 
 <% if @parser.has_content('E28') %>
-    <%= start_table "Specialty Patient &mdash; ACS" %>
-        <thead>
-        <%= start_row%>
-          <%= heading "Specialty Patient &mdash; ACS", 6 %>
-        </tr>
-        </thead>
+    <%= title = "Specialty Patient &mdash; ACS"
+        start_table title, 6 %>
         <tbody>
         <%= start_row %>
           <%= labeled_cell_narrow "12 Lead", @parser.E28_27 %>
@@ -642,16 +616,11 @@
 <% end %>
 
 <% if @parser.has_content('E25') %>
-    <%= start_table "Specialty Patient &mdash; Advanced Airway" %>
-        <thead>
+    <%= title = "Specialty Patient &mdash; Advanced Airway"
+        start_table title, 4 %>
         <%= start_row %>
-          <%= heading "Specialty Patient &mdash; Advanced Airway", 4 %>
+          <%= row 'E25_01', 'E25_02' %>
         </tr>
-        <%= start_row %>
-          <%= labeled_cell "Mallampati Class", @parser.E25_01 %>
-          <%= labeled_cell "Airway Grading", @parser.E25_02 %>
-        </tr>
-        </thead>
         <tbody>
         <%= start_row %>
           <%= label "Indications" %>
@@ -683,104 +652,38 @@
 <% end %>
 
 <% if @parser.has_content('E26') %>
-    <%= start_table "Specialty Patient &mdash; Burns" %>
-        <thead>
-        <%= start_row %>
-          <%= heading "Specialty Patient &mdash; Burns", 8 %>
-        </tr>
-        </thead>
-        <tbody>
-        <%= start_row %>
-          <%= labeled_cell_narrow "1st Degree", "#{@parser.E26_02}%" %>
-          <%= labeled_cell_narrow "2nd Degree", "#{@parser.E26_03}%" %>
-          <%= labeled_cell_narrow "3rd Degree", "#{@parser.E26_04}%" %>
-          <%= labeled_cell_narrow "Total BSA",  "#{@parser.E26_01}%" %>
-        </tr>
-        </tbody>
+    <%= title = "Specialty Patient &mdash; Burns"
+        start_table title, 8 %>
+        <%= row 'E26_02', 'E26_03', 'E26_04', 'E26_01' %>
     </table>
     <br>
 <% end %>
 
 <% if @parser.has_content('E27') %>
-    <%= start_table "Specialty Patient &mdash; Stroke" %>
-        <thead>
-        <%= start_row %>
-          <%= heading "Specialty Patient &mdash; Stroke", 10 %>
-        </tr>
-        </thead>
-        <tbody>
-        <%= start_row %>
-            <%= labeled_cell_narrow "Onset", @parser.parse_time('E27_01') %>
-            <%= labeled_cell_narrow "Screening Met", @parser.E27_02 %>
-            <%= labeled_cell_narrow "Facial Droop", @parser.E27_03 %>
-            <%= labeled_cell_narrow "Arm Drift",  @parser.E27_04 %>
-            <%= labeled_cell_narrow "Speech",  @parser.E27_05 %>
-        </tr>
-        </tbody>
+    <%= title = "Specialty Patient &mdash; Stroke"
+        start_table title, 8 %>
+    <%= row 'E27_01','E27_02','E27_03','E27_04','E27_05' %>
     </table>
     <br>
 <% end %>
 
 <% if @parser.has_content('E29') %>
-    <%= start_table "Specialty Patient &mdash; CPR" %>
-    <thead>
-    <%= start_row %>
-      <%= heading "Specialty Patient &mdash; CPR", 4 %>
-    </tr>
-    </thead>
+    <%= title = "Specialty Patient &mdash; CPR"
+        start_table title, 4 %>
     <tbody>
-    <%= start_row %>
-    <%= labeled_cell_medium "Cardiac Arrest", @parser.E29_01 %>
-    <%= labeled_cell_medium "Prearrival CPR Instructions", @parser.E29_20 %>
-    </tr>
-    <%= start_row %>
-    <%= labeled_cell_medium "Cardiac Arrest Etiology", @parser.E29_02 %>
-    <%= labeled_cell_medium "First Defibrillated By", @parser.E29_21 %>
-    </tr>
-    <%= start_row %>
-    <%= labeled_cell_medium "Estimated Time of Arrest", @parser.E29_03 %>
-    <%= labeled_cell_medium "Time of First Defib", @parser.E29_22 %>
-    </tr>
-    <%= start_row %>
-    <%= labeled_cell_medium "Est Time Collapse to 911", @parser.E29_17 %>
-    <%= labeled_cell_medium "Initial ECG Rhythm", @parser.E29_09 %>
-    </tr>
-    <%= start_row %>
-    <%= labeled_cell_medium "Est Time Collapse to CPR", @parser.E29_18 %>
-    <%= labeled_cell_medium "Rhythm at Destination", @parser.E29_11 %>
-    </tr>
-    <%= start_row %>
-    <%= labeled_cell_medium "Arrest Witnessed By", @parser.E29_04 %>
-    <%= labeled_cell_medium "Hypothermia", @parser.E29_23 %>
-    </tr>
-    <%= start_row %>
-    <%= labeled_cell_medium "CPR Initiated By", @parser.E29_05 %>
-    <%= labeled_cell_medium "End of Event", @parser.E29_22 %>
-    </tr>
-    <%= start_row %>
-    <%= labeled_cell_medium "Time 1st CPR", @parser.E29_26 %>
-    <%= labeled_cell_medium "ROSC", @parser.E29_10 %>
-    </tr>
-    <%= start_row %>
-    <%= labeled_cell_medium "CPR Feedback", @parser.E29_27 %>
-    <%= labeled_cell_medium "ROSC Time", @parser.E29_19 %>
-    </tr>
-    <%= start_row %>
-    <%= labeled_cell_medium "ITD Used", @parser.E29_28 %>
-    <%= labeled_cell_medium "ROSC Occurred", @parser.E29_29 %>
-    </tr>
-    <%= start_row %>
-    <%= labeled_cell_medium "Applied AED", @parser.E29_06 %>
-    <%= labeled_cell_medium "Resuscitation Discontinued", @parser.E29_12 %>
-    </tr>
-    <%= start_row %>
-    <%= labeled_cell_medium "Applied By", @parser.E29_07 %>
-    <%= labeled_cell_medium "Discontinued Reason", @parser.E29_13 %>
-    </tr>
-    <%= start_row %>
-    <%= labeled_cell_medium "Defibrillated", @parser.E29_25 %>
-    <%= labeled_cell_medium "Resuscitation Attempted", "#{@parser.E29_20} #{@parser.E29_30}" %>
-    </tr>
+    <%= row 'E29_01', 'E29_20' %>
+    <%= row 'E29_02', 'E29_21' %>
+    <%= row 'E29_03', 'E29_22' %>
+    <%= row 'E29_17', 'E29_09' %>
+    <%= row 'E29_18', 'E29_11' %>
+    <%= row 'E29_04', 'E29_23' %>
+    <%= row 'E29_05', 'E29_22' %>
+    <%= row 'E29_26', 'E29_10' %>
+    <%= row 'E29_27', 'E29_19' %>
+    <%= row 'E29_28', 'E29_29' %>
+    <%= row 'E29_06', 'E29_12' %>
+    <%= row 'E29_07', 'E29_13' %>
+    <%= row 'E29_25', {"Resuscitation Attempted" => "concat('E29_20', 'E29_30')"} %>
     <%= start_row %>
       <%= heading "In-Field Pronouncement", 4 %>
     </tr>
@@ -794,35 +697,39 @@
 <% end %>
 
 <% if @parser.has_content('E31') %>
-<%= start_table "Specialty Patient &mdash; Motor Vehicle Collision" %>
-    <thead>
-    <%= start_row %>
-      <%= heading "Specialty Patient &mdash; Motor Vehicle Collision", 4 %>
-    </tr>
-    </thead>
+<%= title = "Specialty Patient &mdash; Motor Vehicle Collision"
+    start_table title, 4 %>
     <tbody>
+    <!--Injured? Police Report #-->
     <%= row 'E31_01', 'E31_06' %>
+    <!--Vehicle type, collision indicators-->
     <%= row 'E31_02', 'E31_12' %>
+    <!--Seat Row, Airbag Deployment-->
     <%= row 'E31_03', 'E31_14' %>
+    <!--Position in vehicle, damage location-->
     <%= row 'E31_04', 'E31_15' %>
+    <!--Weather, Safety Devices-->
     <%= row 'E31_05', 'E31_13' %>
+    <!--Extrication reqd? Comments-->
     <%= row 'E31_07', 'E31_08' %>
+    <!--Est Speed, Extrication time-->
     <%= row 'E31_09', 'E31_11' %>
     </tbody>
 </table>
 <br>
 <% end %>
+
 <% if @parser.has_content('E24') %>
-    <%= start_table "Specialty Patient &mdash; Trauma Criteria" %>
-    <thead>
-    <%= start_row %>
-      <%= heading "Specialty Patient &mdash; Trauma Criteria", 4 %>
-    </tr>
-    </thead>
+    <%= title = "Specialty Patient &mdash; Trauma Criteria"
+        start_table title, 4 %>
     <tbody>
+    <!--Anatomic, Trauma Activation-->
     <%=  row 'E24_08', 'E24_01' %>
+    <!--Physiologic, Date/Time-->
     <%=  row 'E24_06', 'E24_02' %>
+    <!--Mechanical, Trauma Level-->
     <%=  row 'E24_07', 'E24_04' %>
+    <!--Other Conditions, Reason not Activated-->
     <%=  row 'E24_05', 'E24_03' %>
     </tbody>
 </table>
@@ -830,12 +737,8 @@
 <% end %>
 
 <% if @parser.has_content('E32') %>
-<%= start_table "Specialty Patient &mdash; Obstetrical" %>
-    <thead>
-    <%= start_row %>
-      <%= heading "Specialty Patient &mdash; Obstetrical", 7 %>
-    </tr>
-    </thead>
+<%= title = "Specialty Patient &mdash; Obstetrical"
+    start_table title, 7 %>
     <tbody>
     <%= start_row %>
     <%= labeled_cell @parser.name('E32_01'), @parser.E32_01 %><%= labeled_cell @parser.name('E32_09'), @parser.E32_09 %><%= label "APGAR" %><%= label "1 Min" %><%= label "5 Min" %>
@@ -870,79 +773,63 @@
 <% end %>
 
 <% if @parser.has_content('E34') %>
-    <%= start_table "Specialty Patient &mdash; Spinal Immobilization" %>
-    <thead>
-    <%= start_row %>
-      <%= heading "Specialty Patient &mdash; Spinal Immobilization", 12 %>
-    </tr>
-    </thead>
-    <tbody>
+    <%= title = "Specialty Patient &mdash; Spinal Immobilization"
+        start_table title, 6 %>
     <%= row 'E34_01','E34_02','E34_03' %>
     <%= row 'E34_04','E34_05','E34_06' %>
-    </tbody>
 </table>
 <br>
 <% end %>
 
 <% if @parser.has_content('E30') %>
-    <%= start_table "Specialty Patient &mdash; Influenza Screening" %>
-    <thead>
-    <%= start_row %>
-      <%= heading "Specialty Patient &mdash; Influenza Screening", 4 %>
-    </tr>
-    </thead>
-    <tbody>
+    <%= title = "Specialty Patient &mdash; Influenza Screening"
+        start_table title, 4 %>
     <%= row 'E30_01', '' %>
-    <%= start_row %>
-    <%= labeled_cell_narrow "Symptoms", "" %>
-    <%= labeled_cell "History", "" %>
-    </tr>
+    <%= row({"Symptoms" => ""}, {"History" => ""}) %>
     <%= row 'E30_03', 'E30_08' %>
     <%= row 'E30_04', 'E30_09' %>
     <%= row 'E30_05', 'E30_10' %>
     <%= row 'E30_06', 'E30_11' %>
     <%= row 'E30_07', '' %>
     <%= row 'E30_02', '' %>
-    </tbody>
 </table>
 <br>
 <% end %>
 
 <% if @parser.has_content('E33') %>
-    <%= start_table "Specialty Patient &mdash; SAD (Psychiatric Ax)" %>
-    <thead>
-    <%= start_row %>
-      <%= heading "Specialty Patient &mdash; SAD (Psychiatric Ax)", 4 %>
-    </tr>
-    </thead>
-    <tbody>
+    <%= title = "Specialty Patient &mdash; SAD (Psychiatric Ax)"
+        start_table title, 4 %>
     <%= row 'E33_01', 'E33_06' %>
     <%= row 'E33_02', 'E33_07' %>
     <%= row 'E33_03', 'E33_08' %>
     <%= row 'E33_04', 'E33_09' %>
     <%= start_row %>
     <%
-       score = @parser.E33_10.to_i
-       if score <= 4
-         risk_assessment_scale = "Low"
-       elsif score == 5 or score == 6
-         risk_assessment_scale = "Medium"
+       if @parser.E33_10 == ""
+         risk_assessment_scale = "N/A"
        else
-         risk_assessment_scale = "High"
+         score = @parser.E33_10.to_i
+         if score <= 4
+           risk_assessment_scale = "Low"
+         elsif score == 5 or score == 6
+           risk_assessment_scale = "Medium"
+         else
+           risk_assessment_scale = "High"
+         end
        end
     %>
       <%= labeled_cell @parser.name('E33_05'), @parser.E33_05 %><%= labeled_cell "#{@parser.name('E33_10')} (#{@parser.E33_10})", risk_assessment_scale %>
     </tr>
-    </tbody>
 </table>
 <br>
 <% end %>
 
 <% if @parser.has_content('E05') %>
-<%= start_table "Incident Details" %>
+<%= title = "Incident Details"
+    start_table "", 6 %>
   <thead>
   <%= start_row %>
-    <%= heading "Incident Details", 2 %>
+    <%= heading title, 2 %>
     <%= heading "Destination Details", 2 %>
     <%= heading "Incident Times", 2 %>
   </tr>
@@ -1016,10 +903,11 @@
 <% end %>
 
 <% if @parser.has_content('E04') %>
-<%= start_table "Crew Members" %>
+<%= title = "Crew Members"
+    start_table title %>
   <thead>
   <%= start_row %>
-    <%= heading "Crew Members", 4 %>
+    <%= heading title, 4 %>
   </tr>
   </thead>
   <tbody>
@@ -1043,32 +931,29 @@
 <% end %>
 
 <% if @parser.has_content('E07') %>
-<%= start_table "Insurance Details" %>
+<%= title = "Insurance Details"
+    start_table title %>
   <thead>
   <%= start_row %>
-    <%= heading "Insurance Details", 8 %>
+    <%= heading title, 8 %>
   </tr>
   </thead>
   <tbody>
-  <%#= row 'E07_11', '', '', '' %>
-  <%#= row 'E07_14', '', '', '' %>
-  <%#= row '', '', 'E07_03', '' %>
-  <%#= row '', '', 'E07_09', '' %>
-  <%#= row '', 'E07_01', 'E07_10', '' %>
-  <%#= row '', 'E07_27', 'E07_15', '' %>
-  <%#= start_row %>
-    <%= labeled_cell_medium "Insured's Name", (@parser.concat 'E07_11', 'E07_12', 'E07_13') %>
-    <%= labeled_cell_medium "State", "" %>
-    <%= labeled_cell_medium "Medicare", " " %>
-    <%= labeled_cell_medium "Secondary Ins", "" %>
-  </tr>
-  <% row 'E07_14', '', '', '' %>
-  <%= start_row %>
-    <%= labeled_cell_medium "Relationship to Patient", @parser.E07_14 %>
-    <%= labeled_cell_medium "Zip", " " %>
-    <%= labeled_cell_medium "Medicaid", " " %>
-    <%= labeled_cell_medium "Policy #", "" %>
-  </tr>
+  <!--Name, Primary Payer, Dispatch Nature-->
+  <%= row( {'Insured\'s Name' => "concat('E07_11', 'E07_12', 'E07_13')"}, '', '', '') %>
+  <!--Relationship to Patient, Medicare, Response Urgency-->
+  <%= row 'E07_', 'E07_', 'E07_', 'E07_' %>
+  <!--Insured SSN, Medicaid, Job Related?-->
+  <%= row 'E07_', 'E07_', 'E07_', 'E07_' %>
+  <!--Insured DOB, Primary Ins, Secondary Ins-->
+  <%= row 'E07_', 'E07_', 'E07_', 'E07_' %>
+  <!--Address, Policy #, Policy #-->
+  <%= row 'E07_', 'E07_', 'E07_', 'E07_' %>
+  <!--City/St/Zip/Country, Group #, Group #-->
+  <%= row 'E07_', 'E07_', 'E07_', 'E07_' %>
+  <!--Employer, Contact, Phone-->
+  <%= row 'E07_', 'E07_', 'E07_', 'E07_' %>
+
   <% row %>
   <%= start_row %>
     <%= labeled_cell_medium "Address 1", "" %>
