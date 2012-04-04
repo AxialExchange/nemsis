@@ -23,5 +23,6 @@ Gem::Specification.new do |s|
   # s.add_runtime_dependency "rest-client"
 
   s.add_dependency 'nokogiri'
+  s.add_dependency 'tzinfo'
   s.add_dependency 'ruby-debug19'
 end
