@@ -1454,7 +1454,7 @@ E02_03:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 0
-  name: EMS UNIT (VEHICLE) RESPONSE NUMBER
+  name: EMS Unit
   node: E02_03
 E02_04:
   allow_null: 0
@@ -1468,7 +1468,7 @@ E02_04:
     50: Mutual Aid
     55: Standby
   is_multi_entry: 0
-  name: TYPE OF SERVICE REQUESTED
+  name: Run Type
   node: E02_04
 E02_05:
   allow_null: 0
@@ -1698,7 +1698,7 @@ E02_20:
     390: Lights and Sirens
     395: No Lights or Sirens
   is_multi_entry: 0
-  name: RESPONSE MODE TO SCENE
+  name: Priority Scene
   node: E02_20
 E03_01:
   allow_null: 1
@@ -1858,93 +1858,93 @@ E04_05:
 E05_01:
   allow_null: 1
   data_entry_method: ~
-  data_type: date/time
+  data_type: time
   is_multi_entry: 0
-  name: INCIDENT OR ONSET DATE/TIME
+  name: Call Received
   node: E05_01
 E05_02:
   allow_null: 1
   data_entry_method: National Element
   data_type: date/time
   is_multi_entry: 0
-  name: PSAP CALL DATE/TIME
+  name: PSAP Call
   node: E05_02
 E05_03:
   allow_null: 1
   data_entry_method: ~
   data_type: date/time
   is_multi_entry: 0
-  name: DISPATCH NOTIFIED DATE/TIME
+  name: Dispatch Notified
   node: E05_03
 E05_04:
   allow_null: 0
   data_entry_method: National Element
-  data_type: date/time
+  data_type: time
   is_multi_entry: 0
-  name: UNIT NOTIFIED BY DISPATCH DATE/TIME
+  name: Dispatched
   node: E05_04
 E05_05:
   allow_null: 1
   data_entry_method: National Element
-  data_type: date/time
+  data_type: time
   is_multi_entry: 0
-  name: UNIT EN ROUTE DATE/TIME
+  name: En Route
   node: E05_05
 E05_06:
   allow_null: 1
   data_entry_method: National Element
-  data_type: date/time
+  data_type: time
   is_multi_entry: 0
-  name: UNIT ARRIVED ON SCENE DATE/TIME
+  name: On Scene
   node: E05_06
 E05_07:
   allow_null: 1
   data_entry_method: National Element
-  data_type: date/time
+  data_type: time
   is_multi_entry: 0
-  name: ARRIVED AT PATIENT DATE/TIME
+  name: At Patient
   node: E05_07
 E05_08:
   allow_null: 1
   data_entry_method: ~
-  data_type: date/time
+  data_type: time
   is_multi_entry: 0
-  name: TRANSFER OF PATIENT CARE DATE/TIME
+  name: Pt. Transferred
   node: E05_08
 E05_09:
   allow_null: 1
   data_entry_method: National Element
-  data_type: date/time
+  data_type: time
   is_multi_entry: 0
-  name: UNIT LEFT SCENE DATE/TIME
+  name: Depart Scene
   node: E05_09
 E05_10:
   allow_null: 1
   data_entry_method: National Element
-  data_type: date/time
+  data_type: time
   is_multi_entry: 0
-  name: PATIENT ARRIVED AT DESTINATION DATE/TIME
+  name: At Destination
   node: E05_10
 E05_11:
   allow_null: 0
   data_entry_method: National Element
-  data_type: date/time
+  data_type: time
   is_multi_entry: 0
-  name: UNIT BACK IN SERVICE DATE/TIME
+  name: Back In Service
   node: E05_11
 E05_12:
   allow_null: 1
   data_entry_method: ~
-  data_type: date/time
+  data_type: time
   is_multi_entry: 0
-  name: UNIT CANCELLED DATE/TIME
+  name: Cancelled
   node: E05_12
 E05_13:
   allow_null: 1
   data_entry_method: National Element
   data_type: date/time
   is_multi_entry: 0
-  name: UNIT BACK AT HOME LOCATION DATE/TIME
+  name: Back at Home Location
   node: E05_13
 E06_01:
   allow_null: 1
@@ -2213,7 +2213,7 @@ E07_01:
     745: Self Pay
     750: Workers Compensation
   is_multi_entry: 0
-  name: PRIMARY METHOD OF PAYMENT
+  name: Primary Payer
   node: E07_01
 E07_02:
   allow_null: 1
@@ -2241,7 +2241,7 @@ E07_03:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 1
-  name: INSURANCE COMPANY ID/NAME
+  name: Primary Insurance
   node: E07_03
 E07_04:
   allow_null: 1
@@ -2270,7 +2270,7 @@ E07_05:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 1
-  name: INSURANCE COMPANY ADDRESS
+  name: Address
   node: E07_05
 E07_06:
   allow_null: 1
@@ -2283,7 +2283,7 @@ E07_06:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 1
-  name: INSURANCE COMPANY CITY
+  name: City
   node: E07_06
 E07_07:
   allow_null: 1
@@ -2296,7 +2296,7 @@ E07_07:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 1
-  name: INSURANCE COMPANY STATE
+  name: State
   node: E07_07
 E07_08:
   allow_null: 1
@@ -2309,7 +2309,7 @@ E07_08:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 1
-  name: INSURANCE COMPANY ZIP CODE
+  name: Zip
   node: E07_08
 E07_09:
   allow_null: 1
@@ -2322,7 +2322,7 @@ E07_09:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 1
-  name: INSURANCE GROUP ID/NAME
+  name: Group ID
   node: E07_09
 E07_10:
   allow_null: 1
@@ -2335,7 +2335,7 @@ E07_10:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 1
-  name: INSURANCE POLICY ID NUMBER
+  name: 'Policy #'
   node: E07_10
 E07_11:
   allow_null: 1
@@ -2348,7 +2348,7 @@ E07_11:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 1
-  name: LAST NAME OF THE INSURED
+  name: Insured Last
   node: E07_11
 E07_12:
   allow_null: 1
@@ -2361,7 +2361,7 @@ E07_12:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 1
-  name: FIRST NAME OF THE INSURED
+  name: Insured First
   node: E07_12
 E07_13:
   allow_null: 1
@@ -2374,7 +2374,7 @@ E07_13:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 1
-  name: MIDDLE INITIAL/NAME OF THE INSURED
+  name: Insured Middle
   node: E07_13
 E07_14:
   allow_null: 1
@@ -2391,7 +2391,7 @@ E07_14:
     780: Son/Daughter
     785: Other
   is_multi_entry: 1
-  name: RELATIONSHIP TO THE INSURED
+  name: Relationship to Patient
   node: E07_14
 E07_15:
   allow_null: 1
@@ -2406,7 +2406,7 @@ E07_15:
     0: No
     1: Yes
   is_multi_entry: 0
-  name: WORK-RELATED
+  name: Job-related Injury
   node: E07_15
 E07_16:
   allow_null: 1
@@ -2600,7 +2600,7 @@ E07_27:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 0
-  name: PATIENT'S EMPLOYER
+  name: Employer
   node: E07_27
 E07_28:
   allow_null: 1
@@ -2665,7 +2665,7 @@ E07_32:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 0
-  name: PATIENT'S WORK TELEPHONE NUMBER
+  name: Work Phone
   node: E07_32
 E07_33:
   allow_null: 1
@@ -2680,7 +2680,7 @@ E07_33:
     980: Immediate
     985: Non-Immediate
   is_multi_entry: 0
-  name: RESPONSE URGENCY
+  name: Response Urgency
   node: E07_33
 E07_34:
   allow_null: 1
@@ -2923,7 +2923,7 @@ E08_07:
     1185: 'Lake, River, Ocean'
     1190: Other Location
   is_multi_entry: 0
-  name: INCIDENT LOCATION TYPE
+  name: Location
   node: E08_07
 E08_08:
   allow_null: 1
@@ -2949,14 +2949,14 @@ E08_09:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 0
-  name: SCENE ZONE NUMBER
+  name: Zone
   node: E08_09
 E08_10:
   allow_null: 0
   data_entry_method: ~
   data_type: text
   is_multi_entry: 0
-  name: SCENE GPS LOCATION
+  name: GPS
   node: E08_10
 E08_11:
   allow_null: 1
@@ -2969,7 +2969,7 @@ E08_11:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 0
-  name: INCIDENT ADDRESS
+  name: Address
   node: E08_11
 E08_12:
   allow_null: 1
@@ -2982,7 +2982,7 @@ E08_12:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 0
-  name: INCIDENT CITY
+  name: City
   node: E08_12
 E08_13:
   allow_null: 1
@@ -2995,7 +2995,7 @@ E08_13:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 0
-  name: INCIDENT COUNTY
+  name: County
   node: E08_13
 E08_14:
   allow_null: 1
@@ -3008,7 +3008,7 @@ E08_14:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 0
-  name: INCIDENT STATE
+  name: State
   node: E08_14
 E08_15:
   allow_null: 1
@@ -3021,7 +3021,7 @@ E08_15:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 0
-  name: INCIDENT ZIP CODE
+  name: Zip
   node: E08_15
 E09_01:
   allow_null: 1
@@ -3802,7 +3802,7 @@ E12_03:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 0
-  name: DESTINATION MEDICAL RECORD NUMBER
+  name: 'Destination Record #'
   node: E12_03
 E12_04:
   allow_null: 1
@@ -4261,10 +4261,10 @@ E14_15:
   data_entry_method: ~
   data_type: number
   field_values:
-    1: '= Does Not Open Eyes ● ● For All Age Groups:'
-    2: '= Opens Eyes to painful ● stimulation ● For All Age Groups:'
-    3: '= Opens Eyes to verbal stimulation ● ● For All Age Groups:'
-    4: = Opens Eyes spontaneously ●
+    1: Does Not Open Eyes
+    2: Opens Eyes to painful stimulation
+    3: Opens Eyes to verbal stimulation
+    4: Opens Eyes spontaneously
   is_multi_entry: 1
   name: GLASGOW COMA SCORE-EYE
   node: E14_15
@@ -4274,11 +4274,11 @@ E14_16:
   data_type: number
   field_values:
     -23: 'months:'
-    1: '= None ● ● Patients >5 years:'
-    2: '= Non-specified sounds ● ● Patients >5 years:'
-    3: '= Inappropriate words ● ● Patients >5 years:'
-    4: '= Confused conversation or ● ● Patients >5 years:'
-    5: = Oriented and appropriate speech
+    1: 'None'
+    2: '0-23mos: Persistent cry; 2-5yrs: Grunts; >5yrs: Non-specified sounds'
+    3: '0-23mos: Inappropriate cry; 2-5yrs: Cries and/or screams; >5yrs: Inappropriate words'
+    4: '0-23mos: Cries, inconsolable; 2-5yrs: Inappropriate words; >5yrs: Confused conversation'
+    5: '0-23mos: Smiles, coos, cries; 2-5yrs: Appropriate words; >5yrs: Oriented and appropriate speech'
   is_multi_entry: 1
   name: GLASGOW COMA SCORE-VERBAL
   node: E14_16
@@ -4287,12 +4287,12 @@ E14_17:
   data_entry_method: ~
   data_type: number
   field_values:
-    1: = None ● Patients up to
-    2: = Extensor posturing in response response to painful stimulation to painful stimulation ● Patients up to
-    3: = Flexor posturing in response to to painful stimulation painful stimulation ● Patients up to
-    4: = General withdrawal in response response to painful stimulation to painful stimulation ● Patients up to
-    5: 'years:'
-    6: = Obeys commands with appropriate motor responses
+    1: 'None'
+    2: 'Extensor posturing in response response to painful stimulation'
+    3: 'Flexor posturing in response to to painful stimulation'
+    4: 'General withdrawal in response to painful stimulation'
+    5: 'Localization of painful stimulation'
+    6: '<=5yrs: Spontaneous; >5yrs: Obeys commands with appropriate motor responses'
   is_multi_entry: 1
   name: GLASGOW COMA SCORE-MOTOR
   node: E14_17
@@ -5710,7 +5710,7 @@ E20_01:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 0
-  name: 'DESTINATION/TRANSFERRED TO, NAME'
+  name: Transported to
   node: E20_01
 E20_02:
   allow_null: 1
@@ -5723,7 +5723,7 @@ E20_02:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 0
-  name: 'DESTINATION/TRANSFERRED TO, CODE'
+  name: Transported to
   node: E20_02
 E20_03:
   allow_null: 1
@@ -5736,7 +5736,7 @@ E20_03:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 0
-  name: DESTINATION STREET ADDRESS
+  name: Address
   node: E20_03
 E20_04:
   allow_null: 1
@@ -5749,7 +5749,7 @@ E20_04:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 0
-  name: DESTINATION CITY
+  name: City
   node: E20_04
 E20_05:
   allow_null: 1
@@ -5762,7 +5762,7 @@ E20_05:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 0
-  name: DESTINATION STATE
+  name: State
   node: E20_05
 E20_06:
   allow_null: 1
@@ -5775,7 +5775,7 @@ E20_06:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 0
-  name: DESTINATION COUNTY
+  name: County
   node: E20_06
 E20_07:
   allow_null: 1
@@ -5788,14 +5788,14 @@ E20_07:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 0
-  name: DESTINATION ZIP CODE
+  name: Zip
   node: E20_07
 E20_08:
   allow_null: 0
   data_entry_method: ~
   data_type: text
   is_multi_entry: 0
-  name: DESTINATION GPS LOCATION
+  name: GPS
   node: E20_08
 E20_09:
   allow_null: 1
@@ -5808,7 +5808,7 @@ E20_09:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 0
-  name: DESTINATION ZONE NUMBER
+  name: Zone
   node: E20_09
 E20_10:
   allow_null: 0
@@ -5916,7 +5916,7 @@ E20_15:
     4980: Unchanged
     4985: Worse
   is_multi_entry: 0
-  name: CONDITION OF PATIENT AT DESTINATION
+  name: Condition at Destination
   node: E20_15
 E20_16:
   allow_null: 1
@@ -5940,7 +5940,7 @@ E20_16:
     5035: Protocol
     5040: Specialty Resource Center
   is_multi_entry: 0
-  name: REASON FOR CHOOSING DESTINATION
+  name: Transport Due To
   node: E20_16
 E20_17:
   allow_null: 1
@@ -5962,7 +5962,7 @@ E20_17:
     7350: Other EMS Responder (ground)
     7360: Police/Jail
   is_multi_entry: 0
-  name: TYPE OF DESTINATION
+  name: Destination
   node: E20_17
 E21_01:
   allow_null: 1
