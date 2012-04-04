@@ -97,7 +97,6 @@ XML
 
         html = r.render(false, time_stamp)
         html.should =~ /timestamp: #{local}/i
-        puts html
       end
 
     end
