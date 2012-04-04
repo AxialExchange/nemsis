@@ -22,3 +22,14 @@ module Nemsis
     end
   end
 end
+class String
+  ###
+  # In the face of a blank string, return a space
+  def space
+    if self.empty?
+      "&nbsp;"
+    else
+      self || super
+    end
+  end
+end
