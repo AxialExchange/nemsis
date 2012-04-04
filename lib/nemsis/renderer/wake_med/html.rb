@@ -10,9 +10,13 @@ module Nemsis
           self.parser = nemsis_parser 
         end 
 
+        ###
+        # This method will render the runsheet as an HTML file based on a template and spec YAML file
         # Set fancy_html to true to get a more colorful set of HTML results
-        def render(fancy_html=false)
+        # Pass in a created_at date to help identify proper version (in case there are some issues with message send failures)
+        def render(fancy_html=false, created_at=nil)
           @fancy_html = fancy_html
+          @runsheet_created_at = created_at || Time.now
           erb_file = File.expand_path('../templates/runsheet.html.erb', __FILE__) 
           template = File.read(erb_file) 
           renderer = ERB.new(template)

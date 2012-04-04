@@ -77,14 +77,27 @@ XML
       end
 
       it 'should have runsheet timestamp by default' do
-        html = r.render()
-        html.should =~ /timestamp:/i
+        time_stamp = Time.now
+        tz    = TZInfo::Timezone.get('America/New_York')
+        local = tz.utc_to_local(time_stamp)
+
+        html = r.render(false)
+        time_in_html = (/timestamp: (.*)$/i).match(html)[1]
+        html_time = Time.parse(time_in_html)
+
+        delta = (html_time-local).abs
+        #puts "Expected #{local}, Found #{time_in_html}/#{html_time}; delta = #{delta}"
+        delta.should < 5
       end
 
       it 'should allow for adding runsheet date' do
         time_stamp = Time.now - rand(10)*3600
-        html = r.render(time_stamp)
-        html.should =~ /timestamp:/i
+        tz    = TZInfo::Timezone.get('America/New_York')
+        local = tz.utc_to_local(time_stamp)
+
+        html = r.render(false, time_stamp)
+        html.should =~ /timestamp: #{local}/i
+        puts html
       end
 
     end
