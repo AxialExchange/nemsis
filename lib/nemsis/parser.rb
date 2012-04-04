@@ -165,7 +165,11 @@ module Nemsis
     def parse_element(element)
       element_spec = get_spec(element)
 
-      warn "NOTICE: '#{element}' is null!!" if element_spec.nil?
+      if element_spec.nil?
+        warn "NOTICE: '#{element}' is null!!"
+        return ""
+      end
+
       results = parse(element_spec)
 
       results.is_a?(Array) ? results.first : results
@@ -272,6 +276,7 @@ module Nemsis
       # part of the initial assessment, so it will need to be combined with the
       # earliest E16.
       e15_clusters           = parse_cluster('E15')
+      return [] if e15_clusters.nil? or e15_clusters.empty?
       e15_initial_assessment = e15_clusters.shift
 
       e16_clusters           = parse_clusters('E16')
@@ -381,11 +386,14 @@ module Nemsis
       data_exists
     end
 
-    # Return a string
+    # This is typically used to support the following syntax:
+    #    @parser.E08_07
+    # But we can also allow other embedded calls like:
+    #    concat('E20_10', 'E20_14')
     def method_missing(method_sym, *arguments, &block)
       if method_sym.to_s =~ /^[A-Z]\d{2}(_\d{2})?/
         Array(parse(get_spec(method_sym.to_s))).join(', ') rescue ''
-      elsif method_sym.to_s =~ /^concat/ or method_sym.to_s =~ /^parse_value_of/
+      elsif respond_to?((/(\w+)/.match(method_sym.to_s))[0])
         instance_eval(method_sym.to_s) rescue ''
       else
         super
