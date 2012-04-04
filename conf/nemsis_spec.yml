@@ -1879,7 +1879,7 @@ E05_03:
 E05_04:
   allow_null: 0
   data_entry_method: National Element
-  data_type: time
+  data_type: date/time
   is_multi_entry: 0
   name: Dispatched
   node: E05_04

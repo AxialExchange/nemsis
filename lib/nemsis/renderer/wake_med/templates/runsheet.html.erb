@@ -851,7 +851,7 @@
     <!-- Location, Disposition, Call Rec'd -->
     <%= row('E08_07', {"Disposition" => "concat('E20_10', 'E20_14')"}, 'E05_01') %>
     <!-- Address, Transport due to, dispatched -->
-    <%= row('E08_11', 'E20_16', 'E05_04') %>
+    <%= row('E08_11', 'E20_16', {"Dispatched" => "parse_time('E05_04')"}) %>
     <!-- Address 2, Transported to, En route -->
     <%= row({"Address 2" => "parse_value_of('IncidentAddress2')"}, 'E20_01', 'E05_05') %>
     <!-- City, Requested By, Resp on Scene -->
