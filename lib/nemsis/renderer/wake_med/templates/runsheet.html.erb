@@ -4,10 +4,16 @@
 
     TODO: consider refactoring the other tables to use the simple syntax.
 -->
-
 <%
+   NBSP ||= "&nbsp;"
    @fancy_html ||= false
-   @show_all_sections ||= true  # Handy for development to set this to true
+   @runsheet_created_at ||= Time.now
+
+   def runsheet_date
+     tz    = TZInfo::Timezone.get('America/New_York')
+     local = tz.utc_to_local(@runsheet_created_at)
+     local
+   end
 
    def start_table(title="", colspan=2, options="")
      if @fancy_html
@@ -40,20 +46,27 @@
 
    # Create a grid of Label/Value pairs using the name from the YML file as the label
    # fields can be empty, an element name, or a hash {label => field}
+   # Optionally, the last value can be a colspan
+   #     row( {"Expired" => "concat('E29_14', 'E29_15', 'E29_16')"}, 3)
    def row(*fields)
+     colspan = 0
+     colspan = fields.last if fields.last.is_a?(Fixnum)
      text = start_row
      fields.each do |field|
+       next if field.is_a?(Fixnum)
        #puts "Field = #{field}"
        if field.empty?
-         text += cell("")
-         text += cell("")
+         text += cell(" ")
+         text += cell(" ")
        elsif field.is_a?(Hash)
          label = field.keys[0]
          value = field[label]
-         text += labeled_cell(label, value.empty? ? '' : @parser.send(value))
+         text += labeled_cell(label, value.empty? ? '' : @parser.send(value)) if colspan == 0
+         text += labeled_cell(label, (value.empty? ? '' : @parser.send(value)), colspan) if colspan > 0
        else
          element = @parser.get(field)
-         text += labeled_cell(element[:name], @parser.send(field))
+         text += labeled_cell(element[:name], @parser.send(field)) if colspan == 0
+         text += labeled_cell(element[:name], @parser.send(field), colspan) if colspan > 0
        end
      end
      text += '</tr>'
@@ -88,59 +101,65 @@
    end
 
    def label(label, colspan=0)
+     label = label.space unless label.nil?
      if @fancy_html
        text = "    <td class='label' #{(colspan > 0) ? "colspan='#{colspan}'" : '' } >#{label}</td>"
      else
-       text = "    <td #{(colspan > 0) ? "colspan='#{colspan}'" : '' } ><font size='2'><b>#{label}</b></font></td>"
+       text = "    <td#{(colspan > 0) ? " colspan='#{colspan}'" : '' }><font size='2'><b>#{label}</b></font></td>"
      end
      text
    end
 
    def label_with_style(style, label, rowspan=0)
+     label = label.space unless label.nil?
      if @fancy_html
        text = "<td class='#{style}' #{(rowspan > 0) ? "rowspan='#{rowspan}'" : '' }>#{label}</td>"
      else
        text = case style
                 when 'label'
-                  "<td #{(rowspan > 0) ? "rowspan='#{rowspan}'" : '' }><font size='2'><b>#{label}</b></font></td>"
+                  "<td#{(rowspan > 0) ? " rowspan='#{rowspan}'" : '' }><font size='2'><b>#{label}</b></font></td>"
                 when 'label-medium'
-                  "<td width='25%' #{(rowspan > 0) ? "rowspan='#{rowspan}'" : '' }><font size='2'><b>#{label}</b></font></td>"
+                  "<td width='25%'#{(rowspan > 0) ? " rowspan='#{rowspan}'" : '' }><font size='2'><b>#{label}</b></font></td>"
                 when 'label-narrow'
-                  "<td width='10%' #{(rowspan > 0) ? "rowspan='#{rowspan}'" : '' }><font size='2'><b>#{label}</b></font></td>"
+                  "<td width='10%'#{(rowspan > 0) ? " rowspan='#{rowspan}'" : '' }><font size='2'><b>#{label}</b></font></td>"
                 else
-                  "<td #{(rowspan > 0) ? "rowspan='#{rowspan}'" : '' }><font size='2'><b>#{label}</b></font></td>"
+                  "<td#{(rowspan > 0) ? " rowspan='#{rowspan}'" : '' }><font size='2'><b>#{label}</b></font></td>"
               end
        text
      end
    end
 
    def tall_label(label, rowspan=0)
+     label = label.space unless label.nil?
      label_with_style('label', label, rowspan)
    end
 
    def label_top(label, colspan=0)
+     label = label.space unless label.nil?
      if @fancy_html
        text = "    <td class='label-top' #{(colspan > 0) ? "colspan='#{colspan}'" : '' }>#{label}</td>"
      else
-       text = "    <td #{(colspan > 0) ? "colspan='#{colspan}'" : '' }><font size='2'><b>#{label}</b></font></td>"
+       text = "    <td#{(colspan > 0) ? " colspan='#{colspan}'" : '' }><font size='2'><b>#{label}</b></font></td>"
      end
      text
    end
 
    def heading(label, colspan=0)
+     label = label.space unless label.nil?
      if @fancy_html
-       text = "    <th #{(colspan > 0) ? "colspan='#{colspan}'" : '' }>#{label}</th>"
+       text = "    <th#{(colspan > 0) ? " colspan='#{colspan}'" : '' }>#{label}</th>"
      else
-       text = "    <th #{(colspan > 0) ? "colspan='#{colspan}'" : '' }><font color='blue' size='3'>#{label}</font></th>"
+       text = "    <th#{(colspan > 0) ? " colspan='#{colspan}'" : '' }><font color='blue' size='3'>#{label}</font></th>"
      end
      text
    end
 
    def cell(value, colspan=0, rowspan=0)
+     value = value.space if value.is_a?(String)
      if @fancy_html
-       text = "    <td class='value' #{(colspan > 0) ? "colspan='#{colspan}'" : '' } #{(rowspan > 0) ? "rowspan='#{rowspan}'" : '' }>#{value}</td>"
+       text = "    <td class='value'#{(colspan > 0) ? " colspan='#{colspan}'" : '' }#{(rowspan > 0) ? " rowspan='#{rowspan}'" : '' }>#{value}</td>"
      else
-       text = "    <td #{(colspan > 0) ? "colspan='#{colspan}'" : '' } #{(rowspan > 0) ? "rowspan='#{rowspan}'" : '' }><font size='2'>#{value}</font></td>"
+       text = "    <td #{(colspan > 0) ? " colspan='#{colspan}'" : '' }#{(rowspan > 0) ? " rowspan='#{rowspan}'" : '' }><font size='2'>#{value}</font></td>"
      end
      text
    end
@@ -443,7 +462,7 @@
           <%= start_row %>
             <%= label "Category" %>
             <%= label "Comments" %>
-            <%= label "&nbsp;" %>
+            <%= label NBSP %>
             <%= label "Abnormalities" %>
           </tr>
           <%= start_row %>
@@ -544,7 +563,7 @@
 
 <% unless @parser.E13_01.empty? %>
 <%= title = "Narrative"
-    start_table title %>
+    start_table '' %>
   <thead>
   <%= start_row %>
     <%= heading title %><%= cell (@parser.E13_01) %>
@@ -661,7 +680,7 @@
 
 <% if @parser.has_content('E27') %>
     <%= title = "Specialty Patient &mdash; Stroke"
-        start_table title, 8 %>
+        start_table title, 10 %>
     <%= row 'E27_01','E27_02','E27_03','E27_04','E27_05' %>
     </table>
     <br>
@@ -687,10 +706,7 @@
     <%= start_row %>
       <%= heading "In-Field Pronouncement", 4 %>
     </tr>
-    <tr>
-      <%= labeled_cell_narrow "Expired",  @parser.E29_14 %>
-      <%= cell "#{@parser.parse_time('E29_15') } #{@parser.E29_16}", 2 %>
-    </tr>
+    <%= row( {"Expired" => "concat('E29_14', 'E29_15', 'E29_16')"}, 3) %>
     </tbody>
 </table>
 <br>
@@ -749,10 +765,7 @@
     <%= ob_row('E32_05', 'E32_13', 'E32_22', 'E32_28') %>
     <%= ob_row('E32_06', 'E32_14', 'E32_23', 'E32_29') %>
     <%= ob_row('E32_07',       '', 'E32_24', 'E32_30') %>
-    <%= start_row %>
-    <% high_risk_info = @parser.E32_08 %>
-      <%= labeled_cell "High Risk Pregnancy", high_risk_info, 6 %>
-    </tr>
+    <%=    row('E32_08', 6)%>
     <%= start_row %>
     <%
        #complication_info = %w(E32_15 E32_16 E32_17 E32_18).collect {|e| el=@parser.get(e); (el[:value] =~ /yes/i) ? el[:name] : nil }.join('; ')
@@ -828,75 +841,37 @@
 <%= title = "Incident Details"
     start_table "", 6 %>
   <thead>
-  <%= start_row %>
-    <%= heading title, 2 %>
-    <%= heading "Destination Details", 2 %>
-    <%= heading "Incident Times", 2 %>
-  </tr>
+    <%= start_row %>
+      <%= heading title, 2 %>
+      <%= heading "Destination Details", 2 %>
+      <%= heading "Incident Times", 2 %>
+    </tr>
   </thead>
   <tbody>
-  <%= start_row %>
-    <%= labeled_cell "Location", @parser.E08_07 %>
-    <%= labeled_cell "Disposition", @parser.concat('E20_10', 'E20_14') %>
-    <%= labeled_cell "Call Received", @parser.parse_time('E05_01') %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell "Address", @parser.E08_11 %>
-    <%= labeled_cell "Transport Due To", @parser.E20_16 %>
-    <%= labeled_cell "Dispatched", @parser.parse_time('E05_04') %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell "Address 2", @parser.parse_value_of('IncidentAddress2') %>
-    <%= labeled_cell "Transported To", @parser.E20_01 %>
-    <%= labeled_cell "En Route", @parser.parse_time('E05_05') %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell "City", @parser.E08_12 %>
-    <%= labeled_cell "Requested By", @parser.parse_value_of('Requested By') %>
-    <%= labeled_cell "Resp on Scene", @parser.parse_time('E05_06') %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell "State", @parser.parse_state('E08_14') %>
-    <%= labeled_cell "Destination", @parser.E20_17 %>
-    <%= labeled_cell "On Scene", "" %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell "Zip", @parser.E08_15 %>
-    <%= labeled_cell "Address", @parser.E20_03 %>
-    <%= labeled_cell "At Patient", @parser.parse_time('E05_07') %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell "Medic Unit", @parser.E02_03 %>
-    <%= labeled_cell "Address 2", @parser.parse_value_of('DestinationAddress2') %>
-    <%= labeled_cell "Depart Scene", @parser.parse_time('E05_09') %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell "Run Type", @parser.E02_04 %>
-    <%= labeled_cell "City", @parser.E20_04 %>
-    <%= labeled_cell "At Destination", @parser.parse_time('E05_10') %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell "Priority Scene", @parser.E02_20 %>
-    <%= labeled_cell "State", @parser.E20_05 %>
-    <%= labeled_cell "Pt. Transferred", @parser.parse_time('E05_08') %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell "Shift", @parser.parse_value_of('Shift') %>
-    <%= labeled_cell "Zip", @parser.E20_07 %>
-    <%= labeled_cell "Incident Close", @parser.parse_time('E05_11') %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell "Zone", '' %>
-    <%= labeled_cell "Zone", @parser.E20_09 %>
-    <%= labeled_cell "In District", @parser.parse_time('E05_13') %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell "Level of Service", @parser.parse_value_of('Level of Service') %>
-    <%= labeled_cell "Condition at Destination", @parser.E20_15, 3 %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell "Destination Record #", @parser.E12_03, 5 %>
-  </tr>
+    <!-- Location, Disposition, Call Rec'd -->
+    <%= row('E08_07', {"Disposition" => "concat('E20_10', 'E20_14')"}, 'E05_01') %>
+    <!-- Address, Transport due to, dispatched -->
+    <%= row('E08_11', 'E20_16', 'E05_04') %>
+    <!-- Address 2, Transported to, En route -->
+    <%= row({"Address 2" => "parse_value_of('IncidentAddress2')"}, 'E20_01', 'E05_05') %>
+    <!-- City, Requested By, Resp on Scene -->
+    <%= row('E08_12', {"Requested By" => "parse_value_of('Requested By')"},'E05_06') %>
+    <!-- State, Destination, On Scene -->
+    <%= row({"State" => "parse_state('E08_14')"}, 'E20_17', 'E05_06') %>
+    <!-- Zip, Address, At Patient -->
+    <%= row('E08_15', 'E20_03', 'E05_07') %>
+    <!-- Medic Unit, Address 2, Depart -->
+    <%= row('E02_03', {"Address 2" => "parse_value_of('DestinationAddress2')"}, 'E05_09') %>
+    <!-- Run type, City, At Dest -->
+    <%= row('E02_04', 'E20_04', 'E05_10') %>
+    <!-- Priority Scene, State, Transferred -->
+    <%= row('E02_20', 'E20_05', 'E05_08') %>
+    <!-- Shift, Zip, Closed -->
+    <%= row({"Shift" => "parse_value_of('Shift')"}, 'E20_07', 'E05_11') %>
+    <!-- Scene Zone, Dest Zone, In District -->
+    <%= row('E08_09', 'E20_09', 'E05_13') %>
+    <!-- Level of Svc, Condition at Dest, Record # -->
+    <%= row({"Level of Service" => "parse_value_of('Level of Service')"}, 'E20_15', 'E12_03') %>
   </tbody>
 </table>
 <br>
@@ -904,7 +879,7 @@
 
 <% if @parser.has_content('E04') %>
 <%= title = "Crew Members"
-    start_table title %>
+    start_table '' %>
   <thead>
   <%= start_row %>
     <%= heading title, 4 %>
@@ -932,56 +907,22 @@
 
 <% if @parser.has_content('E07') %>
 <%= title = "Insurance Details"
-    start_table title %>
-  <thead>
-  <%= start_row %>
-    <%= heading title, 8 %>
-  </tr>
-  </thead>
+    start_table title, 8 %>
   <tbody>
   <!--Name, Primary Payer, Dispatch Nature-->
-  <%= row( {'Insured\'s Name' => "concat('E07_11', 'E07_12', 'E07_13')"}, '', '', '') %>
+  <%= row( {'Insured\'s Name' => "concat('E07_11', 'E07_12', 'E07_13')"}, 'E07_01', '') %>
   <!--Relationship to Patient, Medicare, Response Urgency-->
-  <%= row 'E07_', 'E07_', 'E07_', 'E07_' %>
+  <%= row 'E07_14', 'E07_', 'E07_33' %>
   <!--Insured SSN, Medicaid, Job Related?-->
-  <%= row 'E07_', 'E07_', 'E07_', 'E07_' %>
+  <%= row 'E07_', 'E07_', 'E07_15' %>
   <!--Insured DOB, Primary Ins, Secondary Ins-->
-  <%= row 'E07_', 'E07_', 'E07_', 'E07_' %>
+  <%= row 'E07_', 'E07_03', 'E07_' %>
   <!--Address, Policy #, Policy #-->
-  <%= row 'E07_', 'E07_', 'E07_', 'E07_' %>
+  <%= row 'E07_', 'E07_10', 'E07_' %>
   <!--City/St/Zip/Country, Group #, Group #-->
-  <%= row 'E07_', 'E07_', 'E07_', 'E07_' %>
+  <%= row 'E07_', 'E07_09', 'E07_' %>
   <!--Employer, Contact, Phone-->
-  <%= row 'E07_', 'E07_', 'E07_', 'E07_' %>
-
-  <% row %>
-  <%= start_row %>
-    <%= labeled_cell_medium "Address 1", "" %>
-    <%= labeled_cell_medium "Country", " " %>
-    <%= labeled_cell_medium "Primary Insurance", @parser.E07_03 %>
-    <%= labeled_cell_medium "Group #", "" %>
-  <% row %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell_medium "Address 2", "" %>
-    <%= labeled_cell_medium "Phone", " " %>
-    <%= labeled_cell_medium "Group #", @parser.E07_09 %>
-    <%= labeled_cell_medium "Contact", " " %>
-  <% row %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell_medium "Address 3", "" %>
-    <%= labeled_cell_medium "Primary Payer", @parser.E07_01 %>
-    <%= labeled_cell_medium "Policy #", @parser.E07_10 %>
-    <%= labeled_cell_medium "Dispatch Nature", "" %>
-  <% row %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell_medium "City", "" %>
-    <%= labeled_cell_medium "Employer", @parser.E07_27 %>
-    <%= labeled_cell_medium "Job Related Injury", @parser.E07_15 %>
-    <%= labeled_cell_medium "Response Urgency", @parser.E07_33 %>
-  </tr>
+  <%= row 'E07_27', 'E07_', 'E07_32' %>
   </tbody>
 </table>
 <br>
@@ -1020,12 +961,7 @@
 <% delays = list_of_delays
    unless delays.empty?
 %>
-    <%= start_table "Delays" %>
-      <thead>
-      <%= start_row %>
-        <%= heading "Delays", 2 %>
-      </tr>
-      </thead>
+    <%= start_table "Delays", 2 %>
       <tbody>
       <%= list delays %>
       </tbody>
@@ -1037,12 +973,7 @@
    next_of_kin_address = concat_list [@parser.E07_21, @parser.E07_22, @parser.E07_23]
    unless next_of_kin.empty? and next_of_kin_address.empty?
 %>
-<%= start_table "Next of Kin/Closest Relation/Guardian" %>
-  <thead>
-  <%= start_row %>
-    <%= heading "Next of Kin/Closest Relation/Guardian", 2 %>
-  </tr>
-  </thead>
+<%= start_table "Next of Kin/Closest Relation/Guardian", 2 %>
   <tbody>
   <%= start_row %>
     <%= labeled_cell_narrow "Next of Kin Name", next_of_kin %>
@@ -1056,12 +987,7 @@
 <% end %>
 
 <% unless true %>
-<%= start_table "Personal Items" %>
-  <thead>
-  <%= start_row %>
-    <%= heading "Personal Items", 3 %>
-  </tr>
-  </thead>
+<%= start_table "Personal Items", 3 %>
   <tbody>
   <%= start_row %>
     <%= label "Item" %>
@@ -1079,44 +1005,40 @@
 <% end %>
 
 <% if @parser.has_content('E12_02') %>
-    <%= start_table "Transfer Details" %>
-  <thead>
-  <%= start_row %>
-    <%= heading "Transfer Details", 4 %>
-  </tr>
-  </thead>
+    <%= start_table "Transfer Details", 4 %>
   <tbody>
   <%= start_row %>
-    <%= labeled_cell_medium "PAN", "&nbsp;" %>
-    <%= labeled_cell_medium "Sending Physician", "&nbsp;" %>
+    <%= labeled_cell_medium "PAN", NBSP %>
+    <%= labeled_cell_medium "Sending Physician", NBSP %>
   </tr>
   <%= start_row %>
-    <%= labeled_cell_medium "PCS", "&nbsp;" %>
+    <%= labeled_cell_medium "PCS", NBSP %>
     <%= labeled_cell_medium "Sending Record #", @parser.E12_02 %>
   </tr>
   <%= start_row %>
-    <%= labeled_cell_medium "ABN", "&nbsp;" %>
-    <%= labeled_cell_medium "Receiving Physician", "&nbsp;" %>
+    <%= labeled_cell_medium "ABN", NBSP %>
+    <%= labeled_cell_medium "Receiving Physician", NBSP %>
   </tr>
   <%= start_row %>
-    <%= labeled_cell_medium "CMS Service Level", "&nbsp;" %>
-    <%= labeled_cell_medium "Condition Code", "&nbsp;" %>
+    <%= labeled_cell_medium "CMS Service Level", NBSP %>
+    <%= labeled_cell_medium "Condition Code", NBSP %>
   </tr>
   <%= start_row %>
-    <%= labeled_cell_medium "ICD-9 Code", "&nbsp;" %>
-    <%= labeled_cell_medium "Condition Modifier Code", "&nbsp;" %>
+    <%= labeled_cell_medium "ICD-9 Code", NBSP %>
+    <%= labeled_cell_medium "Condition Modifier Code", NBSP %>
   </tr>
   <%= start_row %>
-    <%= labeled_cell_medium "Transfer Reason", "&nbsp;", 3 %>
+    <%= labeled_cell_medium "Transfer Reason", NBSP, 3 %>
   </tr>
   <%= start_row %>
-    <%= labeled_cell_medium "Other/Services", "&nbsp;", 3 %>
+    <%= labeled_cell_medium "Other/Services", NBSP, 3 %>
   </tr>
   <%= start_row %>
-    <%= labeled_cell_medium "Medical Necessity", "&nbsp;", 3 %>
+    <%= labeled_cell_medium "Medical Necessity", NBSP, 3 %>
   </tr>
   </tbody>
 </table>
 <br>
 <% end %>
 
+<p>Timestamp: <%= "#{runsheet_date}" %></p>

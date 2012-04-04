@@ -226,6 +226,28 @@ XML
       it 'should handle an element name' do
         p.parse('E06_01').should == "BIRD"
       end
+      it 'should return an empty string for a missing data element' do
+        p.E25_00.should == ""
+      end
+      it 'should return a string for single values' do
+        p.E24_04.should == "Level 1"
+      end
+      it 'should return an array as a comma-separated list for multiple values' do
+        p.E24_05.should include "Environmental Factors"
+        p.E24_05.should include "Medical Illness"
+      end
+      it 'should return lookup value' do
+        p.E06_12.should == "White"
+      end
+      it 'should return an integer' do
+        p.E31_04.should == "1"
+      end
+      it 'should return a decimal' do
+        p.E31_07.should == "0.65"
+        p.E31_08.should == "9.1"
+        p.E31_09.should == "91"
+        p.E31_10.should == "90"
+      end
     end
 
     describe '#get_spec' do
@@ -254,28 +276,10 @@ XML
         p.E06_01.should == p.parse_element('E06_01')
       end
 
-      it 'should return an empty string for a missing data element' do
-        p.E25_00.should == ""
+      it 'should pass along complex calls' do
+        p.send("concat('E06_02', 'E06_01')").should == "TWEETY BIRD"
       end
-      it 'should return a string for single values' do
-        p.E24_04.should == "Level 1"
-      end
-      it 'should return an array as a comma-separated list for multiple values' do
-        p.E24_05.should include "Environmental Factors"
-        p.E24_05.should include "Medical Illness"
-      end
-      it 'should return lookup value' do
-        p.E06_12.should == "White"
-      end
-      it 'should return an integer' do
-        p.E31_04.should == "1"
-      end
-      it 'should return a decimal' do
-        p.E31_07.should == "0.65"
-        p.E31_08.should == "9.1"
-        p.E31_09.should == "91"
-        p.E31_10.should == "90"
-      end
+
     end
 
     describe '#parse_element' do
