@@ -166,7 +166,7 @@ module Nemsis
       element_spec = get_spec(element)
 
       if element_spec.nil?
-        warn "NOTICE: '#{element}' is null!!"
+        warn "Requested Info from: '#{element}', but it is null :-("
         return ""
       end
 
