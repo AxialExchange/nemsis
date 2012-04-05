@@ -52,6 +52,7 @@
      colspan = 0
      colspan = fields.last if fields.last.is_a?(Fixnum)
      text = start_row
+     num_columns = fields.size
      fields.each do |field|
        next if field.is_a?(Fixnum)
        #puts "Field = #{field}"
@@ -61,12 +62,16 @@
        elsif field.is_a?(Hash)
          label = field.keys[0]
          value = field[label]
-         text += labeled_cell(label, value.empty? ? '' : @parser.send(value)) if colspan == 0
-         text += labeled_cell(label, (value.empty? ? '' : @parser.send(value)), colspan) if colspan > 0
+         if num_columns < 3
+           text += labeled_cell_medium(label, (value.empty? ? '' : @parser.send(value)), colspan)
+         elsif num_columns > 3
+           text += labeled_cell_narrow(label, (value.empty? ? '' : @parser.send(value)), colspan)
+         else
+           text += labeled_cell(label, (value.empty? ? '' : @parser.send(value)), colspan)
+         end
        else
          element = @parser.get(field)
-         text += labeled_cell(element[:name], @parser.send(field)) if colspan == 0
-         text += labeled_cell(element[:name], @parser.send(field), colspan) if colspan > 0
+         text += labeled_cell(element[:name], @parser.send(field), colspan)
        end
      end
      text += '</tr>'
@@ -94,7 +99,7 @@
 
    def start_row(options="")
      if @fancy_html
-       text = "<tr #{(options.empty?) ? '' : options}>"
+       text = "<tr#{(options.empty?) ? '' : " #{options}"}>"
      else
        text = "<tr>"
      end
