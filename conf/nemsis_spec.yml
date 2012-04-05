@@ -2228,7 +2228,7 @@ E07_02:
     0: No
     1: Yes
   is_multi_entry: 0
-  name: CERTIFICATE OF MEDICAL NECESSITY
+  name: Cert. of Medical Necessity
   node: E07_02
 E07_03:
   allow_null: 1
@@ -2703,7 +2703,7 @@ E07_34:
     990: BLS
     995: 'BLS, Emergency'
   is_multi_entry: 0
-  name: CMS SERVICE LEVEL
+  name: CMS Service Level
   node: E07_34
 E07_35:
   allow_null: 1
@@ -2773,7 +2773,7 @@ E07_35:
     8056: Electrocution (ALS-994.8)
     8057: Near Drowning (ALS-994.1)
   is_multi_entry: 1
-  name: CONDITION CODE NUMBER
+  name: Condition Code
   node: E07_35
 E07_36:
   allow_null: 1
@@ -2786,7 +2786,7 @@ E07_36:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 1
-  name: ICD-9 CODE FOR THE CONDITION CODE NUMBER
+  name: ICD-9 Code
   node: E07_36
 E07_37:
   allow_null: 1
@@ -2809,7 +2809,7 @@ E07_37:
     1043: Air-C-Time Precludes Ground Transport
     1044: Air-D-Pick up Point not Accessible by Ground Transport
   is_multi_entry: 1
-  name: CONDITION CODE MODIFIER
+  name: Condition Code Modifier
   node: E07_37
 E08_01:
   allow_null: 1
@@ -3789,7 +3789,7 @@ E12_02:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 0
-  name: SENDING FACILITY MEDICAL RECORD NUMBER
+  name: 'Sending Record #'
   node: E12_02
 E12_03:
   allow_null: 1

@@ -1009,39 +1009,24 @@
 <br>
 <% end %>
 
-<% if @parser.has_content('E12_02') %>
+<% if false and @parser.has_content('E20_16','E12_02', 'E07_34', 'E07_35', 'E07_36', 'E07_37', 'E07_02')   %>
     <%= start_table "Transfer Details", 4 %>
-  <tbody>
-  <%= start_row %>
-    <%= labeled_cell_medium "PAN", NBSP %>
-    <%= labeled_cell_medium "Sending Physician", NBSP %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell_medium "PCS", NBSP %>
-    <%= labeled_cell_medium "Sending Record #", @parser.E12_02 %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell_medium "ABN", NBSP %>
-    <%= labeled_cell_medium "Receiving Physician", NBSP %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell_medium "CMS Service Level", NBSP %>
-    <%= labeled_cell_medium "Condition Code", NBSP %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell_medium "ICD-9 Code", NBSP %>
-    <%= labeled_cell_medium "Condition Modifier Code", NBSP %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell_medium "Transfer Reason", NBSP, 3 %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell_medium "Other/Services", NBSP, 3 %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell_medium "Medical Necessity", NBSP, 3 %>
-  </tr>
-  </tbody>
+    <!--PAN, Sending Phys.-->
+    <%=  row({"PAN" => ''}, {"Sending Physician" => ''})  %>
+    <!--PCS, Sending Record #-->
+    <%=  row({"PCS" => ''}, 'E12_02')  %>
+    <!--ABN, Receiving Phys-->
+    <%=  row({"ABN" => ''}, {"Receiving Physician" => ''})  %>
+    <!--CMS Level Service, Condition Code-->
+    <%=  row('E07_34', 'E07_35')  %>
+    <!--ICD-9 Code, Condition Modifier Code-->
+    <%=  row('E07_36', 'E07_37')  %>
+    <!--Transfer Reason-->
+    <%=  row('E20_16',3)  %>
+    <!--Other/Services-->
+    <%=  row({"Other/Services" => ''}, 3)  %>
+    <!--Medical Necessity-->
+    <%=  row('E07_02', 3)  %>
 </table>
 <br>
 <% end %>
