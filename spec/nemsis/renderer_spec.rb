@@ -104,7 +104,7 @@ XML
   end
 
   context 'generate some sample runsheets' do
-    it 'should render html' do
+    it 'should render madison' do
       sample_xml_file = File.expand_path('../../data/madison_henry_sample.xml', __FILE__)
       xml_str = File.read(sample_xml_file)
       p = Nemsis::Parser.new(xml_str)
@@ -112,6 +112,14 @@ XML
       html = r.render(true)
       write_html_file(sample_xml_file, "fancy", html)
     end
+    #it 'should render nathan' do
+    #  sample_xml_file = File.expand_path('../../data/nathan_sample.xml', __FILE__)
+    #  xml_str = File.read(sample_xml_file)
+    #  p = Nemsis::Parser.new(xml_str)
+    #  r = Nemsis::Renderer::WakeMed::HTML.new(p)
+    #  html = r.render(true)
+    #  write_html_file(sample_xml_file, "fancy", html)
+    #end
 
   end
 
