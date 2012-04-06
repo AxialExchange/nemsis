@@ -4173,11 +4173,16 @@ E14_06:
   data_entry_method: single-choice
   data_type: combo
   field_values:
-    3150: Arterial Line
-    3155: Automated Cuff
-    3160: Manual Cuff
-    3165: Palpated Cuff
-    3170: Venous Line
+    3150: AL
+    3155: A
+    3160: M
+    3165: P
+    3170: V
+#    3150: Arterial Line
+#    3155: Automated Cuff
+#    3160: Manual Cuff
+#    3165: Palpated Cuff
+#    3170: Venous Line
   is_multi_entry: 1
   name: BP Method
   node: E14_06
@@ -4212,8 +4217,10 @@ E14_10:
     -20: Not Recorded
     -25: Not Applicable
     -5: Not Available
-    3175: Regular
-    3180: Irregular
+    3175: R
+    3180: IR
+#    3175: Regular
+#    3180: Irregular
   is_multi_entry: 1
   name: PULSE RHYTHM
   node: E14_10
@@ -4350,10 +4357,14 @@ E14_22:
     -20: Not Recorded
     -25: Not Applicable
     -5: Not Available
-    3255: Alert
-    3260: Verbal
-    3265: Painful
-    3270: Unresponsive
+    3255: A
+    3260: V
+    3265: P
+    3270: U
+#    3255: Alert
+#    3260: Verbal
+#    3265: Painful
+#    3270: Unresponsive
   is_multi_entry: 1
   name: LEVEL OF RESPONSIVENESS
   node: E14_22
