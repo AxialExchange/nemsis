@@ -374,13 +374,13 @@ XML
 
       describe 'date/time format should be based on data type by default' do
         it 'should return a full date/time value' do
-          p.E24_01.should == "2012-03-08 17:50"
+          p.E24_01.should == "2012-03-08 12:50"
         end
         it 'should return a date value' do
           p.E24_02.should == "2012-03-08"
         end
         it 'should return a time value' do
-          p.E24_03.should == "17:50"
+          p.E24_03.should == "12:50"
         end
 
       end
@@ -388,8 +388,8 @@ XML
       describe 'overriding date/time format' do
         context 'date/time data type' do
           it 'should return a full date/time value' do
-            p.parse_time('E24_01', true).should == "2012-03-08 17:50"
-            p.parse_time('E24_01').should == "17:50"
+            p.parse_time('E24_01', true).should == "2012-03-08 12:50"
+            p.parse_time('E24_01').should == "12:50"
           end
           it 'should return a date value' do
             p.parse_date('E24_01').should == "2012-03-08"
@@ -398,29 +398,29 @@ XML
             p.parse_date('E24_01', false).should == "03-08"
           end
           it 'should return a time value' do
-            p.parse_time('E24_01').should == "17:50"
+            p.parse_time('E24_01').should == "12:50"
           end
         end
         context 'date data type' do
           it 'should not return a full date/time value' do
-            p.parse_time('E24_02', true).should_not == "2012-03-08 17:50"
+            p.parse_time('E24_02', true).should_not == "2012-03-08 12:50"
           end
           it 'should return a date value' do
             p.parse_date('E24_02').should == "2012-03-08"
           end
           it 'should not return a time value' do
-            p.parse_time('E24_02').should_not == "17:50"
+            p.parse_time('E24_02').should_not == "12:50"
           end
         end
         context 'time data type' do
           it 'should not return a full date/time value' do
-            p.parse_time('E24_03', true).should_not == "2012-03-08 17:50"
+            p.parse_time('E24_03', true).should_not == "2012-03-08 12:50"
           end
           it 'should not return a date value' do
             p.parse_date('E24_03').should_not == "2012-03-08"
           end
           it 'should return a time value' do
-            p.parse_time('E24_03').should == "17:50"
+            p.parse_time('E24_03').should == "12:50"
           end
         end
 
@@ -773,10 +773,10 @@ XML
       end
 
       it 'should allow you to get the same elements from each parser instance' do
-        results[0].E14_01.should == "2012-03-08 15:30"
-        results[1].E14_01.should == "2012-03-08 15:35"
-        results[2].E14_01.should == "2012-03-08 15:40"
-        results[3].E14_01.should == "2012-03-08 15:45"
+        results[0].E14_01.should == "2012-03-08 10:30"
+        results[1].E14_01.should == "2012-03-08 10:35"
+        results[2].E14_01.should == "2012-03-08 10:40"
+        results[3].E14_01.should == "2012-03-08 10:45"
       end
 
     end

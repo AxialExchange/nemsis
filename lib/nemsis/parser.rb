@@ -438,11 +438,11 @@ module Nemsis
 
         value = mapped_value unless mapped_value.nil?
       elsif element_spec['data_type'] =~ /date\/time/i
-        value = Time.parse(value).strftime("%Y-%m-%d %H:%M") rescue nil
+        value = Time.parse(value).localtime.strftime("%Y-%m-%d %H:%M") rescue nil
       elsif element_spec['data_type'] =~ /date/i
-        value = Time.parse(value).strftime("%Y-%m-%d") rescue nil
+        value = Time.parse(value).localtime.strftime("%Y-%m-%d") rescue nil
       elsif element_spec['data_type'] =~ /time/i
-        value = Time.parse(value).strftime("%H:%M") rescue nil
+        value = Time.parse(value).localtime.strftime("%H:%M") rescue nil
       elsif element_spec['data_type'] =~ /number/i
         f      = sprintf("%.1e", value).to_f
         i      = f.to_i
