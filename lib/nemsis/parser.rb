@@ -1,48 +1,6 @@
 require 'nokogiri'
 require 'yaml'
 
-# NEMSIS (http://www.nemsis.org) is a standard used by EMS agencies to describe the data that they collect in the field.
-# Loosely, it is broken up as follows:
-# The core elements
-#
-#   * Demographic Dataset ('Dxx')
-#   * EMS Dataset ('Exx')
-#     * Section E00 -- Common EMS Values
-#     * Section E06 -- Patient
-#       * E06_01_0 --Patient Name Structure
-#         * E06_01 -- Last Name, String
-#         * E06_02 -- First Name, String
-#         * E06_03 -- Middle, String
-#       * E06_04_0 -- Patient Address Structure
-#         * E06_04 -- Address, String
-#         * E06_05 -- City, String
-#         * E06_06 -- County, String
-#         * E06_07 -- State, String
-#         * E06_08 -- Zip, String
-#       * E06_09 -- Country, String
-#     * Multi-Entry Section -- E04 (aka, a Repeating Structure)
-#        <E04>
-#          <E04_02>585</E04_02>
-#          <E04_03>-20</ E04_03>
-#          <E04_04>TECH SUPPORT</E04_04>
-#          <E04_05>ESO</ E04_05>
-#        </E04>
-#        <E04>
-#          <E04_01>P038756</ E04_01>
-#          <E04_02>580</E04_02>
-#          <E04_03>6110</ E04_03>
-#          <E04_04>ADAMS</E04_04>
-#          <E04_05>CHRISTOPHER</ E04_05>
-#        </E04>
-#
-# An Element is described by the YAML spec entry. Of special note are the following aspects:
-#   * node (E06_01)-- this is how you can find it
-#   * data type -- text, date, time, date/time, number, combo (single-choice, multiple-choice)
-#     * For date/time, you can control the default value returned to be just a date or just a time
-#     * Combo uses the data_entry_method to determine if multiple choice is allowed (returning a concatenated string of answers)
-#   * field_values -- these are the table look-up entries for combo types (an index yields the text string)
-#     * For negative indexes, no value is returned.
-#
 # Here is how to use the more common aspects of this API to access NEMSIS elements:
 #
 #   * Section -- E06 (Used to group related elements)
