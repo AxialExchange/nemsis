@@ -1,3 +1,4 @@
+require 'active_support/all'
 require 'nokogiri'
 require 'yaml'
 
@@ -24,8 +25,13 @@ module Nemsis
     attr_accessor :xml_str, :xml_doc
 
     class << self
-      attr_accessor :spec
+      attr_accessor :spec, :time_zone
     end
+
+    # default time zone for time display, set this using class attr_accessor
+    # like:
+    #   Nemsis::Parser.time_zone = 'Central Time (US & Canada)'
+    @@time_zone = 'Eastern Time (US & Canada)'
 
     ###
     # Create a parser by passing in a well-formed XML string and an optional NEMSIS specification yml string.
@@ -44,9 +50,12 @@ module Nemsis
     ###
     # This method is mostly invoked by other, more user-friendly call.
     # If you pass in a normal string, it will attempt to lookup a spec hash.
-    def parse(element_spec)
+    def parse(element_spec, return_data_type='string')
       raise ArgumentError.new('parse(element_spec) requires spec Hash argument') if element_spec.nil?
       element_spec = get_spec(element_spec) unless element_spec.class == Hash
+
+      return_data_type.downcase!
+      return_data_type = 'string' unless ['string', 'object', 'raw'].include?(return_data_type)
 
       xpath = "//#{element_spec['node']}"
 
@@ -55,19 +64,26 @@ module Nemsis
 
         #puts element_spec.inspect if ["E23_08", "E29_03", "E24_01"].include?(element_spec["node"])
 
-        multi_entry = element_spec['is_multi_entry']
-        if multi_entry
+        if element_spec['is_multi_entry'].to_i.eql?(1)
           values = []
           nodes.each do |node|
-            values << get_value(element_spec, node)
+            case return_data_type
+            when 'string' then values << get_str(element_spec, node)
+            when 'object' then values << get_obj(element_spec, node)
+            when 'raw'    then values << get_raw(element_spec, node)
+            end
           end
           return values.size > 1 ? values : values.first
         else
           node = nodes.first or return
-          value = get_value(element_spec, node)
+          case return_data_type
+          when 'string' then value = get_str(element_spec, node)
+          when 'object' then value = get_obj(element_spec, node)
+          when 'raw'    then value = get_raw(element_spec, node)
+          end
+
           return value
         end
-
       rescue => err
         puts "Error: parsing xpath [#{xpath}] for '#{element_spec}': #{err}"
       end
@@ -124,7 +140,7 @@ module Nemsis
       element_spec = get_spec(element)
 
       if element_spec.nil?
-        warn "Requested Info from: '#{element}', but it is null :-("
+        # warn "Requested Info from: '#{element}', but it is null :-("
         return ""
       end
 
@@ -165,8 +181,8 @@ module Nemsis
     # This is a dangerous method, as there could be multiple fields with the same name (like Last Name)
     def parse_field(field_name)
       element_spec = @@spec.values.
-          select { |v| (v['name']) =~ /^#{field_name}$/i }.
-          first
+                            select {|v| (v['name']) =~ /^#{field_name}$/i}.
+                            first
       self.send(element_spec['node'])
     end
 
@@ -366,48 +382,75 @@ module Nemsis
       end
     end
 
-    def get_value(element_spec, node)
-      value = node.text
+    private
+
+    def get_str(element_spec, node)
+      obj = get_obj(element_spec, node)
+
+      case 
+      when obj.class.to_s =~ /(time)/i
+        case element_spec['data_type']
+        when /^date\/time$/i
+          str = obj.in_time_zone(@@time_zone).strftime("%Y-%m-%d %H:%M") rescue nil
+        when /^date$/i
+          str = obj.in_time_zone(@@time_zone).strftime("%Y-%m-%d") rescue nil
+        when /^time$/i
+          str = obj.in_time_zone(@@time_zone).strftime("%H:%M") rescue nil
+        end
+      else
+        str = obj.to_s
+      end
+
+      str
+    end
+
+    def get_obj(element_spec, node)
+      raw_value = get_raw(element_spec, node)
 
       # Note: data_type possible values are
       # ["text", "combo", "date/time", "number", "date", "time", "combo or text", "binary"]
-      if element_spec['data_type'] =~ /(text|combo|combo or text)/i &&
-          value =~ /^-?\d+$/ &&
-          !element_spec['field_values'].nil?
+      case
+      when element_spec['data_type'] =~ /(text|combo|combo or text)/i
+        obj = raw_value 
 
-        # Blank out "Not Recorded" values
-        element_spec['field_values'].merge!(
-            -10 => '', # Not Known
-            -15 => '', # Not Reporting
-            -20 => '', # Not Recorded
-            -25 => '', # Not Applicable
-            -5  => '' # Not Available
-        )
-        #if ["E23_08", "E29_03", "E24_01"].include?(element_spec["node"])
-        #  puts " [S] Lookup #{value.to_i} in #{element_spec["node"]} values: #{element_spec['field_values'].inspect}"
-        #end
-        mapped_value = element_spec['field_values'][value.to_i]
-        case mapped_value
-          when false
-            mapped_value = 'No'
-          when true
-            mapped_value = 'Yes'
+        if !element_spec['field_values'].nil?
+          # map numeric key to string value
+          key = raw_value
+
+          if key.to_i.to_s == key.to_s   # key must be numeric
+            
+            # Blank out "Not Recorded" raw_values
+            element_spec['field_values'].merge!(
+                -10 => '', # Not Known
+                -15 => '', # Not Reporting
+                -20 => '', # Not Recorded
+                -25 => '', # Not Applicable
+                -5  => ''  # Not Available
+            )
+
+            key = key.to_i
+            mapped_value = element_spec['field_values'][key]
+
+            case mapped_value
+            when true  then obj = 'Yes'
+            when false then obj = 'No'
+            else            obj = mapped_value unless mapped_value.nil?
+            end
+          end
         end
-
-        value = mapped_value unless mapped_value.nil?
-      elsif element_spec['data_type'] =~ /date\/time/i
-        value = Time.parse(value).localtime.strftime("%Y-%m-%d %H:%M") rescue nil
-      elsif element_spec['data_type'] =~ /date/i
-        value = Time.parse(value).localtime.strftime("%Y-%m-%d") rescue nil
-      elsif element_spec['data_type'] =~ /time/i
-        value = Time.parse(value).localtime.strftime("%H:%M") rescue nil
-      elsif element_spec['data_type'] =~ /number/i
-        f      = sprintf("%.1e", value).to_f
+      when element_spec['data_type'] =~ /(date|time)/i
+        obj = ActiveSupport::TimeZone.new('UTC').parse(raw_value) rescue nil
+      when element_spec['data_type'] =~ /number/i
+        f      = sprintf("%.1e", raw_value).to_f
         i      = f.to_i
-        value  = (i == f ? i : f)
+        obj  = (i == f ? i : f)
       end
 
-      value
+      obj
+    end
+
+    def get_raw(element_spec, node)
+      node.text
     end
   end
 end

@@ -6,7 +6,7 @@ def write_html_file(sample_xml_file, type, html)
   file = File.open(file_name, 'w+')
   file.puts html
   file.close
-  puts "Open this in your browser to admire your handiwork: file://localhost#{file_name}"
+  # puts "Open this in your browser to admire your handiwork: file://localhost#{file_name}"
 end
 
 describe Nemsis::Renderer do

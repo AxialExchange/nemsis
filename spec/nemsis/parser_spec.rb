@@ -12,7 +12,6 @@ describe Nemsis::Parser do
     end
   end
 
-
   # This is a mechanism to test the intertwined nature of the spec settings and expected results.
   context 'instance methods' do
     let(:spec_yaml) {
@@ -172,9 +171,9 @@ YML
     }
     let(:p) {
       xml_str = <<XML
-<?xml version=" 1.0 " encoding=" UTF-8 " ?>
-<EMSDataSet xmlns=" http ://www.nemsis.org " xmlns:xsi=" http ://www.w3.org/2001/XMLSchema-instance "
-            xsi:schemaLocation=" http ://www.nemsis.org http ://www.nemsis.org/media/XSD/EMSDataSet.xsd ">
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
   <Header>
     <Record>
       <E06>
@@ -220,33 +219,56 @@ XML
       it 'should handle bad inputs' do
         expect {p.parse(nil)}.should raise_error
       end
+
       it 'should handle an element spec hash' do
         p.parse('E06_01').should == "BIRD"
       end
+
       it 'should handle an element name' do
         p.parse('E06_01').should == "BIRD"
       end
+
       it 'should return an empty string for a missing data element' do
         p.E25_00.should == ""
       end
+
       it 'should return a string for single values' do
         p.E24_04.should == "Level 1"
       end
+
       it 'should return an array as a comma-separated list for multiple values' do
         p.E24_05.should include "Environmental Factors"
         p.E24_05.should include "Medical Illness"
       end
+
       it 'should return lookup value' do
         p.E06_12.should == "White"
       end
+
       it 'should return an integer' do
         p.E31_04.should == "1"
       end
+
       it 'should return a decimal' do
         p.E31_07.should == "0.65"
         p.E31_08.should == "9.1"
         p.E31_09.should == "91"
         p.E31_10.should == "90"
+      end
+
+      it 'should return string by default' do
+        p.parse('E24_02').should == '2012-03-08 12:50'
+      end
+
+      it 'should return object (i.e. time) if requested' do
+        result = p.parse('E24_02', 'object')
+
+        result.class.should eql(ActiveSupport::TimeWithZone)
+        result.in_time_zone('UTC').strftime("%F %T %z").should == '2012-03-08 17:50:00 +0000'
+      end
+
+      it 'should return raw data if requested' do
+        p.parse('E06_12', 'raw').should == '680'
       end
     end
 
@@ -256,6 +278,7 @@ XML
         p.get_spec('E06_12')['data_type'].should == 'combo'
         p.get_spec('E06_12')['data_entry_method'].should == 'single-choice National Element'
       end
+
       it 'should return nil for a non-existent node' do
         p.get_spec('F00').should be_nil
       end
@@ -266,6 +289,7 @@ XML
         p.get_node_name('E06_12').class.should == String
         p.get_node_name('E06_12').should == 'E06_12'
       end
+
       it 'should return nil for a non-existent node' do
         p.get_node_name('F00').should be_nil
       end
@@ -304,22 +328,27 @@ XML
       it 'should return key/value hash' do
         p.get('E06_01').class.should == Hash
       end
+
       it 'should return key/value element name' do
         p.get('E06_01')[:name].should == "LAST NAME"
       end
+
       it 'should return key/value element text value' do
         p.get('E06_01')[:value].should == "BIRD"
       end
+
       it 'should return key/value element lookup value' do
         p.get('E24_01')[:value].should == "YES"
       end
     end
+
     describe '#name' do
       it "should return the name" do
         p.name('E06_01').should == "LAST NAME"
         p.name('E06_02').should == "First"
       end
     end
+
     describe '#index' do
       it "should return the index into the lookup table" do
         p.index('E24_05').should == "500003"
@@ -355,9 +384,9 @@ YML
       }
       let(:p) {
         xml_str = <<XML
-<?xml version=" 1.0 " encoding=" UTF-8 " ?>
-<EMSDataSet xmlns=" http ://www.nemsis.org " xmlns:xsi=" http ://www.w3.org/2001/XMLSchema-instance "
-            xsi:schemaLocation=" http ://www.nemsis.org http ://www.nemsis.org/media/XSD/EMSDataSet.xsd ">
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
   <Header>
     <Record>
       <E24>
@@ -376,13 +405,14 @@ XML
         it 'should return a full date/time value' do
           p.E24_01.should == "2012-03-08 12:50"
         end
+
         it 'should return a date value' do
           p.E24_02.should == "2012-03-08"
         end
+
         it 'should return a time value' do
           p.E24_03.should == "12:50"
         end
-
       end
 
       describe 'overriding date/time format' do
@@ -391,12 +421,15 @@ XML
             p.parse_time('E24_01', true).should == "2012-03-08 12:50"
             p.parse_time('E24_01').should == "12:50"
           end
+          
           it 'should return a date value' do
             p.parse_date('E24_01').should == "2012-03-08"
           end
+
           it 'should return a short date value (no year)' do
             p.parse_date('E24_01', false).should == "03-08"
           end
+
           it 'should return a time value' do
             p.parse_time('E24_01').should == "12:50"
           end
@@ -405,9 +438,11 @@ XML
           it 'should not return a full date/time value' do
             p.parse_time('E24_02', true).should_not == "2012-03-08 12:50"
           end
+
           it 'should return a date value' do
             p.parse_date('E24_02').should == "2012-03-08"
           end
+
           it 'should not return a time value' do
             p.parse_time('E24_02').should_not == "12:50"
           end
@@ -416,24 +451,24 @@ XML
           it 'should not return a full date/time value' do
             p.parse_time('E24_03', true).should_not == "2012-03-08 12:50"
           end
+
           it 'should not return a date value' do
             p.parse_date('E24_03').should_not == "2012-03-08"
           end
+
           it 'should return a time value' do
             p.parse_time('E24_03').should == "12:50"
           end
         end
-
     end
-
   end
 
   context 'instance methods' do
     let(:p) {
       xml_str         = <<XML
-<?xml version=" 1.0 " encoding=" UTF-8 " ?>
-<EMSDataSet xmlns=" http ://www.nemsis.org " xmlns:xsi=" http ://www.w3.org/2001/XMLSchema-instance "
-            xsi:schemaLocation=" http ://www.nemsis.org http ://www.nemsis.org/media/XSD/EMSDataSet.xsd ">
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
   <Header>
     <Record>
       <E06>
@@ -784,9 +819,9 @@ XML
     describe '#get_children' do
       let(:p2) {
         xml_str = <<XML
-<?xml version=" 1.0 " encoding=" UTF-8 " ?>
-<EMSDataSet xmlns=" http ://www.nemsis.org " xmlns:xsi=" http ://www.w3.org/2001/XMLSchema-instance "
-            xsi:schemaLocation=" http ://www.nemsis.org http ://www.nemsis.org/media/XSD/EMSDataSet.xsd ">
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
   <Header>
     <Record>
       <E04>
@@ -861,9 +896,9 @@ XML
     describe '#concat' do
       let(:p) {
         xml_str = <<XML
-<?xml version=" 1.0 " encoding=" UTF-8 " ?>
-<EMSDataSet xmlns=" http ://www.nemsis.org " xmlns:xsi=" http ://www.w3.org/2001/XMLSchema-instance "
-            xsi:schemaLocation=" http ://www.nemsis.org http ://www.nemsis.org/media/XSD/EMSDataSet.xsd ">
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
   <Header>
     <Record>
       <E04>
@@ -878,21 +913,22 @@ XML
 XML
         Nemsis::Parser.new(xml_str)
       }
+
       it 'should concatenate field values for multiple entries' do
         p.concat('E04_05', 'E04_04').should == "ESO TECH SUPPORT"
       end
+
       it 'should return empty when there are no data' do
         p.concat('E12_08', 'E12_09').should == ""
       end
-
     end
 
     describe '#has_content' do
       let(:p2) {
         xml_str = <<XML
-<?xml version=" 1.0 " encoding=" UTF-8 " ?>
-<EMSDataSet xmlns=" http ://www.nemsis.org " xmlns:xsi=" http ://www.w3.org/2001/XMLSchema-instance "
-            xsi:schemaLocation=" http ://www.nemsis.org http ://www.nemsis.org/media/XSD/EMSDataSet.xsd ">
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
   <Header>
     <Record>
       <E20_03>10000 Falls of Neuse Rd</E20_03>
@@ -915,13 +951,16 @@ XML
 XML
         Nemsis::Parser.new(xml_str)
       }
+
       context 'Single Values' do
         it 'should be true when data values exist' do
           p2.has_content('E20_03').should == true
         end
+
         it 'should be false when no data values exist' do
           p2.has_content('E23_02').should == false
         end
+
         it 'should be false for -NN lookup value' do
           p2.has_content('E23_01').should == false
         end
@@ -931,6 +970,7 @@ XML
         it 'should be true when data values exist' do
           p2.has_content('E34').should == true
         end
+
         it 'should be false when no data values exist' do
           p2.has_content('E35').should == false
         end
