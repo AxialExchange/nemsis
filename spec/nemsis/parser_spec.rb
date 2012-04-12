@@ -61,6 +61,13 @@ E06_12:
   is_multi_entry: 0
   name: RACE
   node: E06_12
+E06_16: 
+  allow_null: 0
+  data_entry_method: ~
+  data_type: date
+  is_multi_entry: 0
+  name: DOB
+  node: E06_16
 E07_01:
   allow_null: 1
   data_entry_method: single-choice National Element
@@ -183,6 +190,7 @@ YML
           <E06_03>DA</E06_03>
         </E06_01_0>
         <E06_12>680</E06_12>
+        <E06_16>1975-12-01</E06_16>
       </E06>
       <E07>
         <E07_01>-20</E07_01>
@@ -269,6 +277,10 @@ XML
 
       it 'should return raw data if requested' do
         p.parse('E06_12', 'raw').should == '680'
+      end
+
+      it 'should return date-only value without doing timezone conversion' do
+        p.parse('E06_16').should == p.parse('E06_16', 'raw')
       end
     end
 

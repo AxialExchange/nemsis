@@ -62,8 +62,6 @@ module Nemsis
       begin
         nodes = xml_doc.xpath(xpath) or return
 
-        #puts element_spec.inspect if ["E23_08", "E29_03", "E24_01"].include?(element_spec["node"])
-
         if element_spec['is_multi_entry'].to_i.eql?(1)
           values = []
           nodes.each do |node|
@@ -388,15 +386,15 @@ module Nemsis
       obj = get_obj(element_spec, node)
 
       case 
-      when obj.class.to_s =~ /(time)/i
+      when obj.class.to_s =~ /time/i
         case element_spec['data_type']
         when /^date\/time$/i
           str = obj.in_time_zone(@@time_zone).strftime("%Y-%m-%d %H:%M") rescue nil
-        when /^date$/i
-          str = obj.in_time_zone(@@time_zone).strftime("%Y-%m-%d") rescue nil
         when /^time$/i
           str = obj.in_time_zone(@@time_zone).strftime("%H:%M") rescue nil
         end
+      when obj.class.to_s =~ /date/i
+          str = obj.strftime("%Y-%m-%d") rescue nil
       else
         str = obj.to_s
       end
@@ -438,8 +436,10 @@ module Nemsis
             end
           end
         end
-      when element_spec['data_type'] =~ /(date|time)/i
+      when element_spec['data_type'] =~ /time/i
         obj = ActiveSupport::TimeZone.new('UTC').parse(raw_value) rescue nil
+      when element_spec['data_type'] =~ /^date$/i
+        obj = Date.parse(raw_value) rescue nil
       when element_spec['data_type'] =~ /number/i
         f      = sprintf("%.1e", raw_value).to_f
         i      = f.to_i
