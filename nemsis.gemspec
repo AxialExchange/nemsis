@@ -22,7 +22,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec"
   # s.add_runtime_dependency "rest-client"
 
+  s.add_dependency 'activesupport' # needed for proper time parsing
   s.add_dependency 'nokogiri'
-  s.add_dependency 'tzinfo'
   s.add_dependency 'ruby-debug19'
+  s.add_dependency 'tzinfo'
 end
