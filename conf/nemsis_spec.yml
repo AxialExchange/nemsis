@@ -4743,7 +4743,7 @@ E16_01:
   data_entry_method: ~
   data_type: number
   is_multi_entry: 0
-  name: Weight (kg)
+  name: Weight
   node: E16_01
 E16_02:
   allow_null: 1

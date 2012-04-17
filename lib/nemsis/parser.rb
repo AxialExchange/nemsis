@@ -161,6 +161,12 @@ module Nemsis
       age
     end
 
+    def weight_in_words
+      wt = self.E16_01.to_f # in kg
+      wt_in_lbs = wt*2.2
+      "%s lbs - %d kg" % [((wt_in_lbs < 100) ? wt_in_lbs.round(1) : wt_in_lbs.round), wt]
+    end
+
     def parse_time(element, full=false)
       time_str = parse_element(element)
 

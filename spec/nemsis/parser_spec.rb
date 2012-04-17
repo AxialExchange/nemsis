@@ -411,6 +411,63 @@ XML
     end
   end
 
+  context 'express weight in pounds' do
+    let(:spec_yaml) {
+      spec_yaml = <<YML
+E16_01:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 0
+  name: Weight (kg)
+  node: E16_01
+YML
+    }
+    context 'baby' do
+      let(:p) {
+        xml_str = <<XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
+  <Header>
+    <Record>
+      <E16_01>6</E16_01>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+        Nemsis::Parser.new(xml_str, spec_yaml)
+      }
+
+      it 'should return age in words with months/weeks/days' do
+        p.weight_in_words().should == '13.2 lbs - 6 kg'
+      end
+    end
+
+    context 'adult' do
+      let(:p) {
+        xml_str = <<XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
+  <Header>
+    <Record>
+      <E16_01>136</E16_01>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+        Nemsis::Parser.new(xml_str, spec_yaml)
+      }
+
+      it 'should return age in words with months/weeks/days' do
+        p.weight_in_words().should == '299 lbs - 136 kg'
+      end
+    end
+
+
+  end
+
   context 'expressing age in words' do
     let(:spec_yaml) {
       spec_yaml = <<YML
