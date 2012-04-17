@@ -422,42 +422,49 @@ module Nemsis
       # Note: data_type possible values are
       # ["text", "combo", "date/time", "number", "date", "time", "combo or text", "binary"]
       case
-      when element_spec['data_type'] =~ /(text|combo|combo or text)/i
-        obj = raw_value 
+        when element_spec['data_type'] =~ /(text|combo|combo or text)/i
+          obj = raw_value
 
-        if !element_spec['field_values'].nil?
-          # map numeric key to string value
-          key = raw_value
+          if !element_spec['field_values'].nil?
+            # map numeric key to string value
+            key = raw_value
 
-          if key.to_i.to_s == key.to_s   # key must be numeric
-            
-            # Blank out "Not Recorded" raw_values
-            element_spec['field_values'].merge!(
-                -10 => '', # Not Known
-                -15 => '', # Not Reporting
-                -20 => '', # Not Recorded
-                -25 => '', # Not Applicable
-                -5  => ''  # Not Available
-            )
+            if key.to_i.to_s == key.to_s # key must be numeric
 
-            key = key.to_i
-            mapped_value = element_spec['field_values'][key]
+              # Blank out "Not Recorded" raw_values
+              element_spec['field_values'].merge!(
+                  -10 => '', # Not Known
+                  -15 => '', # Not Reporting
+                  -20 => '', # Not Recorded
+                  -25 => '', # Not Applicable
+                  -5  => '' # Not Available
+              )
 
-            case mapped_value
-            when true  then obj = 'Yes'
-            when false then obj = 'No'
-            else            obj = mapped_value unless mapped_value.nil?
+              key          = key.to_i
+              mapped_value = element_spec['field_values'][key]
+
+              case mapped_value
+                when true then
+                  obj = 'Yes'
+                when false then
+                  obj = 'No'
+                else
+                  obj = mapped_value unless mapped_value.nil?
+              end
             end
           end
-        end
-      when element_spec['data_type'] =~ /time/i
-        obj = ActiveSupport::TimeZone.new('UTC').parse(raw_value) rescue nil
-      when element_spec['data_type'] =~ /^date$/i
-        obj = Date.parse(raw_value) rescue nil
-      when element_spec['data_type'] =~ /number/i
-        f      = sprintf("%.1e", raw_value).to_f
-        i      = f.to_i
-        obj  = (i == f ? i : f)
+        when element_spec['data_type'] =~ /time/i
+          obj = ActiveSupport::TimeZone.new('UTC').parse(raw_value) rescue nil
+        when element_spec['data_type'] =~ /^date$/i
+          obj = Date.parse(raw_value) rescue nil
+        when element_spec['data_type'] =~ /number/i
+          f = sprintf("%.1e", raw_value).to_f
+          i = f.to_i
+          #puts "raw_value=#{raw_value} f=#{f}, i=#{i}"
+          if f > 99
+            f = raw_value.to_f
+          end
+          obj = (i == f ? i : f)
       end
 
       obj

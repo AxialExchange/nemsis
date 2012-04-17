@@ -444,13 +444,15 @@
 
   <% @parser.parse_clusters('E18', 'E19').sort_by { |c| Time.parse(c.sub_element('01')) rescue Time.now }.each do |cluster| %>
       <%= start_row %>
-        <td><%= Time.parse(cluster.sub_element('01')).strftime('%Y-%m-%d %H:%M') rescue nil %></td>
+        <td><%= Time.parse(cluster.sub_element('01')).strftime('%H:%M') rescue nil %></td>
         <%= cell (cluster.sub_element('03')) %>
         <td>
           <p>
             <% if cluster.root_element_name == 'E18' %>
                 <%= concat_list [(cluster.concat 'E18_05', 'E18_06'), cluster.E18_07, cluster.E18_08] %>
             <% elsif cluster.root_element_name == 'E19' %>
+            <!-- This should eventually provide text not CPT codes (Richard, 4/17/2012 telecon) -->
+                <%= cluster.E19_03 %>
             <% end %>
           </p>
         </td>
@@ -693,6 +695,7 @@
 <% if @parser.has_content('E27') %>
     <%= title = "Specialty Patient &mdash; Stroke"
         start_table title, 10 %>
+    <!--Onset, Screening Met, Facial Droop, Arm Drift, Speech-->
     <%= row 'E27_01','E27_02','E27_03','E27_04','E27_05' %>
     </table>
     <br>
@@ -877,7 +880,7 @@
     <!-- Run type, City, At Dest -->
     <%= row('E02_04', 'E20_04', 'E05_10') %>
     <!-- Priority Scene, State, Transferred -->
-    <%= row('E02_20', 'E20_05', 'E05_08') %>
+    <%= row('E02_20', {"State" => "parse_state('E20_05')"}, 'E05_08') %>
     <!-- Shift, Zip, Closed -->
     <%= row({"Shift" => "parse_value_of('Shift')"}, 'E20_07', 'E05_11') %>
     <!-- Scene Zone, Dest Zone, In District -->

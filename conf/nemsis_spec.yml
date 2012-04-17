@@ -630,7 +630,7 @@ D04_04:
     921: CNS Catheter-Intraventricular Maintenance
     930: Gastric Tube Insertion-Inserted Orally
     931: Gastric Tube Insertion-Inserted Nasally
-    940: Assessment-Adult
+    89.700: Assessment-Adult
     990: Capnography (CO2 Measurement)
     991: Cardiac Pacing-Transvenous
     992: Chest Decompression

@@ -16,6 +16,41 @@ describe Nemsis::Parser do
   context 'instance methods' do
     let(:spec_yaml) {
       spec_yaml = <<YML
+E02_15:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 0
+  name: VEHICLE DISPATCH GPS LOCATION
+  node: E02_15
+E02_16:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 0
+  name: BEGINNING ODOMETER READING OF RESPONDING VEHICLE
+  node: E02_16
+E02_17:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 0
+  name: ON-SCENE ODOMETER READING OF RESPONDING VEHICLE
+  node: E02_17
+E02_18:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 0
+  name: PATIENT DESTINATION ODOMETER READING OF RESPONDING
+  node: E02_18
+E02_19:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 0
+  name: ENDING ODOMETER READING OF RESPONDING VEHICLE
+  node: E02_19
 E06_01:
   allow_null: 1
   data_entry_method: ~
@@ -195,6 +230,13 @@ YML
       <E07>
         <E07_01>-20</E07_01>
       </E07>
+      <E02>
+        <E02_16>52250.0</E02_16>
+        <E02_17>52256.0</E02_17>
+        <E02_18>52256.1</E02_18>
+        <E02_19>52256.2</E02_19>
+        <E02_20>395</E02_20>
+      </E02>
       <E24>
         <E24_01>YES</E24_01>
         <E24_02>2012-03-08T17:50:00.0Z</E24_02>
@@ -262,6 +304,7 @@ XML
         p.E31_08.should == "9.1"
         p.E31_09.should == "91"
         p.E31_10.should == "90"
+        p.E02_16.should == "52250.0"
       end
 
       it 'should return string by default' do
@@ -1174,6 +1217,11 @@ XML
     end
 
   end
+
+  describe 'procedure code lookups' do
+    it 'should lookup CPT codes from D04_04'
+  end
+
 
   describe 'nokogiri larnin' do
     it 'should do what i mean, not what I say!' do
