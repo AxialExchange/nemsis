@@ -5261,6 +5261,78 @@ E16_33:
   is_multi_entry: 1
   name: NEUROLOGICAL COMMENTS
   node: E16_33
+# Data [combo] Multiple Choice
+E16_34:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    6403: 'Brachial: Absent'
+    6404: 'Brachial: 1+ Thready'
+    6405: 'Brachial: 2+ Normal'
+    6406: 'Brachial: 3+ Bounding'
+    6407: 'Brachial: Doppler'
+    6408: 'Radial: Absent'
+    6409: 'Radial: 1+ Thready'
+    6410: 'Radial: 2+ Normal'
+    6411: 'Radial: 3+ Bounding'
+    6412: 'Radial: Doppler'
+    6413: 'Femoral: Absent'
+    6414: 'Femoral: 1+ Thready'
+    6415: 'Femoral: 2+ Normal'
+    6416: 'Femoral: 3+ Bounding'
+    6417: 'Femoral: Doppler'
+    6418: 'Pedal: Absent'
+    6419: 'Pedal: 1+ Thready'
+    6420: 'Pedal: 2+ Normal'
+    6421: 'Pedal: 3+ Bounding'
+    6422: 'Pedal: Doppler'
+    8494: 'Carotid: Absent'
+    8495: 'Carotid: 1+ Thready'
+    8496: 'Carotid: 2+ Normal'
+    8497: 'Carotid: 3+ Bounding'
+    8498: 'Carotid: Doppler'
+  is_multi_entry: 1
+  name: Pulse
+  node: E16_34
+E16_35:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    8500: 'Right Upper: < 2 Sec'
+    8501: 'Right Upper: 3 Sec'
+    8502: 'Right Upper: 4 Sec'
+    8503: 'Right Upper: 5 Sec'
+    8504: 'Right Upper: > 5 Sec'
+    8505: 'Left Upper: < 2 Sec'
+    8506: 'Left Upper: 3 Sec'
+    8507: 'Left Upper: 4 Sec'
+    8508: 'Left Upper: 5 Sec'
+    8509: 'Left Upper: > 5 Sec'
+    8510: 'Right Lower: < 2 Sec'
+    8511: 'Right Lower: 3 Sec'
+    8512: 'Right Lower: 4 Sec'
+    8513: 'Right Lower: 5 Sec'
+    8514: 'Right Lower: > 5 Sec'
+    8515: 'Left Lower: < 2 Sec'
+    8516: 'Left Lower: 3 Sec'
+    8517: 'Left Lower: 4 Sec'
+    8518: 'Left Lower: 5 Sec'
+    8519: 'Left Lower: > 5 Sec'
+  is_multi_entry: 1
+  name: Capillary Refill
+  node: E16_35
 E17_01:
   allow_null: 1
   data_entry_method: multiple-choice
