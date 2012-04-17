@@ -320,7 +320,7 @@
   <!--Last, address, dob-->
   <%= row 'E06_01', 'E06_04', 'E06_16' %>
   <!--First, city/st/zip, weight-->
-  <%= row 'E06_02', {'City, St ZIP' => "concat('E06_05','E06_07','E06_08')"}, 'E16_01' %>
+  <%= row 'E06_02', {'City, St ZIP' => "concat('E06_05','E06_07','E06_08')"}, {'Weight' => 'weight_in_words'} %>
   <!--Middle, phone, SSN-->
   <%= row 'E06_03', 'E06_17', 'E06_10' %>
   <!--Gender, county, physician -->
