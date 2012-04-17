@@ -2923,7 +2923,7 @@ E08_07:
     1185: 'Lake, River, Ocean'
     1190: Other Location
   is_multi_entry: 0
-  name: Location
+  name: Location Type
   node: E08_07
 E08_08:
   allow_null: 1
@@ -6716,7 +6716,7 @@ E26_04:
 E27_01:
   allow_null: 1
   data_entry_method: ~
-  data_type: time
+  data_type: date/time
   is_multi_entry: 0
   name: Onset
   node: E27_01
@@ -7724,7 +7724,7 @@ E29_30:
 E30_01:
   allow_null: 1
   data_entry_method: ~
-  data_type: time
+  data_type: date/time
   is_multi_entry: 0
   name: Onset of signs/symptoms
   node: E30_01
