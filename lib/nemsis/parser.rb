@@ -1,6 +1,7 @@
 require 'active_support/all'
 require 'nokogiri'
 require 'yaml'
+require 'age_in_words'
 
 # Here is how to use the more common aspects of this API to access NEMSIS elements:
 #
@@ -22,6 +23,8 @@ require 'yaml'
 #
 module Nemsis
   class Parser
+    include AgeInWords
+
     attr_accessor :xml_str, :xml_doc
 
     class << self
@@ -145,6 +148,17 @@ module Nemsis
       results = parse(element_spec)
 
       results.is_a?(Array) ? results.first : results
+    end
+
+    def age_in_words
+      dob = self.E06_16
+      unless dob.blank?
+        age = get_age_in_words(Date.parse(dob))
+      else
+        age = "#{self.E06_14} #{self.E06_15}"
+      end
+      age = "Age Unavailable" if age.blank?
+      age
     end
 
     def parse_time(element, full=false)

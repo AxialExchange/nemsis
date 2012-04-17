@@ -1,9 +1,4 @@
 
-<!--
-    NOTE: The later Specialty Tables began to use the latest incarnation of table generation row().
-
-    TODO: consider refactoring the other tables to use the simple syntax.
--->
 <%
    NBSP ||= "&nbsp;"
    @fancy_html ||= false
@@ -331,7 +326,7 @@
   <!--Gender, county, physician -->
   <%= row 'E06_11', 'E06_06', {'Physician' => "concat('E12_04', 'E12_06')"} %>
   <!--Age, country-->
-  <%= row 'E06_14', 'E06_09', '' %>
+  <%= row( {'Age' => 'age_in_words'}, 'E06_09', '') %>
   <%= start_row %>
     <%= labeled_cell "Advanced Directive", @parser.E12_07, 5 %>
   </tr>
@@ -502,7 +497,7 @@
           <%= start_row %>
             <%= tall_label "Chest", 3 %>
             <%= cell assessment.E16_28, 1, 3 %>
-            <%= labeled_cell "Chest", (assessment.E16_07) %>
+            <%= labeled_cell "Chest", "TBD" %>
           </tr>
           <%= start_row %>
             <%= labeled_cell "Heart Sounds", (assessment.E16_08) %>
@@ -558,9 +553,11 @@
             <%= labeled_cell "Right Leg", (assessment.E16_18) %>
           </tr>
           <%= start_row %>
-            <%= labeled_cell "Pulse", "TBD" %>
+          <!--E 16_34-->
+          <%= labeled_cell "Pulse", "TBD" %>
           </tr>
           <%= start_row %>
+          <!--E 16_35-->
             <%= labeled_cell "Capillary Refill", "TBD" %>
           </tr>
           <%= start_row %>

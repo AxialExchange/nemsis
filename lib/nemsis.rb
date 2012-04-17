@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'age_in_words'
 
 module Nemsis
   require 'nemsis/version'

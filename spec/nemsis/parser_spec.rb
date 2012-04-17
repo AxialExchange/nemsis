@@ -368,6 +368,190 @@ XML
     end
   end
 
+  context 'expressing age in words' do
+    let(:spec_yaml) {
+      spec_yaml = <<YML
+E06_14:
+  allow_null: 1
+  data_entry_method: National Element
+  data_type: number
+  is_multi_entry: 0
+  name: Age
+  node: E06_14
+E06_15:
+  allow_null: 1
+  data_entry_method: single-choice National Element
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    700: Hours
+    705: Days
+    710: Months
+    715: Years
+  is_multi_entry: 0
+  name: Age Units
+  node: E06_15
+E06_16:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: date
+  is_multi_entry: 0
+  name: DOB
+  node: E06_16
+YML
+    }
+    context 'baby' do
+      let(:p) {
+        xml_str = <<XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
+  <Header>
+    <Record>
+      <E06_14_0>
+        <E06_14>76</E06_14>
+        <E06_15>715</E06_15>
+      </E06_14_0>
+      <E06_16>"#{3.months.ago.strftime("%Y-%m-%d")}"</E06_16>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+        Nemsis::Parser.new(xml_str, spec_yaml)
+      }
+
+      it 'should return age in words with months/weeks/days' do
+        p.age_in_words.should == "3 months"
+      end
+    end
+
+    context 'teen' do
+      let(:p) {
+        xml_str = <<XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
+  <Header>
+    <Record>
+      <E06_14_0>
+      <E06_14>13</E06_14>
+          <E06_15>715</ E06_15>
+      </E06_14_0>
+        <E06_16>1999-01-17</ E06_16>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+        Nemsis::Parser.new(xml_str, spec_yaml)
+      }
+      it 'should return age in words in years' do
+        p.age_in_words.should == "13 years"
+      end
+
+    end
+
+    context 'senior' do
+      let(:p) {
+        xml_str = <<XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
+  <Header>
+    <Record>
+      <E06_14_0>
+        <E06_14>76</E06_14>
+        <E06_15>715</E06_15>
+      </E06_14_0>
+      <E06_16>1936-11-28</E06_16>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+        Nemsis::Parser.new(xml_str, spec_yaml)
+      }
+
+      it 'should return age in words in years' do
+        p.age_in_words.should == "75 years"
+      end
+    end
+
+    context 'dob missing' do
+      let(:p) {
+        xml_str = <<XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
+  <Header>
+    <Record>
+      <E06_14_0>
+        <E06_14>46</E06_14>
+        <E06_15>705</E06_15>
+      </E06_14_0>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+        Nemsis::Parser.new(xml_str, spec_yaml)
+      }
+
+      it 'should return age in words based on entered age (not DOB)' do
+        p.age_in_words.should =~ /46 days/i
+      end
+    end
+
+    context 'all age info missing' do
+      let(:p) {
+        xml_str = <<XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
+  <Header>
+    <Record>
+      <E06_14_0>
+      </E06_14_0>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+        Nemsis::Parser.new(xml_str, spec_yaml)
+      }
+
+      it 'should return age unknown when no data exists' do
+        p.age_in_words.should =~ /Age Unavailable/i
+      end
+    end
+
+    context 'screwed up dob should fail gracefully' do
+      let(:p) {
+        xml_str = <<XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
+  <Header>
+    <Record>
+      <E06_14_0>
+        <E06_14>76</E06_14>
+        <E06_15>715</E06_15>
+      </E06_14_0>
+      <E06_16>1988-28-28</E06_16>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+        Nemsis::Parser.new(xml_str, spec_yaml)
+      }
+
+      it 'should return age as entered when DOB is illegal format' do
+        p.age_in_words.should =~ /76 years/i
+      end
+    end
+
+  end
+
   context 'handling dates and times' do
       let(:spec_yaml) {
         spec_yaml = <<YML
