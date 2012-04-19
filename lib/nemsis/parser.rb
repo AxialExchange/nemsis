@@ -39,7 +39,7 @@ module Nemsis
     ###
     # Create a parser by passing in a well-formed XML string and an optional NEMSIS specification yml string.
     def initialize(xml_str, spec_yaml_str=nil)
-      raise ArgumentError.new('Parser initiation requires XML String argument') if xml_str.nil? or xml_str.size == 0
+      raise ArgumentError.new('Parser initiation requires XML String argument') if xml_str.nil? or xml_str.empty?
       if spec_yaml_str.nil? or spec_yaml_str.empty?
         @@spec = YAML::load(File.read(File.expand_path('../../../conf/nemsis_spec.yml', __FILE__)))
       else
@@ -215,9 +215,9 @@ module Nemsis
 
       result = {}
       begin
-        names.size.times { |i| result[names[i]] = values[i] }
+        names.size.times { |i| result[names[i]] = values[i] } unless names.nil?
       rescue => err
-        warn err
+        warn "Error in parse_pair: #{err}"
       end
 
       result
