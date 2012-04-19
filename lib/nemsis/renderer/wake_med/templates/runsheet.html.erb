@@ -44,10 +44,11 @@
    # Optionally, the last value can be a colspan
    #     row( {"Expired" => "concat('E29_14', 'E29_15', 'E29_16')"}, 3)
    def row(*fields)
+     raise ArgumentError.new("you must pass fields into row() method!") if fields.nil?
      colspan = 0
      colspan = fields.last if fields.last.is_a?(Fixnum)
      text = start_row
-     num_columns = fields.size
+     num_columns = fields.size rescue 0
      fields.each do |field|
        next if field.is_a?(Fixnum)
        #puts "Field = #{field}"
@@ -358,58 +359,59 @@
 <br>
 <% end %>
 
-<%= title = "Vital Signs"
+<% if @parser.has_content('E14') %>
+    <%= title = "Vital Signs"
     start_table title, 16 %>
 
-  <%= start_row %>
-    <%= label_top "Time" %>
-    <%= label_top "AVPU" %>
-    <%= label_top "Side" %>
-    <%= label_top "POS" %>
+    <%= start_row %>
+      <%= label_top "Time" %>
+      <%= label_top "AVPU" %>
+      <%= label_top "Side" %>
+      <%= label_top "POS" %>
 
-    <%= label_top "BP" %>
-    <%= label_top "Pulse" %>
-    <%= label_top "RR" %>
-    <%= label_top "SPO2" %>
+      <%= label_top "BP" %>
+      <%= label_top "Pulse" %>
+      <%= label_top "RR" %>
+      <%= label_top "SPO2" %>
 
-    <%= label_top "ETCO2" %>
-    <%= label_top "CO" %>
-    <%= label_top "BG" %>
-    <%= label_top "Temp" %>
+      <%= label_top "ETCO2" %>
+      <%= label_top "CO" %>
+      <%= label_top "BG" %>
+      <%= label_top "Temp" %>
 
-    <%= label_top "Pain" %>
-    <%= label_top "GCS" %>
-    <%= label_top "RTS" %>
-    <%= label_top "<b>PTS</b>" %>
-  </tr>
+      <%= label_top "Pain" %>
+      <%= label_top "GCS" %>
+      <%= label_top "RTS" %>
+      <%= label_top "<b>PTS</b>" %>
+    </tr>
 
-  <% @parser.parse_cluster('E14').sort_by { |e14| Time.parse(e14.E14_01) rescue Time.now }.each do |e14| %>
-      <%= start_row %>
-        <%= cell (e14.parse_time('E14_01')) %>
-        <%= cell (e14.E14_22) %>
-        <%= cell (e14.E14_29) %>
-        <%= cell (e14.E14_30) %>
+    <% @parser.parse_cluster('E14').sort_by { |e14| Time.parse(e14.E14_01) rescue Time.now }.each do |e14| %>
+        <%= start_row %>
+          <%= cell (e14.parse_time('E14_01')) %>
+          <%= cell (e14.E14_22) %>
+          <%= cell (e14.E14_29) %>
+          <%= cell (e14.E14_30) %>
 
-        <%= cell ("#{e14.E14_04}/#{e14.E14_05} #{e14.E14_06}") %>
-        <%= cell ([(e14.E14_07 || e14.E14_08), e14.E14_10].compact.join(' ')) %>
-        <%= cell ((e14.concat 'E14_11', 'E14_12')) %>
-        <%= cell (e14.E14_09) %>
+          <%= cell ("#{e14.E14_04}/#{e14.E14_05} #{e14.E14_06}") %>
+          <%= cell ([(e14.E14_07 || e14.E14_08), e14.E14_10].compact.join(' ')) %>
+          <%= cell ((e14.concat 'E14_11', 'E14_12')) %>
+          <%= cell (e14.E14_09) %>
 
-        <%= cell (e14.E14_13) %>
-        <%= cell (e14.E14_31) %>
-        <%= cell (e14.E14_14) %>
-        <%= cell ((e14.concat 'E14_20', 'E14_21')) %>
+          <%= cell (e14.E14_13) %>
+          <%= cell (e14.E14_31) %>
+          <%= cell (e14.E14_14) %>
+          <%= cell ((e14.concat 'E14_20', 'E14_21')) %>
 
-        <%= cell (e14.E14_23) %>
-        <%= cell (e14.E14_19) %>
-        <%= cell (e14.E14_27) %>
-        <%= cell (e14.E14_28) %>
-      </tr>
-  <% end %>
-</tbody>
-
-</table>
+          <%= cell (e14.E14_23) %>
+          <%= cell (e14.E14_19) %>
+          <%= cell (e14.E14_27) %>
+          <%= cell (e14.E14_28) %>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
 <br>
+<% end %>
 
 <% if @parser.has_content('E14_01','E14_03','E14_33') %>
 <%= title = "ECG"
@@ -555,11 +557,9 @@
             <%= labeled_cell "Right Leg", (assessment.E16_18) %>
           </tr>
           <%= start_row %>
-          <!--E 16_34-->
           <%= labeled_cell "Pulse", assessment.E16_34 %>
           </tr>
           <%= start_row %>
-          <!--E 16_35-->
             <%= labeled_cell "Capillary Refill", assessment.E16_35 %>
           </tr>
           <%= start_row %>
