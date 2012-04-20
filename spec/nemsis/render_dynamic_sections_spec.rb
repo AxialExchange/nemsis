@@ -11,8 +11,10 @@ dynamic_sections = ['Vital Signs', 'ECG', 'Flow Chart', 'Initial Assessment', 'N
                     'Next of Kin', 'Personal Items', 'Transfer Details']
 
 describe Nemsis::Renderer do
-  let(:p) {
-    xml_str = <<XML
+
+  context 'dynamic sections' do
+    let(:p) {
+      xml_str = <<XML
 <?xml version="1.0" encoding="UTF-8" ?>
 <EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
@@ -59,13 +61,11 @@ describe Nemsis::Renderer do
   </Header>
 </EMSDataSet>
 XML
-    Nemsis::Parser.new(xml_str) }
+      Nemsis::Parser.new(xml_str) }
 
-  let(:r) {  Nemsis::Renderer::WakeMed::HTML.new(p) }
+    let(:r) { Nemsis::Renderer::WakeMed::HTML.new(p) }
 
-  let(:html) { r.render(false) }
-
-  context 'dynamic sections' do
+    let(:html) { r.render }
     describe 'do not show when there are no data' do
       it 'should write out the html for examining' do
         write_html_file("dynamic_sections", "simple", html)
@@ -73,6 +73,54 @@ XML
       dynamic_sections.each do |s|
         it("does not have: #{s}") { html.should_not =~ /#{s}/ }
       end
+    end
+  end
+  context 'delays' do
+    let(:p) {
+      xml_str = <<XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
+  <Header>
+    <D01_01>0920547</D01_01>
+    <D01_03>37</D01_03>
+    <D01_04>00000</D01_04>
+    <D01_07>6110</D01_07>
+    <D01_08>5830</D01_08>
+    <D01_09>5870</D01_09>
+    <D01_21>192209802</D01_21>
+    <D02_07>27601</D02_07>
+    <Record>
+      <E02>
+        <E02_01>0920547</E02_01>
+        <E02_02>013717</E02_02>
+        <E02_03>EMS15</E02_03>
+        <E02_04>30</E02_04>
+        <E02_05>75</E02_05>
+        <E02_06>105</E02_06>
+        <E02_07>150</E02_07>
+        <E02_08>225</E02_08>
+        <E02_09>290</E02_09>
+        <E02_10>360</E02_10>
+        <E02_11>191202</E02_11>
+        <E02_12>EMS15</E02_12>
+        <E02_16>23438.0</E02_16>
+        <E02_17>23440.0</E02_17>
+        <E02_18>23445.0</E02_18>
+        <E02_19>23445.1</E02_19>
+        <E02_20>390</E02_20>
+      </E02>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+      Nemsis::Parser.new(xml_str)
+    }
+    let(:r) { Nemsis::Renderer::WakeMed::HTML.new(p) }
+    let(:html) { r.render }
+
+    it 'should not show section when delays are "None"' do
+      html.should_not =~ /Delays/
     end
   end
 end

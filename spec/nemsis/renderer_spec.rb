@@ -11,6 +11,40 @@ describe Nemsis::Renderer do
     end
   end
 
+  # -- START --------------------------------------------------------------------
+  # Boiler plate template for rolling your own template section test
+  describe 'Boilerplate Template Spec' do
+    let(:p) {
+      xml_str = <<XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
+  <Header>
+    <D01_01>0920547</D01_01>
+    <D01_03>37</D01_03>
+    <D01_04>00000</D01_04>
+    <D01_07>6110</D01_07>
+    <D01_08>5830</D01_08>
+    <D01_09>5870</D01_09>
+    <D01_21>192209802</D01_21>
+    <D02_07>27601</D02_07>
+    <Record>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+      Nemsis::Parser.new(xml_str)
+    }
+    let(:r) { Nemsis::Renderer::WakeMed::HTML.new(p) }
+    let(:html) { r.render }
+
+    it 'should have some text' do
+      html.should =~ /^\s*<h4>Wake County EMS System - Patient Care Record/
+    end
+  end
+  # -- END ----------------------------------------------------------------------
+
+
   describe 'renderer switches/options' do
     let(:spec_yaml) {
       spec_yaml = <<YML
@@ -59,11 +93,11 @@ XML
 
     describe 'renderer flags' do
       it 'should default to plain type by default' do
-        html = r.render()
+        html = r.render
         html.should_not =~ /<STYLE/
       end
       it 'should allow for toggling fancy flag' do
-        html = r.render(true)
+        html = r.render_fancy
         html.should =~ /<STYLE/
       end
 
@@ -72,7 +106,7 @@ XML
         tz    = TZInfo::Timezone.get('America/New_York')
         local = tz.utc_to_local(time_stamp)
 
-        html = r.render(false)
+        html = r.render
         time_in_html = (/timestamp: (.*)$/i).match(html)[1]
         html_time = Time.parse(time_in_html)
 
@@ -86,7 +120,7 @@ XML
         tz    = TZInfo::Timezone.get('America/New_York')
         local = tz.utc_to_local(time_stamp)
 
-        html = r.render(false, time_stamp)
+        html = r.render(time_stamp)
         html.should =~ /timestamp: #{local}/i
       end
 
@@ -100,7 +134,7 @@ XML
       xml_str = File.read(sample_xml_file)
       p = Nemsis::Parser.new(xml_str)
       r = Nemsis::Renderer::WakeMed::HTML.new(p)
-      html = r.render(true)
+      html = r.render_fancy
       write_html_file("madison", "fancy", html)
     end
 
@@ -110,7 +144,7 @@ XML
       xml_str = File.read(sample_xml_file)
       p = Nemsis::Parser.new(xml_str)
       r = Nemsis::Renderer::WakeMed::HTML.new(p)
-      html = r.render(true)
+      html = r.render_fancy
       write_html_file("ben", "fancy", html)
     end
     it 'should render nanci' do
@@ -118,7 +152,7 @@ XML
       xml_str = File.read(sample_xml_file)
       p = Nemsis::Parser.new(xml_str)
       r = Nemsis::Renderer::WakeMed::HTML.new(p)
-      html = r.render(true)
+      html = r.render_fancy
       write_html_file("nanci", "fancy", html)
     end
     it 'should render nathan' do
@@ -126,7 +160,7 @@ XML
       xml_str = File.read(sample_xml_file)
       p = Nemsis::Parser.new(xml_str)
       r = Nemsis::Renderer::WakeMed::HTML.new(p)
-      html = r.render(true)
+      html = r.render_fancy
       write_html_file("nathan", "fancy", html)
     end
 =end
@@ -140,8 +174,8 @@ XML
       xml_str = File.read(@sample_xml_file)
       p = Nemsis::Parser.new(xml_str)
       r = Nemsis::Renderer::WakeMed::HTML.new(p)
-      @plain_html = r.render(false)
-      @fancy_html = r.render(true)
+      @plain_html = r.render
+      @fancy_html = r.render_fancy
     end
 
     describe '#render_html' do
@@ -714,7 +748,7 @@ XML
       Nemsis::Parser.new(xml_str, spec_yaml)
     }
     let(:r) {Nemsis::Renderer::WakeMed::HTML.new(p)}
-    let(:fancy_html) {r.render(true)}
+    let(:fancy_html) {r.render_fancy}
 
     it 'should have a Flow Chart section' do
       fancy_html.should =~ /Flow Chart/i

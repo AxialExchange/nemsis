@@ -98,20 +98,18 @@ STYLE
 
         def initialize(nemsis_parser)
           raise ArgumentError.new('Rendered initiation requires a Parser instance passed in') if nemsis_parser.nil? or !nemsis_parser.is_a?(Nemsis::Parser)
-          self.parser = nemsis_parser 
-        end 
+          self.parser = nemsis_parser
+        end
 
         ###
         # This method will render the runsheet as an HTML file based on a template and spec YAML file
         # Set fancy_html to true to get a more colorful set of HTML results
         # Pass in a created_at date to help identify proper version (in case there are some issues with message send failures)
-        def render(fancy_html=false, created_at=nil)
-          @fancy_html = fancy_html
-          @runsheet_created_at = created_at || Time.now
-          erb_file = File.expand_path('../templates/runsheet.html.erb', __FILE__) 
-          template = File.read(erb_file) 
-          renderer = ERB.new(template)
-          renderer.result(binding)
+        def render_fancy(created_at=nil)
+          render_template(true, created_at)
+        end
+        def render(created_at=nil)
+          render_template(false, created_at)
         end
 
         # ******************************************************************
@@ -124,7 +122,7 @@ STYLE
           local
         end
 
-        @fancy_html ||= false
+        @fancy_html          ||= false
         @runsheet_created_at ||= Time.now
 
         def start_table(title="", colspan=2, options="")
@@ -184,7 +182,7 @@ STYLE
               end
             else
               element = @parser.get(field)
-              text += labeled_cell(element[:name], @parser.send(field), colspan)
+              text    += labeled_cell(element[:name], @parser.send(field), colspan)
             end
           end
           text += '</tr>'
@@ -192,20 +190,20 @@ STYLE
 
         # Specialized row version for the Obstetrical table
         def ob_row(field1, field2, field3, field4)
-          text = start_row
+          text    = start_row
           element = @parser.get(field1)
-          text += labeled_cell(element[:name], @parser.send(field1))
+          text    += labeled_cell(element[:name], @parser.send(field1))
           if field2.empty?
             text += cell("")
             text += cell("")
           else
             element = @parser.get(field2)
-            text += labeled_cell(element[:name], @parser.send(field2))
+            text    += labeled_cell(element[:name], @parser.send(field2))
           end
           element = @parser.get(field3)
-          text += labeled_cell(element[:name], @parser.index(field3))
+          text    += labeled_cell(element[:name], @parser.index(field3))
           element = @parser.get(field4)
-          text += cell @parser.index(field4)
+          text    += cell @parser.index(field4)
 
           text += '</tr>'
         end
@@ -311,11 +309,15 @@ STYLE
         # Helper method to make it easy to display only those delays that are present
         def list_of_delays
           list = {}
-          list.merge!(get_delay("Dispatch", @parser.E02_06))
-          list.merge!(get_delay("Response", @parser.E02_07))
-          list.merge!(get_delay("Scene", @parser.E02_08))
-          list.merge!(get_delay("Transport", @parser.E02_09))
-          list.merge!(get_delay("Turn-Around", @parser.E02_10))
+          delays = [
+              ["Dispatch", @parser.E02_06],
+              ["Response", @parser.E02_07],
+              ["Scene", @parser.E02_08],
+              ["Transport", @parser.E02_09],
+              ["Turn-Around", @parser.E02_10]
+          ]
+          delays.each { |pair| list.merge!(get_delay(*pair)) }
+          list.clear if list.values.all? { |v| v =~ /None/i }
           list
         end
 
@@ -329,6 +331,21 @@ STYLE
         def concat_list(items)
           items.select { |v| !v.strip!.nil? }.join('; ')
         end
+
+        protected
+        ###
+        # This method will render the runsheet as an HTML file based on a template and spec YAML file
+        # Set fancy_html to true to get a more colorful set of HTML results
+        # Pass in a created_at date to help identify proper version (in case there are some issues with message send failures)
+        def render_template(fancy_html=false, created_at=nil)
+          @fancy_html          = fancy_html
+          @runsheet_created_at = created_at || Time.now
+          erb_file             = File.expand_path('../templates/runsheet.html.erb', __FILE__)
+          template             = File.read(erb_file)
+          renderer             = ERB.new(template)
+          renderer.result(binding)
+        end
+
       end
     end
   end
