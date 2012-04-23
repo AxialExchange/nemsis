@@ -374,6 +374,13 @@ XML
         p.parse_element('E07_01').should == ''
       end
 
+      it 'should return value for negative indexes' do
+        p.parse('E07_01', 'object', false).should == 'Not Recorded'
+      end
+      pending 'should return value for negative indexes' do
+        p.parse_element_no_filter('E07_01').should == 'Not Recorded'
+      end
+
       it 'should return lookup value' do
         p.parse_element('E24_01').should == "YES"
       end

@@ -341,6 +341,115 @@ STYLE
           items.select { |v| !v.strip!.nil? }.join('; ')
         end
 
+        def assessment_table(assessment)
+          html = ""
+          html += start_row +
+              label("Category") +
+              label("Comments") +
+              label(NBSP) +
+              label("Abnormalities") +
+              end_row
+          html += start_row +
+              labeled_cell("Mental Status", (assessment.E16_25)) +
+              labeled_cell("Mental Status", (assessment.E16_23)) +
+              end_row
+          html += start_row +
+              labeled_cell("Skin", (assessment.E16_26)) +
+              labeled_cell("Skin", (assessment.concat('E16_04', 'E15_01'))) +
+              end_row
+              end_row 
+          html += start_row +
+              tall_label("HEENT", 3) +
+              cell(assessment.E16_27, 1, 3) +
+              labeled_cell("Head/Face", (assessment.concat('E16_05', 'E15_02', 'E15_03'))) +
+              end_row 
+          html += start_row +
+              labeled_cell("Eyes", (assessment.concat('E16_21', 'E16_22'))) +
+              end_row 
+          html += start_row +
+              labeled_cell("Neck", (assessment.concat('E16_06', 'E15_04'))) +
+              end_row 
+          html += start_row +
+              tall_label("Chest", 3) +
+              cell(assessment.E16_28, 1, 3) +
+              labeled_cell("Chest", "TBD") +
+              end_row 
+          html += start_row +
+              labeled_cell("Heart Sounds", (assessment.E16_08)) +
+              end_row 
+          html += start_row +
+              labeled_cell("Lung Sounds", (assessment.E16_07)) +
+              end_row 
+          html += start_row +
+              tall_label("Abdomen", 5) +
+              cell(assessment.E16_29, 1, 5) +
+              labeled_cell("General", (assessment.concat('E16_13', 'E15_06'))) +
+              end_row 
+          html += start_row +
+              labeled_cell("Left Upper", (assessment.E16_09)) +
+              end_row 
+          html += start_row +
+              labeled_cell("Right Upper", (assessment.E16_11)) +
+              end_row 
+          html += start_row +
+              labeled_cell("Left Lower", (assessment.E16_10)) +
+              end_row 
+          html += start_row +
+              labeled_cell("Right Lower", (assessment.E16_12)) +
+              end_row 
+          html += start_row +
+              tall_label("Back", 3) +
+              cell(assessment.E16_30, 1, 3) +
+              labeled_cell("Cervical", (assessment.E16_14)) +
+              end_row 
+          html += start_row +
+              labeled_cell("Thoracic", (assessment.concat('E16_15','E15_07'))) +
+              end_row 
+          html += start_row +
+              labeled_cell("Lumbar/Sacral", (assessment.E16_16)) +
+              end_row 
+          html += start_row +
+              label("Pelvis/GU/GI") +
+              cell((assessment.E16_31)) +
+              labeled_cell("Pelvis/GU/GI", (assessment.concat('E16_13', 'E15_09'))) +
+              end_row 
+          html += start_row +
+              tall_label("Extremities", 6) +
+              cell(assessment.E16_32, 1, 6) +
+              labeled_cell("Left Arm", (assessment.E16_19)) +
+              end_row 
+          html += start_row +
+              labeled_cell("Right Arm", (assessment.E16_17)) +
+              end_row 
+          html += start_row +
+              labeled_cell("Left Leg", (assessment.concat('E16_20','E15_10'))) +
+              end_row 
+          html += start_row +
+              labeled_cell("Right Leg", (assessment.E16_18)) +
+              end_row 
+          html += start_row +
+              labeled_cell("Pulse", assessment.E16_34) +
+              end_row 
+          html += start_row +
+              labeled_cell("Capillary Refill", assessment.E16_35) +
+              end_row 
+          html += start_row +
+              labeled_cell("Neurological", (assessment.E16_33)) +
+              labeled_cell("Neurological", (assessment.E16_24)) +
+              end_row 
+          html += start_row +
+              labeled_cell("Assessment Time", assessment.parse_time('E16_03', true), 3) +
+              end_row 
+          html
+        end
+
+        def br
+          "<br>"
+        end
+        def end_row
+          "</tr>"
+        end
+
         protected
         ###
         # This method will render the runsheet as an HTML file based on a template and spec YAML file

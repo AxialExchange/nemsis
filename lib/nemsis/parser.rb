@@ -51,10 +51,11 @@ module Nemsis
     end
 
     ###
-    # This method is mostly invoked by other, more user-friendly call.
+    # This method is mostly invoked by other, more user-friendly calls.
     # If you pass in a normal string, it will attempt to lookup a spec hash.
-    def parse(element_spec, return_data_type='string')
+    def parse(element_spec, return_data_type='string', filter_negative_fields=true)
       raise ArgumentError.new('parse(element_spec) requires spec Hash argument') if element_spec.nil?
+
       element_spec = get_spec(element_spec) unless element_spec.class == Hash
 
       return_data_type.downcase!
@@ -63,30 +64,30 @@ module Nemsis
       xpath = "//#{element_spec['node']}"
 
       begin
-        nodes = xml_doc.xpath(xpath) or return
+        nodes = xml_doc.xpath(xpath)
 
         if element_spec['is_multi_entry'].to_i.eql?(1)
           values = []
           nodes.each do |node|
             case return_data_type
             when 'string' then values << get_str(element_spec, node)
-            when 'object' then values << get_obj(element_spec, node)
+            when 'object' then values << get_obj(element_spec, node, filter_negative_fields)
             when 'raw'    then values << get_raw(element_spec, node)
             end
-          end
+          end if nodes
           return values.size > 1 ? values : values.first
         else
-          node = nodes.first or return
+          value = ""
+          node = nodes.first rescue return
           case return_data_type
           when 'string' then value = get_str(element_spec, node)
-          when 'object' then value = get_obj(element_spec, node)
+          when 'object' then value = get_obj(element_spec, node, filter_negative_fields)
           when 'raw'    then value = get_raw(element_spec, node)
-          end
-
+          end if node
           return value
         end
       rescue => err
-        puts "Error: parsing xpath [#{xpath}] for '#{element_spec}': #{err}"
+        puts "Element [#{xpath}] not found in data file #{err}"
       end
     end
 
@@ -137,7 +138,9 @@ module Nemsis
     # Return the value(s) for the given element
     # Example
     #   patient_last_name = p.parse_element('E06_01')
-    def parse_element(element)
+    # Typically, for field lookups, the negative indexes values are not returned.
+    # You can override this behavior by setting <tt>filter_negative_fields</tt> to false
+    def parse_element(element, filter_negative_fields=true)
       element_spec = get_spec(element)
 
       if element_spec.nil?
@@ -145,9 +148,13 @@ module Nemsis
         return ""
       end
 
-      results = parse(element_spec)
+      results = parse(element_spec, 'string', filter_negative_fields)
 
       results.is_a?(Array) ? results.first : results
+    end
+
+    def parse_element_no_filter(element)
+      parse_element(element, false)
     end
 
     def age_in_words
@@ -260,7 +267,7 @@ module Nemsis
     end
 
     ###
-    # Niche method for HTML generation
+    # Niche method for HTML generation of assessment section
     def parse_assessments
       # Assessments elements are E15 and E16.  There would be just one E15 and
       # many E16 elements.  Sort E16 element clusters by time E16_03, and the
@@ -268,6 +275,7 @@ module Nemsis
       # part of the initial assessment, so it will need to be combined with the
       # earliest E16.
       e15_clusters           = parse_cluster('E15')
+      # TODO I (jon)added this line, but I think it is suspect
       return [] if e15_clusters.nil? or e15_clusters.empty?
       e15_initial_assessment = e15_clusters.shift
 
@@ -422,7 +430,7 @@ module Nemsis
       str
     end
 
-    def get_obj(element_spec, node)
+    def get_obj(element_spec, node, filter_negative_fields=true)
       raw_value = get_raw(element_spec, node)
 
       # Note: data_type possible values are
@@ -438,13 +446,17 @@ module Nemsis
             if key.to_i.to_s == key.to_s # key must be numeric
 
               # Blank out "Not Recorded" raw_values
-              element_spec['field_values'].merge!(
-                  -10 => '', # Not Known
-                  -15 => '', # Not Reporting
-                  -20 => '', # Not Recorded
-                  -25 => '', # Not Applicable
-                  -5  => '' # Not Available
-              )
+              if filter_negative_fields
+                element_spec['field_values'].merge!(
+                    -10 => '', # Not Known
+                    -15 => '', # Not Reporting
+                    -20 => '', # Not Recorded
+                    -25 => '', # Not Applicable
+                    -5  => '' # Not Available
+                )
+              else
+                # Let them be!
+              end
 
               key          = key.to_i
               mapped_value = element_spec['field_values'][key]
@@ -477,7 +489,7 @@ module Nemsis
     end
 
     def get_raw(element_spec, node)
-      node.text
+      node && node.text or ""
     end
   end
 end
