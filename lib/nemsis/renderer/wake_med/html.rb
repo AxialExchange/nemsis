@@ -117,9 +117,18 @@ STYLE
         # ******************************************************************
 
         def runsheet_date
-          tz    = TZInfo::Timezone.get('America/New_York')
-          local = tz.utc_to_local(@runsheet_created_at)
-          local
+          case @runsheet_created_at.class
+          when Time || ActiveSupportWithZone
+            return @runsheet_created_at
+          when String
+            return ActiveSupport::TimeZone.new('UTC').parse(@runsheet_created_at)
+          else 
+            return ActiveSupport::TimeZone.new('UTC').parse(@runsheet_created_at.to_s)
+          end
+        end
+
+        def runsheet_timestamp
+          runsheet_date.in_time_zone('Eastern Time (US & Canada)').strftime("%Y-%m-%d %H:%M:%S %Z")
         end
 
         @fancy_html          ||= false
