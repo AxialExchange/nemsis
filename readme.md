@@ -1,5 +1,8 @@
+Note: This gem has been developed using ruby 1.9.2
 
-NEMSIS (http://www.nemsis.org) is a standard used by EMS agencies to describe the data that they collect in the field.
+# NEMSIS
+
+[NEMSIS](http://www.nemsis.org) is a standard used by EMS agencies to describe the data that they collect in the field.
 Loosely, it is broken up as follows:
 
 ## Core Elements
@@ -74,3 +77,22 @@ An Element is described by the YAML spec entry. Of special note are the followin
   * field_values -- these are the table look-up entries for combo types (an index yields the text string)
     * For negative indexes, no value is returned.
   * name -- this describes the intent of the node, and is used as a default label (TODO: add a label property)
+
+## Common Usage
+
+You can see parser_spec.rb and renderer_spec.rb for detailed examples. Here are some common, everyday usages:
+
+    context 'simple parsing' do
+      it('should handle strings')   { p.E_STRING.should    == 'My String' }
+      it('should handle numbers')   { p.E_NUMBER.should    == "100" }
+      it('should handle Date/Time') { p.E_DATETIME.should  == "2012-03-01 19:09" }
+      it('should handle Date')      { p.E_DATE.should      == "2012-03-02" }
+      it('should handle Time')      { p.E_TIME.should      == "04:29" }
+      it('should handle Single')    { p.E_SINGLE.should    == "Days" }
+      it('should handle Yes/No')    { p.E_YES_NO.should    == "No" }
+      it('should handle Multiple')  { p.E_MULTIPLE.should  == "First, Third choice" }
+    end
+    describe 'method missing' do
+      it('should treat method name as element name') { p.E_STRING.should == p.parse_element('E_STRING') }
+      it('should pass along complex calls') { p.send("concat('E_STRING', 'E_SINGLE')").should == "My String Days" }
+    end
