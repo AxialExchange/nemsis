@@ -127,8 +127,8 @@ STYLE
           end
         end
 
-        def runsheet_timestamp
-          runsheet_date.in_time_zone('Eastern Time (US & Canada)').strftime("%Y-%m-%d %H:%M:%S %Z")
+        def runsheet_timestamp(tz_str='Eastern Time (US & Canada)')
+          runsheet_date.in_time_zone(tz_str).strftime("%Y-%m-%d %H:%M:%S %Z")
         end
 
         @fancy_html          ||= false
