@@ -4785,7 +4785,7 @@ E16_04:
     -25: Not Applicable
     -5: Not Available
     3420: Normal
-    3425: Not Done
+    3425: Not Assessed
     3430: Clammy
     3435: Cold
     3440: Cyanotic
@@ -4793,7 +4793,7 @@ E16_04:
     3450: Lividity
     3455: Mottled
     3460: Pale
-    3465: Warm
+    3465: Hot
   is_multi_entry: 1
   name: SKIN ASSESSMENT
   node: E16_04
@@ -4808,7 +4808,7 @@ E16_05:
     -25: Not Applicable
     -5: Not Available
     3470: Normal
-    3475: Not Done
+    3475: Not Assessed
     3480: Asymmetric Smile or Droop
     3485: Drainage
     3490: Mass/Lesion
@@ -4827,7 +4827,7 @@ E16_06:
     -25: Not Applicable
     -5: Not Available
     3500: Normal
-    3505: Not Done
+    3505: Not Assessed
     3510: JVD
     3515: Strider
     3520: SubQ Air
@@ -4846,7 +4846,7 @@ E16_07:
     -25: Not Applicable
     -5: Not Available
     3530: Normal
-    3535: Not Done
+    3535: Not Assessed
     3540: Accessory Muscles
     3545: Decreased BS-Left
     3550: Decreased BS-Right
@@ -4872,7 +4872,7 @@ E16_08:
     -25: Not Applicable
     -5: Not Available
     3595: Normal
-    3600: Not Done
+    3600: Not Assessed
     3605: Decreased Sounds
     3610: Murmur
   is_multi_entry: 1
@@ -4889,7 +4889,7 @@ E16_09:
     -25: Not Applicable
     -5: Not Available
     3615: Normal
-    3620: Not Done
+    3620: Not Assessed
     3625: Distention
     3630: Guarding
     3635: Mass
@@ -4908,7 +4908,7 @@ E16_10:
     -25: Not Applicable
     -5: Not Available
     3645: Normal
-    3650: Not Done
+    3650: Not Assessed
     3655: Distention
     3660: Guarding
     3665: Mass
@@ -4927,7 +4927,7 @@ E16_11:
     -25: Not Applicable
     -5: Not Available
     3675: Normal
-    3680: Not Done
+    3680: Not Assessed
     3685: Distention
     3690: Guarding
     3695: Mass
@@ -4946,7 +4946,7 @@ E16_12:
     -25: Not Applicable
     -5: Not Available
     3705: Normal
-    3710: Not Done
+    3710: Not Assessed
     3715: Distention
     3720: Guarding
     3725: Mass
@@ -4965,7 +4965,7 @@ E16_13:
     -25: Not Applicable
     -5: Not Available
     3735: Normal
-    3740: Not Done
+    3740: Not Assessed
     3745: Crowning
     3750: Genital Injury
     3755: Tenderness
@@ -4984,7 +4984,7 @@ E16_14:
     -25: Not Applicable
     -5: Not Available
     3765: Normal
-    3770: Not Done
+    3770: Not Assessed
     3775: Pain to ROM
     3780: Tender Para-spinous
     3785: Tender Spinous Process
@@ -5002,7 +5002,7 @@ E16_15:
     -25: Not Applicable
     -5: Not Available
     3790: Normal
-    3795: Not Done
+    3795: Not Assessed
     3800: Pain to ROM
     3805: Tender Para-spinous
     3810: Tender Spinous Process
@@ -5020,7 +5020,7 @@ E16_16:
     -25: Not Applicable
     -5: Not Available
     3815: Normal
-    3820: Not Done
+    3820: Not Assessed
     3825: Pain to ROM
     3830: Tender Para-spinous
     3835: Tender Spinous Process
@@ -5038,7 +5038,7 @@ E16_17:
     -25: Not Applicable
     -5: Not Available
     3840: Normal
-    3845: Not Done
+    3845: Not Assessed
     3850: Abnormal Pulse
     3855: Abnormal Sensation
     3860: Edema
@@ -5058,7 +5058,7 @@ E16_18:
     -25: Not Applicable
     -5: Not Available
     3875: Normal
-    3880: Not Done
+    3880: Not Assessed
     3885: Abnormal Pulse
     3890: Abnormal Sensation
     3895: Edema
@@ -5078,7 +5078,7 @@ E16_19:
     -25: Not Applicable
     -5: Not Available
     3910: Normal
-    3915: Not Done
+    3915: Not Assessed
     3920: Abnormal Pulse
     3925: Abnormal Sensation
     3930: Edema
@@ -5098,7 +5098,7 @@ E16_20:
     -25: Not Applicable
     -5: Not Available
     3945: Normal
-    3950: Not Done
+    3950: Not Assessed
     3955: Abnormal Pulse
     3960: Abnormal Sensation
     3965: Edema
@@ -5117,7 +5117,7 @@ E16_21:
     -20: Not Recorded
     -25: Not Applicable
     -5: Not Available
-    3980: Not Done
+    3980: Not Assessed
     3985: 2-mm
     3990: 3-mm
     3995: 4-mm
@@ -5140,7 +5140,7 @@ E16_22:
     -20: Not Recorded
     -25: Not Applicable
     -5: Not Available
-    4030: Not Done
+    4030: Not Assessed
     4035: 2-mm
     4040: 3-mm
     4045: 4-mm
@@ -5164,7 +5164,7 @@ E16_23:
     -25: Not Applicable
     -5: Not Available
     4080: Normal
-    4085: Not Done
+    4085: Not Assessed
     4090: Combative
     4095: Confused
     4100: Hallucinations
@@ -5186,7 +5186,7 @@ E16_24:
     -25: Not Applicable
     -5: Not Available
     4125: Normal
-    4130: Not Done
+    4130: Not Assessed
     4135: Abnormal Gait
     4140: Facial Droop
     4145: Seizures
