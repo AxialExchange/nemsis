@@ -42,7 +42,7 @@
     <!-- Primary Impression, Chief Complaint, Injury, Barriers -->
     <%= row 'E09_15', 'E09_05', {'Injury' => "concat('E10_01', 'E10_02', 'E10_03')"}, 'E12_01' %>
     <!-- Secondary Impression, Duration, Medical/Trauma, Alcohol/Drugs -->
-    <%= row 'E09_16', {'Duration' => "concat('E09_06', 'E09_07')"}, {'Medical/Trauma' => "parse_value_of('MedicalTrauma')"}, 'E12_19' %>
+    <%= row 'E09_16', {'Duration' => "concat('E09_06', 'E09_07')"}, {'Medical/Trauma' => "parse_value_of('MedicalTrauma')"}, {'Alcohol/Drugs' => "parse_element_no_filter('E12_19')"} %>
   <%= start_row %>
     <%= labeled_cell "Signs &amp; Symptoms", (@parser.concat 'E09_13', 'E09_14'), 7 %>
   </tr>

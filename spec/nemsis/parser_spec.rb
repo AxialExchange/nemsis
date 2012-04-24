@@ -180,6 +180,27 @@ XML
       it('should pass along complex calls') { p.send("concat('E_STRING', 'E_SINGLE')").should == "My String Days" }
     end
 
+    context 'show negative index look-ups' do
+      let(:p) {
+        xml_str = <<XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
+  <Header>
+    <Record>
+      <E_SINGLE>-10</E_SINGLE>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+        Nemsis::Parser.new(xml_str, spec_yaml)
+      }
+      it 'should show negative values' do
+        p.parse_element_no_filter('E_SINGLE').should == 'Not Known'
+      end
+
+    end
+
   end
 
   # This is a mechanism to test the intertwined nature of the spec settings and expected results.
