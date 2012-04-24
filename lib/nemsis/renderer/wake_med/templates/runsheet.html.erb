@@ -194,11 +194,7 @@
 <% unless @parser.E13_01.empty? %>
 <%= title = "Narrative"
     start_table '' %>
-  <thead>
-  <%= start_row %>
-    <%= heading title %><%= cell (@parser.E13_01) %>
-  </tr>
-  </thead>
+  <%= row 'E13_01' %>
 </table>
 <br>
 <% end %>

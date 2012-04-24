@@ -135,6 +135,7 @@ XML
       r = Nemsis::Renderer::WakeMed::HTML.new(p)
       html = r.render_fancy
       write_html_file("madison", "fancy", html)
+      write_html_file("madison", "simple", r.render)
     end
 
 =begin

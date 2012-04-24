@@ -4090,7 +4090,7 @@ E13_01:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 0
-  name: RUN REPORT NARRATIVE
+  name: Narrative
   node: E13_01
 E14_01:
   allow_null: 1
