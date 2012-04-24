@@ -53,6 +53,12 @@ module Nemsis
     ###
     # This method is mostly invoked by other, more user-friendly calls.
     # If you pass in a normal string, it will attempt to lookup a spec hash.
+    # return_data_type can be the following
+    #   * string
+    #   * object
+    #   * raw
+    # Typically, for field lookups, the negative indexes values are not returned.
+    # You can override this behavior by setting <tt>filter_negative_fields</tt> to false
     def parse(element_spec, return_data_type='string', filter_negative_fields=true)
       raise ArgumentError.new('parse(element_spec) requires spec Hash argument') if element_spec.nil?
 
@@ -78,7 +84,7 @@ module Nemsis
           return values.size > 1 ? values : values.first
         else
           value = ""
-          node = nodes.first rescue return
+          node = nodes && nodes.first or nil
           case return_data_type
           when 'string' then value = get_str(element_spec, node)
           when 'object' then value = get_obj(element_spec, node, filter_negative_fields)
@@ -138,9 +144,7 @@ module Nemsis
     # Return the value(s) for the given element
     # Example
     #   patient_last_name = p.parse_element('E06_01')
-    # Typically, for field lookups, the negative indexes values are not returned.
-    # You can override this behavior by setting <tt>filter_negative_fields</tt> to false
-    def parse_element(element, filter_negative_fields=true)
+    def parse_element(element)
       element_spec = get_spec(element)
 
       if element_spec.nil?
@@ -148,13 +152,13 @@ module Nemsis
         return ""
       end
 
-      results = parse(element_spec, 'string', filter_negative_fields)
+      results = parse(element_spec, 'string')
 
       results.is_a?(Array) ? results.first : results
     end
 
     def parse_element_no_filter(element)
-      parse_element(element, false)
+      parse(element, 'object', false)
     end
 
     def age_in_words
@@ -391,10 +395,15 @@ module Nemsis
     # But we can also allow other embedded calls like:
     #    concat('E20_10', 'E20_14')
     def method_missing(method_sym, *arguments, &block)
-      if method_sym.to_s =~ /^[A-Z]\d{2}(_\d{2})?/
-        Array(parse(get_spec(method_sym.to_s))).join(', ') rescue ''
-      elsif respond_to?((/(\w+)/.match(method_sym.to_s))[0])
-        instance_eval(method_sym.to_s) rescue ''
+      method = method_sym.to_s
+      #puts "%s %s %s" % ["---- ", method, " ----"]
+      if method =~ /^[A-Z]\d{2}(_\d{2})?/
+        Array(parse(get_spec(method))).join(', ') rescue ''
+      elsif respond_to?((/(\w+)/.match(method))[0])
+        instance_eval(method) rescue ''
+      # for testing:
+      elsif %w(E_STRING E_NUMBER E_DATETIME E_DATE E_TIME E_YES_NO E_SINGLE E_MULTIPLE E_ALLOW_NEGATIVE).include?method
+        Array(parse(get_spec(method))).join(', ') rescue ''
       else
         super
       end
@@ -410,6 +419,7 @@ module Nemsis
 
     private
 
+    # This returns values for the basic string elements
     def get_str(element_spec, node)
       obj = get_obj(element_spec, node)
 
@@ -426,10 +436,11 @@ module Nemsis
       else
         str = obj.to_s
       end
-
+      #puts "#{__method__}: #{str}"
       str
     end
 
+    # This is used for look-up types
     def get_obj(element_spec, node, filter_negative_fields=true)
       raw_value = get_raw(element_spec, node)
 
@@ -484,12 +495,16 @@ module Nemsis
           end
           obj = (i == f ? i : f)
       end
+      #puts "#{__method__}: #{obj}"
 
       obj
     end
 
+    # Just return the raw node text value
     def get_raw(element_spec, node)
-      node && node.text or ""
+      result = node && node.text or ""
+      #puts "#{__method__}: #{result}"
+      result
     end
   end
 end

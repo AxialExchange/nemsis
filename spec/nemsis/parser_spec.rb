@@ -12,6 +12,176 @@ describe Nemsis::Parser do
     end
   end
 
+  describe 'Basic API Clarification' do
+    let(:spec_yaml) {
+      spec_yaml = <<YML
+# Data [STRING]
+E_STRING:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: String
+  node: E_STRING
+
+# Data [INTEGER/DECIMAL]
+E_NUMBER:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 0
+  name: Numer
+  node: E_NUMBER
+
+# Data [date/time]
+E_DATETIME:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: date/time
+  is_multi_entry: 0
+  name: Date/Time
+  node: E_DATETIME
+
+E_DATE:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: date
+  is_multi_entry: 0
+  name: DatE_TIME
+  node: E_DATE
+
+E_TIME:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: time
+  is_multi_entry: 0
+  name: Time
+  node: E_TIME
+
+# Data [combo] single-choice
+E_SINGLE:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    700: Hours
+    705: Days
+    710: Months
+    715: Years
+  is_multi_entry: 0
+  name: Single Choice
+  node: E_SINGLE
+
+E_YES_NO:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: Single Yes/No
+  node: E_YES_NO
+
+# Data [combo] Multiple Choice
+E_MULTIPLE:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    500001: None
+    500002: First
+    500003: Second choice
+    500004: Third choice
+  is_multi_entry: 1
+  name: Multiple Choice
+  node: E_MULTIPLE
+
+# Data [combo] Multiple Choice
+E_ALLOW_NEGATIVE:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    500001: None
+    500002: First
+    500003: Second choice
+    500004: Third choice
+  is_multi_entry: 1
+  name: Multiple Choice
+  node: E_ALLOW_NEGATIVE
+
+YML
+    }
+    let(:p) {
+      xml_str = <<XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
+  <Header>
+    <D01_01>0920547</D01_01>
+    <D01_03>37</D01_03>
+    <D01_04>00000</D01_04>
+    <D01_07>6110</D01_07>
+    <D01_08>5830</D01_08>
+    <D01_09>5870</D01_09>
+    <D01_21>192209802</D01_21>
+    <D02_07>27601</D02_07>
+    <Record>
+      <E_STRING>My String</E_STRING>
+      <E_NUMBER>100</E_NUMBER>
+      <E_DATETIME>2012-03-02T00:09:37.0Z</E_DATETIME>
+      <E_DATE>2012-03-02T09:09:00.0Z</E_DATE>
+      <E_TIME>2012-03-02T09:29:37.0Z</E_TIME>
+      <E_SINGLE>705</E_SINGLE>
+      <E_YES_NO>0</E_YES_NO>
+      <E_MULTIPLE>500002</E_MULTIPLE>
+      <E_MULTIPLE>500004</E_MULTIPLE>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+      Nemsis::Parser.new(xml_str, spec_yaml)
+    }
+
+    context 'simple parsing' do
+      it('should handle strings')   { p.E_STRING.should    == 'My String' }
+      it('should handle numbers')   { p.E_NUMBER.should    == "100" }
+      it('should handle Date/Time') { p.E_DATETIME.should  == "2012-03-01 19:09" }
+      it('should handle Date')      { p.E_DATE.should      == "2012-03-02" }
+      it('should handle Time')      { p.E_TIME.should      == "04:29" }
+      it('should handle Single')    { p.E_SINGLE.should    == "Days" }
+      it('should handle Yes/No')    { p.E_YES_NO.should    == "No" }
+      it('should handle Multiple')  { p.E_MULTIPLE.should  == "First, Third choice" }
+    end
+    describe 'method missing' do
+      it('should treat method name as element name') { p.E_STRING.should == p.parse_element('E_STRING') }
+      it('should pass along complex calls') { p.send("concat('E_STRING', 'E_SINGLE')").should == "My String Days" }
+    end
+
+  end
+
   # This is a mechanism to test the intertwined nature of the spec settings and expected results.
   context 'instance methods' do
     let(:spec_yaml) {
@@ -270,14 +440,6 @@ XML
         expect {p.parse(nil)}.should raise_error
       end
 
-      it 'should handle an element spec hash' do
-        p.parse('E06_01').should == "BIRD"
-      end
-
-      it 'should handle an element name' do
-        p.parse('E06_01').should == "BIRD"
-      end
-
       it 'should return an empty string for a missing data element' do
         p.E25_00.should == ""
       end
@@ -377,7 +539,7 @@ XML
       it 'should return value for negative indexes' do
         p.parse('E07_01', 'object', false).should == 'Not Recorded'
       end
-      pending 'should return value for negative indexes' do
+      it 'should return value for negative indexes' do
         p.parse_element_no_filter('E07_01').should == 'Not Recorded'
       end
 
