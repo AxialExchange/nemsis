@@ -127,6 +127,7 @@ XML
 
   end
 
+  # This is a good place to put local test files and have them generate local output you can view in your browser
   context 'generate some sample runsheets' do
     it 'should render madison' do
       sample_xml_file = File.expand_path('../../data/madison_henry_sample.xml', __FILE__)
@@ -135,7 +136,6 @@ XML
       r = Nemsis::Renderer::WakeMed::HTML.new(p)
       html = r.render_fancy
       write_html_file("madison", "fancy", html)
-      write_html_file("madison", "simple", r.render)
     end
 
 =begin

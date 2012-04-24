@@ -3175,7 +3175,7 @@ E09_11:
     1340: Head
     1345: Neck
   is_multi_entry: 0
-  name: CHIEF COMPLAINT ANATOMIC LOCATION
+  name: Anatomic Position
   node: E09_11
 E09_12:
   allow_null: 1
