@@ -540,20 +540,16 @@
 <%= title = "Insurance Details"
     start_table title, 8 %>
   <tbody>
-  <!--Name, Primary Payer, Dispatch Nature-->
-  <%= row( {'Insured\'s Name' => "concat('E07_11', 'E07_12', 'E07_13')"}, 'E07_01', '') %>
-  <!--Relationship to Patient, Medicare, Response Urgency-->
-  <%= row 'E07_14', 'E07_', 'E07_33' %>
-  <!--Insured SSN, Medicaid, Job Related?-->
-  <%= row 'E07_', 'E07_', 'E07_15' %>
-  <!--Insured DOB, Primary Ins, Secondary Ins-->
-  <%= row 'E07_', 'E07_03', 'E07_' %>
-  <!--Address, Policy #, Policy #-->
-  <%= row 'E07_', 'E07_10', 'E07_' %>
-  <!--City/St/Zip/Country, Group #, Group #-->
-  <%= row 'E07_', 'E07_09', 'E07_' %>
-  <!--Employer, Contact, Phone-->
-  <%= row 'E07_27', 'E07_', 'E07_32' %>
+  <!--Name, Primary Payer -->
+  <%= row( {'Insured\'s Name' => "concat('E07_11', 'E07_12', 'E07_13')"}, 'E07_01') %>
+  <!--Relationship to Patient, Response Urgency-->
+  <%= row 'E07_14', 'E07_33' %>
+  <!--Employer, Primary Ins-->
+  <%= row 'E07_27', 'E07_03' %>
+  <!--Work Phone, Policy #-->
+  <%= row 'E07_32', 'E07_10' %>
+  <!--Job Related?, Group #-->
+  <%= row 'E07_15', 'E07_09' %>
   </tbody>
 </table>
 <br>
