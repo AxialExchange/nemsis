@@ -125,11 +125,13 @@
   </tr>
 
   <% @parser.parse_cluster('E14').sort_by { |e14| Time.parse(e14.E14_01) rescue Time.now }.each do |e14| %>
+    <% unless e14.E14_03.empty? and e14.E14_33.empty? %>
       <%= start_row %>
         <%= cell (e14.parse_time('E14_01')) %>
         <%= cell (e14.E14_03) %>
         <%= cell (e14.E14_33) %>
       </tr>
+    <% end %>
   <% end %>
 </tbody>
 </table>
