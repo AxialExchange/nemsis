@@ -1872,7 +1872,7 @@ E05_02:
 E05_03:
   allow_null: 1
   data_entry_method: ~
-  data_type: date/time
+  data_type: time
   is_multi_entry: 0
   name: Dispatch Notified
   node: E05_03
