@@ -5345,6 +5345,7 @@ E17_01:
     -5: Not Available
   is_multi_entry: 1
   name: Protocol(s)
+  lookup: D04_08
   node: E17_01
 E18_01:
   allow_null: 1

@@ -230,7 +230,7 @@ module Nemsis
 
         names.size.times { |i| result[names[i]] = values[i] } unless names.nil? or values.nil?
       rescue => err
-        warn "Error in parse_pair: #{err}"
+        warn "Warn: in parse_pair: #{err}"
       end
 
       result
@@ -265,7 +265,7 @@ module Nemsis
           clusters << cluster
         end
       rescue => err
-        puts "Error: parsing xpath [#{xpath}]: #{err}"
+        warn "Warn: parsing xpath [#{xpath}]: #{err}"
       end
 
       clusters
@@ -440,35 +440,35 @@ module Nemsis
         raise ArgumentError.new("Incorrect Method Call; key = '#{key}', should be: lookup(element_name_or_spec_hash, key_for_lookup)")
       end
       obj = nil
-      if key.to_i.to_s == key.to_s # key must be numeric
-        element_spec = (element_name_or_spec.is_a?(Hash) ? element_name_or_spec : get_spec(element_name_or_spec))
+      unless key.to_i.to_s == key.to_s # key must be numeric
+        return obj
+      end
 
-        # Blank out "Not Recorded" raw_values
-        if filter_negative_fields
-          element_spec['field_values'].merge!(
-              -10 => '', # Not Known
-              -15 => '', # Not Reporting
-              -20 => '', # Not Recorded
-              -25 => '', # Not Applicable
-               -5 => ''  # Not Available
-          )
-        else
-          # Let them be!
-        end
+      element_spec = (element_name_or_spec.is_a?(Hash) ? element_name_or_spec : get_spec(element_name_or_spec))
 
-        key          = key.to_i
-        mapped_value = element_spec['field_values'][key]
-
-        case mapped_value
-          when true then
-            obj = 'Yes'
-          when false then
-            obj = 'No'
-          else
-            obj = mapped_value unless mapped_value.nil?
-        end
+      # Blank out "Not Recorded" raw_values
+      if filter_negative_fields
+        element_spec['field_values'].merge!(
+            -10 => '', # Not Known
+            -15 => '', # Not Reporting
+            -20 => '', # Not Recorded
+            -25 => '', # Not Applicable
+            -5  => ''  # Not Available
+        )
       else
-        warn ArgumentError.new('Index must be a numeric value for lookup(element_name_or_spec_hash, key_for_lookup)')
+        # Let them be!
+      end
+
+      key          = key.to_i
+      mapped_value = element_spec['field_values'][key]
+
+      case mapped_value
+        when true then
+          obj = 'Yes'
+        when false then
+          obj = 'No'
+        else
+          obj = mapped_value unless mapped_value.nil?
       end
 
       obj
