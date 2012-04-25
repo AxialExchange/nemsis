@@ -132,6 +132,22 @@ E_ALLOW_NEGATIVE:
   name: Multiple Choice
   node: E_ALLOW_NEGATIVE
 
+# Lookup from other element
+E_LOOKUP:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: Protocol(s)
+  lookup: E_MULTIPLE
+  node: E_LOOKUP
+
 YML
     }
     let(:p) {
@@ -158,6 +174,7 @@ YML
       <E_YES_NO>0</E_YES_NO>
       <E_MULTIPLE>500002</E_MULTIPLE>
       <E_MULTIPLE>500004</E_MULTIPLE>
+      <E_LOOKUP>500003</E_LOOKUP>
     </Record>
   </Header>
 </EMSDataSet>
@@ -201,12 +218,43 @@ XML
 
     end
 
+    context '#lookup' do
+      it 'should require an element and a key' do
+        expect { p.lookup('', '') }.to raise_error
+      end
+      it 'should require a numeric key' do
+        expect { p.lookup('', 'ABC') }.to raise_error
+      end
+      it 'should allow an element name' do
+        expect {p.lookup('E_MULTIPLE', '500003')}.to_not raise_error
+      end
+      it 'should allow an element spec hash' do
+        expect {p.lookup(p.get_spec('E_MULTIPLE'), '500003')}.to_not raise_error
+      end
+      it 'should lookup an index in specific element' do
+        p.lookup('E_MULTIPLE', '500003').should == "Second choice"
+      end
+    end
+
   end
 
   # This is a mechanism to test the intertwined nature of the spec settings and expected results.
   context 'instance methods' do
     let(:spec_yaml) {
       spec_yaml = <<YML
+D04_08:
+  allow_null: 0
+  data_entry_method: multiple-entry
+  data_type: text
+  field_values:
+    6720: Abdominal Pain
+    7040: Pain Control
+    7130: Post Resuscitation
+    7140: Pulmonary Edema
+    7251: Vomiting
+  is_multi_entry: 1
+  name: PROTOCOL
+  node: D04_08
 E02_15:
   allow_null: 0
   data_entry_method: ~
@@ -314,6 +362,20 @@ E07_01:
   is_multi_entry: 0
   name: PRIMARY METHOD OF PAYMENT
   node: E07_01
+E17_01:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: Protocol(s)
+  lookup: D04_08
+  node: E17_01
 E24_01:
   allow_null: 1
   data_entry_method: single-choice
@@ -428,6 +490,9 @@ YML
         <E02_19>52256.2</E02_19>
         <E02_20>395</E02_20>
       </E02>
+      <E17>
+        <E17_01>7040</E17_01>
+      </E17>
       <E24>
         <E24_01>YES</E24_01>
         <E24_02>2012-03-08T17:50:00.0Z</E24_02>
@@ -542,6 +607,12 @@ XML
         p.send("concat('E06_02', 'E06_01')").should == "TWEETY BIRD"
       end
 
+    end
+
+    describe '#lookup' do
+      it 'should lookup a value in using another element' do
+        p.E17_01.should == "Pain Control"
+      end
     end
 
     describe '#parse_element' do
@@ -1188,11 +1259,20 @@ XML
         result.is_a?(Hash).should be_true
         result['Patient Number'].should == '123123212'
       end
+      it 'should return an empty hash when no data exists' do
+        result = p.parse_pair('E33_11', 'E33_09')
+        result.is_a?(Hash).should be_true
+        result.should be_empty
+      end
     end
 
     describe '#parse_value_of' do
       it 'should return value E23_09 of key E23_11' do
         p.parse_value_of('Patient Number').should == '123123212'
+      end
+
+      it 'should return empty info when none exists' do
+        p.parse_value_of('BugsBunny').should be_nil
       end
     end
 

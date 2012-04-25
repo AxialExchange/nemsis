@@ -37,13 +37,16 @@
 </table>
 <br>
 <%= title = "Clinical Impression"
-    start_table title, 8 %>
+    start_table title, 6 %>
   <tbody>
-    <!-- Primary Impression, Chief Complaint, Injury, Barriers -->
-    <%= row 'E09_15', 'E09_05', {'Injury' => "concat('E10_01', 'E10_02', 'E10_03')"}, 'E12_01' %>
-    <!-- Secondary Impression, Duration, Medical/Trauma, Alcohol/Drugs -->
-    <%= row 'E09_16', {'Duration' => "concat('E09_06', 'E09_07')"}, {'Medical/Trauma' => "parse_value_of('MedicalTrauma')"}, {'Alcohol/Drugs' => "parse_element_no_filter('E12_19')"} %>
-    <%= row({ "Signs &amp; Symptoms" => "concat 'E09_13', 'E09_14'"}, 'E09_11', 5) %>
+      <!-- Primary Impression, Anatomical Position, Injury -->
+      <%= row 'E09_15', 'E09_11', {'Injury' => "concat('E10_01', 'E10_02', 'E10_03')"} %>
+      <!-- Secondary Impression, Chief Complaint (Dur), Medical/Trauma -->
+      <%= row 'E09_16', {'Chief Complaint' => "concat('E09_05', 'E09_06', 'E09_07')"}, {'Medical/Trauma' => "parse_value_of('MedicalTrauma')"} %>
+      <!-- Protocol Used (D04_08), Secondary Complaint (Dur), Barriers of Care -->
+      <%= row 'E17_01', {'Secondary Complaint' => "concat('E09_08', 'E09_09', 'E09_10')"}, 'E12_01' %>
+      <!-- Signs & Symptoms, Anatomical Position --!>
+      <%= row({"Signs &amp; Symptoms" => "concat 'E09_13', 'E09_14'"}, 'E09_11', 3) %>
   </tbody>
 </table>
 <br>

@@ -92,8 +92,10 @@ module Nemsis
           end if node
           return value
         end
-      rescue => err
-        puts "Element [#{xpath}] not found in data file #{err}"
+      rescue Nokogiri::XML::XPath::SyntaxError => err
+        puts "Element [#{xpath}] Syntax Error: #{err}"
+      rescue Exception => err
+        puts "Element [#{xpath}] unknown parsing error: #{err}"
       end
     end
 
@@ -216,17 +218,17 @@ module Nemsis
     end
 
     ###
-    # Niche method for HTML generation
+    # Niche method for HTML generation. Pull out name/value pairs from specific data elements.
     def parse_pair(name_element, value_element)
-      name_element_spec = get_spec(name_element)
-      names             = parse(name_element_spec)
-
-      value_element_spec = get_spec(value_element)
-      values             = parse(value_element_spec)
-
       result = {}
       begin
-        names.size.times { |i| result[names[i]] = values[i] } unless names.nil?
+        name_element_spec = get_spec(name_element)
+        names             = parse(name_element_spec)
+
+        value_element_spec = get_spec(value_element)
+        values             = parse(value_element_spec)
+
+        names.size.times { |i| result[names[i]] = values[i] } unless names.nil? or values.nil?
       rescue => err
         warn "Error in parse_pair: #{err}"
       end
@@ -234,8 +236,18 @@ module Nemsis
       result
     end
 
+    # This is a bizarre technique to pull certain "key" fields from the bunch of  stuff
+    # that ESO throws into the E23_09_0 pairs of attributes with apparent abandon!
+    # For example, given this data:
+    #      <E23_09_0>
+    #        <E23_09>Trauma</E23_09>
+    #        <E23_11>MedicalTrauma</E23_11>
+    #      </E23_09_0>
+    # It would be looked up as follows:
+    #    parse_value_of('MedicalTrauma')
+    # I'm not kidding. Seriously.
     def parse_value_of(key)
-      parse_pair('E23_11', 'E23_09')[key] rescue nil
+      parse_pair('E23_11', 'E23_09')[key]
     end
 
     ###
@@ -402,7 +414,7 @@ module Nemsis
       elsif respond_to?((/(\w+)/.match(method))[0])
         instance_eval(method) rescue ''
       # for testing:
-      elsif %w(E_STRING E_NUMBER E_DATETIME E_DATE E_TIME E_YES_NO E_SINGLE E_MULTIPLE E_ALLOW_NEGATIVE).include?method
+      elsif %w(E_STRING E_NUMBER E_DATETIME E_DATE E_TIME E_YES_NO E_SINGLE E_MULTIPLE E_ALLOW_NEGATIVE E_LOOKUP).include?method
         Array(parse(get_spec(method))).join(', ') rescue ''
       else
         super
@@ -416,6 +428,52 @@ module Nemsis
         super
       end
     end
+
+    ###
+    # Enable direct lookup of value in a given a field
+    # return nil if nothing is found, or if there is nothing to be found
+    def lookup(element_name_or_spec, key, filter_negative_fields=true)
+      if element_name_or_spec.nil? or element_name_or_spec.empty?
+        raise ArgumentError.new("Incorrect Method Call; element = '#{element_name_or_spec}', should be: lookup(element_name_or_spec_hash, key_for_lookup)")
+      end
+      if key.nil? or key.empty?
+        raise ArgumentError.new("Incorrect Method Call; key = '#{key}', should be: lookup(element_name_or_spec_hash, key_for_lookup)")
+      end
+      obj = nil
+      if key.to_i.to_s == key.to_s # key must be numeric
+        element_spec = (element_name_or_spec.is_a?(Hash) ? element_name_or_spec : get_spec(element_name_or_spec))
+
+        # Blank out "Not Recorded" raw_values
+        if filter_negative_fields
+          element_spec['field_values'].merge!(
+              -10 => '', # Not Known
+              -15 => '', # Not Reporting
+              -20 => '', # Not Recorded
+              -25 => '', # Not Applicable
+               -5 => ''  # Not Available
+          )
+        else
+          # Let them be!
+        end
+
+        key          = key.to_i
+        mapped_value = element_spec['field_values'][key]
+
+        case mapped_value
+          when true then
+            obj = 'Yes'
+          when false then
+            obj = 'No'
+          else
+            obj = mapped_value unless mapped_value.nil?
+        end
+      else
+        warn ArgumentError.new('Index must be a numeric value for lookup(element_name_or_spec_hash, key_for_lookup)')
+      end
+
+      obj
+    end
+
 
     private
 
@@ -449,38 +507,16 @@ module Nemsis
       case
         when element_spec['data_type'] =~ /(text|combo|combo or text)/i
           obj = raw_value
-
-          if !element_spec['field_values'].nil?
+          unless element_spec['field_values'].nil?
             # map numeric key to string value
+            value = nil
             key = raw_value
-
-            if key.to_i.to_s == key.to_s # key must be numeric
-
-              # Blank out "Not Recorded" raw_values
-              if filter_negative_fields
-                element_spec['field_values'].merge!(
-                    -10 => '', # Not Known
-                    -15 => '', # Not Reporting
-                    -20 => '', # Not Recorded
-                    -25 => '', # Not Applicable
-                    -5  => '' # Not Available
-                )
-              else
-                # Let them be!
-              end
-
-              key          = key.to_i
-              mapped_value = element_spec['field_values'][key]
-
-              case mapped_value
-                when true then
-                  obj = 'Yes'
-                when false then
-                  obj = 'No'
-                else
-                  obj = mapped_value unless mapped_value.nil?
-              end
-            end
+            if element_spec['lookup']
+              value = lookup(element_spec['lookup'], key, filter_negative_fields)
+            else
+              value = lookup(element_spec, key, filter_negative_fields)
+            end unless key.empty?
+            obj = value if value
           end
         when element_spec['data_type'] =~ /time/i
           obj = ActiveSupport::TimeZone.new('UTC').parse(raw_value) rescue nil
