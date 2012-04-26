@@ -535,113 +535,130 @@ D04_04:
   data_entry_method: multiple-choice
   data_type: combo
   field_values:
-    000: Airway-Nasotracheal Intubation
-    010: Pericardiocentesis
-    020: Restraints-Physical
-    030: Pain Measurement
-    040: Specialty Center Activation-Adult Trauma
-    041: Venous Access-Femoral Line
-    042: Venous Access-Internal Jugular Line
-    051: Left Ventricular Assist Device Maintenance
-    052: 'Patient Warming (Hot Pack, etc.)'
-    053: Patient Off-Loaded Helicopter Hot Off-Load
-    055: CPR-Start Compressions only without Ventilation
-    057: CPR-Mechanical Thumper Type Device
-    058: CPR-Start Compressions and Ventilations
-    059: CPR-Precordial Thump Only
-    070: Airway-Bagged (via tube)
-    071: Airway-BiPAP
-    090: Activation-Tactical or SWAT Specialty Service/Response Team
-    100: Airway-Needle Cricothyrotomy
-    101: Airway-PEEP
-    102: Airway-Respirator Operation (BLS)
-    103: Airway-Rapid Sequence Intubation
-    104: Airway-Suctioning
-    105: Airway-Surgical Cricothyrotomy
-    110: Restraints-Pharmacological
-    12: Lead ECG-Transmitted
-    120: Spinal Immobilization
-    130: Joint Reduction/Relocation
-    131: Patient Cooling-Post Resuscitation
-    150: Specialty Center Activation-Stroke
-    181: Venous Access-Intraosseous Pediatric
-    182: Venous Access-Subclavian Line
-    200: Airway-Bagged (via BVMask)
-    201: Decontamination
-    202: Defibrillation-Automated (AED)
-    203: Defibrillation-Manual
-    204: Defibrillation-Placement for Monitoring/Analysis
-    205: Escharotomy
-    206: Extrication
-    230: Intra-Aortic Balloon Pump Maintenance
-    231: Patient Off-Loaded
-    280: Activation-Fire Rehabilitation Specialty Service/Response Team
-    290: Airway-Change Tracheostomy Tube
-    300: Airway-Intubation Confirm Colorimetric ETCO2
-    301: Airway-Intubation Confirm Esophageal Bulb
-    302: Airway-King LT Blind Insertion Airway Device
-    303: Airway-Laryngeal Mask Blind Insertion Airway Device
-    350: Airway-Nasal
-    391: Venous Access-Central Line Maintenance
-    392: Airway-Nebulizer Treatment
-    420: Orthostatic Blood Pressure Measurement
-    421: Temperature Measurement
-    450: Airway-Video Laryngoscopy
-    500: Venous Access-Swan Ganz Maintenance
-    510: Venous Access-Discontinue
-    540: Airway-Ventilator with PEEP
-    580: Airway-Direct Laryngoscopy
-    590: Venous Access-Intraosseous Adult
-    591: Airway-Ventilator Operation
-    599: Airway-Intubation of Existing Tracheostomy Stoma
-    600: Wound Care-Taser Barb Removal
-    601: Venous Access-Umbilical Vein Cannulation
-    602: Wound Care-General
-    603: Wound Care-Hemostatic Agent
-    604: Wound Care-Irrigation
-    610: Urinary Catheterization
-    611: Wound Care-Tourniquet 93.056
-    612: Airway-CPAP
-    615: Activation-Advanced Hazmat Specialty Service/Response Team
-    620: Cardiac Monitor
-    621: Activation-Other Specialty Service/Response Team
-    622: Activation-Rescue Specialty Service/Response Team
-    623: Venous Access-Extremity
-    624: Venous Access-Existing Catheter
-    625: Activation-Social Services Notification/Referral
-    626: Venous Access-External Jugular Line
-    640: CPR by Other External Automated Device
-    641: Blood Glucose Analysis
-    700: Vagal Maneuver-Carotid Massage
-    701: Vagal Maneuver-Valsalva or Other Vagal Maneuver (Not Carotid Massage)
-    702: Airway-Extubation
-    703: Arterial Access-Blood Draw
-    704: Arterial Line Maintenance
-    790: Specialty Center Activation-Cardiac Arrest
-    810: Airway-Foreign Body Removal
-    811: Airway-Impedance Threshold Device
-    820: CPR-Start Rescue Breathing without Compressions
-    821: CPR-Stop
-    841: Airway-Oral
-    842: Airway-Orotracheal Intubation
-    900: MAST
-    910: Thrombolytic Screen
-    920: CNS Catheter-Epidural Maintenance
-    921: CNS Catheter-Intraventricular Maintenance
-    930: Gastric Tube Insertion-Inserted Orally
-    931: Gastric Tube Insertion-Inserted Nasally
+    1.181: CNS Catheter-Epidural Maintenance
+    1.182: CNS Catheter-Intraventricular Maintenance
+    31.110: Airway-Needle Cricothyrotomy
+    31.120: Airway-Surgical Cricothyrotomy
+    31.420: Airway-Direct Laryngoscopy
+    31.421: Airway-Video Laryngoscopy
+    34.041: Chest Decompression
+    34.042: Chest Tube Placement
+    37.000: Pericardiocentesis
+    37.611: Intra-Aortic Balloon Pump Maintenance
+    37.612: Left Ventricular Assist Device Maintenance
+    38.910: Arterial Access-Blood Draw
+    38.990: Venous Access-Blood Draw
+    38.991: Venous Access-Existing Catheter
+    38.992: Venous Access-Extremity
+    38.993: Venous Access-External Jugular Line
+    38.994: Venous Access-Femoral Line
+    38.995: Blood Glucose Analysis
+    39.995: Venous Access-Internal Jugular Line
+    39.996: Venous Access-Subclavian Line
+    39.997: Venous Access-Discontinue
+    39.998: Venous Access-Umbilical Vein Cannulation
+    41.920: Venous Access-Intraosseous Adult
+    41.921: Venous Access-Intraosseous Pediatric
+    57.940: Urinary Catheterization
+    73.590: Childbirth
+    79.700: Joint Reduction/Relocation
+    86.090: Escharotomy
+    86.280: Decontamination
+    89.391: Capnography (CO2 Measurement)
+    89.392: Pulse Oximetry
+    89.510: Cardiac Monitor
+    89.590: Orthostatic Blood Pressure Measurement
+    89.599: Patient Monitoring of Pre-existing Devices, Equipment, or Ongoing Medications
+    89.610: Arterial Line Maintenance
+    89.620: Venous Access-Central Line Maintenance
+    89.640: Venous Access-Swan Ganz Maintenance
     89.700: Assessment-Adult
-    990: Capnography (CO2 Measurement)
-    991: Cardiac Pacing-Transvenous
-    992: Chest Decompression
-    993: Cardioversion
-    994: Chest Tube Placement
-    995: Childbirth
-    996: Contact Medical Control
-    997: Cardiac Pacing-External
-    998: CPR-AutoPulse Device
+    89.701: Assessment-Pediatric
+    89.702: Pain Measurement
+    89.703: Temperature Measurement
+    89.704: Thrombolytic Screen
+    89.820: 12 Lead ECG-Obtain
+    89.821: 12 Lead ECG-Transmitted
+    93.055: Wound Care-Taser Barb Removal
+    93.056: Wound Care-Tourniquet
+    93.057: Wound Care-General
+    93.058: Wound Care-Irrigation
+    93.059: Wound Care-Hemostatic Agent
+    93.350: Patient Warming (Hot Pack, etc.)
+    93.450: Splinting-Traction
+    93.540: Splinting-Basic
+    93.580: MAST
+    93.591: Spinal Immobilization
+    93.900: Airway-CPAP
+    93.910: Airway-Respirator Operation (BLS)
+    93.930: Airway-Bagged (via tube)
+    93.931: Airway-Bagged (via BVMask)
+    93.940: Airway-Nebulizer Treatment
+    96.010: Airway-Nasal
+    96.020: Airway-Oral
+    96.030: Airway-EOA/EGTA
+    96.040: Airway-Orotracheal Intubation
+    96.041: Airway-Nasotracheal Intubation
+    96.042: Airway-Rapid Sequence Intubation
+    96.051: Airway-Combitube Blind Insertion Airway Device
+    96.052: Airway-Laryngeal Mask Blind Insertion Airway Device
+    96.053: Airway-King LT Blind Insertion Airway Device
+    96.070: Gastric Tube Insertion-Inserted Nasally
+    96.071: Gastric Tube Insertion-Inserted Orally
+    96.700: Airway-Ventilator Operation
+    96.701: Airway-Ventilator with PEEP
+    96.702: Airway-BiPAP
+    96.703: Airway-Impedance Threshold Device
+    96.790: Airway-PEEP
+    96.991: Airway-Intubation Confirm Colorimetric ETCO2
+    96.992: Airway-Intubation Confirm Esophageal Bulb
+    96.993: Airway-Extubation
+    97.230: Airway-Change Tracheostomy Tube
+    97.231: Airway-Intubation of Existing Tracheostomy Stoma
+    98.130: Airway-Cleared, Opened, or Heimlich
+    98.131: Airway-Foreign Body Removal
+    98.150: Airway-Suctioning
+    99.290: Injections-SQ/IM
+    99.600: CPR-Start Compressions and Ventilations
+    99.601: CPR by Other External Automated Device
+    99.602: CPR-AutoPulse Device
+    99.603: CPR-Mechanical Thumper Type Device
+    99.604: CPR-Precordial Thump Only
+    99.611: CPR-Start Compressions only without Ventilation
+    99.612: CPR-Start Rescue Breathing without Compressions
+    99.615: CPR-Stop
+    99.621: Defibrillation-Automated (AED)
+    99.622: Defibrillation-Manual
+    99.623: Cardioversion
+    99.624: Cardiac Pacing-External
+    99.625: Defibrillation-Placement for Monitoring/Analysis
+    99.626: Cardiac Pacing-Transvenous
+    99.640: Vagal Maneuver-Carotid Massage
+    99.641: Vagal Maneuver-Valsalva or Other Vagal Maneuver (Not Carotid Massage)
+    99.810: Patient Cooling (Cold Pack, etc.)
+    99.811: Patient Cooling-Post Resuscitation
+    99.841: Restraints-Pharmacological
+    99.842: Restraints-Physical
+    100.100: Rescue
+    100.200: Extrication
+    100.300: Patient Loaded
+    100.301: Patient Loaded-Helicopter Hot-Load
+    100.302: Patient Off-Loaded
+    100.303: Patient Off-Loaded Helicopter Hot Off-Load
+    101.101: Specialty Center Activation-Adult Trauma
+    101.102: Specialty Center Activation-Pediatric Trauma
+    101.103: Specialty Center Activation-Cardiac Arrest
+    101.104: Specialty Center Activation-STEMI
+    101.105: Specialty Center Activation-Stroke
+    101.201: Activation-Advanced Hazmat Specialty Service/Response Team
+    101.202: Activation-Fire Rehabilitation Specialty Service/Response Team
+    101.203: Activation-Other Specialty Service/Response Team
+    101.204: Activation-Rescue Specialty Service/Response Team
+    101.205: Activation-Social Services Notification/Referral
+    101.206: Activation-Tactical or SWAT Specialty Service/Response Team
+    101.500: Contact Medical Control
   is_multi_entry: 1
-  name: PROCEDURES
+  name: Procedures
   node: D04_04
 D04_05:
   allow_null: 0
@@ -5574,6 +5591,7 @@ E19_03:
     -5: Not Available
   is_multi_entry: 1
   name: PROCEDURE
+  lookup: D04_04
   node: E19_03
 E19_04:
   allow_null: 1

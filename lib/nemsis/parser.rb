@@ -440,11 +440,14 @@ module Nemsis
         raise ArgumentError.new("Incorrect Method Call; key = '#{key}', should be: lookup(element_name_or_spec_hash, key_for_lookup)")
       end
       obj = nil
-      unless key.to_i.to_s == key.to_s # key must be numeric
+      # key must be numeric or a CPT code
+      key = Nemsis::Parser.validate_key!(key)
+      unless key
         return obj
       end
 
       element_spec = (element_name_or_spec.is_a?(Hash) ? element_name_or_spec : get_spec(element_name_or_spec))
+      #puts "Lookup #{key} in #{element_spec['field_values']}"
 
       # Blank out "Not Recorded" raw_values
       if filter_negative_fields
@@ -459,7 +462,6 @@ module Nemsis
         # Let them be!
       end
 
-      key          = key.to_i
       mapped_value = element_spec['field_values'][key]
 
       case mapped_value
@@ -472,6 +474,19 @@ module Nemsis
       end
 
       obj
+    end
+
+    # Keys are typically integers, however, they can also be codes like 89.700
+    # Some day, we could possibly even add string keys ;-)
+    # return a valid key, otherwise nil
+    def self.validate_key!(key)
+      if key.to_i.to_s == key.to_s
+        return key.to_i
+      elsif (key =~ /\d{1,3}.\d{1,}/) == 0
+        return key.to_f
+      else
+        return nil
+      end
     end
 
 

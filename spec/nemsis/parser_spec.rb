@@ -109,6 +109,7 @@ E_MULTIPLE:
     500002: First
     500003: Second choice
     500004: Third choice
+    89.700: Assessment-Adult
   is_multi_entry: 1
   name: Multiple Choice
   node: E_MULTIPLE
@@ -148,6 +149,21 @@ E_LOOKUP:
   lookup: E_MULTIPLE
   node: E_LOOKUP
 
+E_TREATMENT:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 1
+  name: Treatment(s)
+  lookup: E_MULTIPLE
+  node: E_TREATMENT
+
 YML
     }
     let(:p) {
@@ -174,7 +190,10 @@ YML
       <E_YES_NO>0</E_YES_NO>
       <E_MULTIPLE>500002</E_MULTIPLE>
       <E_MULTIPLE>500004</E_MULTIPLE>
+      <E_MULTIPLE>Assessment-Adult</E_MULTIPLE>
       <E_LOOKUP>500003</E_LOOKUP>
+      <E_TREATMENT>500002</E_TREATMENT>
+      <E_TREATMENT>89.700</E_TREATMENT>
     </Record>
   </Header>
 </EMSDataSet>
@@ -190,7 +209,7 @@ XML
       it('should handle Time')      { p.E_TIME.should      == "04:29" }
       it('should handle Single')    { p.E_SINGLE.should    == "Days" }
       it('should handle Yes/No')    { p.E_YES_NO.should    == "No" }
-      it('should handle Multiple')  { p.E_MULTIPLE.should  == "First, Third choice" }
+      it('should handle Multiple')  { p.E_MULTIPLE.should  == "First, Third choice, Assessment-Adult" }
     end
     describe 'method missing' do
       it('should treat method name as element name') { p.E_STRING.should == p.parse_element('E_STRING') }
@@ -233,6 +252,13 @@ XML
       end
       it 'should lookup an index in specific element' do
         p.lookup('E_MULTIPLE', '500003').should == "Second choice"
+      end
+      it 'should lookup CPT codes from D04_04' do
+        p.lookup('E_MULTIPLE', '89.700').should == "Assessment-Adult"
+      end
+      it 'should not lookup CPT codes if it is an invalid key' do
+        p.E_MULTIPLE.should include("Assessment-Adult")
+        #p.lookup('E_MULTIPLE', 'Assessment-Adult').should == "Assessment-Adult"
       end
     end
 
@@ -1545,8 +1571,16 @@ XML
 
   end
 
-  describe 'procedure code lookups' do
-    it 'should lookup CPT codes from D04_04'
+  describe 'validate_key!' do
+    it 'should accept normal integers' do
+      Nemsis::Parser.validate_key!("50003").should == 50003
+    end
+    it 'should accept CPT codes' do
+      Nemsis::Parser.validate_key!("89.700").should == 89.7
+    end
+    it 'should not accept strings' do
+      Nemsis::Parser.validate_key!("Hot").should be_nil
+    end
   end
 
 
