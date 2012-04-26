@@ -196,7 +196,9 @@
 <% unless @parser.E13_01.empty? %>
 <%= title = "Narrative"
     start_table '' %>
-  <%= row 'E13_01' %>
+  <%= start_row %>
+    <%= labeled_cell_medium "Narrative", @parser.E13_01.to_br %>
+  </tr>
 </table>
 <br>
 <% end %>

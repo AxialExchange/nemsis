@@ -56,4 +56,26 @@ class Main
 
 end
 
+class String
+  def to_p
+    text = self.split(/\n/)
+    paragraphs = text.map {|paragraph| "<p>#{paragraph.strip}</p>" if paragraph.strip}
+    begin
+      return paragraphs.join
+    rescue
+      return self
+    end
+  end
+
+  def to_br
+    text = self.split(/\n/)
+    paragraphs = text.map {|paragraph| paragraph.strip}
+    begin
+      return paragraphs.join("<br>")
+    rescue
+      return self
+    end
+  end
+end
+
 Main.run
