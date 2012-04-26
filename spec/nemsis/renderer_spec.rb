@@ -225,6 +225,18 @@ XML
   context 'flow chart' do
     let(:spec_yaml) {
       spec_yaml = <<YML
+D04_04:
+  allow_null: 0
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    1.181: CNS Catheter-Epidural Maintenance
+    89.700: Assessment-Adult
+    101.500: Contact Medical Control
+  is_multi_entry: 1
+  name: Procedures
+  node: D04_04
+
 E18_01:
   allow_null: 1
   data_entry_method: ~
@@ -452,6 +464,7 @@ E19_03:
     -5: Not Available
   is_multi_entry: 1
   name: PROCEDURE
+  lookup: D04_04
   node: E19_03
 E19_04:
   allow_null: 1
@@ -760,8 +773,8 @@ XML
     end
 
     it 'should have the CPT Code 89.7 -- soon we will get text instead (4/17/2012 telecon w/ ESO)' do
-      fancy_html.should =~ /89.7/
-      fancy_html.should_not =~ /Assessment-Adult/
+      fancy_html.should_not =~ /89.7/
+      fancy_html.should =~ /Assessment-Adult/
     end
   end
 
