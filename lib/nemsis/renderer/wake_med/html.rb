@@ -478,4 +478,16 @@ class String
       self || super
     end
   end
+
+  def to_p
+    text = self.split(/\n/)
+    paragraphs = text.map {|paragraph| "<p>#{paragraph.strip}</p>" if paragraph.strip}
+    paragraphs.join
+  end
+
+  def to_br
+    text = self.split(/\n/)
+    paragraphs = text.map {|paragraph| paragraph.strip}
+    paragraphs.join("<br>")
+  end
 end
