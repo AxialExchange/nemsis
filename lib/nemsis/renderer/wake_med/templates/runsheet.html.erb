@@ -148,7 +148,6 @@
     <%= label "Description" %>
     <%= label "Provider" %>
   </tr>
-  <%= row 'E19_03' %>
 
   <% @parser.parse_clusters('E18', 'E19').sort_by { |c| Time.parse(c.sub_element('01')) rescue Time.now }.each do |cluster| %>
       <%= start_row %>
@@ -160,7 +159,7 @@
                 <%= concat_list [(cluster.concat 'E18_05', 'E18_06'), cluster.E18_07, cluster.E18_08] %>
             <% elsif cluster.root_element_name == 'E19' %>
             <!-- This should eventually provide text not CPT codes (Richard, 4/17/2012 telecon) -->
-                <%= "x#{cluster.E19_03}" %>
+                <%= "#{cluster.E19_03}" %>
             <% end %>
           </p>
         </td>
