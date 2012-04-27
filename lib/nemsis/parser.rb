@@ -480,6 +480,7 @@ module Nemsis
     # Some day, we could possibly even add string keys ;-)
     # return a valid key, otherwise nil
     def self.validate_key!(key)
+      return nil if key.nil? or key.empty?
       if key.to_i.to_s == key.to_s
         return key.to_i
       elsif (key =~ /\d{1,3}.\d{1,}/) == 0
@@ -489,6 +490,34 @@ module Nemsis
       end
     end
 
+    ###
+    # Use the values in E04 to lookup the provider info
+    #   E04_01 - ID
+    #   E04_02 - Role
+    #   E04_03 - Level
+    #   E04_04 - Last Name
+    #   E04_05 - First Name
+    def get_provider_name(provider_id)
+      begin
+        value = send(provider_id)
+        puts "value = #{value}"
+        provider_id = value unless (value && value.empty?)
+      rescue => err
+        puts err
+      end
+
+      #v2 = parse(get_spec(provider_id.to_sym))
+      #puts "v2 = #{v2}"
+
+      name = provider_id
+      providers = get_children('E04')
+      provider = providers.select{|p| p['E04_01'] == provider_id}.first
+      puts "provider = '#{provider}'"
+      unless provider.nil? || provider.empty?
+        name = "#{(provider['E04_05']).capitalize} #{(provider['E04_04']).capitalize}"
+      end
+      name
+    end
 
     private
 

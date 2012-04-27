@@ -139,6 +139,16 @@
 <br>
 <% end %>
 
+<% if @parser.has_content('E18') %>
+    <%= title = "Flow Chart"
+        start_table title, 4 %>
+    <%= heading_row 'E18_01', 'E18_03', 'Description', 'E18_09' %>
+    <%= data_row 'E18_01', 'E18_03', "concat('E18_05', 'E18_06')", "get_provider_name('E18_09')" %>
+</tbody>
+</table>
+<br>
+<% end %>
+
 <% if @parser.has_content('E18', 'E19') %>
     <%= title = "Flow Chart"
     start_table title, 4 %>
@@ -163,7 +173,7 @@
             <% end %>
           </p>
         </td>
-        <td><%= cluster.E19_09 %></td>
+        <td><%= @parser.get_provider_name(cluster.E19_09)  %></td>
       </tr>
   <% end %>
 </tbody>

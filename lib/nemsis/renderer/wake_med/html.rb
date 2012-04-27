@@ -163,6 +163,54 @@ STYLE
           end
         end
 
+        ###
+        # Create a heading row using the field's own names, or the passed-in text
+        def heading_row(*fields)
+          raise ArgumentError.new("you must pass fields into row() method!") if fields.nil?
+          colspan = 0
+          colspan = fields.last if fields.last.is_a?(Fixnum)
+          text = start_row
+          num_columns = fields.size rescue 0
+          fields.each do |field|
+            next if field.is_a?(Fixnum)
+            #puts "Field = #{field}"
+            if field.empty?
+              text += label(" ")
+            else
+              element = @parser.get(field)
+              name = element[:name] || field
+              text    += label(name, colspan)
+            end
+          end
+          text += end_row
+        end
+
+        ###
+        # Present only the data
+        def data_row(*fields)
+          raise ArgumentError.new("you must pass fields into row() method!") if fields.nil?
+          colspan = 0
+          colspan = fields.last if fields.last.is_a?(Fixnum)
+          text = start_row
+          num_columns = fields.size rescue 0
+          fields.each do |field|
+            next if field.is_a?(Fixnum)
+            #puts "Field = #{field}"
+            if field.empty?
+              text += cell(" ")
+            elsif field.is_a?(Hash)
+              label = field.keys[0]
+              value = field[label]
+              data = (value.empty? ? '' : @parser.send(value))
+              text += cell(data)
+            else
+              data = @parser.send(field) || field
+              text += cell(data)
+            end
+          end
+          text += '</tr>'
+        end
+
         # Create a grid of Label/Value pairs using the name from the YML file as the label
         # fields can be empty, an element name, or a hash {label => field}
         # Optionally, the last value can be a colspan
@@ -191,7 +239,8 @@ STYLE
               end
             else
               element = @parser.get(field)
-              text    += labeled_cell(element[:name], @parser.send(field), colspan)
+              name = element[:name] || field
+              text    += labeled_cell(name, @parser.send(field), colspan)
             end
           end
           text += '</tr>'
@@ -223,6 +272,26 @@ STYLE
           else
             text = "<tr>"
           end
+        end
+
+        def end_row
+          "</tr>"
+        end
+
+        def start_heading(options="")
+          if @fancy_html
+            text = "<th#{(options.empty?) ? '' : " #{options}"}>"
+          else
+            text = "<th>"
+          end
+        end
+
+        def end_heading
+          "</th>"
+        end
+
+        def br
+          "<br>"
         end
 
         def label(label, colspan=0)
@@ -441,13 +510,6 @@ STYLE
               labeled_cell("Assessment Time", assessment.parse_time('E16_03', true), 3) +
               end_row 
           html
-        end
-
-        def br
-          "<br>"
-        end
-        def end_row
-          "</tr>"
         end
 
         protected
