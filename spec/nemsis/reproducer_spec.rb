@@ -79,6 +79,14 @@ describe Nemsis::Reproducer do
       end
     end
 
+    describe '#dispatch_time=' do
+      it 'sets dispatch_time_str' do
+        time_str = '2012-04-28T04:05:00Z'
+        reproducer.dispatch_time = Time.parse(time_str)
+        reproducer.dispatch_time_str.should == time_str
+      end
+    end
+
     describe '#transferred_to_name=' do
       it 'sets transferred_to_name' do
         reproducer.transferred_to_name = 'WakeMed Main'
