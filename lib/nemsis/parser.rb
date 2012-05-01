@@ -229,8 +229,8 @@ module Nemsis
         values             = parse(value_element_spec)
 
         names.size.times { |i| result[names[i]] = values[i] } unless names.nil? or values.nil?
-      rescue => err
-        warn "Warn: in parse_pair: #{err}"
+      rescue ArgumentError => err
+        # warn "Warn: in parse_pair: #{err}"
       end
 
       result
