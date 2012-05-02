@@ -5563,7 +5563,7 @@ E18_11:
 E19_01:
   allow_null: 1
   data_entry_method: ~
-  data_type: date/time
+  data_type: time
   is_multi_entry: 1
   name: DATE/TIME PROCEDURE PERFORMED SUCCESSFULLY
   node: E19_01

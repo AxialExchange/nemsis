@@ -256,7 +256,7 @@ module Nemsis
     def parse_cluster(element)
       xpath    = "//#{element}"
       nodes    = xml_doc.xpath(xpath)
-      #puts "cluster count: #{nodes.count}" if element == 'E04'
+      puts "cluster count: #{nodes.count}" if element == 'E19_01_0'
 
       clusters = []
       begin
@@ -272,11 +272,11 @@ module Nemsis
     end
 
     ###
-    # ???
+    # This gets all of the data for one or more element "roots"
     def parse_clusters(*cluster_elements)
       results = []
       cluster_elements.each do |element|
-        results = results + parse_cluster(element)
+        results += parse_cluster(element)
       end
 
       results
@@ -414,7 +414,7 @@ module Nemsis
       elsif respond_to?((/(\w+)/.match(method))[0])
         instance_eval(method) rescue ''
       # for testing:
-      elsif %w(E_STRING E_NUMBER E_DATETIME E_DATE E_TIME E_YES_NO E_SINGLE E_MULTIPLE E_ALLOW_NEGATIVE E_LOOKUP).include?method
+      elsif %w(E_STRING E_NUMBER E_DATETIME E_DATE E_TIME E_YES_NO E_SINGLE E_MULTIPLE E_ALLOW_NEGATIVE E_LOOKUP).include?(method)
         Array(parse(get_spec(method))).join(', ') rescue ''
       else
         super
@@ -497,22 +497,19 @@ module Nemsis
     #   E04_03 - Level
     #   E04_04 - Last Name
     #   E04_05 - First Name
+    # provider ID can also be an element that holds the ID
     def get_provider_name(provider_id)
       begin
         value = send(provider_id)
-        puts "value = #{value}"
         provider_id = value unless (value && value.empty?)
       rescue => err
-        puts err
+        #puts err
       end
-
-      #v2 = parse(get_spec(provider_id.to_sym))
-      #puts "v2 = #{v2}"
 
       name = provider_id
       providers = get_children('E04')
       provider = providers.select{|p| p['E04_01'] == provider_id}.first
-      puts "provider = '#{provider}'"
+
       unless provider.nil? || provider.empty?
         name = "#{(provider['E04_05']).capitalize} #{(provider['E04_04']).capitalize}"
       end

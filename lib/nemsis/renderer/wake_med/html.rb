@@ -186,8 +186,23 @@ STYLE
         end
 
         ###
-        # Present only the data
-        def data_row(*fields)
+        # Present the values provided, no look-ups
+        def row_from_values(*fields)
+          raise ArgumentError.new("you must pass fields into row() method!") if fields.nil?
+          colspan = 0
+          colspan = fields.last if fields.last.is_a?(Fixnum)
+          text = start_row
+          num_columns = fields.size rescue 0
+          fields.each do |field|
+            next if field.is_a?(Fixnum)
+            text += cell(field)
+          end
+          text += '</tr>'
+        end
+
+        ###
+        # Present the data returned by looking up the passed-in elements
+        def row_from_fields(*fields)
           raise ArgumentError.new("you must pass fields into row() method!") if fields.nil?
           colspan = 0
           colspan = fields.last if fields.last.is_a?(Fixnum)

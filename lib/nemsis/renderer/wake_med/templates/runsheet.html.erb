@@ -139,47 +139,23 @@
 <br>
 <% end %>
 
-<% if @parser.has_content('E18') %>
+<% if @parser.has_content('E18') || @parser.has_content('E19') %>
     <%= title = "Flow Chart"
         start_table title, 4 %>
     <%= heading_row 'E18_01', 'E18_03', 'Description', 'E18_09' %>
-    <%= data_row 'E18_01', 'E18_03', "concat('E18_05', 'E18_06')", "get_provider_name('E18_09')" %>
-</tbody>
-</table>
+    <%= row_from_fields 'E18_01', 'E18_03', "concat('E18_05', 'E18_06', 'E18_04', 'E18_07')", "get_provider_name('E18_09')" %>
+    <% flow_events = @parser.parse_cluster('E19_01_0').sort_by { |c| Time.parse(c.sub_element('01')) rescue Time.now }
+       flow_events.each do |e19|%>
+      <%= row_from_values( e19.E19_01, e19.E19_03,
+                   [e19.E19_04, e19.E19_12, 'Pt Response: ', e19.E19_08, e19.E19_06, e19.E19_07, e19.E19_13].join(' '),
+                   @parser.get_provider_name(e19.E19_09)) %>
+    <% end %>
+
+    </tbody>
+    </table>
 <br>
 <% end %>
 
-<% if @parser.has_content('E18', 'E19') %>
-    <%= title = "Flow Chart"
-    start_table title, 4 %>
-  <%= start_row %>
-    <%= label "Time" %>
-    <%= label "Treatment" %>
-    <%= label "Description" %>
-    <%= label "Provider" %>
-  </tr>
-
-  <% @parser.parse_clusters('E18', 'E19').sort_by { |c| Time.parse(c.sub_element('01')) rescue Time.now }.each do |cluster| %>
-      <%= start_row %>
-        <td><%= Time.parse(cluster.sub_element('01')).strftime('%H:%M') rescue nil %></td>
-        <%= cell (cluster.sub_element('03')) %>
-        <td>
-          <p>
-            <% if cluster.root_element_name == 'E18' %>
-                <%= concat_list [(cluster.concat 'E18_05', 'E18_06'), cluster.E18_07, cluster.E18_08] %>
-            <% elsif cluster.root_element_name == 'E19' %>
-            <!-- This should eventually provide text not CPT codes (Richard, 4/17/2012 telecon) -->
-                <%= "#{cluster.E19_03}" %>
-            <% end %>
-          </p>
-        </td>
-        <td><%= @parser.get_provider_name(cluster.E19_09)  %></td>
-      </tr>
-  <% end %>
-</tbody>
-</table>
-<br>
-<% end %>
 
 <% assessments = @parser.parse_assessments
    unless assessments.empty?
