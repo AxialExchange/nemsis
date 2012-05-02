@@ -229,8 +229,8 @@ module Nemsis
         values             = parse(value_element_spec)
 
         names.size.times { |i| result[names[i]] = values[i] } unless names.nil? or values.nil?
-      rescue => err
-        warn "Warn: in parse_pair: #{err}"
+      rescue ArgumentError => err
+        # warn "Warn: in parse_pair: #{err}"
       end
 
       result
@@ -256,7 +256,7 @@ module Nemsis
     def parse_cluster(element)
       xpath    = "//#{element}"
       nodes    = xml_doc.xpath(xpath)
-      puts "cluster count: #{nodes.count}" if element == 'E19_01_0'
+      #puts "cluster count: #{nodes.count}" if element == 'E19_01_0'
 
       clusters = []
       begin
@@ -321,9 +321,23 @@ module Nemsis
     ###
     # Return the concatenated results of supplied elements
     def concat(*elements)
+      values = []
+
       elements.map do |elem|
-        parse_element(elem)
-      end.compact.join(' ')
+        value = parse_element(elem)
+        if !value.nil?
+          value.strip! 
+          values << value unless value.empty?
+        end
+      end
+
+      values.compact!
+      values.uniq!
+
+      valid_values = values.reject {|v| v =~ /^\s*Not\s*(Done|Assessed)\s*$/i}
+      values = valid_values unless valid_values.empty?
+      
+      values.join(' ')
     end
 
     ###

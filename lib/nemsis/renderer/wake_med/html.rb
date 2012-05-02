@@ -557,13 +557,13 @@ class String
   end
 
   def to_p
-    text = self.split(/\n/)
+    text = self.split(/\n\n/)
     paragraphs = text.map {|paragraph| "<p>#{paragraph.strip}</p>" if paragraph.strip}
     paragraphs.join
   end
 
   def to_br
-    text = self.split(/\n/)
+    text = self.split(/\n\n/)
     paragraphs = text.map {|paragraph| paragraph.strip}
     paragraphs.join("<br>")
   end
