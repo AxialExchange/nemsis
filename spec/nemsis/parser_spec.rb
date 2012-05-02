@@ -1429,6 +1429,30 @@ XML
         <E04_04>ADAMS</E04_04>
         <E04_05>CHRISTOPHER</E04_05>
       </E04>
+      <E04>
+        <E04_01>P021554</E04_01>
+        <E04_02>585</E04_02>
+        <E04_03>6110</E04_03>
+        <E04_04>LIPPERT</E04_04>
+        <E04_05>REBECCA</E04_05>
+      </E04>
+      <E04>
+        <E04_01>P079008</E04_01>
+        <E04_02>580</E04_02>
+        <E04_03>6090</E04_03>
+        <E04_04>BOLDEN</E04_04>
+        <E04_05>CHRISTOPHER</E04_05>
+      </E04>
+      <E04>
+        <E04_01>1234</E04_01>
+        <E04_02>585</E04_02>
+        <E04_03>-20</E04_03>
+        <E04_04>DANE</E04_04>
+        <E04_05>NICOLE</E04_05>
+      </E04>
+      <E18>
+        <E18_09>P021554</E18_09>
+      </E18>
     </Record>
   </Header>
 </EMSDataSet>
@@ -1440,7 +1464,7 @@ XML
 
       it "should return an array of records" do
         results.is_a?(Array).should be_true
-        results.size.should == 2
+        results.size.should == 5
       end
 
       it "should have each spec element available" do
@@ -1455,6 +1479,21 @@ XML
         results[1]['E04_03'].should == "EMT-Paramedic"
         results[1]['E04_04'].should == "ADAMS"
         results[1]['E04_05'].should == "CHRISTOPHER"
+      end
+
+      context 'provider name lookup' do
+        it 'should return provider name for the given ID' do
+          p2.get_provider_name('P079008').should == 'Christopher Bolden'
+        end
+        it 'should return provider name for the given numeric-only ID' do
+          p2.get_provider_name('1234').should == 'Nicole Dane'
+        end
+        it 'should return the ID as the provider name for an unknown ID' do
+          p2.get_provider_name('X079008').should == 'X079008'
+        end
+        it 'should return provider name for the given Data Element' do
+          p2.get_provider_name('E18_09').should == 'Rebecca Lippert'
+        end
       end
 
       it 'should return arrays of Nemsis::Parser for a element name' do

@@ -5367,9 +5367,10 @@ E17_01:
 E18_01:
   allow_null: 1
   data_entry_method: ~
-  data_type: date/time
+  data_type: time
   is_multi_entry: 1
-  name: DATE/TIME MEDICATION ADMINISTERED
+  orig_name: DATE/TIME MEDICATION ADMINISTERED
+  name: Time
   node: E18_01
 E18_02:
   allow_null: 1
@@ -5397,7 +5398,8 @@ E18_03:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 1
-  name: MEDICATION GIVEN
+  orig_name: MEDICATION GIVEN
+  name: Treatment
   node: E18_03
 E18_04:
   allow_null: 1
@@ -5525,7 +5527,8 @@ E18_09:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 1
-  name: MEDICATION CREW MEMBER ID
+  name: Provider
+  orig_name: MEDICATION CREW MEMBER ID
   node: E18_09
 E18_10:
   allow_null: 1
@@ -5560,7 +5563,7 @@ E18_11:
 E19_01:
   allow_null: 1
   data_entry_method: ~
-  data_type: date/time
+  data_type: time
   is_multi_entry: 1
   name: DATE/TIME PROCEDURE PERFORMED SUCCESSFULLY
   node: E19_01
