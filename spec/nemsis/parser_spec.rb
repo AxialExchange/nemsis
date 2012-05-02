@@ -1474,14 +1474,55 @@ XML
     end
 
     describe '#parse_assessments' do
+      let(:p2) {
+        xml_str = <<XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
+  <Header>
+    <Record>
+      <E15>
+        <E15_01>3340</E15_01>
+        <E15_05>3340</E15_05>
+        <E15_11>-20</E15_11>
+        <E15_13>3345</E15_13>
+      </E15>
+      <E16>
+        <E16_01>1</E16_01>
+        <E16_00_0>
+          <E16_03>2012-03-08T17:48:00.0Z</E16_03>
+          <E16_04>3425</E16_04>
+          <E16_05>3475</E16_05>
+        </E16_00_0>
+        <E16_00_0>
+          <E16_03>2012-03-08T18:50:00.0Z</E16_03>
+          <E16_04>3425</E16_04>
+          <E16_05>3475</E16_05>
+          <E16_06>3505</E16_06>
+          <E16_07>3535</E16_07>
+          <E16_08>3600</E16_08>
+        </E16_00_0>
+      </E16>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+        Nemsis::Parser.new(xml_str)
+      }
+
       it 'should return assessments in chronological order' do
-        results = p.parse_assessments
+        results = p2.parse_assessments
         results.is_a?(Array).should be_true
 
         initial_assessment = results.first
         initial_assessment.is_a?(Nemsis::Parser).should be_true
         initial_assessment.xml_doc.root.name.should == 'E15_E16'
-        initial_assessment.E16_01.should == '1'
+        initial_assessment.E16_03.should == '2012-03-08 12:48'
+
+        ongoing_assessments = results[1..-1]
+        ongoing_assessments.first.should be_true
+        ongoing_assessments.first.is_a?(Nemsis::Parser).should be_true
+        ongoing_assessments.first.xml_doc.root.name.should == 'E16_00_0'
       end
     end
 
