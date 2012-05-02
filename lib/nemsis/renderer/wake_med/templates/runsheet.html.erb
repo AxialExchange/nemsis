@@ -167,8 +167,9 @@
 <% end %>
 
 
-<% assessments = @parser.parse_assessments
-   unless assessments.empty?
+<% if @parser.has_content('E16') && @parser.has_content('E16_00_0')
+     assessments = @parser.parse_assessments
+     unless assessments.empty?
 %>
     <%= title = "Initial Assessment (1 of #{assessments.size})"
         start_table title, 4 %>
@@ -186,6 +187,7 @@
       </tbody>
     </table>
     <br>
+  <% end %>
 <% end %>
 
 <% unless @parser.E13_01.empty? %>

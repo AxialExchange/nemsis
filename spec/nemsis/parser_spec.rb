@@ -1565,6 +1565,107 @@ XML
       end
     end
 
+    describe '#parse_assessments with spotty assessment data' do
+      context 'missing E15 details' do
+        let(:p2) {
+          xml_str = <<XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
+  <Header>
+    <Record>
+      <E16>
+        <E16_01>1</E16_01>
+        <E16_00_0>
+          <E16_03>2012-03-08T17:48:00.0Z</E16_03>
+          <E16_04>3425</E16_04>
+          <E16_05>3475</E16_05>
+        </E16_00_0>
+        <E16_00_0>
+          <E16_03>2012-03-08T18:50:00.0Z</E16_03>
+          <E16_04>3425</E16_04>
+          <E16_05>3475</E16_05>
+          <E16_06>3505</E16_06>
+          <E16_07>3535</E16_07>
+          <E16_08>3600</E16_08>
+        </E16_00_0>
+      </E16>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+          Nemsis::Parser.new(xml_str)
+        }
+
+        it 'should be well-behaved' do
+          expect {
+            p2.parse_assessments
+          }.to_not raise_error
+
+          results = p2.parse_assessments
+          results.is_a?(Array).should be_true
+        end
+      end
+            context 'missing E16_00_0 details' do
+        let(:p2) {
+          xml_str = <<XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
+  <Header>
+    <Record>
+      <E15>
+        <E15_01>3340</E15_01>
+        <E15_05>3340</E15_05>
+        <E15_11>-20</E15_11>
+        <E15_13>3345</E15_13>
+      </E15>
+      <E16>
+        <E16_01>1</E16_01>
+      </E16>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+          Nemsis::Parser.new(xml_str)
+        }
+
+        it 'should be well-behaved' do
+          expect {
+            p2.parse_assessments
+          }.to_not raise_error
+
+          results = p2.parse_assessments
+          results.is_a?(Array).should be_true
+        end
+      end
+
+      context 'missing E15 & E16 data' do
+        let(:p2) {
+          xml_str = <<XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
+  <Header>
+    <Record>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+          Nemsis::Parser.new(xml_str)
+        }
+
+        it 'should be well-behaved' do
+          expect {
+            p2.parse_assessments
+          }.to_not raise_error
+
+          results = p2.parse_assessments
+          results.is_a?(Array).should be_true
+        end
+      end
+    end
+
     describe '#concat' do
       let(:p) {
         xml_str = <<XML

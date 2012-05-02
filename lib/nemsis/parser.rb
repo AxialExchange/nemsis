@@ -291,17 +291,17 @@ module Nemsis
       # part of the initial assessment, so it will need to be combined with the
       # earliest E16.
       e15_clusters           = parse_cluster('E15')
-      # TODO I (jon)added this line, but I think it is suspect
-      return [] if e15_clusters.nil? or e15_clusters.empty?
-      e15_initial_assessment = e15_clusters.shift
+      e15_initial_assessment = e15_clusters.shift if e15_clusters
 
       e16_clusters           = parse_clusters('E16_00_0')
-      e16_clusters           = e16_clusters.sort_by { |c| Time.parse(c.sub_element('03')) rescue Time.now }
-      e16_initial_assessment = e16_clusters.shift
+      if e16_clusters
+        e16_clusters           = e16_clusters.sort_by { |c| Time.parse(c.sub_element('03')) rescue Time.now }
+        e16_initial_assessment = e16_clusters.shift
+      end
 
       initial_assessment_node = Nokogiri::XML::Node.new("E15_E16", xml_doc)
-      initial_assessment_node.add_child e15_initial_assessment.xml_doc.root
-      initial_assessment_node.add_child e16_initial_assessment.xml_doc.root
+      initial_assessment_node.add_child e15_initial_assessment.xml_doc.root if e15_initial_assessment
+      initial_assessment_node.add_child e16_initial_assessment.xml_doc.root if e16_initial_assessment
 
       initial_assessment = Nemsis::Parser.new(initial_assessment_node.to_s)
 
