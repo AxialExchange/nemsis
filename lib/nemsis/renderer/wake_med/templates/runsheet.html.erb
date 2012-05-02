@@ -141,11 +141,18 @@
 
 <% if @parser.has_content('E18') || @parser.has_content('E19') %>
     <% rows = [] %>
-    <% rows << {:time => @parser.E18_01, :html => row_from_fields('E18_01', 'E18_03', "concat('E18_05', 'E18_06', 'E18_04', 'E18_07')", "get_provider_name('E18_09')")} %>
+      <% rows << {:time => @parser.E18_01, :html => row_from_values(@parser.E18_01, @parser.E18_03,
+                                                                [@parser.E18_05, @parser.E18_06, "#{(@parser.E18_05 + @parser.E18_06).size > 0 ? '; ' :''}",
+                                                                 @parser.E18_04, "#{@parser.E18_07.size > 0 ? "; Pt Response: #{@parser.E18_07}" :''}",
+                                                                 "#{@parser.E18_08 =~ /none/i ? '' : "; Complications: #{@parser.E18_08}"}"].join(''),
+                                                                @parser.get_provider_name(@parser.E18_09))} %>
     <% flow_events = @parser.parse_cluster('E19_01_0')
        flow_events.each do |e19| %>
       <% rows << {:time => e19.E19_01, :html => row_from_values(e19.E19_01, e19.E19_03,
-                                                                [e19.E19_04, e19.E19_12, 'Pt Response: ', e19.E19_08, e19.E19_06, e19.E19_07, e19.E19_13].join(' '),
+                                                                [e19.E19_04, e19.E19_12, "#{(e19.E19_04 + e19.E19_12).size > 0 ? '; ':''}Pt Response: ", e19.E19_08,
+                                                                 "#{e19.E19_06 =~ /no/i ? "#{(e19.E19_04 + e19.E19_12 + e19.E19_08).size > 0 ? '; ' :''} Unsuccessful " : ''}",
+                                                                 "#{e19.E19_07 =~ /none/i ? '' : "; Complications: #{e19.E19_07}"}",
+                                                                e19.E19_13].join(''),
                                                                 @parser.get_provider_name(e19.E19_09))} %>
     <% end %>
     <%= title = "Flow Chart"
