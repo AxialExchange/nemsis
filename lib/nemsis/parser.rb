@@ -256,7 +256,7 @@ module Nemsis
     def parse_cluster(element)
       xpath    = "//#{element}"
       nodes    = xml_doc.xpath(xpath)
-      puts "cluster count: #{nodes.count}" if element == 'E19_01_0'
+      #puts "cluster count: #{nodes.count}" if element == 'E19_01_0'
 
       clusters = []
       begin
