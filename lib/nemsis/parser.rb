@@ -321,9 +321,23 @@ module Nemsis
     ###
     # Return the concatenated results of supplied elements
     def concat(*elements)
+      values = []
+
       elements.map do |elem|
-        parse_element(elem)
-      end.compact.join(' ')
+        value = parse_element(elem)
+        if !value.nil?
+          value.strip! 
+          values << value unless value.empty?
+        end
+      end
+
+      values.compact!
+      values.uniq!
+
+      valid_values = values.reject {|v| v =~ /^\s*Not\s*(Done|Assessed)\s*$/i}
+      values = valid_values unless valid_values.empty?
+      
+      values.join(' ')
     end
 
     ###
