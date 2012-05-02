@@ -255,7 +255,7 @@ module Nemsis
     # Use for repeated sections, to build your own info, one record at a time.
     def parse_cluster(element)
       xpath    = "//#{element}"
-      nodes    = xml_doc.xpath(xpath)
+      nodes    = xml_doc.xpath("//#{element}")
       #puts "cluster count: #{nodes.count}" if element == 'E19_01_0'
 
       clusters = []
@@ -264,8 +264,8 @@ module Nemsis
           cluster = Nemsis::Parser.new(node.to_s)
           clusters << cluster
         end
-      rescue => err
-        warn "Warn: parsing xpath [#{xpath}]: #{err}"
+      # rescue => err
+      #   warn "Warn: parsing xpath [#{xpath}]: #{err}"
       end
 
       clusters
@@ -387,32 +387,18 @@ module Nemsis
     # Constraint: It expects D01 or E01 format. F100 will not work.
     def has_content(*elements)
       data_exists = false
-      elements.each do |element|
-        #puts "Checking #{element}"
-        # Check for the case of a class of elements; i.e., E32
-        if element.upcase =~ /^[D|E]\d\d$/
-          nodes = xml_doc.xpath("//#{element}")
-          # Maybe I don't get it, but this seems like an arduous way to use Nokogiri -- jon
-          nodes.each do |node|
-            node.children.each do |child|
-              next unless child.is_a?(Nokogiri::XML::Element)
-              value = child.children
-              unless value.nil? or value.empty?
-                #puts "    Found: #{child.name} = #{value}"
-                data_exists = true
-                break
-              end
-            end
-          end
-        else
-          value = parse_element(element)
-          unless value.nil? or value.empty?
-            #puts "    Found: #{value}"
-            data_exists = true
-            break
-          end
+
+      i = 0
+      until data_exists || i >= elements.size do
+        xpath = "//#{elements[i]}"
+        i += 1
+
+        xml_doc.xpath(xpath).each do |node|
+          data_exists = true if node.content =~ /\w/ &&
+                                node.content !~ /^-\d{1,2}$/
         end
       end
+
       data_exists
     end
 

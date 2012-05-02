@@ -54,9 +54,19 @@
 <%= title = "Medication/Allergies/History"
     start_table title %>
   <tbody>
-    <%= row( {"Medications" => "concat('E12_14', 'E12_15', 'E12_16')"}) %>
-    <%= row( {"Allergies" => "concat('E12_08', 'E12_09')"}) %>
-    <%= row( 'E12_10') %>
+    <% medications = [] %>
+    <% if @parser.has_content('E12_14_0') %>
+      <% @parser.parse_cluster('E12_14_0').each do |e12_14| %>
+        <% medications << e12_14.concat('E12_14', 'E12_15', 'E12_16') %>
+      <% end %>
+    <% end %>
+    <tr>
+      <td class="label-medium">Medications</td>
+      <td class="value"><%= medications.join(';') %></td>
+    </tr>
+
+    <%= row({"Allergies" => "concat('E12_08', 'E12_09')"}) %>
+    <%= row('E12_10') %>
   </tbody>
 </table>
 <br>
