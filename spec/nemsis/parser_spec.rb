@@ -812,7 +812,7 @@ XML
       }
 
       it 'should return age in words with months/weeks/days' do
-        p.age_in_words.should == "3 months"
+        p.age_in_words.should == "12 weeks"
       end
     end
 
@@ -1499,6 +1499,15 @@ XML
         <E04_04>TECH SUPPORT</E04_04>
         <E04_05>ESO</E04_05>
       </E04>
+      <E15>
+        <E15_02>-10</E15_02>
+        <E15_03>3325</E15_03>
+        <E15_04>3335</E15_04>
+        <E15_05>3335</E15_05>
+      </E15>
+      <E16>
+        <E16_05>3475</E16_05>
+      </E16>
     </Record>
   </Header>
 </EMSDataSet>
@@ -1512,6 +1521,18 @@ XML
 
       it 'should return empty when there are no data' do
         p.concat('E12_08', 'E12_09').should == ""
+      end
+
+      it 'should remove "Not Assessed" if other fields contains valid value' do
+        p.concat('E16_05', 'E15_02', 'E15_03').should == 'Bleeding Controlled'
+      end
+
+      it 'should leave "Not Assessed" if it is the only value' do
+        p.concat('E16_05' ).should == 'Not Assessed'
+      end
+
+      it 'should remove duplicate values' do
+        p.concat('E16_05', 'E15_03', 'E15_04', 'E15_05').should == 'Bleeding Controlled Burn'
       end
     end
 

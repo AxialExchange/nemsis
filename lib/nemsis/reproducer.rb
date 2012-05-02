@@ -8,12 +8,13 @@ module Nemsis
       {:name => 'last_name',    :element => 'E06_01', :parent_element => 'E06_01_0'},
       {:name => 'first_name',   :element => 'E06_02', :parent_element => 'E06_01_0'},
       {:name => 'middle_name',  :element => 'E06_03', :parent_element => 'E06_01_0'},
-      {:name => 'gender_code',       :element => 'E06_11'},
+      {:name => 'gender_code',  :element => 'E06_11'},
       {:name => 'dob',          :element => 'E06_16'},
 
-      {:name => 'pcr_id',       :element => 'E01_01'},
+      {:name => 'pcr_id',             :element => 'E01_01'},
+      {:name => 'dispatch_time_str',  :element => 'E05_04'},
 
-      {:name => 'transferred_to_name',       :element => 'E20_01'},
+      {:name => 'transferred_to_name',  :element => 'E20_01'},
       {:name => 'transferred_to_code',  :element => 'E20_02'}
     ]
 
@@ -71,6 +72,10 @@ module Nemsis
                     end
 
       self.gender_code= gender_code
+    end
+
+    def dispatch_time= time
+      self.dispatch_time_str = time.utc.strftime("%Y-%m-%dT%H:%M:%SZ")
     end
 
     def transferred_to= str
