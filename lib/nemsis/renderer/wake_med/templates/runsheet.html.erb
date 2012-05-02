@@ -140,19 +140,18 @@
 <% end %>
 
 <% if @parser.has_content('E18') || @parser.has_content('E19') %>
-    <%= title = "Flow Chart"
-        start_table title, 4 %>
     <% rows = [] %>
-    <%= heading_row 'E18_01', 'E18_03', 'Description', 'E18_09' %>
     <% rows << {:time => @parser.E18_01, :html => row_from_fields('E18_01', 'E18_03', "concat('E18_05', 'E18_06', 'E18_04', 'E18_07')", "get_provider_name('E18_09')")} %>
     <% flow_events = @parser.parse_cluster('E19_01_0')
-       flow_events.each do |e19|%>
-      <% rows << {:time => e19.E19_01, :html => row_from_values( e19.E19_01, e19.E19_03,
-                   [e19.E19_04, e19.E19_12, 'Pt Response: ', e19.E19_08, e19.E19_06, e19.E19_07, e19.E19_13].join(' '),
-                   @parser.get_provider_name(e19.E19_09))} %>
+       flow_events.each do |e19| %>
+      <% rows << {:time => e19.E19_01, :html => row_from_values(e19.E19_01, e19.E19_03,
+                                                                [e19.E19_04, e19.E19_12, 'Pt Response: ', e19.E19_08, e19.E19_06, e19.E19_07, e19.E19_13].join(' '),
+                                                                @parser.get_provider_name(e19.E19_09))} %>
     <% end %>
+    <%= title = "Flow Chart"
+        start_table title, 4 %>
+    <%= heading_row 'E18_01', 'E18_03', 'Description', 'E18_09' %>
     <% rows.sort_by { |r| Time.parse(r[:time]) rescue Time.now }.each do |row| %>
-    <% puts row.inspect %>
       <%= row[:html] %>
     <% end %>
     </tbody>
