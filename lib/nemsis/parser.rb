@@ -295,7 +295,7 @@ module Nemsis
       return [] if e15_clusters.nil? or e15_clusters.empty?
       e15_initial_assessment = e15_clusters.shift
 
-      e16_clusters           = parse_clusters('E16')
+      e16_clusters           = parse_clusters('E16_00_0')
       e16_clusters           = e16_clusters.sort_by { |c| Time.parse(c.sub_element('03')) rescue Time.now }
       e16_initial_assessment = e16_clusters.shift
 
