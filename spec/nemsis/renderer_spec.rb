@@ -138,6 +138,15 @@ XML
       write_html_file("madison", "fancy", html)
     end
 
+    it 'should render may 5th' do
+      sample_xml_file = File.expand_path('../../data/runsheet_may_5th.xml', __FILE__)
+      xml_str = File.read(sample_xml_file)
+      p = Nemsis::Parser.new(xml_str)
+      r = Nemsis::Renderer::WakeMed::HTML.new(p)
+      html = r.render_fancy
+      write_html_file("may5th", "fancy", html)
+    end
+
 =begin
     it 'should render ben' do
       sample_xml_file = File.expand_path('../../data/ben_sample.xml', __FILE__)
