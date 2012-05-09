@@ -150,32 +150,72 @@
 <% end %>
 
 <% if @parser.has_content('E18') || @parser.has_content('E19') %>
-    <% rows = [] %>
-      <% rows << {:time => @parser.E18_01, :html => row_from_values(@parser.E18_01, @parser.E18_03,
-                                                                [@parser.E18_05, @parser.E18_06, "#{(@parser.E18_05 + @parser.E18_06).size > 0 ? '; ' :''}",
-                                                                 @parser.E18_04, "#{@parser.E18_07.size > 0 ? "; Pt Response: #{@parser.E18_07}" :''}",
-                                                                 "#{@parser.E18_08 =~ /none/i ? '' : "; Complications: #{@parser.E18_08}"}"].join(''),
-                                                                @parser.get_provider_name(@parser.E18_09))} %>
-    <% flow_events = @parser.parse_cluster('E19_01_0')
-       flow_events.each do |e19| %>
-      <% rows << {:time => e19.E19_01, :html => row_from_values(e19.E19_01, e19.E19_03,
-                                                                [e19.E19_04, e19.E19_12, "#{(e19.E19_04 + e19.E19_12).size > 0 ? '; ':''}Pt Response: ", e19.E19_08,
-                                                                 "#{e19.E19_06 =~ /no/i ? "#{(e19.E19_04 + e19.E19_12 + e19.E19_08).size > 0 ? '; ' :''} Unsuccessful " : ''}",
-                                                                 "#{e19.E19_07 =~ /none/i ? '' : "; Complications: #{e19.E19_07}"}",
-                                                                e19.E19_13].join(''),
-                                                                @parser.get_provider_name(e19.E19_09))} %>
+    <% rows = {:flow_chart => [], :pta => []} %>
+    <% @parser.parse_cluster('E18').each do |e18| %>
+      <% if e18.E18_02.eql?('Yes') %>
+        <% rows[:pta] << {:time => @parser.E18_01, 
+                          :html => row_from_values(@parser.E18_03,
+                                                   @parser.get_provider_name(@parser.E18_09),
+                                                   @parser.E18_07,
+                                                   '')} %>
+      <% else %>
+        <% rows[:flow_chart] << {:time => @parser.E18_01, 
+                                 :html => row_from_values(@parser.E18_01, 
+                                                          @parser.E18_03,
+                                                          [ @parser.E18_05, 
+                                                            @parser.E18_06, 
+                                                            "#{(@parser.E18_05 + @parser.E18_06).size > 0 ? '; ' :''}",
+                                                            @parser.E18_04, 
+                                                            "#{@parser.E18_07.size > 0 ? "; Pt Response: #{@parser.E18_07}" :''}",
+                                                            "#{@parser.E18_08 =~ /none/i ? '' : "; Complications: #{@parser.E18_08}"}"
+                                                          ].join(''),
+                                                          @parser.get_provider_name(@parser.E18_09))} %>
+      <% end %>
     <% end %>
+
+    <% @parser.parse_cluster('E19_01_0').each do |e19| %>
+      <% if e19.E19_02.eql?('Yes') %>
+        <% rows[:pta] << {:time => e19.E19_01, 
+                          :html => row_from_values(e19.E19_03,
+                                                   @parser.get_provider_name(e19.E19_09),
+                                                   @parser.E19_08,
+                                                   '' )} %>
+      <% else %>
+        <% rows[:flow_chart] << {:time => e19.E19_01, 
+                                 :html => row_from_values(e19.E19_01, 
+                                                          e19.E19_03,
+                                                          [ e19.E19_04, 
+                                                            e19.E19_12, 
+                                                            "#{(e19.E19_04 + e19.E19_12).size > 0 ? '; ':''}Pt Response: ", 
+                                                            e19.E19_08,
+                                                            "#{e19.E19_06 =~ /no/i ? "#{(e19.E19_04 + e19.E19_12 + e19.E19_08).size > 0 ? '; ' :''} Unsuccessful " : ''}",
+                                                            "#{e19.E19_07 =~ /none/i ? '' : "; Complications: #{e19.E19_07}"}",
+                                                            e19.E19_13
+                                                          ].join(''),
+                                                          @parser.get_provider_name(e19.E19_09))} %>
+      <% end %>
+    <% end %>
+
     <%= title = "Flow Chart"
         start_table title, 4 %>
     <%= heading_row 'E18_01', 'E18_03', 'Description', 'E18_09' %>
-    <% rows.sort_by { |r| Time.parse(r[:time]) rescue Time.now }.each do |row| %>
+    <% rows[:flow_chart].sort_by { |r| Time.parse(r[:time]) rescue Time.now }.each do |row| %>
       <%= row[:html] %>
     <% end %>
+
+    <% if !rows[:pta].empty? %>
+      <%= title = "Treatments Prior to Arrival"
+          start_table title, 4 %>
+      <%= heading_row 'Treatment', 'Treatment By', 'Patient Response', 'Comments' %>
+      <% rows[:pta].sort_by { |r| Time.parse(r[:time]) rescue Time.now }.each do |row| %>
+        <%= row[:html] %>
+      <% end %>
+    <% end %>
+
     </tbody>
     </table>
-<br>
+  <br>
 <% end %>
-
 
 <% if @parser.has_content('E16') && @parser.has_content('E16_00_0')
      assessments = @parser.parse_assessments
