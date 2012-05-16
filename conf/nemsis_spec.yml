@@ -1717,6 +1717,13 @@ E02_20:
   is_multi_entry: 0
   name: Priority Scene
   node: E02_20
+E02_22:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 0
+  name: QUALIFIED UNIT RESPONSE NUMBER
+  node: E02_22
 E03_01:
   allow_null: 1
   data_entry_method: single-choice National Element
@@ -1963,6 +1970,13 @@ E05_13:
   is_multi_entry: 0
   name: Back at Home Location
   node: E05_13
+E05_14:
+  allow_null: 1
+  data_entry_method: National Element
+  data_type: time
+  is_multi_entry: 0
+  name: Call Received
+  node: E05_14
 E06_01:
   allow_null: 1
   data_entry_method: ~
@@ -2377,7 +2391,7 @@ E07_12:
     -20: Not Recorded
     -25: Not Applicable
     -5: Not Available
-  is_multi_entry: 1
+  is_multi_entry: 2
   name: Insured First
   node: E07_12
 E07_13:
@@ -2445,7 +2459,7 @@ E07_16:
     825: Transportation and Public Utilities
     830: Wholesale Trade
   is_multi_entry: 0
-  name: PATIENT’S OCCUPATIONAL INDUSTRY
+  name: PATIENT'S OCCUPATIONAL INDUSTRY
   node: E07_16
 E07_17:
   allow_null: 1
@@ -2481,7 +2495,7 @@ E07_17:
     940: Transportation and Material Moving Occupations
     945: Military Specific Occupations
   is_multi_entry: 0
-  name: PATIENT’S OCCUPATION
+  name: PATIENT'S OCCUPATION
   node: E07_17
 E07_18:
   allow_null: 1
@@ -2643,7 +2657,7 @@ E07_29:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 0
-  name: PATIENT’S EMPLOYER’S CITY
+  name: PATIENT'S EMPLOYER'S CITY
   node: E07_29
 E07_30:
   allow_null: 1
@@ -2656,7 +2670,7 @@ E07_30:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 0
-  name: PATIENT’S EMPLOYER’S STATE
+  name: PATIENT'S EMPLOYER'S STATE
   node: E07_30
 E07_31:
   allow_null: 1
@@ -2669,7 +2683,7 @@ E07_31:
     -25: Not Applicable
     -5: Not Available
   is_multi_entry: 0
-  name: PATIENT’S EMPLOYER’S ZIP CODE
+  name: PATIENT'S EMPLOYER'S ZIP CODE
   node: E07_31
 E07_32:
   allow_null: 1
@@ -3040,6 +3054,19 @@ E08_15:
   is_multi_entry: 0
   name: Zip
   node: E08_15
+E08_16:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: Location Name
+  node: E08_16
 E09_01:
   allow_null: 1
   data_entry_method: multiple-choice National Element
@@ -3366,6 +3393,34 @@ E09_16:
   is_multi_entry: 0
   name: Secondary Impression
   node: E09_16
+E09_17:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 0
+  name: Qualified Primary Impression
+  node: E09_17
+E09_18:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 0
+  name: Qualified Other Associated Symptoms
+  node: E09_18
+E09_19:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 0
+  name: Qualified Providers Primary Impression
+  node: E09_19
+E09_20:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 0
+  name: Qualified Providers Secondary Impression
+  node: E09_20
 E10_01:
   allow_null: 1
   data_entry_method: single-choice National Element
@@ -4096,6 +4151,55 @@ E12_20:
   is_multi_entry: 0
   name: PREGNANCY
   node: E12_20
+E12_21:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 1
+  name: 
+  node: E12_21
+E12_22:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 1
+  name: 
+  node: E12_22
+E12_23:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 1
+  name: 
+  node: E12_23
+E12_24:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 1
+  name: MEDICAL SURGICAL HISTORY
+  node: E12_24
+E12_25:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 1
+  name: 
+  node: E12_25
+E12_26:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 1
+  name: 
+  node: E12_26
+E12_27:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 1
+  name: Barriers of Care
+  node: E12_27
 E13_01:
   allow_null: 1
   data_entry_method: ~
@@ -4330,10 +4434,10 @@ E14_18:
     -20: Not Recorded
     -25: Not Applicable
     -5: Not Available
-    3210: Initial GCS has legitimate values without interventions such as intubation and sedation
-    3215: Patient Chemically Sedated
-    3220: Patient Intubated
-    3225: Patient Intubated and Chemically Paralyzed
+    3210: NQ
+    3215: CS
+    3220: I
+    3225: IACP
   is_multi_entry: 1
   name: GLASGOW COMA SCORE-QUALIFIER
   node: E14_18
@@ -4491,6 +4595,13 @@ E14_33:
   is_multi_entry: 1
   name: 12-LEAD EKG COMMENTS
   node: E14_33
+E14_34:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 1
+  name: CARDIAC RHYTHM DESCRIPTION
+  node: E14_34
 E15_01:
   allow_null: 1
   data_entry_method: multiple-choice
@@ -4801,7 +4912,7 @@ E16_04:
     -20: Not Recorded
     -25: Not Applicable
     -5: Not Available
-    3420: Normal
+    3420: No Abnormalities
     3425: Not Assessed
     3430: Clammy
     3435: Cold
@@ -4824,7 +4935,7 @@ E16_05:
     -20: Not Recorded
     -25: Not Applicable
     -5: Not Available
-    3470: Normal
+    3470: No Abnormalities
     3475: Not Assessed
     3480: Asymmetric Smile or Droop
     3485: Drainage
@@ -4843,7 +4954,7 @@ E16_06:
     -20: Not Recorded
     -25: Not Applicable
     -5: Not Available
-    3500: Normal
+    3500: No Abnormalities
     3505: Not Assessed
     3510: JVD
     3515: Strider
@@ -4862,7 +4973,7 @@ E16_07:
     -20: Not Recorded
     -25: Not Applicable
     -5: Not Available
-    3530: Normal
+    3530: No Abnormalities
     3535: Not Assessed
     3540: Accessory Muscles
     3545: Decreased BS-Left
@@ -4888,7 +4999,7 @@ E16_08:
     -20: Not Recorded
     -25: Not Applicable
     -5: Not Available
-    3595: Normal
+    3595: No Abnormalities
     3600: Not Assessed
     3605: Decreased Sounds
     3610: Murmur
@@ -4905,7 +5016,7 @@ E16_09:
     -20: Not Recorded
     -25: Not Applicable
     -5: Not Available
-    3615: Normal
+    3615: No Abnormalities
     3620: Not Assessed
     3625: Distention
     3630: Guarding
@@ -4924,7 +5035,7 @@ E16_10:
     -20: Not Recorded
     -25: Not Applicable
     -5: Not Available
-    3645: Normal
+    3645: No Abnormalities
     3650: Not Assessed
     3655: Distention
     3660: Guarding
@@ -4943,7 +5054,7 @@ E16_11:
     -20: Not Recorded
     -25: Not Applicable
     -5: Not Available
-    3675: Normal
+    3675: No Abnormalities
     3680: Not Assessed
     3685: Distention
     3690: Guarding
@@ -4962,7 +5073,7 @@ E16_12:
     -20: Not Recorded
     -25: Not Applicable
     -5: Not Available
-    3705: Normal
+    3705: No Abnormalities
     3710: Not Assessed
     3715: Distention
     3720: Guarding
@@ -4981,7 +5092,7 @@ E16_13:
     -20: Not Recorded
     -25: Not Applicable
     -5: Not Available
-    3735: Normal
+    3735: No Abnormalities
     3740: Not Assessed
     3745: Crowning
     3750: Genital Injury
@@ -5000,7 +5111,7 @@ E16_14:
     -20: Not Recorded
     -25: Not Applicable
     -5: Not Available
-    3765: Normal
+    3765: No Abnormalities
     3770: Not Assessed
     3775: Pain to ROM
     3780: Tender Para-spinous
@@ -5018,7 +5129,7 @@ E16_15:
     -20: Not Recorded
     -25: Not Applicable
     -5: Not Available
-    3790: Normal
+    3790: No Abnormalities
     3795: Not Assessed
     3800: Pain to ROM
     3805: Tender Para-spinous
@@ -5036,7 +5147,7 @@ E16_16:
     -20: Not Recorded
     -25: Not Applicable
     -5: Not Available
-    3815: Normal
+    3815: No Abnormalities
     3820: Not Assessed
     3825: Pain to ROM
     3830: Tender Para-spinous
@@ -5054,7 +5165,7 @@ E16_17:
     -20: Not Recorded
     -25: Not Applicable
     -5: Not Available
-    3840: Normal
+    3840: No Abnormalities
     3845: Not Assessed
     3850: Abnormal Pulse
     3855: Abnormal Sensation
@@ -5074,7 +5185,7 @@ E16_18:
     -20: Not Recorded
     -25: Not Applicable
     -5: Not Available
-    3875: Normal
+    3875: No Abnormalities
     3880: Not Assessed
     3885: Abnormal Pulse
     3890: Abnormal Sensation
@@ -5094,7 +5205,7 @@ E16_19:
     -20: Not Recorded
     -25: Not Applicable
     -5: Not Available
-    3910: Normal
+    3910: No Abnormalities
     3915: Not Assessed
     3920: Abnormal Pulse
     3925: Abnormal Sensation
@@ -5114,7 +5225,7 @@ E16_20:
     -20: Not Recorded
     -25: Not Applicable
     -5: Not Available
-    3945: Normal
+    3945: No Abnormalities
     3950: Not Assessed
     3955: Abnormal Pulse
     3960: Abnormal Sensation
@@ -5180,7 +5291,7 @@ E16_23:
     -20: Not Recorded
     -25: Not Applicable
     -5: Not Available
-    4080: Normal
+    4080: No Abnormalities
     4085: Not Assessed
     4090: Combative
     4095: Confused
@@ -5202,7 +5313,7 @@ E16_24:
     -20: Not Recorded
     -25: Not Applicable
     -5: Not Available
-    4125: Normal
+    4125: No Abnormalities
     4130: Not Assessed
     4135: Abnormal Gait
     4140: Facial Droop
@@ -5350,6 +5461,393 @@ E16_35:
   is_multi_entry: 1
   name: Capillary Refill
   node: E16_35
+E16_36:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: number
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    3530: No Abnormalities
+    3535: Not Assessed
+    3540: Accessory Muscles
+    3545: Decreased BS-Left
+    3550: Decreased BS-Right
+    3555: Flail Segment-Left
+    3560: Flail Segment-Right
+    3565: Rales
+    3570: Rhonchi/Wheezing
+    3585: Tenderness-Left
+    3590: Tenderness-Right
+  is_multi_entry: 1
+  name: Lung Sounds
+  node: E16_36
+E16_37:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: number
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+  is_multi_entry: 0
+  name: Abdomen General
+  node: E16_37
+E16_38:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Mental Status Positive Text
+  node: E16_38
+E16_39:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Skin Positive Text
+  node: E16_39
+E16_40:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Head/Face Positive Text
+  node: E16_40
+E16_41:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Eye Left Positive Text
+  node: E16_41
+E16_42:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Eye Right Positive Text
+  node: E16_42
+E16_43:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Neck Positive Text
+  node: E16_43
+E16_44:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Chest Positive Text
+  node: E16_44
+E16_45:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Heart Sounds Positive Text
+  node: E16_45
+E16_46:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Lung Sounds Positive Text
+  node: E16_46
+E16_47:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Abdomen General Positive Text
+  node: E16_47
+E16_48:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Abdomen Left Upper Positive Text
+  node: E16_48
+E16_49:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Abdomen Right Upper Positive Text
+  node: E16_49
+E16_50:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Abdomen Left Lower Positive Text
+  node: E16_50
+E16_51:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Abdomen Right Lower Positive Text
+  node: E16_51
+E16_52:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Back Cervical Positive Text
+  node: E16_52
+E16_53:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Back Thoracic Positive Text
+  node: E16_53
+E16_54:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: ~
+  node: E16_54
+E16_55:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: ~
+  node: E16_55
+E16_56:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Extremities Left Arm Positive Text
+  node: E16_56
+E16_57:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Extremities Right Arm Positive Text
+  node: E16_57
+E16_58:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Extremities Left Leg Positive Text
+  node: E16_58
+E16_59:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Extremities Right Leg Positive Text
+  node: E16_59
+E16_60:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Extremities Pulse Positive Text
+  node: E16_60
+E16_61:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Extremities Capillary Refill Positive Text
+  node: E16_61
+E16_62:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Neurological Positive Text
+  node: E16_62
+E16_63:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Mental Status Negative Text
+  node: E16_63
+E16_64:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Skin Negative Text
+  node: E16_64
+E16_65:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Head/Face Negative Text
+  node: E16_65
+E16_66:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Eyes Left Negative Text
+  node: E16_66
+E16_67:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Eyes Right Negative Text
+  node: E16_67
+E16_68:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Neck Negative Text
+  node: E16_68
+E16_69:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Chest Negative Text
+  node: E16_69
+E16_70:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Heart Sounds Negative Text
+  node: E16_70
+E16_71:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Lung Sounds Negative Text
+  node: E16_71
+E16_72:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Abdomen General Negative Text
+  node: E16_72
+E16_73:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Abdomen Left Upper Negative Text
+  node: E16_73
+E16_74:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Abdomen Right Upper Negative Text
+  node: E16_74
+E16_75:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Abdomen Left Lower Negative Text
+  node: E16_75
+E16_76:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Abdomen Right Lower Negative Text
+  node: E16_76
+E16_77:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Back Cervical Negative Text
+  node: E16_77
+E16_78:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Back Thoracic Negative Text
+  node: E16_78
+E16_79:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Back Lumbar/Sacral Negative Text
+  node: E16_79
+E16_80:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Pelvis/GU/GI Negative Text
+  node: E16_80
+E16_81:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Extremities Left Arm Negative Text
+  node: E16_81
+E16_82:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Extremities Right Arm Negative Text
+  node: E16_82
+E16_83:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Extremities Left Leg Negative Text
+  node: E16_83
+E16_84:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Extremities Right Leg Negative Text
+  node: E16_84
+E16_85:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Extremities Pulse Negative Text
+  node: E16_85
+E16_86:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Extremities Capillary Refill Negative Text
+  node: E16_86
+E16_87:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: text
+  is_multi_entry: 1
+  name: Neurological Negative Text
+  node: E16_87
 E17_01:
   allow_null: 1
   data_entry_method: multiple-choice
@@ -5560,6 +6058,41 @@ E18_11:
   is_multi_entry: 1
   name: MEDICATION AUTHORIZING PHYSICIAN
   node: E18_11
+E18_12:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 0
+  name: INTERVENTION MEDICATION NAME
+  node: E18_12
+E18_13:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 0
+  name: 
+  node: E18_13
+E18_14:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 0
+  name: 
+  node: E18_14
+E18_15:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 0
+  name: 
+  node: E18_15
+E18_16:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 0
+  name: 
+  node: E18_16
 E19_01:
   allow_null: 1
   data_entry_method: ~
@@ -5804,6 +6337,48 @@ E19_14:
   is_multi_entry: 1
   name: DESTINATION CONFIRMATION OF TUBE PLACEMENT
   node: E19_14
+E19_15:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 0
+  name: INTERVENTION PROCEDURE NAME
+  node: E19_15
+E19_16:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 0
+  name: 
+  node: E19_16
+E19_17:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 0
+  name: 
+  node: E19_17
+E19_18:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 0
+  name: 
+  node: E19_18
+E19_19:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 0
+  name: 
+  node: E19_19
+E19_20:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 0
+  name: 
+  node: E19_20
 E20_01:
   allow_null: 1
   data_entry_method: ~
@@ -6702,7 +7277,6 @@ E25_03:
   is_multi_entry: 1
   name: Indications
   node: E25_03
-
 E25_04:
   allow_null: 1
   data_entry_method: multiple-choice
@@ -6725,7 +7299,6 @@ E25_04:
   is_multi_entry: 1
   name: INDICATIONS
   node: E25_04
-
 E25_05:
   allow_null: 1
   data_entry_method: multiple-choice
@@ -6746,7 +7319,6 @@ E25_05:
   is_multi_entry: 1
   name: INDICATIONS
   node: E25_05
-
 E25_06:
   allow_null: 1
   data_entry_method: multiple-choice
@@ -6770,7 +7342,6 @@ E25_06:
   is_multi_entry: 1
   name: INDICATIONS
   node: E25_06
-
 E26_01:
   allow_null: 0
   data_entry_method: ~
@@ -6779,7 +7350,6 @@ E26_01:
   is_multi_entry: 0
   name: Total BSA
   node: E26_01
-
 E26_02:
   allow_null: 0
   data_entry_method: ~
@@ -6788,7 +7358,6 @@ E26_02:
   is_multi_entry: 0
   name: 1st Degree
   node: E26_02
-
 E26_03:
   allow_null: 0
   data_entry_method: ~
@@ -6797,7 +7366,6 @@ E26_03:
   is_multi_entry: 0
   name: 2nd Degree
   node: E26_03
-
 E26_04:
   allow_null: 0
   data_entry_method: ~
@@ -6806,7 +7374,6 @@ E26_04:
   is_multi_entry: 0
   name: 3rd Degree
   node: E26_04
-
 E27_01:
   allow_null: 1
   data_entry_method: ~
@@ -6814,7 +7381,6 @@ E27_01:
   is_multi_entry: 0
   name: Onset
   node: E27_01
-
 E27_02:
   allow_null: 1
   data_entry_method: single-choice
@@ -6830,7 +7396,6 @@ E27_02:
   is_multi_entry: 0
   name: Screening Criteria Met
   node: E27_02
-
 E27_03:
   allow_null: 0
   data_entry_method: ~
@@ -6839,7 +7404,6 @@ E27_03:
   is_multi_entry: 0
   name: Facial Droop
   node: E27_03
-
 E27_04:
   allow_null: 0
   data_entry_method: ~
@@ -6848,7 +7412,6 @@ E27_04:
   is_multi_entry: 0
   name: Arm Drift
   node: E27_04
-
 E27_05:
   allow_null: 0
   data_entry_method: ~
@@ -6857,7 +7420,6 @@ E27_05:
   is_multi_entry: 0
   name: Speech
   node: E27_05
-
 E28_01:
   allow_null: 1
   data_entry_method: single-choice
@@ -6873,7 +7435,6 @@ E28_01:
   is_multi_entry: 0
   name: Onset
   node: E28_01
-
 E28_02:
   allow_null: 0
   data_entry_method: ~
@@ -6882,7 +7443,6 @@ E28_02:
   is_multi_entry: 0
   name: Provoke
   node: E28_02
-
 E28_03:
   allow_null: 1
   data_entry_method: single-choice
@@ -6901,7 +7461,6 @@ E28_03:
   is_multi_entry: 0
   name: Quality
   node: E28_03
-
 E28_04:
   allow_null: 1
   data_entry_method: single-choice
@@ -6921,7 +7480,6 @@ E28_04:
   is_multi_entry: 0
   name: Radiate
   node: E28_04
-
 E28_05:
   allow_null: 1
   data_entry_method: single-choice
@@ -6945,7 +7503,6 @@ E28_05:
   is_multi_entry: 0
   name: Radiate
   node: E28_05
-
 E28_06:
   allow_null: 1
   data_entry_method: ~
@@ -6953,7 +7510,6 @@ E28_06:
   is_multi_entry: 0
   name: OPQRST TIME
   node: E28_06
-
 E28_07:
   allow_null: 1
   data_entry_method: single-choice
@@ -6970,7 +7526,6 @@ E28_07:
   is_multi_entry: 0
   name: 12 Lead I
   node: E28_07
-
 E28_08:
   allow_null: 1
   data_entry_method: single-choice
@@ -6987,7 +7542,6 @@ E28_08:
   is_multi_entry: 0
   name: 12 Lead II
   node: E28_08
-
 E28_09:
   allow_null: 1
   data_entry_method: single-choice
@@ -7004,7 +7558,6 @@ E28_09:
   is_multi_entry: 0
   name: 12 Lead III
   node: E28_09
-
 E28_10:
   allow_null: 1
   data_entry_method: single-choice
@@ -7021,7 +7574,6 @@ E28_10:
   is_multi_entry: 0
   name: 12 Lead aVR
   node: E28_10
-
 E28_11:
   allow_null: 1
   data_entry_method: single-choice
@@ -7038,7 +7590,6 @@ E28_11:
   is_multi_entry: 0
   name: 12 Lead aVL
   node: E28_11
-
 E28_12:
   allow_null: 1
   data_entry_method: single-choice
@@ -7055,7 +7606,6 @@ E28_12:
   is_multi_entry: 0
   name: 12 Lead aVF
   node: E28_12
-
 E28_13:
   allow_null: 1
   data_entry_method: single-choice
@@ -7072,7 +7622,6 @@ E28_13:
   is_multi_entry: 0
   name: 12 Lead V1
   node: E28_13
-
 E28_14:
   allow_null: 1
   data_entry_method: single-choice
@@ -7089,7 +7638,6 @@ E28_14:
   is_multi_entry: 0
   name: 12 Lead V2
   node: E28_14
-
 E28_15:
   allow_null: 1
   data_entry_method: single-choice
@@ -7106,7 +7654,6 @@ E28_15:
   is_multi_entry: 0
   name: 12 Lead V3
   node: E28_15
-
 E28_16:
   allow_null: 1
   data_entry_method: single-choice
@@ -7123,7 +7670,6 @@ E28_16:
   is_multi_entry: 0
   name: 12 Lead V4
   node: E28_16
-
 E28_17:
   allow_null: 1
   data_entry_method: single-choice
@@ -7140,7 +7686,6 @@ E28_17:
   is_multi_entry: 0
   name: 12 Lead V5
   node: E28_17
-
 E28_18:
   allow_null: 1
   data_entry_method: single-choice
@@ -7157,7 +7702,6 @@ E28_18:
   is_multi_entry: 0
   name: 12 Lead V6
   node: E28_18
-
 E28_19:
   allow_null: 1
   data_entry_method: single-choice
@@ -7174,7 +7718,6 @@ E28_19:
   is_multi_entry: 0
   name: 12 Lead V4R
   node: E28_19
-
 E28_20:
   allow_null: 1
   data_entry_method: single-choice
@@ -7191,7 +7734,6 @@ E28_20:
   is_multi_entry: 0
   name: 12 Lead V5R
   node: E28_20
-
 E28_21:
   allow_null: 1
   data_entry_method: single-choice
@@ -7208,7 +7750,6 @@ E28_21:
   is_multi_entry: 0
   name: 12 Lead V6R
   node: E28_21
-
 E28_22:
   allow_null: 1
   data_entry_method: single-choice
@@ -7225,7 +7766,6 @@ E28_22:
   is_multi_entry: 0
   name: 12 Lead V7
   node: E28_22
-
 E28_23:
   allow_null: 1
   data_entry_method: single-choice
@@ -7242,7 +7782,6 @@ E28_23:
   is_multi_entry: 0
   name: 12 Lead V8
   node: E28_23
-
 E28_24:
   allow_null: 1
   data_entry_method: single-choice
@@ -7259,7 +7798,6 @@ E28_24:
   is_multi_entry: 0
   name: 12 Lead V9
   node: E28_24
-
 E28_25:
   allow_null: 1
   data_entry_method: multiple-choice
@@ -7276,7 +7814,6 @@ E28_25:
   is_multi_entry: 1
   name: Inclusion Criteria
   node: E28_25
-
 E28_26:
   allow_null: 1
   data_entry_method: multiple-choice
@@ -7298,7 +7835,6 @@ E28_26:
   is_multi_entry: 1
   name: Exclusion Criteria
   node: E28_26
-
 E28_27:
   allow_null: 1
   data_entry_method: single-choice
@@ -7314,7 +7850,6 @@ E28_27:
   is_multi_entry: 0
   name: 12 Lead Transmission
   node: E28_27
-
 E28_28:
   allow_null: 1
   data_entry_method: ~
@@ -7322,7 +7857,6 @@ E28_28:
   is_multi_entry: 0
   name: TRANSMISSION TIME
   node: E28_28
-
 E29_01:
   allow_null: 1
   data_entry_method: single-choice
@@ -7339,7 +7873,6 @@ E29_01:
   is_multi_entry: 0
   name: Cardiac Arrest
   node: E29_01
-
 E29_02:
   allow_null: 1
   data_entry_method: single-choice
@@ -7360,7 +7893,6 @@ E29_02:
   is_multi_entry: 0
   name: Cardiac Arrest Etiology
   node: E29_02
-
 E29_03:
   allow_null: 1
   data_entry_method: single-choice
@@ -7382,7 +7914,6 @@ E29_03:
   is_multi_entry: 0
   name: Est. Time of Arrest
   node: E29_03
-
 E29_04:
   allow_null: 1
   data_entry_method: single-choice
@@ -7399,7 +7930,6 @@ E29_04:
   is_multi_entry: 0
   name: Arrest Witnessed By
   node: E29_04
-
 E29_05:
   allow_null: 1
   data_entry_method: single-choice
@@ -7410,16 +7940,18 @@ E29_05:
     -15: Not Reporting
     -10: Not Known
     -5: Not Available
-    501401: Bystander
-    501402: Family
-    501403: EMS
-    501404: Medical/Health Care Provider
-    501405: Law Enforcement
-    501406: Other
+    501401: Bystander - Compressions & Ventilations
+    501402: Bystander - Compressions only
+    501403: Bystander - Ventilations only
+    501404: Family
+    501405: EMS
+    501406: First Responder
+    501407: Medical/Health Care provider
+    501408: Law Enforcement
+    501409: Other
   is_multi_entry: 0
   name: CPR Initiated By
   node: E29_05
-
 E29_06:
   allow_null: 1
   data_entry_method: single-choice
@@ -7435,7 +7967,6 @@ E29_06:
   is_multi_entry: 0
   name: AED Applied
   node: E29_06
-
 E29_07:
   allow_null: 1
   data_entry_method: single-choice
@@ -7446,16 +7977,16 @@ E29_07:
     -15: Not Reporting
     -10: Not Known
     -5: Not Available
-    501401: Bystander
-    501402: Family
-    501403: EMS
-    501404: Medical/Health Care Provider
-    501405: Law Enforcement
-    501406: Other
+    502101: Bystander/PAD Program
+    502102: Family
+    502103: EMS
+    502104: First Responder
+    502106: Law Enforcement
+    502105: Medical/Health Care provider
+    502107: Other
   is_multi_entry: 0
   name: AED Applied By
   node: E29_07
-
 E29_08:
   allow_null: 1
   data_entry_method: single-choice
@@ -7471,7 +8002,6 @@ E29_08:
   is_multi_entry: 0
   name: Resuscitation Attempted
   node: E29_08
-
 E29_09:
   allow_null: 1
   data_entry_method: single-choice
@@ -7494,7 +8024,6 @@ E29_09:
   is_multi_entry: 0
   name: Initial ECG Rhythm
   node: E29_09
-
 E29_10:
   allow_null: 1
   data_entry_method: single-choice
@@ -7511,7 +8040,6 @@ E29_10:
   is_multi_entry: 0
   name: ROSC
   node: E29_10
-
 E29_11:
   allow_null: 1
   data_entry_method: single-choice
@@ -7555,7 +8083,6 @@ E29_11:
   is_multi_entry: 0
   name: Rhythm at Destination
   node: E29_11
-
 E29_12:
   allow_null: 1
   data_entry_method: ~
@@ -7563,7 +8090,6 @@ E29_12:
   is_multi_entry: 0
   name: Resuscitation Discontinued
   node: E29_12
-
 E29_13:
   allow_null: 1
   data_entry_method: single-choice
@@ -7582,7 +8108,6 @@ E29_13:
   is_multi_entry: 0
   name: Discontinued Reason
   node: E29_13
-
 E29_14:
   allow_null: 1
   data_entry_method: single-choice
@@ -7598,7 +8123,6 @@ E29_14:
   is_multi_entry: 0
   name: Expired
   node: E29_14
-
 E29_15:
   allow_null: 1
   data_entry_method: ~
@@ -7606,7 +8130,6 @@ E29_15:
   is_multi_entry: 0
   name: Field Pronouncement Date Time
   node: E29_15
-
 E29_16:
   allow_null: 0
   data_entry_method: ~
@@ -7615,7 +8138,6 @@ E29_16:
   is_multi_entry: 0
   name: Field Pronouncement Physician
   node: E29_16
-
 E29_17:
   allow_null: 1
   data_entry_method: ~
@@ -7623,7 +8145,6 @@ E29_17:
   is_multi_entry: 1
   name: Est. time collapse to 911
   node: E29_17
-
 E29_18:
   allow_null: 1
   data_entry_method: ~
@@ -7631,7 +8152,6 @@ E29_18:
   is_multi_entry: 1
   name: Est. time collapse to CPR
   node: E29_18
-
 E29_19:
   allow_null: 1
   data_entry_method: ~
@@ -7639,7 +8159,6 @@ E29_19:
   is_multi_entry: 0
   name: ROSC Time
   node: E29_19
-
 E29_20:
   allow_null: 1
   data_entry_method: single-choice
@@ -7655,7 +8174,6 @@ E29_20:
   is_multi_entry: 0
   name: Pre-arrival CPR Instructions
   node: E29_20
-
 E29_21:
   allow_null: 1
   data_entry_method: single-choice
@@ -7675,7 +8193,6 @@ E29_21:
   is_multi_entry: 0
   name: First Defibrillated By
   node: E29_21
-
 E29_22:
   allow_null: 1
   data_entry_method: ~
@@ -7683,7 +8200,6 @@ E29_22:
   is_multi_entry: 0
   name: Time of 1st Defib
   node: E29_22
-
 E29_23:
   allow_null: 1
   data_entry_method: single-choice
@@ -7699,7 +8215,6 @@ E29_23:
   is_multi_entry: 0
   name: Hypothermia
   node: E29_23
-
 E29_24:
   allow_null: 1
   data_entry_method: single-choice
@@ -7717,7 +8232,6 @@ E29_24:
   is_multi_entry: 0
   name: End of Event
   node: E29_24
-
 E29_25:
   allow_null: 1
   data_entry_method: single-choice
@@ -7733,7 +8247,6 @@ E29_25:
   is_multi_entry: 0
   name: Defibrillated
   node: E29_25
-
 E29_26:
   allow_null: 1
   data_entry_method: ~
@@ -7741,7 +8254,6 @@ E29_26:
   is_multi_entry: 0
   name: Time of 1st CPR
   node: E29_26
-
 E29_27:
   allow_null: 1
   data_entry_method: single-choice
@@ -7757,7 +8269,6 @@ E29_27:
   is_multi_entry: 0
   name: CPR Feedback
   node: E29_27
-
 E29_28:
   allow_null: 1
   data_entry_method: single-choice
@@ -7773,7 +8284,6 @@ E29_28:
   is_multi_entry: 0
   name: ITD Used
   node: E29_28
-
 E29_29:
   allow_null: 1
   data_entry_method: single-choice
@@ -7784,20 +8294,19 @@ E29_29:
     -15: Not Reporting
     -10: Not Known
     -5: Not Available
-    501601: Never
-    501602: After Bystander CPR only
-    501603: After Bystander Defib Shock
-    501604: After EMS CPR Only
-    501605: After EMS Defib Shock
-    501606: After EMS ALS
-    501607: Unknown
+    501701: Never
+    501702: After Bystander CPR only
+    501703: After Bystander Defib Shock
+    501704: After EMS CPR Only
+    501705: After EMS Defib Shock
+    501706: After EMS ALS
+    501707: Unknown
   is_multi_entry: 0
   name: ROSC Occurred
   node: E29_29
-
 E29_30:
   allow_null: 1
-  data_entry_method: single-choice
+  data_entry_method: multiple-choice
   data_type: combo
   field_values:
     -25: Not Applicable
@@ -7808,13 +8317,12 @@ E29_30:
     2280: Attempted Defibrillation
     2285: Attempted Ventilation
     2290: Initiated Chest Compressions
-    2295: Not Attempted – Considered Futile
-    2300: Not Attempted – DNR Orders
-    2305: Not Attempted – Signs of Circulation
-  is_multi_entry: 0
+    2295: Not Attempted - Considered Futile
+    2300: Not Attempted - DNR Orders
+    2305: Not Attempted - Signs of Circulation
+  is_multi_entry: 1
   name: Resuscitation
   node: E29_30
-
 E30_01:
   allow_null: 1
   data_entry_method: ~
@@ -7822,7 +8330,6 @@ E30_01:
   is_multi_entry: 0
   name: Onset of signs/symptoms
   node: E30_01
-
 E30_02:
   allow_null: 1
   data_entry_method: single-choice
@@ -7838,7 +8345,6 @@ E30_02:
   is_multi_entry: 0
   name: Flu suspected
   node: E30_02
-
 E30_03:
   allow_null: 1
   data_entry_method: single-choice
@@ -7854,7 +8360,6 @@ E30_03:
   is_multi_entry: 0
   name: Fever over 100 degrees
   node: E30_03
-
 E30_04:
   allow_null: 1
   data_entry_method: single-choice
@@ -7870,7 +8375,6 @@ E30_04:
   is_multi_entry: 0
   name: Cough
   node: E30_04
-
 E30_05:
   allow_null: 1
   data_entry_method: single-choice
@@ -7886,7 +8390,6 @@ E30_05:
   is_multi_entry: 0
   name: Sore throat
   node: E30_05
-
 E30_06:
   allow_null: 1
   data_entry_method: single-choice
@@ -7902,7 +8405,6 @@ E30_06:
   is_multi_entry: 0
   name: Runny nose
   node: E30_06
-
 E30_07:
   allow_null: 1
   data_entry_method: single-choice
@@ -7918,7 +8420,6 @@ E30_07:
   is_multi_entry: 0
   name: Nasal congestion
   node: E30_07
-
 E30_08:
   allow_null: 1
   data_entry_method: single-choice
@@ -7934,7 +8435,6 @@ E30_08:
   is_multi_entry: 0
   name: Is anyone living with you experiencing the listed symptoms?
   node: E30_08
-
 E30_09:
   allow_null: 1
   data_entry_method: single-choice
@@ -7950,7 +8450,6 @@ E30_09:
   is_multi_entry: 0
   name: Within the last two weeks, have you traveled outside the country?
   node: E30_09
-
 E30_10:
   allow_null: 1
   data_entry_method: single-choice
@@ -7966,7 +8465,6 @@ E30_10:
   is_multi_entry: 0
   name: Have you had an influenza vaccination this year
   node: E30_10
-
 E30_11:
   allow_null: 1
   data_entry_method: single-choice
@@ -7982,7 +8480,6 @@ E30_11:
   is_multi_entry: 0
   name: Are you taking any antiviral medication for influenza?
   node: E30_11
-
 E31_01:
   allow_null: 1
   data_entry_method: single-choice
@@ -7998,7 +8495,6 @@ E31_01:
   is_multi_entry: 0
   name: Is patient injured
   node: E31_01
-
 E31_02:
   allow_null: 1
   data_entry_method: single-choice
@@ -8010,7 +8506,7 @@ E31_02:
     -10: Not Known
     -5: Not Available
     501801: Aircraft
-    501802: All – Terrain Vehicle
+    501802: All - Terrain Vehicle
     501803: Automobile
     501804: Motocycle
     501805: Other
@@ -8020,7 +8516,6 @@ E31_02:
   is_multi_entry: 0
   name: Vehicle Type
   node: E31_02
-
 E31_03:
   allow_null: 1
   data_entry_method: single-choice
@@ -8038,7 +8533,6 @@ E31_03:
   is_multi_entry: 0
   name: Position in vehicle
   node: E31_03
-
 E31_04:
   allow_null: 1
   data_entry_method: ~
@@ -8046,7 +8540,6 @@ E31_04:
   is_multi_entry: 0
   name: Seat Row Number
   node: E31_04
-
 E31_05:
   allow_null: 1
   data_entry_method: single-choice
@@ -8065,7 +8558,6 @@ E31_05:
   is_multi_entry: 0
   name: Weather
   node: E31_05
-
 E31_06:
   allow_null: 0
   data_entry_method: ~
@@ -8074,7 +8566,6 @@ E31_06:
   is_multi_entry: 0
   name: Law enforcement case number
   node: E31_06
-
 E31_07:
   allow_null: 1
   data_entry_method: single-choice
@@ -8090,7 +8581,6 @@ E31_07:
   is_multi_entry: 0
   name: Is extrication required
   node: E31_07
-
 E31_08:
   allow_null: 0
   data_entry_method: ~
@@ -8099,7 +8589,6 @@ E31_08:
   is_multi_entry: 0
   name: Extrication Comments
   node: E31_08
-
 E31_09:
   allow_null: 1
   data_entry_method: ~
@@ -8107,7 +8596,6 @@ E31_09:
   is_multi_entry: 0
   name: Est. Speed (mph)
   node: E31_09
-
 E31_10:
   allow_null: 1
   data_entry_method: single-choice
@@ -8124,7 +8612,6 @@ E31_10:
   is_multi_entry: 0
   name: Airbag deployment status
   node: E31_10
-
 E31_11:
   allow_null: 1
   data_entry_method: ~
@@ -8132,10 +8619,9 @@ E31_11:
   is_multi_entry: 0
   name: Extrication Time
   node: E31_11
-
 E31_12:
   allow_null: 1
-  data_entry_method: single-choice
+  data_entry_method: multiple-choice
   data_type: combo
   field_values:
     -25: Not Applicable
@@ -8152,13 +8638,12 @@ E31_12:
     2055: Dash Deformity
     2090: Steering Wheel Deformity
     2095: Windshield Spider/Star
-  is_multi_entry: 0
+  is_multi_entry: 1
   name: Collision Indicators
   node: E31_12
-
 E31_13:
   allow_null: 1
-  data_entry_method: single-choice
+  data_entry_method: multiple-choice
   data_type: combo
   field_values:
     -25: Not Applicable
@@ -8176,13 +8661,12 @@ E31_13:
     2200: Protective Clothing
     2205: Protective Gear
     2210: Shoulder Belt
-  is_multi_entry: 0
+  is_multi_entry: 1
   name: Safety Devices
   node: E31_13
-
 E31_14:
   allow_null: 1
-  data_entry_method: single-choice
+  data_entry_method: multiple-choice
   data_type: combo
   field_values:
     -25: Not Applicable
@@ -8199,13 +8683,12 @@ E31_14:
     2130: Right Rear
     2135: Right Side
     2140: Roll Over
-  is_multi_entry: 0
+  is_multi_entry: 1
   name: Damage Location
   node: E31_14
-
 E31_15:
   allow_null: 1
-  data_entry_method: single-choice
+  data_entry_method: multiple-choice
   data_type: combo
   field_values:
     -25: Not Applicable
@@ -8216,10 +8699,9 @@ E31_15:
     2225: Front Deployed
     2230: Rear Deployed
     2235: Other Deployed
-  is_multi_entry: 0
+  is_multi_entry: 1
   name: Airbag Deployment Location
   node: E31_15
-
 E32_01:
   allow_null: 1
   data_entry_method: ~
@@ -8227,7 +8709,6 @@ E32_01:
   is_multi_entry: 0
   name: Gravida
   node: E32_01
-
 E32_02:
   allow_null: 1
   data_entry_method: ~
@@ -8235,7 +8716,6 @@ E32_02:
   is_multi_entry: 0
   name: Para
   node: E32_02
-
 E32_03:
   allow_null: 1
   data_entry_method: ~
@@ -8243,7 +8723,6 @@ E32_03:
   is_multi_entry: 0
   name: Abortions
   node: E32_03
-
 E32_04:
   allow_null: 1
   data_entry_method: ~
@@ -8251,7 +8730,6 @@ E32_04:
   is_multi_entry: 0
   name: Last Menstrual Period
   node: E32_04
-
 E32_05:
   allow_null: 1
   data_entry_method: ~
@@ -8259,7 +8737,6 @@ E32_05:
   is_multi_entry: 0
   name: Due Date
   node: E32_05
-
 E32_06:
   allow_null: 1
   data_entry_method: single-choice
@@ -8275,7 +8752,6 @@ E32_06:
   is_multi_entry: 0
   name: Prenatal Care
   node: E32_06
-
 E32_07:
   allow_null: 0
   data_entry_method: ~
@@ -8284,7 +8760,6 @@ E32_07:
   is_multi_entry: 0
   name: OB Physician
   node: E32_07
-
 E32_08:
   allow_null: 1
   data_entry_method: multiple-choice
@@ -8304,7 +8779,6 @@ E32_08:
   is_multi_entry: 1
   name: High-risk Pregnancy
   node: E32_08
-
 E32_09:
   allow_null: 1
   data_entry_method: single-choice
@@ -8320,7 +8794,6 @@ E32_09:
   is_multi_entry: 0
   name: Membrane Intact
   node: E32_09
-
 E32_10:
   allow_null: 1
   data_entry_method: ~
@@ -8328,7 +8801,6 @@ E32_10:
   is_multi_entry: 0
   name: Labor Onset
   node: E32_10
-
 E32_11:
   allow_null: 1
   data_entry_method: ~
@@ -8336,7 +8808,6 @@ E32_11:
   is_multi_entry: 0
   name: Contraction Dur. (sec)
   node: E32_11
-
 E32_12:
   allow_null: 1
   data_entry_method: ~
@@ -8344,7 +8815,6 @@ E32_12:
   is_multi_entry: 0
   name: Frequency (min)
   node: E32_12
-
 E32_13:
   allow_null: 1
   data_entry_method: ~
@@ -8352,7 +8822,6 @@ E32_13:
   is_multi_entry: 0
   name: Time of Birth
   node: E32_13
-
 E32_14:
   allow_null: 1
   data_entry_method: ~
@@ -8360,7 +8829,6 @@ E32_14:
   is_multi_entry: 0
   name: Placental Delivery
   node: E32_14
-
 E32_15:
   allow_null: 1
   data_entry_method: single-choice
@@ -8371,7 +8839,6 @@ E32_15:
   is_multi_entry: 0
   name: Breech
   node: E32_15
-
 E32_16:
   allow_null: 1
   data_entry_method: single-choice
@@ -8382,7 +8849,6 @@ E32_16:
   is_multi_entry: 0
   name: Meconium Staining
   node: E32_16
-
 E32_17:
   allow_null: 1
   data_entry_method: single-choice
@@ -8393,7 +8859,6 @@ E32_17:
   is_multi_entry: 0
   name: Prolapsed Cord
   node: E32_17
-
 E32_18:
   allow_null: 1
   data_entry_method: single-choice
@@ -8404,7 +8869,6 @@ E32_18:
   is_multi_entry: 0
   name: Uncontrolled Bleeding
   node: E32_18
-
 E32_19:
   allow_null: 1
   data_entry_method: single-choice
@@ -8421,7 +8885,6 @@ E32_19:
   is_multi_entry: 0
   name: Activity
   node: E32_19
-
 E32_20:
   allow_null: 1
   data_entry_method: single-choice
@@ -8438,7 +8901,6 @@ E32_20:
   is_multi_entry: 0
   name: Pulse
   node: E32_20
-
 E32_21:
   allow_null: 1
   data_entry_method: single-choice
@@ -8455,7 +8917,6 @@ E32_21:
   is_multi_entry: 0
   name: Grimace
   node: E32_21
-
 E32_22:
   allow_null: 1
   data_entry_method: single-choice
@@ -8472,7 +8933,6 @@ E32_22:
   is_multi_entry: 0
   name: Appearance
   node: E32_22
-
 E32_23:
   allow_null: 1
   data_entry_method: single-choice
@@ -8489,7 +8949,6 @@ E32_23:
   is_multi_entry: 0
   name: Respiration
   node: E32_23
-
 E32_24:
   allow_null: 1
   data_entry_method: ~
@@ -8497,7 +8956,6 @@ E32_24:
   is_multi_entry: 0
   name: Score
   node: E32_24
-
 # ---
 E32_25:
   allow_null: 1
@@ -8515,7 +8973,6 @@ E32_25:
   is_multi_entry: 0
   name: Activity
   node: E32_25
-
 E32_26:
   allow_null: 1
   data_entry_method: single-choice
@@ -8532,7 +8989,6 @@ E32_26:
   is_multi_entry: 0
   name: Pulse
   node: E32_26
-
 E32_27:
   allow_null: 1
   data_entry_method: single-choice
@@ -8549,7 +9005,6 @@ E32_27:
   is_multi_entry: 0
   name: Grimace
   node: E32_27
-
 E32_28:
   allow_null: 1
   data_entry_method: single-choice
@@ -8566,7 +9021,6 @@ E32_28:
   is_multi_entry: 0
   name: Appearance
   node: E32_28
-
 E32_29:
   allow_null: 1
   data_entry_method: single-choice
@@ -8583,7 +9037,6 @@ E32_29:
   is_multi_entry: 0
   name: Respiration
   node: E32_29
-
 E32_30:
   allow_null: 1
   data_entry_method: ~
@@ -8591,7 +9044,6 @@ E32_30:
   is_multi_entry: 0
   name: Score
   node: E32_30
-
 E33_01:
   allow_null: 1
   data_entry_method: single-choice
@@ -8607,7 +9059,6 @@ E33_01:
   is_multi_entry: 0
   name: Gender Male
   node: E33_01
-
 E33_02:
   allow_null: 1
   data_entry_method: single-choice
@@ -8623,7 +9074,6 @@ E33_02:
   is_multi_entry: 0
   name: 'Age 24 to 45 or 65+'
   node: E33_02
-
 E33_03:
   allow_null: 1
   data_entry_method: single-choice
@@ -8639,7 +9089,6 @@ E33_03:
   is_multi_entry: 0
   name: 'Depression: Diagnosed Depression'
   node: E33_03
-
 E33_04:
   allow_null: 1
   data_entry_method: single-choice
@@ -8655,7 +9104,6 @@ E33_04:
   is_multi_entry: 0
   name: 'Substance Abuse: Abused Alcohol or Drugs'
   node: E33_04
-
 E33_05:
   allow_null: 1
   data_entry_method: single-choice
@@ -8671,7 +9119,6 @@ E33_05:
   is_multi_entry: 0
   name: 'Rationality: Psychotic or Disorganized'
   node: E33_05
-
 E33_06:
   allow_null: 1
   data_entry_method: single-choice
@@ -8687,7 +9134,6 @@ E33_06:
   is_multi_entry: 0
   name: 'Support: Severely Isolated'
   node: E33_06
-
 E33_07:
   allow_null: 1
   data_entry_method: single-choice
@@ -8703,7 +9149,6 @@ E33_07:
   is_multi_entry: 0
   name: 'Organized Plan: Specific Lethal Plan'
   node: E33_07
-
 E33_08:
   allow_null: 1
   data_entry_method: single-choice
@@ -8719,7 +9164,6 @@ E33_08:
   is_multi_entry: 0
   name: 'Sickness: Major Illness'
   node: E33_08
-
 E33_09:
   allow_null: 1
   data_entry_method: single-choice
@@ -8738,7 +9182,6 @@ E33_09:
   is_multi_entry: 0
   name: 'Spouse'
   node: E33_09
-
 E33_10:
   allow_null: 1
   data_entry_method: ~
@@ -8746,7 +9189,6 @@ E33_10:
   is_multi_entry: 0
   name: Score
   node: E33_10
-
 E34_01:
   allow_null: 1
   data_entry_method: single-choice
@@ -8762,7 +9204,6 @@ E34_01:
   is_multi_entry: 0
   name: 'Immobilization Recommended?'
   node: E34_01
-
 E34_02:
   allow_null: 1
   data_entry_method: single-choice
@@ -8778,7 +9219,6 @@ E34_02:
   is_multi_entry: 0
   name: 'Altered Mental Status'
   node: E34_02
-
 E34_03:
   allow_null: 1
   data_entry_method: single-choice
@@ -8794,7 +9234,6 @@ E34_03:
   is_multi_entry: 0
   name: 'Evidence of Alcohol/Drug Impairment'
   node: E34_03
-
 E34_04:
   allow_null: 1
   data_entry_method: single-choice
@@ -8810,7 +9249,6 @@ E34_04:
   is_multi_entry: 0
   name: 'Distracting Injury'
   node: E34_04
-
 E34_05:
   allow_null: 1
   data_entry_method: single-choice
@@ -8826,7 +9264,6 @@ E34_05:
   is_multi_entry: 0
   name: 'Neurologic Deficit'
   node: E34_05
-
 E34_06:
   allow_null: 1
   data_entry_method: single-choice
@@ -8842,4 +9279,3 @@ E34_06:
   is_multi_entry: 0
   name: 'Spinal Pain/Tenderness'
   node: E34_06
-

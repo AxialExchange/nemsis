@@ -138,6 +138,19 @@ XML
       write_html_file("madison", "fancy", html)
     end
 
+    it 'should render test patient 1' do
+      sample_xml_file = File.expand_path('../../data/test_patient.12345678901234567890.xml', __FILE__)
+      xml_str = File.read(sample_xml_file)
+      p = Nemsis::Parser.new(xml_str)
+      r = Nemsis::Renderer::WakeMed::HTML.new(p)
+
+      html = r.render
+      write_html_file("test_1234567", "simple", html)
+
+      # html = r.render_fancy
+      # write_html_file("test_1234567", "fancy", html)
+    end
+
     it 'should render may 5th' do
       sample_xml_file = File.expand_path('../../data/runsheet_may_5th.xml', __FILE__)
       xml_str = File.read(sample_xml_file)
@@ -782,6 +795,7 @@ XML
     end
 
     it 'should have the CPT Code 89.7 -- soon we will get text instead (4/17/2012 telecon w/ ESO)' do
+      pending "we no longer use E19_03, we use E19_15 instead. 5/16/2012 GC"
       fancy_html.should_not =~ /89.7/
       fancy_html.should =~ /Assessment-Adult/
     end

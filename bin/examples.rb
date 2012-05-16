@@ -9,11 +9,12 @@ class Main
 
   def self.run
     Main.parser_examples
-    Main.reproducer_examples
+    # Main.reproducer_examples
   end
     
   def self.parser_examples
-    sample_xml_file = File.expand_path('../../data/sample_3.xml', __FILE__)
+    # sample_xml_file = File.expand_path('../../data/sample_3.xml', __FILE__)
+    sample_xml_file = File.expand_path('../../spec/data/test_1234567.xml', __FILE__)
     xml_str = File.read(sample_xml_file)
 
     parser = Nemsis::Parser.new(xml_str)

@@ -1,0 +1,1311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
+  <Header>
+    <D01_01>092054799999999</D01_01>
+    <D01_03>37</D01_03>
+    <D01_04>37183</D01_04>
+    <D01_07>6110</D01_07>
+    <D01_08>5830</D01_08>
+    <D01_09>5870</D01_09>
+    <D01_21>192209802</D01_21>
+    <D02_07>27601</D02_07>
+    <Record>
+      <E01>
+        <E01_01>AE3B23193EA748D8B2C3A04700B20DC8</E01_01>
+        <E01_02>ESO Solutions</E01_02>
+        <E01_03>ESO Pro ePCR</E01_03>
+        <E01_04>3.1</E01_04>
+      </E01>
+      <E02>
+        <E02_01>092054799999999</E02_01>
+        <E02_02>WAKESYS-1718192</E02_02>
+        <E02_03>EMS401234567890</E02_03>
+        <E02_04>30</E02_04>
+        <E02_05>75</E02_05>
+        <E02_06>105</E02_06>
+        <E02_06>90</E02_06>
+        <E02_06>95</E02_06>
+        <E02_07>125</E02_07>
+        <E02_07>130</E02_07>
+        <E02_07>135</E02_07>
+        <E02_08>200</E02_08>
+        <E02_08>205</E02_08>
+        <E02_08>210</E02_08>
+        <E02_09>285</E02_09>
+        <E02_09>290</E02_09>
+        <E02_09>295</E02_09>
+        <E02_10>345</E02_10>
+        <E02_10>350</E02_10>
+        <E02_10>355</E02_10>
+        <E02_11>188902012345678901234567890123</E02_11>
+        <E02_12>EMS401234567890</E02_12>
+        <E02_16>999994.8</E02_16>
+        <E02_17>999994.8</E02_17>
+        <E02_18>999999.8</E02_18>
+        <E02_19>999999.8</E02_19>
+        <E02_20>390</E02_20>
+        <E02_21>WAKESYS-17181922279999999</E02_21>
+        <E02_22>EMS40123456789012345678901234567890123456789012345</E02_22>
+        <E02_23>911 Response (Emergency)</E02_23>
+        <E02_24>Crowd</E02_24>
+        <E02_24>Directions</E02_24>
+        <E02_24>Distance</E02_24>
+        <E02_25>Distance</E02_25>
+        <E02_25>Diversion</E02_25>
+        <E02_25>Extrication &gt;20 min.</E02_25>
+        <E02_26>HazMat</E02_26>
+        <E02_26>None</E02_26>
+        <E02_26>Other</E02_26>
+        <E02_27>18890201234567890123456789012345678901234567890123</E02_27>
+      </E02>
+      <E03>
+        <E03_01>-20</E03_01>
+        <E03_02>0</E03_02>
+        <E03_03>9090890743</E03_03>
+      </E03>
+      <E04>
+        <E04>
+          <E04_01>P075514</E04_01>
+          <E04_02>585</E04_02>
+          <E04_03>6090</E04_03>
+          <E04_04>ADAMS</E04_04>
+          <E04_05>RYAN</E04_05>
+        </E04>
+        <E04_02>600</E04_02>
+        <E04_03>-20</E04_03>
+        <E04_04>Jebb</E04_04>
+        <E04_05>Bush</E04_05>
+      </E04>
+      <E04>
+        <E04_02>600</E04_02>
+        <E04_03>-20</E04_03>
+        <E04_04>Michael</E04_04>
+        <E04_05>Jordan</E04_05>
+      </E04>
+      <E04>
+        <E04_02>600</E04_02>
+        <E04_03>-20</E04_03>
+        <E04_04>Morse</E04_04>
+        <E04_05>Code</E04_05>
+      </E04>
+      <E04>
+        <E04_02>600</E04_02>
+        <E04_03>-20</E04_03>
+        <E04_04>Ricky</E04_04>
+        <E04_05>Martin</E04_05>
+      </E04>
+      <E04>
+        <E04_02>580</E04_02>
+        <E04_03>-20</E04_03>
+        <E04_04>TECH SUPPORT</E04_04>
+        <E04_05>ESO</E04_05>
+      </E04>
+      <E04>
+        <E04_01>P049997</E04_01>
+        <E04_02>600</E04_02>
+        <E04_03>6100</E04_03>
+        <E04_04>ADAMS</E04_04>
+        <E04_05>BRIAN</E04_05>
+      </E04>
+      <E04>
+        <E04_01>P05545201234567</E04_01>
+        <E04_02>595</E04_02>
+        <E04_03>6090</E04_03>
+        <E04_04>ALI</E04_04>
+        <E04_05>DENA</E04_05>
+      </E04>
+      <E04>
+        <E04_02>600</E04_02>
+        <E04_03>-20</E04_03>
+        <E04_04>ALUMBAUGH</E04_04>
+        <E04_05>RICHARD</E04_05>
+      </E04>
+      <E04>
+        <E04_02>590</E04_02>
+        <E04_03>-20</E04_03>
+        <E04_04>ALBRIGHT</E04_04>
+        <E04_05>ROBIN</E04_05>
+      </E04>
+      <E05>
+        <E05_01>2012-05-04T04:00:00.0Z</E05_01>
+        <E05_02>2012-05-04T14:15:00.0Z</E05_02>
+        <E05_03>2012-05-04T14:16:00.0Z</E05_03>
+        <E05_04>2012-05-04T14:18:00.0Z</E05_04>
+        <E05_05>2012-05-04T14:19:00.0Z</E05_05>
+        <E05_06>2012-05-04T14:21:00.0Z</E05_06>
+        <E05_07>2012-05-04T14:22:00.0Z</E05_07>
+        <E05_08>2012-05-04T17:50:00.0Z</E05_08>
+        <E05_09>2012-05-04T15:45:00.0Z</E05_09>
+        <E05_10>2012-05-04T16:55:00.0Z</E05_10>
+        <E05_11>2012-05-04T19:00:00.0Z</E05_11>
+        <E05_12 xsi:nil="true"/>
+        <E05_13>2012-05-04T20:00:00.0Z</E05_13>
+        <E05_14>2012-05-04T14:17:00.0Z</E05_14>
+      </E05>
+      <E06>
+        <E06_01_0>
+          <E06_01>12345678901234567890</E06_01>
+          <E06_02>12345678901234567890</E06_02>
+          <E06_03>12345678901234567890</E06_03>
+        </E06_01_0>
+        <E06_04_0>
+          <E06_04>9020 Capital of Texas Hghyijrl</E06_04>
+          <E06_05>55000</E06_05>
+          <E06_07>37</E06_07>
+          <E06_08>27602</E06_08>
+        </E06_04_0>
+        <E06_06>37183</E06_06>
+        <E06_09>US</E06_09>
+        <E06_10>232342343</E06_10>
+        <E06_11>650</E06_11>
+        <E06_12>685</E06_12>
+        <E06_13>695</E06_13>
+        <E06_14_0>
+          <E06_14>2</E06_14>
+          <E06_15>705</E06_15>
+        </E06_14_0>
+        <E06_17>4312354133</E06_17>
+        <E06_19_0>
+          <E06_18>37</E06_18>
+          <E06_19>Alpha0010134575983459834759834</E06_19>
+        </E06_19_0>
+      </E06>
+      <E07>
+        <E07_01>720</E07_01>
+        <E07_02>1</E07_02>
+        <E07_03_0>
+          <E07_03>CIGNA</E07_03>
+          <E07_04>765</E07_04>
+          <E07_05_0>
+            <E07_05>unknown</E07_05>
+            <E07_06>55000</E07_06>
+            <E07_07>37</E07_07>
+            <E07_08>27601</E07_08>
+          </E07_05_0>
+          <E07_09>Class II8395989684908905680456</E07_09>
+          <E07_10>8374983274893745789384h59834u5</E07_10>
+          <E07_11_0>
+            <E07_11>HALE The Great Kings</E07_11>
+            <E07_12>RICHARD The King Ofs</E07_12>
+            <E07_13>The King Of Persians</E07_13>
+          </E07_11_0>
+          <E07_14>770</E07_14>
+        </E07_03_0>
+        <E07_03_0>
+          <E07_03>Humana Gold *Medicare HMO</E07_03>
+          <E07_04>760</E07_04>
+          <E07_05_0>
+            <E07_05>unknown</E07_05>
+            <E07_06>55000</E07_06>
+            <E07_07>37</E07_07>
+            <E07_08>27601</E07_08>
+          </E07_05_0>
+          <E07_09>Class I79878794873249873894739</E07_09>
+          <E07_10>79483738573963578y3ui459883475</E07_10>
+          <E07_11_0>
+            <E07_11>HALE The Great Kings</E07_11>
+            <E07_12>RICHARD The King Ofs</E07_12>
+            <E07_13>The King Of Persians</E07_13>
+          </E07_11_0>
+          <E07_14>770</E07_14>
+        </E07_03_0>
+        <E07_03_0>
+          <E07_03>Medicaid</E07_03>
+          <E07_04>755</E07_04>
+          <E07_10>KJKLSJLKJLMEDRO</E07_10>
+          <E07_11_0>
+            <E07_11>HALE The Great Kings</E07_11>
+            <E07_12>RICHARD The King Ofs</E07_12>
+            <E07_13>The King Of Persians</E07_13>
+          </E07_11_0>
+          <E07_14>770</E07_14>
+        </E07_03_0>
+        <E07_03_0>
+          <E07_03>Medicare</E07_03>
+          <E07_04>755</E07_04>
+          <E07_10>HLMBGJHGSJJ</E07_10>
+          <E07_11_0>
+            <E07_11>HALE The Great Kings</E07_11>
+            <E07_12>RICHARD The King Ofs</E07_12>
+            <E07_13>The King Of Persians</E07_13>
+          </E07_11_0>
+          <E07_14>770</E07_14>
+        </E07_03_0>
+        <E07_03_0>
+          <E07_03>The Gutenberg Bible also known</E07_03>
+          <E07_04>765</E07_04>
+          <E07_09>Class I79878794873249873894739</E07_09>
+          <E07_10>79483738573963578y3ui459883475</E07_10>
+          <E07_11_0>
+            <E07_11>HALE The Great Kings</E07_11>
+            <E07_12>RICHARD The King Ofs</E07_12>
+            <E07_13>The King Of Persians</E07_13>
+          </E07_11_0>
+          <E07_14>770</E07_14>
+        </E07_03_0>
+        <E07_03_0>
+          <E07_03>The Gutenberg Bible also known</E07_03>
+          <E07_04>765</E07_04>
+          <E07_09>Class II8395989684908905680456</E07_09>
+          <E07_10>8374983274893745789384h59834u5</E07_10>
+          <E07_11_0>
+            <E07_11>HALE The Great Kings</E07_11>
+            <E07_12>RICHARD The King Ofs</E07_12>
+            <E07_13>The King Of Persians</E07_13>
+          </E07_11_0>
+          <E07_14>770</E07_14>
+        </E07_03_0>
+        <E07_15>1</E07_15>
+        <E07_16>815</E07_16>
+        <E07_17>835</E07_17>
+        <E07_18_0>
+          <E07_18_01>
+            <E07_18>Mickey Mickey Mickey</E07_18>
+            <E07_19>Mouse Mouse Mouse Mo</E07_19>
+            <E07_20>Donald Donald Donald</E07_20>
+          </E07_18_01>
+          <E07_21_0>
+            <E07_21>The Gutenberg Bible (also know</E07_21>
+            <E07_22>55000</E07_22>
+            <E07_23>37</E07_23>
+            <E07_24>27601</E07_24>
+          </E07_21_0>
+          <E07_25>2847824783</E07_25>
+          <E07_26>965</E07_26>
+        </E07_18_0>
+        <E07_27_0>
+          <E07_27>Mad Dog Company Incorporations</E07_27>
+        </E07_27_0>
+        <E07_32>2423432439</E07_32>
+        <E07_33>980</E07_33>
+        <E07_34>-20</E07_34>
+        <E07_35_0>
+          <E07_35>-20</E07_35>
+        </E07_35_0>
+      </E07>
+      <E08>
+        <E08_01>Wake County Emergency Manageme</E08_01>
+        <E08_02>1060</E08_02>
+        <E08_02>1090</E08_02>
+        <E08_02>1095</E08_02>
+        <E08_03>1105</E08_03>
+        <E08_04>2012-05-04T14:20:00.0Z</E08_04>
+        <E08_05>1130</E08_05>
+        <E08_06>1</E08_06>
+        <E08_07>1165</E08_07>
+        <E08_11_0>
+          <E08_11>Burnet RdBurnet RdBurnet RdBur</E08_11>
+          <E08_12>05000</E08_12>
+          <E08_14>48</E08_14>
+          <E08_15>78759</E08_15>
+        </E08_11_0>
+        <E08_13>48453</E08_13>
+        <E08_16>JJ Pickle CenterJJ Pickle CenterJJ Pickle CenterJJ</E08_16>
+        <E08_18>Public Building</E08_18>
+        <E08_17>Wake County Emergency Management</E08_17>
+      </E08>
+      <E09>
+        <E09_01>Afrin</E09_01>
+        <E09_01>Heimlich Maneuver</E09_01>
+        <E09_02>1200</E09_02>
+        <E09_02>1205</E09_02>
+        <E09_02>1210</E09_02>
+        <E09_03>1220</E09_03>
+        <E09_03>1225</E09_03>
+        <E09_04>-20</E09_04>
+        <E09_05>Choking</E09_05>
+        <E09_06_0>
+          <E09_06>1</E09_06>
+          <E09_07>1245</E09_07>
+        </E09_06_0>
+        <E09_08>Naping</E09_08>
+        <E09_09_0>
+          <E09_09>22</E09_09>
+          <E09_10>1275</E09_10>
+        </E09_09_0>
+        <E09_11>1315</E09_11>
+        <E09_12>1370</E09_12>
+        <E09_13>1460</E09_13>
+        <E09_14>1610</E09_14>
+        <E09_15>1620</E09_15>
+        <E09_16>1760</E09_16>
+        <E09_17>Anxiety</E09_17>
+        <E09_18>Deep 3rd degree w/o loss of parts</E09_18>
+        <E09_19>Airway Obstruction</E09_19>
+        <E09_20>Allergic Reaction</E09_20>
+      </E09>
+      <E10>
+        <E10_01>-20</E10_01>
+        <E10_04>2070</E10_04>
+        <E10_04>2075</E10_04>
+        <E10_05>2105</E10_05>
+        <E10_05>2110</E10_05>
+        <E10_05>2135</E10_05>
+        <E10_05>2140</E10_05>
+        <E10_06_0>
+          <E10_06>4</E10_06>
+          <E10_07>2155</E10_07>
+        </E10_06_0>
+        <E10_08>2180</E10_08>
+        <E10_08>2200</E10_08>
+        <E10_08>2205</E10_08>
+        <E10_10>50000</E10_10>
+        <E10_12>Middle Front</E10_12>
+      </E10>
+      <E11>
+        <E11_01>2240</E11_01>
+        <E11_02>2260</E11_02>
+        <E11_03>2290</E11_03>
+        <E11_03>2300</E11_03>
+        <E11_04>2315</E11_04>
+        <E11_05>2355</E11_05>
+        <E11_06>2375</E11_06>
+        <E11_08>2395</E11_08>
+        <E11_09>2012-05-04T16:01:00.0Z</E11_09>
+        <E11_10>2450</E11_10>
+        <E11_11>2465</E11_11>
+        <E11_12>Drowning</E11_12>
+        <E11_13>12 Lead ECG - Lateral Ischemia</E11_13>
+      </E11>
+      <E12>
+        <E12_01>2625</E12_01>
+        <E12_02>937298472893748927349827348977</E12_02>
+        <E12_03>34u928384898409380958349895309</E12_03>
+        <E12_4_0>
+          <E12_06>Chandramohan the Gre</E12_06>
+          <E12_04>Shankar the great ki</E12_04>
+        </E12_4_0>
+        <E12_07>2665</E12_07>
+        <E12_08>Benzodiazepines The iPhone (pl</E12_08>
+        <E12_08>Denies</E12_08>
+        <E12_08>NKDA</E12_08>
+        <E12_08>Sulfonamides</E12_08>
+        <E12_10>294.1</E12_10>
+        <E12_10>428</E12_10>
+        <E12_10>Arthritis </E12_10>
+        <E12_14_0>
+          <E12_14>Abilify The iPhone (play /'a?f</E12_14>
+          <E12_15_0>
+            <E12_15>3.00</E12_15>
+            <E12_16>2790</E12_16>
+          </E12_15_0>
+          <E12_17>-20</E12_17>
+          <E12_21>Abilify The iPhone (play /'a?fo?n/ EYE-fohn) is a line of smartphones designed and marketed by Apple Inc. The first iPhone was unveiled by Steve Jobs, then CEO of Apple, on January 9, 2007,[1] and released on June 29, 2007. The 5th generation iPhone, the iPhone 4</E12_21>
+        </E12_14_0>
+        <E12_14_0>
+          <E12_14>Accuneb</E12_14>
+          <E12_15_0>
+            <E12_15>1.00</E12_15>
+            <E12_16>2790</E12_16>
+          </E12_15_0>
+          <E12_17>-20</E12_17>
+          <E12_21>Accuneb</E12_21>
+        </E12_14_0>
+        <E12_14_0>
+          <E12_14>Denies</E12_14>
+          <E12_15_0>
+            <E12_15>1.00</E12_15>
+            <E12_16>2835</E12_16>
+          </E12_15_0>
+          <E12_17>-20</E12_17>
+          <E12_21>Denies</E12_21>
+        </E12_14_0>
+        <E12_14_0>
+          <E12_14>Pioglitazone Hydrochloride</E12_14>
+          <E12_17>-20</E12_17>
+          <E12_21>Pioglitazone Hydrochloride</E12_21>
+        </E12_14_0>
+        <E12_14_0>
+          <E12_14>Prescription</E12_14>
+          <E12_15_0>
+            <E12_15>1.00</E12_15>
+            <E12_16>2785</E12_16>
+          </E12_15_0>
+          <E12_17>-20</E12_17>
+          <E12_21>Prescription</E12_21>
+        </E12_14_0>
+        <E12_18>0</E12_18>
+        <E12_19>3001</E12_19>
+        <E12_20>0</E12_20>
+        <E12_22>Benzodiazepines The iPhone (play /'a?fo?n/ EYE-fohn) is a line of smartphones designed and marketed by Apple Inc. The first iPhone was unveiled by Steve Jobs, then CEO of Apple, on January 9, 2007,[1] and released on June 29, 2007. The 5th generation iPhone, the iPhone 4</E12_22>
+        <E12_22>Denies</E12_22>
+        <E12_22>NKDA</E12_22>
+        <E12_22>Sulfonamides</E12_22>
+        <E12_24>Arthritis</E12_24>
+        <E12_24>CHF</E12_24>
+        <E12_24>Dementia In government, a vice president is a person whose primary responsibility is to replace the president on the event of his or her death, resignation or incapacity. Vice presidents are either elected jointly with the president as his or her running mate, ele</E12_24>
+        <E12_26>Shankar the great king of Pers</E12_26>
+        <E12_27>Combative patient</E12_27>
+      </E12>
+      <E13>
+        <E13_01>The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another </E13_01>
+        <E13_02>The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.	</E13_02>
+      </E13>
+      <E14>
+        <E14_01>2012-05-04T14:54:00.0Z</E14_01>
+        <E14_02>0</E14_02>
+        <E14_04_0>
+          <E14_04>110</E14_04>
+          <E14_05>95</E14_05>
+          <E14_06>3160</E14_06>
+        </E14_04_0>
+        <E14_12>3185</E14_12>
+        <E14_15_0>
+          <E14_15>3</E14_15>
+          <E14_16>3</E14_16>
+          <E14_17>3</E14_17>
+          <E14_18>3215</E14_18>
+        </E14_15_0>
+        <E14_19>9</E14_19>
+        <E14_24>3275</E14_24>
+        <E14_29/>
+        <E14_30/>
+        <E14_32>-20</E14_32>
+        <E14_36>Normal</E14_36>
+      </E14>
+      <E14>
+        <E14_01>2012-05-04T15:01:00.0Z</E14_01>
+        <E14_02>0</E14_02>
+        <E14_04_0>
+</E14_04_0>
+        <E14_11>98</E14_11>
+        <E14_12>3185</E14_12>
+        <E14_15_0>
+          <E14_15>3</E14_15>
+          <E14_16>2</E14_16>
+          <E14_17>4</E14_17>
+          <E14_18>3220</E14_18>
+        </E14_15_0>
+        <E14_19>9</E14_19>
+        <E14_24>3275</E14_24>
+        <E14_29/>
+        <E14_30/>
+        <E14_32>-20</E14_32>
+        <E14_36>Normal</E14_36>
+      </E14>
+      <E14>
+        <E14_01>2012-05-04T15:01:00.0Z</E14_01>
+        <E14_02>0</E14_02>
+        <E14_03>3050</E14_03>
+        <E14_04_0>
+          <E14_04>75</E14_04>
+          <E14_05>67</E14_05>
+          <E14_06>3160</E14_06>
+        </E14_04_0>
+        <E14_11>67</E14_11>
+        <E14_12>3190</E14_12>
+        <E14_15_0>
+          <E14_15>3</E14_15>
+          <E14_16>4</E14_16>
+          <E14_17>4</E14_17>
+          <E14_18>3225</E14_18>
+        </E14_15_0>
+        <E14_19>11</E14_19>
+        <E14_24>3275</E14_24>
+        <E14_27>8</E14_27>
+        <E14_29/>
+        <E14_30/>
+        <E14_32>1</E14_32>
+        <E14_33>12 Lead comments field should show in E14_33</E14_33>
+        <E14_34>2nd Type II</E14_34>
+        <E14_36>Labored</E14_36>
+      </E14>
+      <E14>
+        <E14_01>2012-05-04T14:48:00.0Z</E14_01>
+        <E14_02>0</E14_02>
+        <E14_03>3095</E14_03>
+        <E14_04_0>
+          <E14_04>110</E14_04>
+          <E14_05>102</E14_05>
+          <E14_06>3160</E14_06>
+        </E14_04_0>
+        <E14_07>108</E14_07>
+        <E14_08>108</E14_08>
+        <E14_09>97</E14_09>
+        <E14_10>3175</E14_10>
+        <E14_11>100</E14_11>
+        <E14_12>3185</E14_12>
+        <E14_13>98</E14_13>
+        <E14_14>190</E14_14>
+        <E14_15_0>
+          <E14_15>3</E14_15>
+          <E14_16>3</E14_16>
+          <E14_17>4</E14_17>
+          <E14_18>3215</E14_18>
+        </E14_15_0>
+        <E14_19>10</E14_19>
+        <E14_20_0>
+          <E14_20>50.00</E14_20>
+          <E14_21>3230</E14_21>
+          <E14_37>Axillary</E14_37>
+        </E14_20_0>
+        <E14_22>3255</E14_22>
+        <E14_23>2</E14_23>
+        <E14_24>3275</E14_24>
+        <E14_27>10</E14_27>
+        <E14_28>10</E14_28>
+        <E14_29>L</E14_29>
+        <E14_30>Stand</E14_30>
+        <E14_31>100</E14_31>
+        <E14_32>0</E14_32>
+        <E14_33>Message for The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start</E14_33>
+        <E14_34>PVC</E14_34>
+        <E14_35>Regular</E14_35>
+        <E14_36>Normal</E14_36>
+      </E14>
+      <E15>
+        <E15_01>3350</E15_01>
+        <E15_03>3350</E15_03>
+        <E15_03>3350</E15_03>
+        <E15_03>3350</E15_03>
+        <E15_05>3350</E15_05>
+        <E15_05>3350</E15_05>
+        <E15_05>3350</E15_05>
+        <E15_05>3350</E15_05>
+        <E15_07>3350</E15_07>
+        <E15_07>3350</E15_07>
+        <E15_11>-20</E15_11>
+        <E15_17>Left Ear: Gunshot Wound</E15_17>
+        <E15_17>Mouth: Gunshot Wound</E15_17>
+        <E15_17>Right Eye: Gunshot Wound</E15_17>
+        <E15_18>Chest: Gunshot Wound</E15_18>
+        <E15_18>Chest: Gunshot Wound</E15_18>
+        <E15_18>Chest: Gunshot Wound</E15_18>
+        <E15_18>Chest: Gunshot Wound</E15_18>
+        <E15_20>Back: Gunshot Wound</E15_20>
+        <E15_20>Back: Gunshot Wound</E15_20>
+        <E15_23>-20</E15_23>
+      </E15>
+      <E16>
+        <E16_01>1</E16_01>
+        <E16_00_0>
+          <E16_03>2012-05-04T15:00:00.0Z</E16_03>
+          <E16_04>3425</E16_04>
+          <E16_05>3475</E16_05>
+          <E16_06>3505</E16_06>
+          <E16_07>3535</E16_07>
+          <E16_08>3600</E16_08>
+          <E16_09>3620</E16_09>
+          <E16_10>3650</E16_10>
+          <E16_11>3680</E16_11>
+          <E16_12>3710</E16_12>
+          <E16_13>3740</E16_13>
+          <E16_14>3770</E16_14>
+          <E16_15>3795</E16_15>
+          <E16_16>3820</E16_16>
+          <E16_17>3845</E16_17>
+          <E16_18>3880</E16_18>
+          <E16_19>3915</E16_19>
+          <E16_20>3950</E16_20>
+          <E16_21>3980</E16_21>
+          <E16_22>4030</E16_22>
+          <E16_23>4085</E16_23>
+          <E16_24>4130</E16_24>
+          <E16_25>I am good. The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and th</E16_25>
+          <E16_26>The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first maj</E16_26>
+          <E16_27>The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first maj</E16_27>
+          <E16_28>The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first maj</E16_28>
+          <E16_29>The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first maj</E16_29>
+          <E16_30>The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first maj</E16_30>
+          <E16_31>The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first maj</E16_31>
+          <E16_32>The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first maj</E16_32>
+          <E16_33>The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gutenberg Revolution" and the age of the printed book in the West. Widely praised for its high aesthetic and artistic qualities,[1] the book has an iconic status. It is an edition of the Vulgate, printed by Johannes Gutenberg, in Mainz, Germany, in the 1450s. Forty-eight copies, or substantial portions of copies, survive, and they are considered by many sources to be the most valuable books in the world, even though a complete copy has not been sold since 1978.[2][3] The 36-line Bible is also sometimes referred to as a Gutenberg Bible, but is likely the work of another printer.The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first maj</E16_33>
+        </E16_00_0>
+        <E16_00_0>
+          <E16_03>2012-05-04T15:20:00.0Z</E16_03>
+          <E16_04>3425</E16_04>
+          <E16_05>3475</E16_05>
+          <E16_06>3505</E16_06>
+          <E16_07>3535</E16_07>
+          <E16_08>3600</E16_08>
+          <E16_09>3620</E16_09>
+          <E16_10>3650</E16_10>
+          <E16_11>3680</E16_11>
+          <E16_12>3710</E16_12>
+          <E16_13>3740</E16_13>
+          <E16_14>3770</E16_14>
+          <E16_15>3795</E16_15>
+          <E16_16>3820</E16_16>
+          <E16_17>3845</E16_17>
+          <E16_18>3880</E16_18>
+          <E16_19>3915</E16_19>
+          <E16_20>3950</E16_20>
+          <E16_21>3980</E16_21>
+          <E16_22>4030</E16_22>
+          <E16_23>4085</E16_23>
+          <E16_24>4130</E16_24>
+        </E16_00_0>
+      </E16>
+      <E17>
+        <E17_01>6730</E17_01>
+      </E17>
+      <E18>
+        <E18_01>2012-05-04T15:12:00.0Z</E18_01>
+        <E18_02>0</E18_02>
+        <E18_03>Other</E18_03>
+        <E18_04>4260</E18_04>
+        <E18_05_0>
+          <E18_05>14.00</E18_05>
+          <E18_06>4295</E18_06>
+        </E18_05_0>
+        <E18_07>4375</E18_07>
+        <E18_08>4455</E18_08>
+        <E18_09>P05545201234567</E18_09>
+        <E18_10>4485</E18_10>
+        <E18_12>Other</E18_12>
+        <E18_13>ALI</E18_13>
+        <E18_14>DENA</E18_14>
+        <E18_16>Comments Oops; 14 grams; Sublingual; Patient Response: Improved</E18_16>
+      </E18>
+      <E18>
+        <E18_01 xsi:nil="true"/>
+        <E18_02>1</E18_02>
+        <E18_03>Morphine</E18_03>
+        <E18_04>4191</E18_04>
+        <E18_05_0>
+          <E18_05>9999.00</E18_05>
+          <E18_06>4345</E18_06>
+        </E18_05_0>
+        <E18_07>4375</E18_07>
+        <E18_09>P075514</E18_09>
+        <E18_10>4480</E18_10>
+        <E18_11>24242423424234242423</E18_11>
+        <E18_12>Morphine</E18_12>
+        <E18_13>ADAMS</E18_13>
+        <E18_14>RYAN</E18_14>
+        <E18_16>9999 mg; Intraosseous; Patient Response: Improved</E18_16>
+      </E18>
+      <E18>
+        <E18_01>2012-05-04T15:27:00.0Z</E18_01>
+        <E18_02>0</E18_02>
+        <E18_03>Adenosine</E18_03>
+        <E18_04>4205</E18_04>
+        <E18_05_0>
+          <E18_05>10.00</E18_05>
+          <E18_06>4345</E18_06>
+        </E18_05_0>
+        <E18_08>4445</E18_08>
+        <E18_09>P075514</E18_09>
+        <E18_12>Adenosine</E18_12>
+        <E18_13>ADAMS</E18_13>
+        <E18_14>RYAN</E18_14>
+        <E18_16>10 mg; Intravenous; </E18_16>
+      </E18>
+      <E18>
+        <E18_01>2012-05-04T15:25:00.0Z</E18_01>
+        <E18_02>0</E18_02>
+        <E18_03>Zofran</E18_03>
+        <E18_04>4230</E18_04>
+        <E18_05_0>
+          <E18_05>130.00</E18_05>
+          <E18_06>4345</E18_06>
+        </E18_05_0>
+        <E18_07>4375</E18_07>
+        <E18_08>4445</E18_08>
+        <E18_10>4490</E18_10>
+        <E18_11>RICHARD HALE ESO SOL</E18_11>
+        <E18_12>Zofran</E18_12>
+        <E18_13>TECH SUPPORT</E18_13>
+        <E18_14>ESO</E18_14>
+        <E18_16>130 mg; Oral; Patient Response: Improved</E18_16>
+      </E18>
+      <E18>
+        <E18_01 xsi:nil="true"/>
+        <E18_02>1</E18_02>
+        <E18_03>Afrin</E18_03>
+        <E18_07>4375</E18_07>
+        <E18_12>Afrin</E18_12>
+        <E18_15>Other Healthcare Provider</E18_15>
+        <E18_16>Comments The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the "Gut; Patient Response: Improved</E18_16>
+      </E18>
+      <E18>
+        <E18_01>2012-05-04T15:05:00.0Z</E18_01>
+        <E18_02>0</E18_02>
+        <E18_03>Afrin</E18_03>
+        <E18_04>4175</E18_04>
+        <E18_05_0>
+          <E18_05>125.00</E18_05>
+          <E18_06>4365</E18_06>
+        </E18_05_0>
+        <E18_07>4375</E18_07>
+        <E18_08>4395</E18_08>
+        <E18_09>P075514</E18_09>
+        <E18_10>4495</E18_10>
+        <E18_11>32764872364876324876</E18_11>
+        <E18_12>Afrin</E18_12>
+        <E18_13>ADAMS</E18_13>
+        <E18_14>RYAN</E18_14>
+        <E18_16>125 drops; Endotracheal tube; Patient Response: Improved</E18_16>
+      </E18>
+      <E18>
+        <E18_01>2012-05-04T15:13:00.0Z</E18_01>
+        <E18_02>0</E18_02>
+        <E18_03>Afrin</E18_03>
+        <E18_04>4175</E18_04>
+        <E18_05_0>
+          <E18_05>11.00</E18_05>
+          <E18_06>4365</E18_06>
+        </E18_05_0>
+        <E18_07>4375</E18_07>
+        <E18_08>4400</E18_08>
+        <E18_09>P049997</E18_09>
+        <E18_10>4485</E18_10>
+        <E18_12>Afrin</E18_12>
+        <E18_13>ADAMS</E18_13>
+        <E18_14>BRIAN</E18_14>
+        <E18_16>11 drops; Endotracheal tube; Patient Response: Improved</E18_16>
+      </E18>
+      <E18>
+        <E18_01 xsi:nil="true"/>
+        <E18_02>1</E18_02>
+        <E18_03>Afrin</E18_03>
+        <E18_07>4380</E18_07>
+        <E18_12>Afrin</E18_12>
+        <E18_15>Lay Person</E18_15>
+        <E18_16>Patient Response: Unchanged</E18_16>
+      </E18>
+      <E19>
+        <E19_01_0>
+          <E19_02>1</E19_02>
+          <E19_03>-20</E19_03>
+          <E19_05>1</E19_05>
+          <E19_06>-20</E19_06>
+          <E19_08>4600</E19_08>
+          <E19_15>Heimlich Maneuver</E19_15>
+          <E19_18>Law Enforcement</E19_18>
+          <E19_19>The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the duth</E19_19>
+          <E19_20>Comments The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the duth; Patient Response: Improved</E19_20>
+        </E19_01_0>
+        <E19_01_0>
+          <E19_01>2012-05-04T14:59:00.0Z</E19_01>
+          <E19_02>0</E19_02>
+          <E19_03>89.700</E19_03>
+          <E19_05>1</E19_05>
+          <E19_06>-20</E19_06>
+          <E19_07>4510</E19_07>
+          <E19_08>4610</E19_08>
+          <E19_09>P075514</E19_09>
+          <E19_10>4630</E19_10>
+          <E19_15>ALS Assessment</E19_15>
+          <E19_16>ADAMS</E19_16>
+          <E19_17>RYAN</E19_17>
+          <E19_19>Bad Medicine #2</E19_19>
+          <E19_20>Comments Bad Medicine #2; Patient Response: Worse</E19_20>
+        </E19_01_0>
+        <E19_01_0>
+          <E19_01>2012-05-04T15:00:00.0Z</E19_01>
+          <E19_02>0</E19_02>
+          <E19_03>38.991</E19_03>
+          <E19_05>1</E19_05>
+          <E19_06>-20</E19_06>
+          <E19_07>4530</E19_07>
+          <E19_08>4605</E19_08>
+          <E19_09>P075514</E19_09>
+          <E19_10>4630</E19_10>
+          <E19_15>IV Monitoring</E19_15>
+          <E19_16>ADAMS</E19_16>
+          <E19_17>RYAN</E19_17>
+          <E19_19>Bad Medicine #3</E19_19>
+          <E19_20>Antecubital-Right; Blood; Total Fluid 210; Comments Bad Medicine #3; Patient Response: Unchanged</E19_20>
+        </E19_01_0>
+        <E19_01_0>
+          <E19_01>2012-05-04T15:02:00.0Z</E19_01>
+          <E19_02>0</E19_02>
+          <E19_03>57.940</E19_03>
+          <E19_05>1</E19_05>
+          <E19_06>0</E19_06>
+          <E19_07>4540</E19_07>
+          <E19_08>4610</E19_08>
+          <E19_09>P075514</E19_09>
+          <E19_10>4620</E19_10>
+          <E19_15>Foley Catheter</E19_15>
+          <E19_16>ADAMS</E19_16>
+          <E19_17>RYAN</E19_17>
+          <E19_20>14 fr; Patient Response: Worse; Unsuccessful</E19_20>
+        </E19_01_0>
+        <E19_01_0>
+          <E19_01>2012-05-04T15:10:00.0Z</E19_01>
+          <E19_02>0</E19_02>
+          <E19_03>96.053</E19_03>
+          <E19_05>1</E19_05>
+          <E19_06>1</E19_06>
+          <E19_07>-20</E19_07>
+          <E19_09>P049997</E19_09>
+          <E19_15>King Airway</E19_15>
+          <E19_16>ADAMS</E19_16>
+          <E19_17>BRIAN</E19_17>
+          <E19_20>2.5; Placed At 10 cm;  Placement Verfication: X-Ray, No Epigastric Sounds, ; Successful</E19_20>
+        </E19_01_0>
+        <E19_01_0>
+          <E19_01>2012-05-04T15:11:00.0Z</E19_01>
+          <E19_02>0</E19_02>
+          <E19_03>96.053</E19_03>
+          <E19_05>1</E19_05>
+          <E19_06>0</E19_06>
+          <E19_07>-20</E19_07>
+          <E19_09>P049997</E19_09>
+          <E19_15>King Airway</E19_15>
+          <E19_16>ADAMS</E19_16>
+          <E19_17>BRIAN</E19_17>
+          <E19_20>2.5; Placed At 22 cm;  Placement Verfication: Lung Sounds, ; Unsuccessful</E19_20>
+        </E19_01_0>
+        <E19_01_0>
+          <E19_01>2012-05-04T15:11:00.0Z</E19_01>
+          <E19_02>0</E19_02>
+          <E19_03>96.053</E19_03>
+          <E19_05>1</E19_05>
+          <E19_06>1</E19_06>
+          <E19_07>4505</E19_07>
+          <E19_08>4605</E19_08>
+          <E19_10>4620</E19_10>
+          <E19_15>King Airway</E19_15>
+          <E19_16>ALBRIGHT</E19_16>
+          <E19_17>ROBIN</E19_17>
+          <E19_20>2.5; Placed At 12 cm;  Placement Verfication: Esophageal Detector, Cords Visualized, Lung Sounds, Digital CO2, Colorimetric CO2,  Complications: Gag Reflex, Patient Response: Unchanged; Successful</E19_20>
+        </E19_01_0>
+        <E19_01_0>
+          <E19_01>2012-05-04T15:11:00.0Z</E19_01>
+          <E19_02>0</E19_02>
+          <E19_03>96.053</E19_03>
+          <E19_05>1</E19_05>
+          <E19_06>1</E19_06>
+          <E19_07>4510</E19_07>
+          <E19_08>4605</E19_08>
+          <E19_09>P075514</E19_09>
+          <E19_10>4625</E19_10>
+          <E19_11>Dr. huxtable</E19_11>
+          <E19_15>King Airway</E19_15>
+          <E19_16>ADAMS</E19_16>
+          <E19_17>RYAN</E19_17>
+          <E19_20>2.5; Placed At 12 cm;  Placement Verfication: Lung Sounds, Chest Rise,  Complications: Gag Reflex, Patient Response: Unchanged; Successful</E19_20>
+        </E19_01_0>
+        <E19_01_0>
+          <E19_01>2012-05-04T15:12:00.0Z</E19_01>
+          <E19_02>0</E19_02>
+          <E19_03>38.992</E19_03>
+          <E19_04>21 ga butterfly</E19_04>
+          <E19_05>1</E19_05>
+          <E19_06>0</E19_06>
+          <E19_07>4530</E19_07>
+          <E19_08>4605</E19_08>
+          <E19_09>P075514</E19_09>
+          <E19_10>4630</E19_10>
+          <E19_11>Dr. Huxtable</E19_11>
+          <E19_15>IV Therapy</E19_15>
+          <E19_16>ADAMS</E19_16>
+          <E19_17>RYAN</E19_17>
+          <E19_20>21 ga butterfly; External Jugular-Right; D5W; Total Fluid 28; Patient Response: Unchanged; Unsuccessful</E19_20>
+        </E19_01_0>
+        <E19_01_0>
+          <E19_01>2012-05-04T15:30:00.0Z</E19_01>
+          <E19_02>0</E19_02>
+          <E19_03>-20</E19_03>
+          <E19_05>1</E19_05>
+          <E19_06>-20</E19_06>
+          <E19_07>4540</E19_07>
+          <E19_08>4600</E19_08>
+          <E19_09>P075514</E19_09>
+          <E19_10>4615</E19_10>
+          <E19_11>Dr. Carlos</E19_11>
+          <E19_15>Consult/Order Denied</E19_15>
+          <E19_16>ADAMS</E19_16>
+          <E19_17>RYAN</E19_17>
+          <E19_19>No consulting for you</E19_19>
+          <E19_20>Comments No consulting for you; Patient Response: Improved</E19_20>
+        </E19_01_0>
+        <E19_01_0>
+          <E19_02>1</E19_02>
+          <E19_03>41.920</E19_03>
+          <E19_05>1</E19_05>
+          <E19_06>1</E19_06>
+          <E19_07>4585</E19_07>
+          <E19_08>4600</E19_08>
+          <E19_10>4630</E19_10>
+          <E19_11>ij trken gfkevjgn kj</E19_11>
+          <E19_15>Intraosseous</E19_15>
+          <E19_16>TECH SUPPORT</E19_16>
+          <E19_17>ESO</E19_17>
+          <E19_20>Big IO; Sternal; Lactated Ringers; Total Fluid 50; Patient Response: Improved; Successful</E19_20>
+        </E19_01_0>
+        <E19_01_0>
+          <E19_01>2012-05-04T14:35:00.0Z</E19_01>
+          <E19_02>0</E19_02>
+          <E19_03>-20</E19_03>
+          <E19_05>1</E19_05>
+          <E19_06>-20</E19_06>
+          <E19_07>4560</E19_07>
+          <E19_08>4610</E19_08>
+          <E19_09>P075514</E19_09>
+          <E19_10>4615</E19_10>
+          <E19_11>Dr. Shankar</E19_11>
+          <E19_15>Helmet Removal</E19_15>
+          <E19_16>ADAMS</E19_16>
+          <E19_17>RYAN</E19_17>
+          <E19_20>Patient Response: Worse</E19_20>
+        </E19_01_0>
+        <E19_01_0>
+          <E19_01>2012-05-04T14:45:00.0Z</E19_01>
+          <E19_02>0</E19_02>
+          <E19_03>99.624</E19_03>
+          <E19_05>1</E19_05>
+          <E19_06>-20</E19_06>
+          <E19_07>4560</E19_07>
+          <E19_08>4610</E19_08>
+          <E19_09>P075514</E19_09>
+          <E19_10>4615</E19_10>
+          <E19_15>Pacing</E19_15>
+          <E19_16>ADAMS</E19_16>
+          <E19_17>RYAN</E19_17>
+          <E19_20>Rate 12; Milliamps 15; Patient Response: Worse</E19_20>
+        </E19_01_0>
+        <E19_01_0>
+          <E19_01>2012-05-04T14:50:00.0Z</E19_01>
+          <E19_02>0</E19_02>
+          <E19_03>99.621</E19_03>
+          <E19_05>1</E19_05>
+          <E19_06>-20</E19_06>
+          <E19_07>4575</E19_07>
+          <E19_08>4605</E19_08>
+          <E19_10>4615</E19_10>
+          <E19_15>AED Defibrillation</E19_15>
+          <E19_16>Jebb</E19_16>
+          <E19_17>Bush</E19_17>
+          <E19_19>Good</E19_19>
+          <E19_20>Comments Good; Patient Response: Unchanged</E19_20>
+        </E19_01_0>
+        <E19_01_0>
+          <E19_01>2012-05-04T14:51:00.0Z</E19_01>
+          <E19_02>0</E19_02>
+          <E19_03>96.020</E19_03>
+          <E19_05>1</E19_05>
+          <E19_06>-20</E19_06>
+          <E19_07>4505</E19_07>
+          <E19_08>4600</E19_08>
+          <E19_09>P075514</E19_09>
+          <E19_10>4630</E19_10>
+          <E19_15>OPA</E19_15>
+          <E19_16>ADAMS</E19_16>
+          <E19_17>RYAN</E19_17>
+          <E19_19>Bad Medicine #1</E19_19>
+          <E19_20>Comments Bad Medicine #1; Patient Response: Improved</E19_20>
+        </E19_01_0>
+        <E19_01_0>
+          <E19_01>2012-05-04T14:54:00.0Z</E19_01>
+          <E19_02>0</E19_02>
+          <E19_03>38.992</E19_03>
+          <E19_04>19 ga butterfly</E19_04>
+          <E19_05>1</E19_05>
+          <E19_06>1</E19_06>
+          <E19_07>4530</E19_07>
+          <E19_08>4600</E19_08>
+          <E19_09>P075514</E19_09>
+          <E19_10>4630</E19_10>
+          <E19_11>Magic Johnsonnnnnnnn</E19_11>
+          <E19_15>IV Therapy</E19_15>
+          <E19_16>ADAMS</E19_16>
+          <E19_17>RYAN</E19_17>
+          <E19_20>19 ga butterfly; External Jugular-Right; Lactated Ringers; Total Fluid 27; Patient Response: Improved; Successful</E19_20>
+        </E19_01_0>
+        <E19_01_0>
+          <E19_01>2012-05-04T14:54:00.0Z</E19_01>
+          <E19_02>0</E19_02>
+          <E19_03>93.900</E19_03>
+          <E19_05>1</E19_05>
+          <E19_06>-20</E19_06>
+          <E19_07>4510</E19_07>
+          <E19_08>4605</E19_08>
+          <E19_09>P075514</E19_09>
+          <E19_10>4615</E19_10>
+          <E19_11>Shankar Chandramohan</E19_11>
+          <E19_15>CPAP</E19_15>
+          <E19_16>ADAMS</E19_16>
+          <E19_17>RYAN</E19_17>
+          <E19_20>Pressure 123 cmH2O; Flow Rate 10 lpm; Moderate; Patient Response: Unchanged</E19_20>
+        </E19_01_0>
+        <E19_01_0>
+          <E19_01>2012-05-04T14:56:00.0Z</E19_01>
+          <E19_02>0</E19_02>
+          <E19_03>-20</E19_03>
+          <E19_05>1</E19_05>
+          <E19_06>-20</E19_06>
+          <E19_07>4505</E19_07>
+          <E19_08>4600</E19_08>
+          <E19_09>P075514</E19_09>
+          <E19_10>4620</E19_10>
+          <E19_11>Dr. Alan</E19_11>
+          <E19_15>12-Lead EKG</E19_15>
+          <E19_16>ADAMS</E19_16>
+          <E19_17>RYAN</E19_17>
+          <E19_19>None. Worked</E19_19>
+          <E19_20>Comments None. Worked; Patient Response: Improved</E19_20>
+        </E19_01_0>
+        <E19_12>4640</E19_12>
+        <E19_12>4650</E19_12>
+        <E19_12>4650</E19_12>
+        <E19_12>4715</E19_12>
+        <E19_13>4735</E19_13>
+        <E19_13>4735</E19_13>
+        <E19_13>4735</E19_13>
+        <E19_13>4740</E19_13>
+        <E19_13>4745</E19_13>
+        <E19_13>4750</E19_13>
+        <E19_13>4755</E19_13>
+        <E19_13>4760</E19_13>
+        <E19_13>4765</E19_13>
+        <E19_14>4735</E19_14>
+        <E19_14>4735</E19_14>
+        <E19_14>4735</E19_14>
+        <E19_14>4740</E19_14>
+        <E19_14>4745</E19_14>
+        <E19_14>4750</E19_14>
+        <E19_14>4755</E19_14>
+        <E19_14>4760</E19_14>
+        <E19_14>4765</E19_14>
+        <E19_21>Chest Rise</E19_21>
+        <E19_21>Colorimetric CO2</E19_21>
+        <E19_21>Cords Visualized</E19_21>
+        <E19_21>Digital CO2</E19_21>
+        <E19_21>Esophageal Detector</E19_21>
+        <E19_21>Lung Sounds</E19_21>
+        <E19_21>Lung Sounds</E19_21>
+        <E19_21>Lung Sounds</E19_21>
+        <E19_21>No Epigastric Sounds</E19_21>
+        <E19_21>X-Ray</E19_21>
+      </E19>
+      <E20>
+        <E20_01>WakeMed Main</E20_01>
+        <E20_02>F00002506</E20_02>
+        <E20_03_0>
+          <E20_03>3000 New Bern Ave</E20_03>
+          <E20_04>55000</E20_04>
+          <E20_05>37</E20_05>
+          <E20_07>27610</E20_07>
+        </E20_03_0>
+        <E20_06>37183</E20_06>
+        <E20_09>0</E20_09>
+        <E20_10>4850</E20_10>
+        <E20_11>4870</E20_11>
+        <E20_12>4900</E20_12>
+        <E20_13>4935</E20_13>
+        <E20_14>4965</E20_14>
+        <E20_15>4975</E20_15>
+        <E20_16>4990</E20_16>
+        <E20_17>7280</E20_17>
+      </E20>
+      <E22>
+        <E22_01>5340</E22_01>
+        <E22_02>5380</E22_02>
+        <E22_03>y5346583475983758934</E22_03>
+        <E22_05>78978783727428375843</E22_05>
+      </E22>
+      <E23>
+        <E23_01>-20</E23_01>
+        <E23_05>0</E23_05>
+        <E23_06>5540</E23_06>
+        <E23_06>5560</E23_06>
+        <E23_06>5575</E23_06>
+        <E23_07>5590</E23_07>
+        <E23_08>0</E23_08>
+        <E23_09_0>
+          <E23_09/>
+          <E23_11>IncidentAddress2</E23_11>
+        </E23_09_0>
+        <E23_09_0>
+          <E23_09>23748937487489327439874892374987587592305999999999</E23_09>
+          <E23_11>Patient Number</E23_11>
+        </E23_09_0>
+        <E23_09_0>
+          <E23_09>29874829374892748927428974928749283748923742389472</E23_09>
+          <E23_11>Hospital Chart Number</E23_11>
+        </E23_09_0>
+        <E23_09_0>
+          <E23_09>AE3B2319-3EA7-48D8-B2C3-A04700B20DC8</E23_09>
+          <E23_11>ESOHDE_EnterpriseKey</E23_11>
+        </E23_09_0>
+        <E23_09_0>
+          <E23_09>C- 24</E23_09>
+          <E23_11>Shift</E23_11>
+        </E23_09_0>
+        <E23_09_0>
+          <E23_09>Critical Care</E23_09>
+          <E23_11>Level of Service</E23_11>
+        </E23_09_0>
+        <E23_09_0>
+          <E23_09>Medical</E23_09>
+          <E23_11>MedicalTrauma</E23_11>
+        </E23_09_0>
+        <E23_09_0>
+          <E23_09>Modern avenue first line lanes</E23_09>
+          <E23_11>DestinationAddress2</E23_11>
+        </E23_09_0>
+        <E23_09_0>
+          <E23_09>Patient</E23_09>
+          <E23_11>Requested By</E23_11>
+        </E23_09_0>
+        <E23_10>P049997</E23_10>
+        <E23_10>P05545201234567</E23_10>
+        <E23_10>P075514</E23_10>
+      </E23>
+      <E24>
+        <E24_01>1</E24_01>
+        <E24_02>2012-05-04T15:11:00.0Z</E24_02>
+        <E24_03>Distance</E24_03>
+        <E24_04>Level 1</E24_04>
+        <E24_05>500003</E24_05>
+        <E24_06>500103</E24_06>
+        <E24_07>2075</E24_07>
+        <E24_08>500301</E24_08>
+        <E24_08>500309</E24_08>
+      </E24>
+      <E25>
+        <E25_01>Class 1</E25_01>
+        <E25_02>Grade 2</E25_02>
+        <E25_03>500401</E25_03>
+        <E25_03>500402</E25_03>
+        <E25_03>500405</E25_03>
+        <E25_04>500502</E25_04>
+        <E25_04>500505</E25_04>
+        <E25_04>500508</E25_04>
+        <E25_05>500601</E25_05>
+        <E25_05>500604</E25_05>
+        <E25_06>500703</E25_06>
+        <E25_06>500705</E25_06>
+        <E25_06>500708</E25_06>
+      </E25>
+      <E26>
+        <E26_01>9%</E26_01>
+        <E26_02>9%</E26_02>
+        <E26_03>0%</E26_03>
+        <E26_04>0%</E26_04>
+        <E26_05_0>
+          <E26_05>Anterior Chest</E26_05>
+          <E26_06>1ST</E26_06>
+        </E26_05_0>
+      </E26>
+      <E27>
+        <E27_02>0</E27_02>
+        <E27_03>Normal</E27_03>
+        <E27_04>Not Assessed</E27_04>
+        <E27_05>Not Assessed</E27_05>
+      </E27>
+      <E28>
+        <E28_01>500802</E28_01>
+        <E28_02>Nose</E28_02>
+        <E28_03>500902</E28_03>
+        <E28_04>501001</E28_04>
+        <E28_05>2</E28_05>
+        <E28_06>2012-05-04T14:00:00.0Z</E28_06>
+        <E28_07>501101</E28_07>
+        <E28_08>501103</E28_08>
+        <E28_09>501102</E28_09>
+        <E28_10>501103</E28_10>
+        <E28_11>501101</E28_11>
+        <E28_12>501102</E28_12>
+        <E28_13>501101</E28_13>
+        <E28_14>501102</E28_14>
+        <E28_15>501103</E28_15>
+        <E28_16>501101</E28_16>
+        <E28_17>501102</E28_17>
+        <E28_18>501103</E28_18>
+        <E28_19>501101</E28_19>
+        <E28_20>501102</E28_20>
+        <E28_21>501103</E28_21>
+        <E28_22>501101</E28_22>
+        <E28_23>501102</E28_23>
+        <E28_24>501103</E28_24>
+        <E28_25>501201</E28_25>
+        <E28_26>501301</E28_26>
+        <E28_26>501308</E28_26>
+        <E28_27>-20</E28_27>
+      </E28>
+      <E29>
+        <E29_01>2240</E29_01>
+        <E29_02>2260</E29_02>
+        <E29_03>2395</E29_03>
+        <E29_04>2315</E29_04>
+        <E29_05>501402</E29_05>
+        <E29_06>1</E29_06>
+        <E29_07>502104</E29_07>
+        <E29_08>1</E29_08>
+        <E29_09>2355</E29_09>
+        <E29_10>2375</E29_10>
+        <E29_11>2465</E29_11>
+        <E29_12>2012-05-04T04:00:00.0Z</E29_12>
+        <E29_13>2450</E29_13>
+        <E29_14>1</E29_14>
+        <E29_15>2012-05-04T04:00:00.0Z</E29_15>
+        <E29_16>SHANKAR</E29_16>
+        <E29_17>34</E29_17>
+        <E29_18>23</E29_18>
+        <E29_19>2012-05-04T14:59:00.0Z</E29_19>
+        <E29_20>9056</E29_20>
+        <E29_21>501502</E29_21>
+        <E29_22>2012-05-04T14:52:00.0Z</E29_22>
+        <E29_23>1</E29_23>
+        <E29_24>501602</E29_24>
+        <E29_25>1</E29_25>
+        <E29_26>2012-05-04T14:50:00.0Z</E29_26>
+        <E29_27>1</E29_27>
+        <E29_28>0</E29_28>
+        <E29_29>501703</E29_29>
+        <E29_30>2290</E29_30>
+        <E29_30>2300</E29_30>
+      </E29>
+      <E30>
+        <E30_01>2012-05-04T04:00:00.0Z</E30_01>
+        <E30_02>1</E30_02>
+        <E30_03>0</E30_03>
+        <E30_04>1</E30_04>
+        <E30_05>0</E30_05>
+        <E30_06>1</E30_06>
+        <E30_07>0</E30_07>
+        <E30_08>1</E30_08>
+        <E30_09>0</E30_09>
+        <E30_10>1</E30_10>
+        <E30_11>0</E30_11>
+      </E30>
+      <E31>
+        <E31_01>1</E31_01>
+        <E31_02>501802</E31_02>
+        <E31_03>2155</E31_03>
+        <E31_04>4</E31_04>
+        <E31_05>501902</E31_05>
+        <E31_06>y5346583475983758934</E31_06>
+        <E31_07>1</E31_07>
+        <E31_08>The Gutenberg Bible (also known as the 42-line Bible, the Mazarin Bible or the B42) was the first major book printed with movable type in the West and the first major book produced on a printing press anywhere in the world. It marked the start of the</E31_08>
+        <E31_09>500.00000</E31_09>
+        <E31_10>2220</E31_10>
+        <E31_11>2012-05-04T14:58:00.0Z</E31_11>
+        <E31_12>2070</E31_12>
+        <E31_12>2075</E31_12>
+        <E31_13>2180</E31_13>
+        <E31_13>2200</E31_13>
+        <E31_13>2205</E31_13>
+        <E31_14>2105</E31_14>
+        <E31_14>2110</E31_14>
+        <E31_14>2135</E31_14>
+        <E31_14>2140</E31_14>
+      </E31>
+      <E33>
+        <E33_01>0</E33_01>
+        <E33_02>1</E33_02>
+        <E33_03>0</E33_03>
+        <E33_04>1</E33_04>
+        <E33_05>0</E33_05>
+        <E33_06>1</E33_06>
+        <E33_07>0</E33_07>
+        <E33_08>1</E33_08>
+        <E33_09>5</E33_09>
+        <E33_10>4</E33_10>
+      </E33>
+      <E34>
+        <E34_01>1</E34_01>
+        <E34_02>0</E34_02>
+        <E34_03>1</E34_03>
+        <E34_04>0</E34_04>
+        <E34_05>1</E34_05>
+        <E34_06>0</E34_06>
+      </E34>
+    </Record>
+  </Header>
+</EMSDataSet>

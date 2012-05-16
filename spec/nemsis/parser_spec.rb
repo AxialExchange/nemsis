@@ -206,7 +206,7 @@ XML
       it('should handle numbers')   { p.E_NUMBER.should    == "100" }
       it('should handle Date/Time') { p.E_DATETIME.should  == "2012-03-01 19:09" }
       it('should handle Date')      { p.E_DATE.should      == "2012-03-02" }
-      it('should handle Time')      { p.E_TIME.should      == "04:29" }
+      it('should handle Time')      { p.E_TIME.should      == "2012-03-02 04:29" }
       it('should handle Single')    { p.E_SINGLE.should    == "Days" }
       it('should handle Yes/No')    { p.E_YES_NO.should    == "No" }
       it('should handle Multiple')  { p.E_MULTIPLE.should  == "First, Third choice, Assessment-Adult" }
@@ -574,6 +574,10 @@ XML
       end
 
       it 'should return a decimal' do
+
+        pending "Should parser really mess with data type? Saw some bug introduced that " + 
+                "turned integer into float wrongly.  Maybe safer to return just what's" + 
+                "in the XML for numeric fields."
         p.E31_07.should == "0.65"
         p.E31_08.should == "9.1"
         p.E31_09.should == "91"
@@ -791,6 +795,7 @@ E06_16:
   node: E06_16
 YML
     }
+
     context 'baby' do
       let(:p) {
         xml_str = <<XML
@@ -994,7 +999,10 @@ XML
         end
 
         it 'should return a time value' do
-          p.E24_03.should == "12:50"
+          # Nemsis::Parser should not be stripping any part of the date/time
+          # if needed to display as time string, that is a display requirement
+          # which should be handled in view helpers
+          p.E24_03.should == "2012-03-08 12:50"
         end
       end
 
@@ -1017,6 +1025,7 @@ XML
             p.parse_time('E24_01').should == "12:50"
           end
         end
+
         context 'date data type' do
           it 'should not return a full date/time value' do
             p.parse_time('E24_02', true).should_not == "2012-03-08 12:50"
@@ -1030,13 +1039,14 @@ XML
             p.parse_time('E24_02').should_not == "12:50"
           end
         end
+
         context 'time data type' do
-          it 'should not return a full date/time value' do
-            p.parse_time('E24_03', true).should_not == "2012-03-08 12:50"
+          it 'should return a full date/time value' do
+            p.parse_time('E24_03', true).should == "2012-03-08 12:50"
           end
 
           it 'should not return a date value' do
-            p.parse_date('E24_03').should_not == "2012-03-08"
+            p.parse_date('E24_03').should == "2012-03-08"
           end
 
           it 'should return a time value' do
@@ -1481,16 +1491,21 @@ XML
         results[1]['E04_05'].should == "CHRISTOPHER"
       end
 
-      context 'provider name lookup' do
+      it 'provider name lookup' do
+        pending "Nemsis::Parser#provider_name_lookup deprecated 5/16/2012 GC"
+
         it 'should return provider name for the given ID' do
           p2.get_provider_name('P079008').should == 'Christopher Bolden'
         end
+
         it 'should return provider name for the given numeric-only ID' do
           p2.get_provider_name('1234').should == 'Nicole Dane'
         end
+
         it 'should return the ID as the provider name for an unknown ID' do
           p2.get_provider_name('X079008').should == 'X079008'
         end
+
         it 'should return provider name for the given Data Element' do
           p2.get_provider_name('E18_09').should == 'Rebecca Lippert'
         end

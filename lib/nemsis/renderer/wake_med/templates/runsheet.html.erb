@@ -1,7 +1,6 @@
 
 <%
    NBSP ||= "&nbsp;"
-
 %>
 
 <% if @fancy_html %>
@@ -23,11 +22,16 @@
   <!--Last, address, dob-->
   <%= row 'E06_01', 'E06_04', 'E06_16' %>
   <!--First, city/st/zip, weight-->
-  <%= row 'E06_02', {'City, St ZIP' => "concat('E06_05','E06_07','E06_08')"}, {'Weight' => 'weight_in_words'} %>
+  <%= start_row %>
+    <%= labeled_cell 'First', @parser.E06_02 %>
+    <%= labeled_cell 'City, St Zip', "#{@parser.parse_city('E06_05')}, #{@parser.parse_state('E06_07')} #{@parser.E06_08}" %>
+    <%= labeled_cell 'Weight', @parser.weight_in_words %>
+
+  </tr>
   <!--Middle, phone, SSN-->
   <%= row 'E06_03', 'E06_17', 'E06_10' %>
   <!--Gender, county, physician -->
-  <%= row 'E06_11', 'E06_06', {'Physician' => "concat('E12_04', 'E12_06')"} %>
+  <%= row 'E06_11', {'County' => "parse_county('E06_06')"}, {'Physician' => "concat('E12_04', 'E12_06')"} %>
   <!--Age, country-->
   <%= row( {'Age' => 'age_in_words'}, 'E06_09', '') %>
   <%= start_row %>
@@ -40,13 +44,13 @@
     start_table title, 6 %>
   <tbody>
       <!-- Primary Impression, Anatomical Position, Injury -->
-      <%= row 'E09_15', 'E09_11', {'Injury' => "concat('E10_01', 'E10_02', 'E10_03')"} %>
+      <%= row( {'Primary Impression' => "concat('E09_19')"}, 'E09_11', {'Injury' => "concat('E10_01', 'E10_02', 'E10_03')"} )%>
       <!-- Secondary Impression, Chief Complaint (Dur), Medical/Trauma -->
-      <%= row 'E09_16', {'Chief Complaint' => "concat('E09_05', 'E09_06', 'E09_07')"}, {'Medical/Trauma' => "parse_value_of('MedicalTrauma')"} %>
+      <%= row( {'Secondary Impression' => "concat('E09_20')"}, {'Chief Complaint' => "concat('E09_05', 'E09_06', 'E09_07')"}, {'Medical/Trauma' => "parse_value_of('MedicalTrauma')"} )%>
       <!-- Protocol Used (D04_08), Secondary Complaint (Dur), Barriers of Care -->
-      <%= row 'E17_01', {'Secondary Complaint' => "concat('E09_08', 'E09_09', 'E09_10')"}, 'E12_01' %>
-      <!-- Signs & Symptoms, Anatomical Position --!>
-      <%= row({"Signs &amp; Symptoms" => "concat 'E09_13', 'E09_14'"}, 'E09_11', 3) %>
+      <%= row 'E17_01', {'Secondary Complaint' => "concat('E09_08', 'E09_09', 'E09_10')"}, 'E12_27' %>
+      <!-- Signs & Symptoms, Alcohol/Drugs -->
+      <%= row({"Signs &amp; Symptoms" => "concat('E09_13', 'E09_14', 'E09_17', 'E09_18')"}, 'E12_19', 3) %>
   </tbody>
 </table>
 <br>
@@ -57,16 +61,15 @@
     <% medications = [] %>
     <% if @parser.has_content('E12_14_0') %>
       <% @parser.parse_cluster('E12_14_0').each do |e12_14| %>
-        <% medications << e12_14.concat('E12_14', 'E12_15', 'E12_16') %>
+        <% medications << e12_14.concat('E12_14', 'E12_15', 'E12_16', 'E12_21') %>
       <% end %>
     <% end %>
-    <tr>
-      <td class="label-medium">Medications</td>
-      <td class="value"><%= medications.join(';') %></td>
+    <%= start_row %>
+      <%= labeled_cell 'Medications', medications.join('; ') %>
     </tr>
 
-    <%= row({"Allergies" => "concat('E12_08', 'E12_09')"}) %>
-    <%= row('E12_10') %>
+    <%= row({"Allergies" => "concat_with_comma('E12_22', 'E12_23')"}) %>
+    <%= row({"History"   => "concat_with_comma('E12_24')"}) %>
   </tbody>
 </table>
 <br>
@@ -105,8 +108,8 @@
           <%= cell (e14.E14_29) %>
           <%= cell (e14.E14_30) %>
 
-          <%= cell ("#{e14.E14_04}/#{e14.E14_05} #{e14.E14_06}") %>
-          <%= cell ([(e14.E14_07 || e14.E14_08), e14.E14_10].compact.join(' ')) %>
+          <%= cell ("#{[e14.E14_04, e14.E14_05].select {|v| !v.to_s.eql?('')}.compact.join('/')} #{e14.E14_06}") %>
+          <%= cell ([(!e14.E14_07.to_s.eql?('') ? e14.E14_07 : e14.E14_08), e14.E14_10].compact.join(' ')) %>
           <%= cell ((e14.concat 'E14_11', 'E14_12')) %>
           <%= cell (e14.E14_09) %>
 
@@ -116,7 +119,7 @@
           <%= cell ((e14.concat 'E14_20', 'E14_21')) %>
 
           <%= cell (e14.E14_23) %>
-          <%= cell (e14.E14_19) %>
+          <%= cell ("#{e14.E14_19}/#{e14.E14_18}") %>
           <%= cell (e14.E14_27) %>
           <%= cell (e14.E14_28) %>
         </tr>
@@ -139,8 +142,8 @@
     <% unless e14.E14_03.empty? and e14.E14_33.empty? %>
       <%= start_row %>
         <%= cell (e14.parse_time('E14_01')) %>
-        <%= cell (e14.E14_03) %>
-        <%= cell (e14.E14_33) %>
+        <%= cell (e14.E14_34) %>
+        <%= cell ("#{e14.E14_32.eql?('Yes') ? 'MI Suspected; ' : ''} #{e14.E14_33}") %>
       </tr>
     <% end %>
   <% end %>
@@ -151,48 +154,45 @@
 
 <% if @parser.has_content('E18') || @parser.has_content('E19') %>
     <% rows = {:flow_chart => [], :pta => []} %>
+
+    <% @parser.parse_cluster('E09').each do |e09| %>
+      <% rows[:pta] << {:time => nil, 
+                        :html => row_from_values(e09.E09_01,
+                                                 e09.E09_02,
+                                                 e09.E09_03,
+                                                 e09.concat_with_comma('E09_17', 'E09_18', 'E09_19', 'E09_20'))} %>
+    <% end %>
+
     <% @parser.parse_cluster('E18').each do |e18| %>
       <% if e18.E18_02.eql?('Yes') %>
-        <% rows[:pta] << {:time => @parser.E18_01, 
-                          :html => row_from_values(@parser.E18_03,
-                                                   @parser.get_provider_name(@parser.E18_09),
-                                                   @parser.E18_07,
-                                                   '')} %>
+        <% rows[:pta] << {:time => e18.E18_01, 
+                          :html => row_from_values(e18.E18_12,
+                                                   # e18.concat_with_comma('E18_13', 'E18_14', 'E18_15'),
+                                                   e18.E18_15,
+                                                   e18.E18_07,
+                                                   e18.E18_16)} %>
       <% else %>
-        <% rows[:flow_chart] << {:time => @parser.E18_01, 
-                                 :html => row_from_values(@parser.E18_01, 
-                                                          @parser.E18_03,
-                                                          [ @parser.E18_05, 
-                                                            @parser.E18_06, 
-                                                            "#{(@parser.E18_05 + @parser.E18_06).size > 0 ? '; ' :''}",
-                                                            @parser.E18_04, 
-                                                            "#{@parser.E18_07.size > 0 ? "; Pt Response: #{@parser.E18_07}" :''}",
-                                                            "#{@parser.E18_08 =~ /none/i ? '' : "; Complications: #{@parser.E18_08}"}"
-                                                          ].join(''),
-                                                          @parser.get_provider_name(@parser.E18_09))} %>
+        <% rows[:flow_chart] << {:time => e18.E18_01, 
+                                 :html => row_from_values(to_time(e18.E18_01), 
+                                                          e18.E18_12,
+                                                          e18.E18_16,
+                                                          e18.concat_with_comma('E18_13', 'E18_14'))} %>
       <% end %>
     <% end %>
 
     <% @parser.parse_cluster('E19_01_0').each do |e19| %>
       <% if e19.E19_02.eql?('Yes') %>
         <% rows[:pta] << {:time => e19.E19_01, 
-                          :html => row_from_values(e19.E19_03,
-                                                   @parser.get_provider_name(e19.E19_09),
-                                                   @parser.E19_08,
-                                                   '' )} %>
+                          :html => row_from_values(e19.E19_15,
+                                                   e19.E19_18,
+                                                   e19.E19_08,
+                                                   e19.concat_with_comma('E19_19', 'E19_20'))} %>
       <% else %>
         <% rows[:flow_chart] << {:time => e19.E19_01, 
-                                 :html => row_from_values(e19.E19_01, 
-                                                          e19.E19_03,
-                                                          [ e19.E19_04, 
-                                                            e19.E19_12, 
-                                                            "#{(e19.E19_04 + e19.E19_12).size > 0 ? '; ':''}Pt Response: ", 
-                                                            e19.E19_08,
-                                                            "#{e19.E19_06 =~ /no/i ? "#{(e19.E19_04 + e19.E19_12 + e19.E19_08).size > 0 ? '; ' :''} Unsuccessful " : ''}",
-                                                            "#{e19.E19_07 =~ /none/i ? '' : "; Complications: #{e19.E19_07}"}",
-                                                            e19.E19_13
-                                                          ].join(''),
-                                                          @parser.get_provider_name(e19.E19_09))} %>
+                                 :html => row_from_values(to_time(e19.E19_01), 
+                                                          e19.E19_15,
+                                                          e19.E19_20,
+                                                          e19.concat_with_comma('E19_16', 'E19_17'))} %>
       <% end %>
     <% end %>
 
@@ -202,25 +202,26 @@
     <% rows[:flow_chart].sort_by { |r| Time.parse(r[:time]) rescue Time.now }.each do |row| %>
       <%= row[:html] %>
     <% end %>
+    </tbody>
+  </table>
+  <br>
 
-    <% if !rows[:pta].empty? %>
+  <% if !rows[:pta].empty? %>
       <%= title = "Treatments Prior to Arrival"
           start_table title, 4 %>
       <%= heading_row 'Treatment', 'Treatment By', 'Patient Response', 'Comments' %>
       <% rows[:pta].sort_by { |r| Time.parse(r[:time]) rescue Time.now }.each do |row| %>
         <%= row[:html] %>
       <% end %>
-    <% end %>
-
-    </tbody>
+      </tbody>
     </table>
-  <br>
+    <br>
+  <% end %>
 <% end %>
 
-<% if @parser.has_content('E16') && @parser.has_content('E16_00_0')
-     assessments = @parser.parse_assessments
-     unless assessments.empty?
-%>
+<% if @parser.has_content('E16') && @parser.has_content('E16_00_0') %>
+  <% assessments = @parser.parse_assessments %>
+  <% unless assessments.empty? %>
     <%= title = "Initial Assessment (1 of #{assessments.size})"
         start_table title, 4 %>
       <tbody>
@@ -228,6 +229,7 @@
       </tbody>
     </table>
     <br>
+
     <%= title = "Ongoing Assessment"
         start_table title, 4 %>
       <tbody>
@@ -241,13 +243,13 @@
 <% end %>
 
 <% unless @parser.E13_01.empty? %>
-<%= title = "Narrative"
-    start_table '' %>
-  <%= start_row %>
-    <%= labeled_cell_medium "Narrative", @parser.E13_01.to_br %>
-  </tr>
-</table>
-<br>
+  <%= title = "Narrative"
+      start_table '' %>
+    <%= start_row %>
+      <%= labeled_cell_medium "Narrative", @parser.E13_01.to_br %>
+    </tr>
+  </table>
+  <br>
 <% end %>
 
 <% if @parser.has_content('E28') %>
@@ -256,7 +258,7 @@
         <tbody>
         <%= start_row %>
           <%= labeled_cell_narrow "12 Lead", @parser.E28_27 %>
-          <%=  cell @parser.parse_time('E28_28', true), 4 %>
+          <%= cell @parser.parse_time('E28_28', true), 4 %>
         </tr>
         <%= start_row %>
           <%= labeled_cell_narrow "Lead I:", @parser.E28_07 %>
@@ -371,8 +373,14 @@
     <%= row 'E29_01', 'E29_20' %>
     <%= row 'E29_02', 'E29_21' %>
     <%= row 'E29_03', 'E29_22' %>
-    <%= row 'E29_17', 'E29_09' %>
-    <%= row 'E29_18', 'E29_11' %>
+    <%= start_row %>
+      <%= labeled_cell @parser.name('E29_17'), "#{@parser.E29_17} min" %>
+      <%= labeled_cell @parser.name('E29_09'), @parser.E29_09 %>
+    </tr>
+    <%= start_row %>
+      <%= labeled_cell @parser.name('E29_18'), "#{@parser.E29_18} min" %>
+      <%= labeled_cell @parser.name('E29_11'), @parser.E29_11 %>
+    </tr>
     <%= row 'E29_04', 'E29_23' %>
     <%= row 'E29_05', 'E29_22' %>
     <%= row 'E29_26', 'E29_10' %>
@@ -380,7 +388,10 @@
     <%= row 'E29_28', 'E29_29' %>
     <%= row 'E29_06', 'E29_12' %>
     <%= row 'E29_07', 'E29_13' %>
-    <%= row 'E29_25', {"Resuscitation Attempted" => "concat('E29_20', 'E29_30')"} %>
+    <%= start_row %>
+      <%= labeled_cell @parser.name('E29_25'), @parser.E29_25 %>
+      <%= labeled_cell 'Resuscitation Attempted', "Resuscitation attempted - #{@parser.E29_08}; #{@parser.E29_30}" %>
+    </tr>
     <%= start_row %>
       <%= heading "In-Field Pronouncement", 4 %>
     </tr>
@@ -527,27 +538,31 @@
   </thead>
   <tbody>
     <!-- Location, Disposition, Call Rec'd -->
-    <%= row('E08_07', {"Disposition" => "concat('E20_10', 'E20_14')"}, 'E05_03') %>
-    <!-- Address, Transport due to, dispatched -->
-    <%= row('E08_11', 'E20_16', {"Dispatched" => "parse_time('E05_04')"}) %>
+    <%= row('E08_07', {"Disposition" => "concat('E20_10', 'E20_14')"}, 'E05_14') %>
+    <!-- Location, Transport due to, dispatched -->
+    <%= row('E08_16', 'E20_16', {"Dispatched" => "parse_time('E05_04')"}) %>
     <!-- Address 2, Transported to, En route -->
-    <%= row({"Address 2" => "parse_value_of('IncidentAddress2')"}, 'E20_01', 'E05_05') %>
-    <!-- City, Requested By, Resp on Scene -->
-    <%= row('E08_12', {"Requested By" => "parse_value_of('Requested By')"},'E05_06') %>
-    <!-- State, Destination, On Scene -->
-    <%= row({"State" => "parse_state('E08_14')"}, 'E20_17', 'E05_06') %>
-    <!-- Zip, Address, At Patient -->
-    <%= row('E08_15', 'E20_03', 'E05_07') %>
-    <!-- Medic Unit, Address 2, Depart -->
-    <%= row('E02_03', {"Address 2" => "parse_value_of('DestinationAddress2')"}, 'E05_09') %>
-    <!-- Run type, City, At Dest -->
-    <%= row('E02_04', 'E20_04', 'E05_10') %>
-    <!-- Priority Scene, State, Transferred -->
-    <%= row('E02_20', {"State" => "parse_state('E20_05')"}, 'E05_08') %>
-    <!-- Shift, Zip, Closed -->
-    <%= row({"Shift" => "parse_value_of('Shift')"}, 'E20_07', 'E05_11') %>
-    <!-- Scene Zone, Dest Zone, In District -->
-    <%= row('E08_09', 'E20_09', 'E05_13') %>
+    <%= row('E08_11', 'E20_01', 'E05_05') %>
+    <!-- Address 2, Requested By, Resp on Scene -->
+    <%= row({'Address 2' => "parse_value_of('IncidentAddress2')"}, {"Requested By" => "parse_value_of('Requested By')"},'E05_06') %>
+    <!-- City, Destination, On Scene -->
+    <%= row({'City' => "parse_city('E08_12')"}, 'E20_17', 'E05_06') %>
+    <!-- State, Address, At Patient -->
+    <%= row({'State' => "parse_state('E08_14')"}, 'E20_03', 'E05_07') %>
+    <!-- Zip, Address 2, Depart -->
+    <%= row('E08_15', {"Address 2" => "parse_value_of('DestinationAddress2')"}, 'E05_09') %>
+    <!-- Medic Unit, City, At Dest -->
+    <%= row({'Medic Unit' => 'E02_22'}, {'City' => "parse_city('E20_04')"}, 'E05_10') %>
+    <!-- Run type, State, Transferred -->
+    <%= row('E02_04', {"State" => "parse_state('E20_05')"}, 'E05_08') %>
+    <!-- Piority Scene, Zip, Closed -->
+    <%= row('E02_20', 'E20_07', 'E05_11') %>
+    <!-- Shift, '', In District -->
+    <%= start_row %>
+      <%= labeled_cell 'Shift', @parser.parse_value_of('Shift') %>
+      <%= labeled_cell nil, nil %>
+      <%= labeled_cell @parser.name('E05_13'), @parser.E05_13 %>
+    </tr>
     <!-- Level of Svc, Condition at Dest, Record # -->
     <%= row({"Level of Service" => "parse_value_of('Level of Service')"}, 'E20_15', 'E12_03') %>
   </tbody>
@@ -619,7 +634,7 @@
 <br>
 <% end %>
 
-<% additional_agencies = @parser.concat 'E08_01', 'E08_02'
+<% additional_agencies = @parser.concat('E08_01', 'E08_02')
    unless additional_agencies.empty?
 %>
     <%= start_table %>
@@ -643,42 +658,50 @@
     <br>
 <% end %>
 
-<% next_of_kin = concat_list [@parser.concat('E07_18', 'E07_19', 'E07_20'), @parser.E07_26, @parser.E07_25]
-   next_of_kin_address = concat_list [@parser.E07_21, @parser.E07_22, @parser.E07_23]
-   unless next_of_kin.empty? and next_of_kin_address.empty?
-%>
-<%= start_table "Next of Kin/Closest Relation/Guardian", 2 %>
-  <tbody>
-  <%= start_row %>
-    <%= labeled_cell_narrow "Next of Kin Name", next_of_kin %>
-  </tr>
-  <%= start_row %>
-    <%= labeled_cell_narrow "Address", next_of_kin_address %>
-  </tr>
-  </tbody>
-</table>
-<br>
+<% next_of_kin_names   = @parser.concat_with_comma('E07_18', 'E07_19', 'E07_20') %>
+<% next_of_kin_address = @parser.concat_with_comma('E07_21', 'E07_22', 'E07_23') %>
+<% if !next_of_kin_names.empty? || !next_of_kin_address.empty? %>
+  <%= start_table "Next of Kin", 6 %>
+    <tbody>
+    <%= start_row %>
+      <%= labeled_cell_narrow "Next of Kin Name", next_of_kin_names %>
+      <%= labeled_cell_narrow "Address1", @parser.E07_21 %>
+      <%= labeled_cell_narrow "City", @parser.parse_city('E07_22') %>
+    </tr>
+    <%= start_row %>
+      <%= labeled_cell_narrow "Relationship to Patient", @parser.E07_26 %>
+      <%= labeled_cell_narrow "Address2", nil %>
+      <%= labeled_cell_narrow "State", @parser.E07_23 %>
+    </tr>
+    <%= start_row %>
+      <%= labeled_cell_narrow "Phone", @parser.E07_25 %>
+      <%= labeled_cell_narrow "Address3", nil %>
+      <%= labeled_cell_narrow "Zip", @parser.E07_24 %>
+    </tr>
+    </tbody>
+  </table>
+  <br>
 <% end %>
 
 <% unless true %>
-<%= start_table "Personal Items", 3 %>
-  <tbody>
-  <%= start_row %>
-    <%= label "Item" %>
-    <%= label "Given To" %>
-    <%= label "Comment" %>
-  </tr>
-  <%= start_row %>
-    <%= cell "TBD" %>
-    <%= cell "TBD" %>
-    <%= cell "TBD" %>
-  </tr>
-  </tbody>
-</table>
-<br>
+  <%= start_table "Personal Items", 3 %>
+    <tbody>
+    <%= start_row %>
+      <%= label "Item" %>
+      <%= label "Given To" %>
+      <%= label "Comment" %>
+    </tr>
+    <%= start_row %>
+      <%= cell "TBD" %>
+      <%= cell "TBD" %>
+      <%= cell "TBD" %>
+    </tr>
+    </tbody>
+  </table>
+  <br>
 <% end %>
 
-<% if false and @parser.has_content('E20_16','E12_02', 'E07_34', 'E07_35', 'E07_36', 'E07_37', 'E07_02')   %>
+<% if false && @parser.has_content('E20_16','E12_02', 'E07_34', 'E07_35', 'E07_36', 'E07_37', 'E07_02')   %>
     <%= start_table "Transfer Details", 4 %>
     <!--PAN, Sending Phys.-->
     <%=  row({"PAN" => ''}, {"Sending Physician" => ''})  %>
