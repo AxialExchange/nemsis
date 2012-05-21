@@ -1717,6 +1717,14 @@ E02_20:
   is_multi_entry: 0
   name: Priority Scene
   node: E02_20
+E02_21:
+  allow_null: 1
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 0
+  name: Qualified Incident Number
+  node: E02_21
 E02_22:
   allow_null: 1
   data_entry_method: ~
@@ -1724,6 +1732,46 @@ E02_22:
   is_multi_entry: 0
   name: QUALIFIED UNIT RESPONSE NUMBER
   node: E02_22
+E02_23:
+  allow_null: 0
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 0
+  name: Service Requested Description
+  node: E02_23
+E02_24:
+  allow_null: 1
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 1
+  name: Response Delay Description
+  node: E02_24
+E02_25:
+  allow_null: 1
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 1
+  name: Scene Delay Description
+  node: E02_25
+E02_26:
+  allow_null: 1
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 1
+  name: Transport Delay Description
+  node: E02_26
+E02_27:
+  allow_null: 1
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 0
+  name: Qualified Vehicle Number
+  node: E02_27
 E03_01:
   allow_null: 1
   data_entry_method: single-choice National Element
@@ -1879,6 +1927,14 @@ E04_05:
   is_multi_entry: 1
   name: First Name
   node: E04_05
+E04_06:
+  allow_null: 1
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 1
+  name: Qualified Crew Member Level
+  node: E04_06
 E05_01:
   allow_null: 1
   data_entry_method: ~
@@ -2842,6 +2898,22 @@ E07_37:
   is_multi_entry: 1
   name: Condition Code Modifier
   node: E07_37
+E07_38:
+  allow_null: ~
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 1
+  name: Relationship To Insured Text
+  node: E07_38
+E07_39:
+  allow_null: ~
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 1
+  name: Closest Relative Relationship Text
+  node: E07_39
 E08_01:
   allow_null: 1
   data_entry_method: multiple-choice
@@ -3067,6 +3139,27 @@ E08_16:
   is_multi_entry: 0
   name: Location Name
   node: E08_16
+E08_17:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+  is_multi_entry: 0
+  name: Additional Agency
+  node: E08_17
+E08_18:
+  allow_null: ~
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 1
+  name: Location Type Descrption
+  node: E08_18
 E09_01:
   allow_null: 1
   data_entry_method: multiple-choice National Element
@@ -3617,6 +3710,22 @@ E10_10:
   is_multi_entry: 0
   name: HEIGHT OF FALL
   node: E10_10
+E10_11:
+  allow_null: 0
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 0
+  name: Cause Of Injury Description
+  node: E10_11
+E10_12:
+  allow_null: 1
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 0
+  name: Poistion Of Patient In The Seat Of Vehicle
+  node: E10_12
 E11_01:
   allow_null: 1
   data_entry_method: single-choice National Element
@@ -3828,6 +3937,22 @@ E11_11:
   is_multi_entry: 1
   name: CARDIAC RHYTHM ON ARRIVAL AT DESTINATION
   node: E11_11
+E11_12:
+  allow_null: 1
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 0
+  name: Cardiac Arrest Etiology Description
+  node: E11_12
+E11_13:
+  allow_null: 1
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 1
+  name: Medical History
+  node: E11_13
 E12_01:
   allow_null: 1
   data_entry_method: multiple-choice National Element
@@ -4153,52 +4278,59 @@ E12_20:
   node: E12_20
 E12_21:
   allow_null: 1
-  data_entry_method: ~
+  data_entry_method: '~'
   data_type: text
+  field_values: ~
   is_multi_entry: 1
-  name: 
+  name: Medication Full Description
   node: E12_21
 E12_22:
   allow_null: 1
-  data_entry_method: ~
+  data_entry_method: '~'
   data_type: text
+  field_values: ~
   is_multi_entry: 1
-  name: 
+  name: Medication Allergies Full Description
   node: E12_22
 E12_23:
   allow_null: 1
-  data_entry_method: ~
+  data_entry_method: '~'
   data_type: text
+  field_values: ~
   is_multi_entry: 1
-  name: 
+  name: ~
   node: E12_23
 E12_24:
   allow_null: 1
-  data_entry_method: ~
+  data_entry_method: '~'
   data_type: text
+  field_values: ~
   is_multi_entry: 1
-  name: MEDICAL SURGICAL HISTORY
+  name: Medical Surgical History Full Description
   node: E12_24
 E12_25:
   allow_null: 1
-  data_entry_method: ~
+  data_entry_method: '~'
   data_type: text
+  field_values: ~
   is_multi_entry: 1
-  name: 
+  name: Immunization Full Description
   node: E12_25
 E12_26:
   allow_null: 1
-  data_entry_method: ~
+  data_entry_method: '~'
   data_type: text
-  is_multi_entry: 1
-  name: 
+  field_values: ~
+  is_multi_entry: 0
+  name: Qualified Physician First Name
   node: E12_26
 E12_27:
-  allow_null: 1
-  data_entry_method: ~
+  allow_null: ~
+  data_entry_method: '~'
   data_type: text
+  field_values: ~
   is_multi_entry: 1
-  name: Barriers of Care
+  name: Barriers To Care Description
   node: E12_27
 E13_01:
   allow_null: 1
@@ -4213,6 +4345,14 @@ E13_01:
   is_multi_entry: 0
   name: Narrative
   node: E13_01
+E13_02:
+  allow_null: 1
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 0
+  name: Qualified Run Report Narrative
+  node: E13_02
 E14_01:
   allow_null: 1
   data_entry_method: ~
@@ -4340,8 +4480,6 @@ E14_10:
     -5: Not Available
     3175: R
     3180: IR
-#    3175: Regular
-#    3180: Irregular
   is_multi_entry: 1
   name: PULSE RHYTHM
   node: E14_10
@@ -4602,6 +4740,30 @@ E14_34:
   is_multi_entry: 1
   name: CARDIAC RHYTHM DESCRIPTION
   node: E14_34
+E14_35:
+  allow_null: ~
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 1
+  name: Pulse Rhythm Description
+  node: E14_35
+E14_36:
+  allow_null: ~
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 1
+  name: Respiratory Effort Description
+  node: E14_36
+E14_37:
+  allow_null: ~
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 1
+  name: Temperature Method Description
+  node: E14_37
 E15_01:
   allow_null: 1
   data_entry_method: multiple-choice
@@ -4866,6 +5028,166 @@ E15_11:
   is_multi_entry: 1
   name: NHTSA INJURY MATRIX UNSPECIFIED
   node: E15_11
+E15_12:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: number
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3320: Amputation
+    3325: Bleeding Controlled
+    3330: Bleeding Uncontrolled
+    3335: Burn
+    3340: Crush
+    3345: Dislocation Fracture
+    3350: Gunshot
+    3355: Laceration
+    3360: Pain without swelling/bruising
+    3365: Puncture/stab
+    3370: Soft Tissue Swelling/Bruising
+  is_multi_entry: 1
+  name: Left Arm
+  node: E15_12
+E15_13:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: number
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3320: Amputation
+    3325: Bleeding Controlled
+    3330: Bleeding Uncontrolled
+    3335: Burn
+    3340: Crush
+    3345: Dislocation Fracture
+    3350: Gunshot
+    3355: Laceration
+    3360: Pain without swelling/bruising
+    3365: Puncture/stab
+    3370: Soft Tissue Swelling/Bruising
+  is_multi_entry: 1
+  name: Right Arm
+  node: E15_13
+E15_14:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: number
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3320: Amputation
+    3325: Bleeding Controlled
+    3330: Bleeding Uncontrolled
+    3335: Burn
+    3340: Crush
+    3345: Dislocation Fracture
+    3350: Gunshot
+    3355: Laceration
+    3360: Pain without swelling/bruising
+    3365: Puncture/stab
+    3370: Soft Tissue Swelling/Bruising
+  is_multi_entry: 1
+  name: Left Leg
+  node: E15_14
+E15_15:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: number
+  field_values:
+    -10: Not Known
+    -15: Not Reporting
+    -20: Not Recorded
+    -25: Not Applicable
+    -5: Not Available
+    3320: Amputation
+    3325: Bleeding Controlled
+    3330: Bleeding Uncontrolled
+    3335: Burn
+    3340: Crush
+    3345: Dislocation Fracture
+    3350: Gunshot
+    3355: Laceration
+    3360: Pain without swelling/bruising
+    3365: Puncture/stab
+    3370: Soft Tissue Swelling/Bruising
+  is_multi_entry: 1
+  name: Right Leg
+  node: E15_15
+E15_16:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values: ~
+  is_multi_entry: 1
+  name: Skin Injury Description
+  node: E15_16
+E15_17:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values: ~
+  is_multi_entry: 1
+  name: Heent Injury Description
+  node: E15_17
+E15_18:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values: ~
+  is_multi_entry: 1
+  name: Chest Injury Description
+  node: E15_18
+E15_19:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values: ~
+  is_multi_entry: 1
+  name: Abdomen Injury Description
+  node: E15_19
+E15_20:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values: ~
+  is_multi_entry: 1
+  name: Back Injury Description
+  node: E15_20
+E15_21:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values: ~
+  is_multi_entry: 1
+  name: ~
+  node: E15_21
+E15_22:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values: ~
+  is_multi_entry: 1
+  name: Extremities Injury Description
+  node: E15_22
+E15_23:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values: ~
+  is_multi_entry: 1
+  name: Other Injury Description
+  node: E15_23
 E16_01:
   allow_null: 0
   data_entry_method: ~
@@ -6067,31 +6389,35 @@ E18_12:
   node: E18_12
 E18_13:
   allow_null: 1
-  data_entry_method: ~
+  data_entry_method: '~'
   data_type: text
-  is_multi_entry: 0
-  name: 
+  field_values: ~
+  is_multi_entry: 1
+  name: Crew Member Last Name
   node: E18_13
 E18_14:
   allow_null: 1
-  data_entry_method: ~
+  data_entry_method: '~'
   data_type: text
-  is_multi_entry: 0
-  name: 
+  field_values: ~
+  is_multi_entry: 1
+  name: Crew Member First Name
   node: E18_14
 E18_15:
   allow_null: 1
-  data_entry_method: ~
+  data_entry_method: '~'
   data_type: text
+  field_values: ~
   is_multi_entry: 0
-  name: 
+  name: Prior To Arrival Treatment Provided By
   node: E18_15
 E18_16:
   allow_null: 1
-  data_entry_method: ~
+  data_entry_method: '~'
   data_type: text
+  field_values: ~
   is_multi_entry: 0
-  name: 
+  name: Treatment Description
   node: E18_16
 E19_01:
   allow_null: 1
@@ -6339,46 +6665,60 @@ E19_14:
   node: E19_14
 E19_15:
   allow_null: 1
-  data_entry_method: ~
+  data_entry_method: '~'
   data_type: text
-  is_multi_entry: 0
-  name: INTERVENTION PROCEDURE NAME
+  field_values: ~
+  is_multi_entry: 1
+  name: Intervention Procedure Name
   node: E19_15
 E19_16:
   allow_null: 1
-  data_entry_method: ~
+  data_entry_method: '~'
   data_type: text
-  is_multi_entry: 0
-  name: 
+  field_values: ~
+  is_multi_entry: 1
+  name: Crew Member Last Name
   node: E19_16
 E19_17:
   allow_null: 1
-  data_entry_method: ~
+  data_entry_method: '~'
   data_type: text
-  is_multi_entry: 0
-  name: 
+  field_values: ~
+  is_multi_entry: 1
+  name: Crew Member First Name
   node: E19_17
 E19_18:
   allow_null: 1
-  data_entry_method: ~
+  data_entry_method: '~'
   data_type: text
+  field_values: ~
   is_multi_entry: 0
-  name: 
+  name: Prior To Arrival Treatment Provided By
   node: E19_18
 E19_19:
   allow_null: 1
-  data_entry_method: ~
+  data_entry_method: '~'
   data_type: text
+  field_values: ~
   is_multi_entry: 0
-  name: 
+  name: Treatment Comments
   node: E19_19
 E19_20:
   allow_null: 1
-  data_entry_method: ~
+  data_entry_method: '~'
   data_type: text
+  field_values: ~
   is_multi_entry: 0
-  name: 
+  name: Treatment Description
   node: E19_20
+E19_21:
+  allow_null: 1
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 1
+  name: Disposition
+  node: E19_21
 E20_01:
   allow_null: 1
   data_entry_method: ~
@@ -6644,6 +6984,30 @@ E20_17:
   is_multi_entry: 0
   name: Destination
   node: E20_17
+E20_18:
+  allow_null: ~
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 1
+  name: Reason For Destination Description
+  node: E20_18
+E20_19:
+  allow_null: ~
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 1
+  name: Disposition Description
+  node: E20_19
+E20_20:
+  allow_null: ~
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 1
+  name: Destination Type Description
+  node: E20_20
 E21_01:
   allow_null: 1
   data_entry_method: ~
@@ -6934,6 +7298,14 @@ E22_06:
   is_multi_entry: 0
   name: PATIENT ID BAND/TAG NUMBER
   node: E22_06
+E22_07:
+  allow_null: ~
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 1
+  name: Qualified Trauma Registry Id
+  node: E22_07
 E23_01:
   allow_null: 1
   data_entry_method: single-choice
@@ -7240,7 +7612,7 @@ E24_08:
     500309: '> 1 Prox Long Bone FX'
     500310: Mangled Extremity
   is_multi_entry: 1
-  name: Anatomic
+  name: Advanced Airway
   node: E24_08
 E25_01:
   allow_null: 0
@@ -7374,6 +7746,30 @@ E26_04:
   is_multi_entry: 0
   name: 3rd Degree
   node: E26_04
+E26_05:
+  allow_null: 1
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 1
+  name: Body Part
+  node: E26_05
+E26_06:
+  allow_null: 1
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 1
+  name: Injury Type
+  node: E26_06
+E26_07:
+  allow_null: 1
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 1
+  name: Burn Detail Comments
+  node: E26_07
 E27_01:
   allow_null: 1
   data_entry_method: ~
