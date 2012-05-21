@@ -425,24 +425,26 @@ STYLE
           items.select { |v| !v.strip!.nil? }.join('; ')
         end
 
-        def positive(assessment, element_name)
-          items = assessment.parse(element_name)
+        def assessment_str(assessment, prefix, element_names)
+          items = []
+          element_names.each do |element_name|
+            items << assessment.parse(element_name)
+          end
 
-          text = '(+) '
-          text += Array(items).reject {|a| a.to_s =~ /^\s*$/}.
-                               join(', ')
+          text = prefix + 
+                 ' ' +
+                 Array(items).reject {|a| a.to_s =~ /^\s*$/}.
+                              join(', ')
 
           text
         end
 
-        def negative(assessment, element_name)
-          items = assessment.parse(element_name)
+        def positive(assessment, *element_names)
+          assessment_str(assessment, '(+)', element_names)
+        end
 
-          text = '(-) '
-          text += Array(items).reject {|a| a.to_s =~ /^\s*$/}.
-                               join(', ')
-
-          text
+        def negative(assessment, *element_names)
+          assessment_str(assessment, '(-)', element_names)
         end
 
         def assessment_table(assessment)
@@ -461,31 +463,31 @@ STYLE
           html += start_row +
               labeled_cell("Skin", (assessment.E16_26)) +
               cell("Skin") +
-              cell(positive(assessment, 'E16_39') + '<hr>' + negative(assessment, 'E16_64')) +
+              cell(positive(assessment, 'E16_39', 'E15_01') + '<hr>' + negative(assessment, 'E16_64')) +
               end_row 
           html += start_row +
               tall_label("HEENT", 4) +
               cell(assessment.E16_27, 1, 4) +
+              cell("General") +
+              cell(positive(assessment, 'E15_17')) +
+              end_row 
+          html += start_row +
               cell("Head/Face") +
-              cell(positive(assessment, 'E16_40') + '<hr>' + negative(assessment, 'E16_65')) +
+              cell(positive(assessment, 'E16_40', 'E15_02', 'E15_03') + '<hr>' + negative(assessment, 'E16_65')) +
               end_row 
           html += start_row +
-              cell("Eyes Left") +
-              cell(positive(assessment, 'E16_41') + '<hr>' + negative(assessment, 'E16_66')) +
-              end_row 
-          html += start_row +
-              cell("Eyes Right") +
-              cell(positive(assessment, 'E16_42') + '<hr>' + negative(assessment, 'E16_67')) +
+              cell("Eyes") +
+              cell(positive(assessment, 'E16_41', 'E16_42') + '<hr>' + negative(assessment, 'E16_66', 'E16_67')) +
               end_row 
           html += start_row +
               cell("Neck") +
-              cell(positive(assessment, 'E16_43') + '<hr>' + negative(assessment, 'E16_68')) +
+              cell(positive(assessment, 'E16_43', 'E15_04') + '<hr>' + negative(assessment, 'E16_68')) +
               end_row 
           html += start_row +
               tall_label("Chest", 3) +
               cell(assessment.E16_28, 1, 3) +
               cell("Chest") +
-              cell(positive(assessment, 'E16_44') + '<hr>' + negative(assessment, 'E16_69')) +
+              cell(positive(assessment, 'E16_44', 'E15_18') + '<hr>' + negative(assessment, 'E16_69')) +
               end_row 
           html += start_row +
               cell("Heart Sounds") +
@@ -499,7 +501,7 @@ STYLE
               tall_label("Abdomen", 5) +
               cell(assessment.E16_29, 1, 5) +
               cell("General") +
-              cell(positive(assessment, 'E16_47') + '<hr>' + negative(assessment, 'E16_72')) +
+              cell(positive(assessment, 'E16_47', 'E15_19') + '<hr>' + negative(assessment, 'E16_72')) +
               end_row 
           html += start_row +
               cell("Left Upper") +
@@ -518,14 +520,18 @@ STYLE
               cell(positive(assessment, 'E16_51') + '<hr>' + negative(assessment, 'E16_76')) +
               end_row 
           html += start_row +
-              tall_label("Back", 3) +
-              cell(assessment.E16_30, 1, 3) +
+              tall_label("Back", 4) +
+              cell(assessment.E16_30, 1, 4) +
+              cell("General") +
+              cell(positive(assessment, 'E15_20')) +
+              end_row 
+          html += start_row +
               cell("Cervical") +
               cell(positive(assessment, 'E16_52') + '<hr>' + negative(assessment, 'E16_77')) +
               end_row 
           html += start_row +
               cell("Thoracic") +
-              cell(positive(assessment, 'E16_53') + '<hr>' + negative(assessment, 'E16_78')) +
+              cell(positive(assessment, 'E16_53', 'E15_07') + '<hr>' + negative(assessment, 'E16_78')) +
               end_row 
           html += start_row +
               cell("Lumbar/Sacral") +
@@ -535,11 +541,15 @@ STYLE
               label("Pelvis/GU/GI") +
               cell((assessment.E16_31)) +
               cell("Pelvis/GU/GI") +
-              cell(positive(assessment, 'E16_55') + '<hr>' + negative(assessment, 'E16_80')) +
+              cell(positive(assessment, 'E16_55', 'E15_21') + '<hr>' + negative(assessment, 'E16_80')) +
               end_row 
           html += start_row +
-              tall_label("Extremities", 6) +
-              cell(assessment.E16_32, 1, 6) +
+              tall_label("Extremities", 7) +
+              cell(assessment.E16_32, 1, 7) +
+              cell("General") +
+              cell(positive(assessment, 'E15_22')) +
+              end_row 
+          html += start_row +
               cell("Left Arm") +
               cell(positive(assessment, 'E16_56') + '<hr>' + negative(assessment, 'E16_81')) +
               end_row 

@@ -44,13 +44,13 @@
     start_table title, 6 %>
   <tbody>
       <!-- Primary Impression, Anatomical Position, Injury -->
-      <%= row( {'Primary Impression' => "concat('E09_19')"}, 'E09_11', {'Injury' => "concat('E10_01', 'E10_02', 'E10_03')"} )%>
+      <%= row( {'Primary Impression' => "concat('E09_19')"}, 'E09_11', {'Injury' => "concat('E10_01', 'E10_02', 'E10_03', 'E10_11')"} )%>
       <!-- Secondary Impression, Chief Complaint (Dur), Medical/Trauma -->
       <%= row( {'Secondary Impression' => "concat('E09_20')"}, {'Chief Complaint' => "concat('E09_05', 'E09_06', 'E09_07')"}, {'Medical/Trauma' => "parse_value_of('MedicalTrauma')"} )%>
       <!-- Protocol Used (D04_08), Secondary Complaint (Dur), Barriers of Care -->
       <%= row 'E17_01', {'Secondary Complaint' => "concat('E09_08', 'E09_09', 'E09_10')"}, 'E12_27' %>
       <!-- Signs & Symptoms, Alcohol/Drugs -->
-      <%= row({"Signs &amp; Symptoms" => "concat('E09_13', 'E09_14', 'E09_17', 'E09_18')"}, 'E12_19', 3) %>
+      <%= row({"Signs &amp; Symptoms" => "concat_with_comma('E09_13', 'E09_14', 'E09_17', 'E09_18')"}, 'E12_19', 3) %>
   </tbody>
 </table>
 <br>
@@ -395,7 +395,8 @@
     <%= start_row %>
       <%= heading "In-Field Pronouncement", 4 %>
     </tr>
-    <%= row( {"Expired" => "concat('E29_14', 'E29_15', 'E29_16')"}, 3) %>
+    <%= row( {"Expired" => 'E29_14'}, {'Date/Time' => 'E29_15'} ) %>
+    <%= row( {'Physician' => 'E29_16'} ) %>
     </tbody>
 </table>
 <br>
@@ -409,9 +410,9 @@
     <%= row 'E31_01', 'E31_06' %>
     <!--Vehicle type, collision indicators-->
     <%= row 'E31_02', 'E31_12' %>
-    <!--Seat Row, Airbag Deployment-->
-    <%= row 'E31_03', 'E31_14' %>
-    <!--Position in vehicle, damage location-->
+    <!--Position in vehicle, Damage location-->
+    <%= row({'Position in vehicle' => 'E10_12'}, 'E31_14') %>
+    <!--Seat row, Airbag deploy location -->
     <%= row 'E31_04', 'E31_15' %>
     <!--Weather, Safety Devices-->
     <%= row 'E31_05', 'E31_13' %>
@@ -634,7 +635,7 @@
 <br>
 <% end %>
 
-<% additional_agencies = @parser.concat('E08_01', 'E08_02')
+<% additional_agencies = @parser.concat('E08_17')
    unless additional_agencies.empty?
 %>
     <%= start_table %>
@@ -671,7 +672,7 @@
     <%= start_row %>
       <%= labeled_cell_narrow "Relationship to Patient", @parser.E07_26 %>
       <%= labeled_cell_narrow "Address2", nil %>
-      <%= labeled_cell_narrow "State", @parser.E07_23 %>
+      <%= labeled_cell_narrow "State", @parser.parse_state('E07_23') %>
     </tr>
     <%= start_row %>
       <%= labeled_cell_narrow "Phone", @parser.E07_25 %>

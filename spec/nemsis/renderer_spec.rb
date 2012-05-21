@@ -139,7 +139,7 @@ XML
     end
 
     it 'should render test patient 1' do
-      sample_xml_file = File.expand_path('../../data/test_patient.12345678901234567890.xml', __FILE__)
+      sample_xml_file = File.expand_path('../../data/test_patient.12345678901234567890.1.xml', __FILE__)
       xml_str = File.read(sample_xml_file)
       p = Nemsis::Parser.new(xml_str)
       r = Nemsis::Renderer::WakeMed::HTML.new(p)
