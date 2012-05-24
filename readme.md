@@ -96,3 +96,11 @@ You can see parser_spec.rb and renderer_spec.rb for detailed examples. Here are 
       it('should treat method name as element name') { p.E_STRING.should == p.parse_element('E_STRING') }
       it('should pass along complex calls') { p.send("concat('E_STRING', 'E_SINGLE')").should == "My String Days" }
     end
+
+For generating dynamic section, you can check if there is any data with code like this:
+
+    <% if @parser.has_content('E28') %>
+
+or for individual values:
+
+    <% if @parser.has_content('E14_01','E14_03','E14_33') %>
