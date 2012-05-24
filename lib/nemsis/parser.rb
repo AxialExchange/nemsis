@@ -6579,10 +6579,9 @@ module Nemsis
       until data_exists || i >= elements.size do
         xpath = "//#{elements[i]}"
         i += 1
-
         xml_doc.xpath(xpath).each do |node|
           data_exists = true if node.content =~ /\w/ &&
-                                node.content !~ /^-\d{1,2}$/
+              node.content.gsub(/(\r|\n)/, ' ') !~ /^-\d{1,2}$/
         end
       end
 

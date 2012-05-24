@@ -1737,25 +1737,47 @@ XML
         xml_str = <<XML
 <?xml version="1.0" encoding="UTF-8" ?>
 <EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
-  <Header>
-    <Record>
-      <E20_03>10000 Falls of Neuse Rd</E20_03>
-      <E23>
-        <E23_01>-20</E23_01>
-        <E23_05>0</E23_05>
-      </E23>
-      <E34>
-        <E34_01>1</E34_01>
-        <E34_02>1</E34_02>
-        <E34_03>0</E34_03>
-        <E34_04>1</E34_04>
-        <E34_05>0</E34_05>
-        <E34_06>1</E34_06>
-      </E34>
-      <E35></E35>
-    </Record>
-  </Header>
+    xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
+<Header>
+<Record>
+<E02><E02_01>092054799999999</E02_01>
+<E02_02>013653</E02_02>
+<E02_03>EMS10</E02_03>
+<E02_04>30</E02_04>
+<E02_05>75</E02_05>
+<E02_06>-20</E02_06>
+<E02_07>150</E02_07>
+<E02_08>-20</E02_08>
+<E02_09>-20</E02_09>
+<E02_10>345</E02_10>
+<E02_11>188101</E02_11>
+<E02_12>EMS10</E02_12>
+<E02_16>131511.8</E02_16>
+<E02_17>131514.2</E02_17>
+<E02_18>131520.0</E02_18>
+<E02_19>131520.1</E02_19>
+<E02_20>390</E02_20>
+<E02_21>013653</E02_21>
+<E02_22>EMS10</E02_22>
+<E02_23>911 Response (Emergency)</E02_23>
+<E02_24>None</E02_24>
+<E02_27>188101</E02_27>
+</E02>
+<E20_03>10000 Falls of Neuse Rd</E20_03>
+<E23>
+<E23_01>-20</E23_01>
+<E23_05>0</E23_05>
+</E23>
+<E34><E34_01>1</E34_01>
+<E34_02>1</E34_02>
+<E34_03>0</E34_03>
+<E34_04>1</E34_04>
+<E34_05>-20</E34_05>
+<E34_06>1</E34_06>
+</E34>
+<E35></E35>
+</Record>
+</Header>
 </EMSDataSet>
 XML
         Nemsis::Parser.new(xml_str)
@@ -1776,6 +1798,9 @@ XML
       end
 
       context 'Entire range of elements' do
+        it 'should be true when data values exist' do
+          p2.has_content('E02').should == true
+        end
         it 'should be true when data values exist' do
           p2.has_content('E34').should == true
         end
