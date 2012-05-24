@@ -220,9 +220,13 @@
 <% end %>
 
 <% if @parser.has_content('E16') && @parser.has_content('E16_00_0') %>
-  <% assessments = @parser.parse_assessments %>
-  <% unless assessments.empty? %>
-    <%= title = "Initial Assessment (1 of #{assessments.size})"
+  <% assessments = @parser.parse_assessments
+     unless assessments.empty?
+         n_assessments = assessments.size
+         ongoing_exists = false
+         ongoing_exists = assessments[1].parse_time('E16_03').nil? if n_assessments > 1
+  %>
+    <%= title = "Initial Assessment#{n_assessments > 1 ? " (1 of #{n_assessments})" : ''}"
         start_table title, 4 %>
       <tbody>
       <%= assessment_table(assessments[0]) %>
@@ -230,15 +234,17 @@
     </table>
     <br>
 
-    <%= title = "Ongoing Assessment"
-        start_table title, 4 %>
-      <tbody>
-      <% assessments[1..(assessments.size-1)].each do |assessment| %>
-          <%= assessment_table(assessment) %>
-      <% end %>
-      </tbody>
-    </table>
-    <br>
+    <% unless ongoing_exists %>
+        <%= title = "Ongoing Assessment"
+            start_table title, 4 %>
+          <tbody>
+          <% assessments[1..(assessments.size-1)].each do |assessment| %>
+              <%= assessment_table(assessment) %>
+          <% end %>
+          </tbody>
+        </table>
+        <br>
+    <% end %>
   <% end %>
 <% end %>
 
