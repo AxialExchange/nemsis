@@ -220,39 +220,27 @@
 <% end %>
 
 <% if @parser.has_content('E16') && @parser.has_content('E16_00_0') %>
-  <% assessments = @parser.parse_assessments
-     unless assessments.empty?
-         n_assessments = assessments.size
-         ongoing_exists = false
-         ongoing_exists = assessments[1].parse_time('E16_03').nil? if n_assessments > 1
-  %>
-    <%= title = "Initial Assessment#{n_assessments > 1 ? " (1 of #{n_assessments})" : ''}"
-        start_table title, 4 %>
-      <tbody>
-      <%= assessment_table(assessments[0]) %>
-      </tbody>
-    </table>
-    <br>
-
-    <% unless ongoing_exists %>
-        <%= title = "Ongoing Assessment"
+    <% assessments = @parser.parse_assessments.reject {|a| a.parse_time('E16_03').nil?}
+       n = 0
+       total = assessments.size %>
+    <% assessments.each do |assessment| %>
+        <%= next if assessment.parse_time('E16_03').nil?
+            n += 1
+            title = "#{n==1 ? 'Initial' : 'Ongoing'} Assessment #{total > 1 ? "(#{n} of #{total})" : ''}"
             start_table title, 4 %>
-          <tbody>
-          <% assessments[1..(assessments.size-1)].each do |assessment| %>
-              <%= assessment_table(assessment) %>
-          <% end %>
-          </tbody>
-        </table>
+                <tbody>
+                    <%= assessment_table(assessment) %>
+                </tbody>
+            </table>
         <br>
     <% end %>
-  <% end %>
 <% end %>
 
 <% unless @parser.E13_01.empty? %>
   <%= title = "Narrative"
-      start_table '' %>
+      start_table title %>
     <%= start_row %>
-      <%= labeled_cell_medium "Narrative", @parser.E13_01.to_br %>
+      <%= cell @parser.E13_01.to_br %>
     </tr>
   </table>
   <br>

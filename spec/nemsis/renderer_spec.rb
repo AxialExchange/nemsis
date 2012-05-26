@@ -138,34 +138,18 @@ XML
       write_html_file("madison", "fancy", html)
     end
 
+=begin
     it 'should render scott' do
-      sample_xml_file = File.expand_path('../../data/nemsis_raw_scott.xml', __FILE__)
+      sample_xml_file = File.expand_path('../../data/nemsis_raw_scott_25may.xml', __FILE__)
       xml_str = File.read(sample_xml_file)
       p = Nemsis::Parser.new(xml_str)
       r = Nemsis::Renderer::WakeMed::HTML.new(p)
       html = r.render_fancy
-      write_html_file("scott", "fancy", html)
+      write_html_file("scott25", "fancy", html)
       #html = r.render
       #write_html_file("scott", "simple", html)
     end
 
-=begin
-    it 'should render nanci' do
-      sample_xml_file = File.expand_path('../../data/nanci_sample.xml', __FILE__)
-      xml_str = File.read(sample_xml_file)
-      p = Nemsis::Parser.new(xml_str)
-      r = Nemsis::Renderer::WakeMed::HTML.new(p)
-      html = r.render_fancy
-      write_html_file("nanci", "fancy", html)
-    end
-    it 'should render nathan' do
-      sample_xml_file = File.expand_path('../../data/nathan_sample.xml', __FILE__)
-      xml_str = File.read(sample_xml_file)
-      p = Nemsis::Parser.new(xml_str)
-      r = Nemsis::Renderer::WakeMed::HTML.new(p)
-      html = r.render_fancy
-      write_html_file("nathan", "fancy", html)
-    end
 =end
 
   end
