@@ -220,12 +220,11 @@
 <% end %>
 
 <% if @parser.has_content('E16') && @parser.has_content('E16_00_0') %>
-    <% assessments = @parser.parse_assessments.reject {|a| a.parse_time('E16_03').nil?}
+    <% assessments = @parser.parse_assessments
        n = 0
        total = assessments.size %>
     <% assessments.each do |assessment| %>
-        <%= next if assessment.parse_time('E16_03').nil?
-            n += 1
+        <%= n += 1
             title = "#{n==1 ? 'Initial' : 'Ongoing'} Assessment #{total > 1 ? "(#{n} of #{total})" : ''}"
             start_table title, 4 %>
                 <tbody>
@@ -718,4 +717,4 @@
 <br>
 <% end %>
 
-<p>Timestamp: <%= "#{runsheet_timestamp}" %></p>
+<p>Generated at: <%= "#{runsheet_timestamp}" %> <small>Version <%= "#{Nemsis::VERSION}" %></small></p>
