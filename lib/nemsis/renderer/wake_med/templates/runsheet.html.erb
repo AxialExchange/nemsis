@@ -33,7 +33,7 @@
   <!--Gender, county, physician -->
   <%= row 'E06_11', {'County' => "parse_county('E06_06')"}, {'Physician' => "concat('E12_04', 'E12_06')"} %>
   <!--Age, country-->
-  <%= row( {'Age' => 'age_in_words'}, 'E06_09', '') %>
+  <%= row( {'Age' => 'age_in_words'}, 'E06_09', {'' => ''}) %>
   <%= start_row %>
     <%= labeled_cell "Advanced Directive", @parser.E12_07, 5 %>
   </tr>
@@ -108,8 +108,8 @@
           <%= cell (e14.E14_29) %>
           <%= cell (e14.E14_30) %>
 
-          <%= cell ("#{[e14.E14_04, e14.E14_05].select {|v| !v.to_s.eql?('')}.compact.join('/')} #{e14.E14_06}") %>
-          <%= cell ([(!e14.E14_07.to_s.eql?('') ? e14.E14_07 : e14.E14_08), e14.E14_10].compact.join(' ')) %>
+          <%= cell ("#{[e14.E14_04, e14.E14_05].select {|v| !v.to_s.eql?('')}.compact.join('/')}&nbsp;#{e14.E14_06}") %>
+          <%= cell ("#{[(!e14.E14_07.to_s.eql?('') ? e14.E14_07 : e14.E14_08), e14.E14_10].compact.join(' ')}&nbsp;") %>
           <%= cell ((e14.concat 'E14_11', 'E14_12')) %>
           <%= cell (e14.E14_09) %>
 
@@ -141,9 +141,9 @@
   <% @parser.parse_cluster('E14').sort_by { |e14| Time.parse(e14.E14_01) rescue Time.now }.each do |e14| %>
     <% unless e14.E14_03.empty? and e14.E14_33.empty? %>
       <%= start_row %>
-        <%= cell (e14.parse_time('E14_01')) %>
-        <%= cell (e14.E14_34) %>
-        <%= cell ("#{e14.E14_32.eql?('Yes') ? 'MI Suspected; ' : ''} #{e14.E14_33}") %>
+        <%= cell(e14.parse_time('E14_01')) %>
+        <%= cell(e14.E14_34) %>
+        <%= cell("#{e14.E14_32.eql?('Yes') ? 'MI Suspected; ' : ''}&nbsp;#{e14.E14_33}") %>
       </tr>
     <% end %>
   <% end %>
@@ -251,7 +251,9 @@
         <tbody>
         <%= start_row %>
           <%= labeled_cell_narrow "12 Lead", @parser.E28_27 %>
-          <%= cell @parser.parse_time('E28_28', true), 4 %>
+          <% time = @parser.parse_time('E28_28', true)
+             time = '&nbsp;' if time.nil? || time.strip.empty?%>
+          <%= cell("#{time}", 4) %>
         </tr>
         <%= start_row %>
           <%= labeled_cell_narrow "Lead I:", @parser.E28_07 %>
@@ -389,7 +391,7 @@
       <%= heading "In-Field Pronouncement", 4 %>
     </tr>
     <%= row( {"Expired" => 'E29_14'}, {'Date/Time' => 'E29_15'} ) %>
-    <%= row( {'Physician' => 'E29_16'} ) %>
+    <%= row( {'Physician' => 'E29_16'}, {' ' => ''} ) %>
     </tbody>
 </table>
 <br>
@@ -480,14 +482,14 @@
 <% if @parser.has_content('E30') %>
     <%= title = "Specialty Patient &mdash; Influenza Screening"
         start_table title, 4 %>
-    <%= row 'E30_01', '' %>
+    <%= row 'E30_01', {' ' => ''} %>
     <%= row({"Symptoms" => ""}, {"History" => ""}) %>
     <%= row 'E30_03', 'E30_08' %>
     <%= row 'E30_04', 'E30_09' %>
     <%= row 'E30_05', 'E30_10' %>
     <%= row 'E30_06', 'E30_11' %>
-    <%= row 'E30_07', '' %>
-    <%= row 'E30_02', '' %>
+    <%= row 'E30_07', {' ' => ''} %>
+    <%= row 'E30_02', {' ' => ''} %>
 </table>
 <br>
 <% end %>
@@ -554,7 +556,7 @@
     <!-- Shift, '', In District -->
     <%= start_row %>
       <%= labeled_cell 'Shift', @parser.parse_value_of('Shift') %>
-      <%= labeled_cell nil, nil %>
+      <%= labeled_cell( '&nbsp;', '') %>
       <%= labeled_cell @parser.name('E05_13'), @parser.E05_13 %>
     </tr>
     <!-- Level of Svc, Condition at Dest, Record # -->
