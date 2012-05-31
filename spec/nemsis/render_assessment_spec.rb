@@ -102,10 +102,6 @@ XML
 
     end
 
-    context 'Show (-) sections only when data exists' do
-
-    end
-
     context 'Show a single assessment' do
       let(:p) {
         xml_str = <<XML
