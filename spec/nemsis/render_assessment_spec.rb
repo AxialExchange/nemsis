@@ -4,6 +4,108 @@ require 'spec_helper.rb'
 describe Nemsis::Renderer do
 
   context 'assessment section' do
+
+    context 'Show (+)(-) sections properly' do
+      let(:p) {
+        xml_str = <<XML
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
+  <Header>
+    <D01_01>092054799999999</D01_01>
+    <D01_03>37</D01_03>
+    <D01_04>37183</D01_04>
+    <D01_07>6110</D01_07>
+    <D01_08>5830</D01_08>
+    <D01_09>5870</D01_09>
+    <D01_21>192209802</D01_21>
+    <D02_07>27601</D02_07>
+    <Record>
+      <E01>
+        <E01_01>AE3B23193EA748D8B2C3A04700B20DC8</E01_01>
+        <E01_02>ESO Solutions</E01_02>
+        <E01_03>ESO Pro ePCR</E01_03>
+        <E01_04>3.1</E01_04>
+      </E01>
+      <E15>
+        <E15_18>Chest: Gunshot Wound</E15_18>
+        <E15_18>Chest: Gunshot Wound</E15_18>
+        <E15_18>Chest: Gunshot Wound</E15_18>
+        <E15_18>Chest: Gunshot Wound</E15_18>
+      </E15>
+      <E16>
+        <E16_01>1</E16_01>
+        <E16_00_0>
+          <E16_03>2012-05-04T15:00:00.0Z</E16_03>
+          <E16_23>4080</E16_23>
+          <E16_28>Chest Section...</E16_28>
+          <E16_44>Accessory Muscle</E16_44>
+          <E16_44>Retractions</E16_44>
+          <E16_45>Decreased Sounds</E16_45>
+          <E16_45>Murmur</E16_45>
+          <E16_61>Not Assessed</E16_61>
+          <E16_71>LU: Decreased</E16_71>
+          <E16_71>LU: Wheezing</E16_71>
+          <E16_71>LU: Rales</E16_71>
+          <E16_71>LU: Rhonchi</E16_71>
+          <E16_71>LU: Other</E16_71>
+          <E16_71>LL: Decreased</E16_71>
+          <E16_71>LL: Wheezing</E16_71>
+          <E16_71>LL: Rales</E16_71>
+          <E16_71>LL: Rhonchi</E16_71>
+          <E16_71>LL: Other</E16_71>
+          <E16_71>RU: Decreased</E16_71>
+          <E16_71>RU: Wheezing</E16_71>
+          <E16_71>RU: Rales</E16_71>
+          <E16_71>RU:Rhonchi</E16_71>
+          <E16_71>RU: Other</E16_71>
+          <E16_71>RL: Decreased</E16_71>
+          <E16_71>RL: Wheezing</E16_71>
+          <E16_71>RL: Rales</E16_71>
+          <E16_71>RL: Rhonchi</E16_71>
+          <E16_71>RL: Other</E16_71>
+          <E16_71>LU: Clear</E16_71>
+          <E16_71>LU: Absent</E16_71>
+          <E16_71>LL: Clear</E16_71>
+          <E16_71>LL: Absent</E16_71>
+          <E16_71>RU: Clear</E16_71>
+          <E16_71>RU: Absent</E16_71>
+          <E16_71>RL: Clear</E16_71>
+          <E16_71>RL: Absent</E16_71>
+        </E16_00_0>
+      </E16>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+        Nemsis::Parser.new(xml_str) }
+
+      let(:r) { Nemsis::Renderer::WakeMed::HTML.new(p) }
+
+      let(:html) { r.render_fancy }
+      it('should output file') { write_html_file("assessments-plus", "fancy", html) }
+      it('should have assessments section') { html.should =~ /Initial Assessment/ }
+      it('should have Chest row') { html.should =~ /Chest Section/ }
+
+      reg_neg = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_BLANK_NEGATIVE_REGEX
+      it('should NOT have blank (-)') { html.should_not =~ /#{reg_neg}/ }
+
+      reg_pos = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_BLANK_POSITIVE_REGEX
+      it('should NOT have blank (+)') { html.should_not =~ /#{reg_pos}/ }
+
+      reg_lone_br = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_LONE_HR_REGEX
+      it('should NOT have <hr> with no (+) section') { html.should_not =~ /#{reg_lone_br}/ }
+
+      reg_no_abnormalities = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_NO_ABNORMALITIES_REGEX
+      it('should NOT have (+) with No Abnormalities') { html.should_not =~ /#{reg_no_abnormalities}/ }
+
+      reg_not_assessed = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_NOT_ASSESSED_REGEX
+      it('should NOT have (+) with Not Assessed') { html.should_not =~ /#{reg_not_assessed}/ }
+
+    end
+
+    context 'Show (-) sections only when data exists' do
+
+    end
+
     context 'Show a single assessment' do
       let(:p) {
         xml_str = <<XML
