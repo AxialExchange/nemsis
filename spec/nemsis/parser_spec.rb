@@ -817,7 +817,7 @@ XML
       }
 
       it 'should return age in words with months/weeks/days' do
-        p.age_in_words.should == "12 weeks"
+        p.age_in_words.should == "3 months" or "12 weeks"
       end
     end
 

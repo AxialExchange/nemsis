@@ -41,6 +41,10 @@ XML
     it 'should have some text' do
       html.should =~ /^\s*<h4>Wake County EMS System - Patient Care Record/
     end
+    it 'should have the current version number' do
+      html.should =~ /Version #{Nemsis::VERSION}/
+    end
+
   end
   # -- END ----------------------------------------------------------------------
 
@@ -105,7 +109,7 @@ XML
         timestamp = Time.now
 
         html = r.render
-        time_in_html = (/timestamp: (.*)$/i).match(html)[1]
+        time_in_html = (/Generated at: (.*)$/i).match(html)[1]
         html_timestamp = Time.parse(time_in_html)
 
         # puts "Expected #{timestamp}, Found #{time_in_html}/#{html_timestamp}; delta = #{delta}"
@@ -120,7 +124,7 @@ XML
                                              strftime("%Y-%m-%d %H:%M:%S %Z")
 
         html = r.render(time_stamp)
-        html.should =~ /timestamp: #{expected_time_stamp_str}/i
+        html.should =~ /Generated at: #{expected_time_stamp_str}/i
       end
 
     end
