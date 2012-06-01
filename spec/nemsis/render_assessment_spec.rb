@@ -126,7 +126,6 @@ XML
         it('should NOT have <hr> with no (+) section') { html.should_not =~ /#{reg_lone_br}/ }
 
         reg_no_abnormalities = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_NO_ABNORMALITIES_REGEX
-        it('should NOT have (+) with No Abnormalities') { html.should_not =~ /#{reg_no_abnormalities}/ }
         it('should NOT have (+) with No Abnormalities') { html.should_not =~ /\(\+\) No Abnormalities/ }
 
         reg_not_assessed = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_NOT_ASSESSED_REGEX
