@@ -84,28 +84,57 @@ XML
 
       let(:r) { Nemsis::Renderer::WakeMed::HTML.new(p) }
 
-      let(:html) { r.render_fancy }
-      #WRITE_HTML_FILE = true
-      it('should output file') { write_html_file("assessments-plus", "fancy", html) }
-      it('should have assessments section') { html.should =~ /Initial Assessment/ }
-      it('should have Chest row') { html.should =~ /Chest Section/ }
+      context 'fancy html' do
+        let(:html) { r.render_fancy }
+        WRITE_HTML_FILE = true
+        it('should output file') { write_html_file("assessments-plus", "fancy", html) }
+        it('should have assessments section') { html.should =~ /Initial Assessment/ }
+        it('should have Chest row') { html.should =~ /Chest Section/ }
 
-      reg_neg = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_BLANK_NEGATIVE_REGEX
-      it('should NOT have blank (-)') { html.should_not =~ /#{reg_neg}/ }
+        reg_neg = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_BLANK_NEGATIVE_REGEX
+        it('should NOT have blank (-)') { html.should_not =~ /#{reg_neg}/ }
 
-      reg_pos = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_BLANK_POSITIVE_REGEX
-      it('should NOT have blank (+)') { html.should_not =~ /#{reg_pos}/ }
+        reg_pos = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_BLANK_POSITIVE_REGEX
+        it('should NOT have blank (+)') { html.should_not =~ /#{reg_pos}/ }
 
-      reg_lone_br = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_LONE_HR_REGEX
-      it('should NOT have <hr> with no (+) section') { html.should_not =~ /#{reg_lone_br}/ }
+        reg_lone_br = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_LONE_HR_REGEX
+        it('should NOT have <hr> with no (+) section') { html.should_not =~ /#{reg_lone_br}/ }
 
-      reg_no_abnormalities = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_NO_ABNORMALITIES_REGEX
-      it('should NOT have (+) with No Abnormalities') { html.should_not =~ /#{reg_no_abnormalities}/ }
+        it('should NOT have (+) with No Abnormalities') { html.should_not =~ /\(\+\) No Abnormalities/ }
 
-      reg_not_assessed = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_NOT_ASSESSED_REGEX
-      it('should NOT have (+) with Not Assessed') { html.should_not =~ /#{reg_not_assessed}/ }
+        reg_not_assessed = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_NOT_ASSESSED_REGEX
+        it('should NOT have (+) with Not Assessed') { html.should_not =~ /#{reg_not_assessed}/ }
 
-      it('should have multiple No Abnormalities') { html.should =~ /No Abnormalities \(4\)/ }
+        it('should have multiple No Abnormalities') { html.should =~ /No Abnormalities \(4\)/ }
+
+      end
+
+      context 'simple html' do
+        let(:html) { r.render }
+        WRITE_HTML_FILE = true
+        it('should output file') { write_html_file("assessments-plus", "simple", html) }
+        it('should have assessments section') { html.should =~ /Initial Assessment/ }
+        it('should have Chest row') { html.should =~ /Chest Section/ }
+
+        reg_neg = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_BLANK_NEGATIVE_REGEX
+        it('should NOT have blank (-)') { html.should_not =~ /#{reg_neg}/ }
+
+        reg_pos = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_BLANK_POSITIVE_REGEX
+        it('should NOT have blank (+)') { html.should_not =~ /#{reg_pos}/ }
+
+        reg_lone_br = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_LONE_HR_REGEX
+        it('should NOT have <hr> with no (+) section') { html.should_not =~ /#{reg_lone_br}/ }
+
+        reg_no_abnormalities = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_NO_ABNORMALITIES_REGEX
+        it('should NOT have (+) with No Abnormalities') { html.should_not =~ /#{reg_no_abnormalities}/ }
+        it('should NOT have (+) with No Abnormalities') { html.should_not =~ /\(\+\) No Abnormalities/ }
+
+        reg_not_assessed = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_NOT_ASSESSED_REGEX
+        it('should NOT have (+) with Not Assessed') { html.should_not =~ /#{reg_not_assessed}/ }
+
+        it('should have multiple No Abnormalities') { html.should =~ /No Abnormalities \(4\)/ }
+
+      end
 
     end
 
