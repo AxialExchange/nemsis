@@ -461,17 +461,17 @@ STYLE
         end
 
         # These are used to control the strings we mess around with (and so we can test reliably))
-        ASSESSMENT_BLANK_NEGATIVE_REGEX = Regexp.quote("<hr>(-) </td>")
+        ASSESSMENT_BLANK_NEGATIVE_REGEX = Regexp.quote("<hr>(-) <")
         ASSESSMENT_BLANK_POSITIVE_REGEX = Regexp.quote(">(+) <hr>")
         ASSESSMENT_LONE_HR_REGEX = Regexp.quote("><hr>")
         ASSESSMENT_NO_ABNORMALITIES_REGEX = Regexp.quote(">(+) No Abnormalities")
-        ASSESSMENT_NOT_ASSESSED_REGEX = Regexp.quote(">(+) Not Assessed</td>")
+        ASSESSMENT_NOT_ASSESSED_REGEX = Regexp.quote(">(+) Not Assessed<")
 
         # Remove a lone <hr> when the positive section is empty
         def assessment_cell(cell_html)
           html = cell_html.gsub(/#{ASSESSMENT_LONE_HR_REGEX}/, "<td class='value'>")
           html = html.gsub(/#{ASSESSMENT_NO_ABNORMALITIES_REGEX}/, ">No Abnormalities")
-          html = html.gsub(/#{ASSESSMENT_NOT_ASSESSED_REGEX}/, ">Not Assessed</td>")
+          html = html.gsub(/#{ASSESSMENT_NOT_ASSESSED_REGEX}/, ">Not Assessed<")
         end
 
         def assessment_table(assessment)
