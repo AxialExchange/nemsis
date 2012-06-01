@@ -8446,7 +8446,7 @@ E29_11:
     -15: Not Reporting
     -10: Not Known
     -5: Not Available
-    2455: 12 Lead ECG - Anterior Ischemia
+    2455: 12 Lead ECG - Septal Ischemia
     2460: 12 Lead ECG - Inferior Ischemia
     2465: 12 Lead ECG - Lateral Ischemia
     2470: Agonal/Idioventricular
@@ -8475,7 +8475,6 @@ E29_11:
     2585: Unknown AED Shockable Rhythm
     2590: Ventricular Fibrillation
     2595: Ventricular Tachycardia
-    2455: 12 Lead ECG - Septal Ischemia
   is_multi_entry: 0
   name: Rhythm at Destination
   node: E29_11
