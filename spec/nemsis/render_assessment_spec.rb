@@ -85,7 +85,7 @@ XML
       let(:r) { Nemsis::Renderer::WakeMed::HTML.new(p) }
 
       let(:html) { r.render_fancy }
-      WRITE_HTML_FILE = true
+      #WRITE_HTML_FILE = true
       it('should output file') { write_html_file("assessments-plus", "fancy", html) }
       it('should have assessments section') { html.should =~ /Initial Assessment/ }
       it('should have Chest row') { html.should =~ /Chest Section/ }
