@@ -427,14 +427,25 @@ STYLE
 
         def assessment_str(assessment, prefix, element_names)
           items = []
+          set = Set.new
           element_names.each do |element_name|
-            items << assessment.parse(element_name)
+            value = assessment.parse(element_name)
+            unless value.to_s =~ /^\s*$/
+              items << value
+              if value.is_a?(Array)
+                value.each {|a| set.add a unless a.to_s =~ /^\s*$/}
+              else
+                set.add value.to_s
+              end
+            end
           end
 
           text = prefix + 
                  ' ' +
-                 Array(items).reject {|a| a.to_s =~ /^\s*$/}.
-                              join(', ')
+                 set.map do |a|
+                   num = items.flatten.count{|x| x == a}
+                   num == 1 ? a : "#{a} (#{num})"
+                 end.join(', ')
 
           text
         end
@@ -453,13 +464,13 @@ STYLE
         ASSESSMENT_BLANK_NEGATIVE_REGEX = Regexp.quote("<hr>(-) </td>")
         ASSESSMENT_BLANK_POSITIVE_REGEX = Regexp.quote("<td class='value'>(+) <hr>")
         ASSESSMENT_LONE_HR_REGEX = Regexp.quote("<td class='value'><hr>")
-        ASSESSMENT_NO_ABNORMALITIES_REGEX = Regexp.quote("<td class='value'>(+) No Abnormalities</td>")
+        ASSESSMENT_NO_ABNORMALITIES_REGEX = Regexp.quote("<td class='value'>(+) No Abnormalities")
         ASSESSMENT_NOT_ASSESSED_REGEX = Regexp.quote("<td class='value'>(+) Not Assessed</td>")
 
         # Remove a lone <hr> when the positive section is empty
         def assessment_cell(cell_html)
           html = cell_html.gsub(/#{ASSESSMENT_LONE_HR_REGEX}/, "<td class='value'>")
-          html = html.gsub(/#{ASSESSMENT_NO_ABNORMALITIES_REGEX}/, "<td class='value'>No Abnormalities</td>")
+          html = html.gsub(/#{ASSESSMENT_NO_ABNORMALITIES_REGEX}/, "<td class='value'>No Abnormalities")
           html = html.gsub(/#{ASSESSMENT_NOT_ASSESSED_REGEX}/, "<td class='value'>Not Assessed</td>")
         end
 

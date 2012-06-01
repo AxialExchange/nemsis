@@ -37,6 +37,10 @@ describe Nemsis::Renderer do
           <E16_03>2012-05-04T15:00:00.0Z</E16_03>
           <E16_23>4080</E16_23>
           <E16_28>Chest Section...</E16_28>
+          <E16_41>No Abnormalities</E16_41>
+          <E16_41>No Abnormalities</E16_41>
+          <E16_42>No Abnormalities</E16_42>
+          <E16_42>No Abnormalities</E16_42>
           <E16_44>Accessory Muscle</E16_44>
           <E16_44>Retractions</E16_44>
           <E16_45>Decreased Sounds</E16_45>
@@ -81,6 +85,7 @@ XML
       let(:r) { Nemsis::Renderer::WakeMed::HTML.new(p) }
 
       let(:html) { r.render_fancy }
+      WRITE_HTML_FILE = true
       it('should output file') { write_html_file("assessments-plus", "fancy", html) }
       it('should have assessments section') { html.should =~ /Initial Assessment/ }
       it('should have Chest row') { html.should =~ /Chest Section/ }
@@ -99,6 +104,8 @@ XML
 
       reg_not_assessed = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_NOT_ASSESSED_REGEX
       it('should NOT have (+) with Not Assessed') { html.should_not =~ /#{reg_not_assessed}/ }
+
+      it('should have multiple No Abnormalities') { html.should =~ /No Abnormalities \(4\)/ }
 
     end
 

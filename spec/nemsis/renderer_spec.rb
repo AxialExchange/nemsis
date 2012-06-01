@@ -152,17 +152,14 @@ XML
     end
 
 =begin
-    it 'should render scott' do
-      sample_xml_file = File.expand_path('../../data/nemsis_raw_scott_25may.xml', __FILE__)
+    it 'should render anita' do
+      sample_xml_file = File.expand_path('../../data/anita.xml', __FILE__)
       xml_str = File.read(sample_xml_file)
       p = Nemsis::Parser.new(xml_str)
       r = Nemsis::Renderer::WakeMed::HTML.new(p)
       html = r.render_fancy
-      write_html_file("scott25", "fancy", html)
-      #html = r.render
-      #write_html_file("scott", "simple", html)
+      write_html_file("anita", "fancy", html)
     end
-
 =end
 
   end
