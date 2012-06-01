@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.name        = "nemsis"
   s.version     = Nemsis::VERSION
   s.authors     = ["Guangming Cui", "Jon Kern"]
-  s.email       = ["gcui@axialexchange.com", "jkern@axialexchange.com"]
+  s.email       = ["gcui@axialproject.com", "jkern@axialproject.com", "dev@axialproject.com"]
   s.homepage    = ""
   s.summary     = %q{NEMSIS Data Parser}
   s.description = %q{Parses NEMSIS (National EMS Information System) Data in XML format}
