@@ -702,7 +702,7 @@ XML
     end
   end
 
-  context 'express weight in pounds' do
+  context 'express supplied kg weight in pounds' do
     let(:spec_yaml) {
       spec_yaml = <<YML
 E16_01:
@@ -714,7 +714,7 @@ E16_01:
   node: E16_01
 YML
     }
-    context 'baby' do
+    context 'for a baby' do
       let(:p) {
         xml_str = <<XML
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -730,12 +730,12 @@ XML
         Nemsis::Parser.new(xml_str, spec_yaml)
       }
 
-      it 'should return age in words with months/weeks/days' do
+      it 'should show lbs with a decimal place & kg' do
         p.weight_in_words().should == '13.2 lbs - 6 kg'
       end
     end
 
-    context 'adult' do
+    context 'for an adult' do
       let(:p) {
         xml_str = <<XML
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -743,7 +743,7 @@ XML
             xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
   <Header>
     <Record>
-      <E16_01>136</E16_01>
+      <E16_01>122</E16_01>
     </Record>
   </Header>
 </EMSDataSet>
@@ -751,8 +751,8 @@ XML
         Nemsis::Parser.new(xml_str, spec_yaml)
       }
 
-      it 'should return age in words with months/weeks/days' do
-        p.weight_in_words().should == '299 lbs - 136 kg'
+      it 'should show lbs & kg' do
+        p.weight_in_words().should == '269 lbs - 122 kg'
       end
     end
 
@@ -1416,6 +1416,102 @@ XML
         results[3].E14_01.should == "2012-03-08 10:45"
       end
 
+    end
+
+    describe '#parse_city' do
+      context 'valid code' do
+        let(:p2) {
+          xml_str = <<XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
+  <Header>
+    <Record>
+        <E08_11_0><E08_11>5900 POYNER ANCHOR LN</E08_11>
+          <E08_12>55100</E08_12>
+          <E08_14>37</E08_14>
+          <E08_15>27616</E08_15>
+        </E08_11_0>
+        <E06_06>37175</E06_06>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+          Nemsis::Parser.new(xml_str)
+
+        }
+        it 'should return the city for a valid code' do
+          p2.parse_city('E08_12').should == 'Randleman Junction'
+        end
+        it 'should return the state for a valid code' do
+          p2.parse_state('E08_14').should == 'NC'
+        end
+        it 'should return the county for a valid code' do
+          p2.parse_county('E06_06').should == 'Transylvania'
+        end
+
+      end
+      context 'invalid code' do
+        let(:p2) {
+          xml_str = <<XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
+  <Header>
+    <Record>
+        <E08_11_0><E08_11>5900 POYNER ANCHOR LN</E08_11>
+          <E08_14>137</E08_14>
+          <E08_12>95100</E08_12>
+          <E08_15>27616</E08_15>
+        </E08_11_0>
+        <E06_06>137183</E06_06>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+          Nemsis::Parser.new(xml_str)
+
+        }
+        it 'should return the city code when lookup fails' do
+          p2.parse_city('E08_12').should == 'City not found for 95100'
+        end
+        it 'should return the state code when lookup fails' do
+          p2.parse_state('E08_14').should == 'State not found for 137'
+        end
+        it 'should return the county code when lookup fails' do
+          p2.parse_county('E06_06').should == 'County not found for 137183'
+        end
+
+      end
+      context 'missing data element' do
+        let(:p2) {
+          xml_str = <<XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
+  <Header>
+    <Record>
+        <E08_11_0><E08_11>5900 POYNER ANCHOR LN</E08_11>
+          <E08_15>27616</E08_15>
+        </E08_11_0>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+          Nemsis::Parser.new(xml_str)
+
+        }
+        it 'should return &nbsp; when XML is missing city field' do
+          p2.parse_city('E08_12').should == '&nbsp;'
+        end
+        it 'should return &nbsp; when XML is missing state field' do
+          p2.parse_state('E08_14').should == '&nbsp;'
+        end
+        it 'should return &nbsp; when XML is missing county field' do
+          p2.parse_county('E06_06').should == '&nbsp;'
+        end
+
+      end
     end
 
     describe '#get_children' do

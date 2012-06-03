@@ -129,27 +129,27 @@
 <br>
 <% end %>
 
-<% if @parser.has_content('E14_01','E14_03','E14_33') %>
-<%= title = "ECG"
-    start_table title, 3 %>
-  <%= start_row %>
-    <%= label "Time" %>
-    <%= label "3-Lead ECG" %>
-    <%= label "12-Lead ECG" %>
-  </tr>
-
-  <% @parser.parse_cluster('E14').sort_by { |e14| Time.parse(e14.E14_01) rescue Time.now }.each do |e14| %>
-    <% unless e14.E14_03.empty? and e14.E14_33.empty? %>
+<% if @parser.has_content('E14_03','E14_33') %>
+    <%= title = "ECG"
+        start_table title, 3 %>
       <%= start_row %>
-        <%= cell(e14.parse_time('E14_01')) %>
-        <%= cell(e14.E14_34) %>
-        <%= cell("#{e14.E14_32.eql?('Yes') ? 'MI Suspected; ' : ''}&nbsp;#{e14.E14_33}") %>
+        <%= label "Time" %>
+        <%= label "3-Lead ECG" %>
+        <%= label "12-Lead ECG" %>
       </tr>
-    <% end %>
-  <% end %>
-</tbody>
-</table>
-<br>
+
+      <% @parser.parse_cluster('E14').sort_by { |e14| Time.parse(e14.E14_01) rescue Time.now }.each do |e14| %>
+        <% unless e14.E14_03.empty? and e14.E14_33.empty? %>
+          <%= start_row %>
+            <%= cell(e14.parse_time('E14_01')) %>
+            <%= cell(e14.E14_34) %>
+            <%= cell("#{e14.E14_32.eql?('Yes') ? 'MI Suspected; ' : ''}&nbsp;#{e14.E14_33}") %>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+    </table>
+    <br>
 <% end %>
 
 <% if @parser.has_content('E18') || @parser.has_content('E19') %>
@@ -171,7 +171,7 @@
                                                    e18.E18_15,
                                                    e18.E18_07,
                                                    e18.E18_16)} %>
-      <% else %>
+      <% elsif (e18.E18_12 + e18.E18_16 + e18.E18_13 + e18.E18_14).strip.length > 0 %>
         <% rows[:flow_chart] << {:time => e18.E18_01, 
                                  :html => row_from_values(to_time(e18.E18_01), 
                                                           e18.E18_12,
@@ -187,7 +187,7 @@
                                                    e19.E19_18,
                                                    e19.E19_08,
                                                    e19.concat_with_comma('E19_19', 'E19_20'))} %>
-      <% else %>
+      <% elsif (e19.E19_15 + e19.E19_16 + e19.E19_17 + e19.E19_20).strip.length > 0 %>
         <% rows[:flow_chart] << {:time => e19.E19_01, 
                                  :html => row_from_values(to_time(e19.E19_01), 
                                                           e19.E19_15,
@@ -551,7 +551,7 @@
     <%= row({'Medic Unit' => 'E02_22'}, {'City' => "parse_city('E20_04')"}, 'E05_10') %>
     <!-- Run type, State, Transferred -->
     <%= row('E02_04', {"State" => "parse_state('E20_05')"}, 'E05_08') %>
-    <!-- Piority Scene, Zip, Closed -->
+    <!-- Priority Scene, Zip, Closed -->
     <%= row('E02_20', 'E20_07', 'E05_11') %>
     <!-- Shift, '', In District -->
     <%= start_row %>
