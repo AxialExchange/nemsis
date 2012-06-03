@@ -1710,10 +1710,10 @@ E02_20:
   data_entry_method: single-choice National Element
   data_type: combo
   field_values:
-    380: 'Initial Lights and Sirens, Downgraded to No Lights or'
-    385: 'Initial No Lights or Sirens, Upgraded to Lights and Sirens Sirens'
-    390: Lights and Sirens
-    395: No Lights or Sirens
+    380: 'Initial Lights and Sirens, Downgraded to No Lights or Sirens'
+    385: 'Initial No Lights or Sirens, Upgraded to Lights and Sirens'
+    390: 'Lights and Sirens'
+    395: 'No Lights or Sirens'
   is_multi_entry: 0
   name: Priority Scene
   node: E02_20
