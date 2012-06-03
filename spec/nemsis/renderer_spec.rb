@@ -133,6 +133,9 @@ XML
 
   # This is a good place to put local test files and have them generate local output you can view in your browser
   context 'generate some sample runsheets' do
+    before :all do
+      WRITE_HTML_FILE = true
+    end
     it 'should render madison' do
       sample_xml_file = File.expand_path('../../data/madison_henry_sample.xml', __FILE__)
       xml_str = File.read(sample_xml_file)
@@ -143,7 +146,6 @@ XML
     end
 
     it 'should render massive' do
-      WRITE_HTML_FILE=true
       sample_xml_file = File.expand_path('../../data/test_patient.12345678901234567890.xml', __FILE__)
       xml_str = File.read(sample_xml_file)
       p = Nemsis::Parser.new(xml_str)
@@ -154,15 +156,18 @@ XML
       write_html_file("massive", "fancy", html)
     end
 
-    it 'should render anita' do
-      sample_xml_file = File.expand_path('../../data/anita.xml', __FILE__)
+    it 'should render test' do
+      sample_xml_file = File.expand_path('../../data/smith.xml', __FILE__)
       xml_str = File.read(sample_xml_file)
       p = Nemsis::Parser.new(xml_str)
       r = Nemsis::Renderer::WakeMed::HTML.new(p)
-      html = r.render
-      write_html_file("anita", "simple", html)
+      html = r.render_fancy
+      write_html_file("smith", "fancy", html)
     end
 
+    after :all do
+      WRITE_HTML_FILE = false
+    end
   end
 
   context 'instance methods' do
