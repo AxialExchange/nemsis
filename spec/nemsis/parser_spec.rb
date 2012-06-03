@@ -1279,16 +1279,6 @@ XML
       end
     end
 
-    describe '#parse_state' do
-      it 'should parse state code to state name' do
-        p.parse_state('E08_14').should == 'NC'
-      end
-
-      it 'should parse unrecognized state code as is' do
-        p.parse_state('E08_15').should == '27604'
-      end
-    end
-
     describe '#parse_pair' do
       it 'should return hash' do
         result = p.parse_pair('E23_11', 'E23_09')
@@ -1308,7 +1298,7 @@ XML
       end
 
       it 'should return empty info when none exists' do
-        p.parse_value_of('BugsBunny').should be_nil
+        p.parse_value_of('BugsBunny').should == '&nbsp;'
       end
     end
 
