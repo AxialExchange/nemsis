@@ -594,11 +594,11 @@ STYLE
               end_row 
           html += start_row +
               cell("Pulse") +
-              assessment_cell(cell(positive(assessment, 'E16_60') + negative(assessment, 'E16_85'))) +
+              assessment_cell(cell(positive(assessment, 'E16_60', 'E16_34') + negative(assessment, 'E16_85'))) +
               end_row 
           html += start_row +
               cell("Capillary Refill") +
-              assessment_cell(cell(positive(assessment, 'E16_61') + negative(assessment, 'E16_86'))) +
+              assessment_cell(cell(positive(assessment, 'E16_61', 'E16_35') + negative(assessment, 'E16_86'))) +
               end_row 
           html += start_row +
               labeled_cell("Neurological", (assessment.E16_33)) +
