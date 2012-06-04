@@ -618,12 +618,12 @@
   <tbody>
   <%= start_row %>
     <%= heading "Mileage" %>
-  <%= labeled_cell "Start", @parser.E02_16 %>
-  <%= labeled_cell "Scene", @parser.E02_17 %>
+    <%= labeled_cell "Scene", @parser.E02_17 %>
     <%= labeled_cell "Destination", @parser.E02_18 %>
+    <%= labeled_cell "Loaded Miles", (@parser.E02_18.to_f - @parser.E02_17.to_f).round(1) %>
+    <%= labeled_cell "Start", @parser.E02_16 %>
     <%= labeled_cell "End", @parser.E02_19 %>
-    <%= labeled_cell "Loaded Miles", @parser.E02_18.to_i - @parser.E02_17.to_i %>
-    <%= labeled_cell "Total Miles", @parser.E02_19.to_i - @parser.E02_16.to_i %>
+    <%= labeled_cell "Total Miles", (@parser.E02_19.to_f - @parser.E02_16.to_f).round(1) %>
   </tr>
   </tbody>
 </table>
