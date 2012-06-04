@@ -156,14 +156,16 @@ XML
       write_html_file("massive", "fancy", html)
     end
 
-    it 'should render test' do
-      sample_xml_file = File.expand_path('../../data/smith.xml', __FILE__)
+=begin
+    it 'should render test xml file' do
+      sample_xml_file = File.expand_path('../../data/mcmillian.xml', __FILE__)
       xml_str = File.read(sample_xml_file)
       p = Nemsis::Parser.new(xml_str)
       r = Nemsis::Renderer::WakeMed::HTML.new(p)
       html = r.render_fancy
-      write_html_file("smith", "fancy", html)
+      write_html_file("mcmillian", "fancy", html)
     end
+=end
 
     after :all do
       WRITE_HTML_FILE = false
@@ -221,6 +223,41 @@ XML
           write_html_file('sample', 'fancy', @fancy_html)
         end
       end
+    end
+
+  end
+
+  context 'mileage' do
+    let(:p) {
+      xml_str = <<XML
+<?xml version=" 1.0 " encoding=" UTF-8 " ?>
+<EMSDataSet xmlns=" http ://www.nemsis.org " xmlns:xsi=" http ://www.w3.org/2001/XMLSchema-instance "
+            xsi:schemaLocation=" http ://www.nemsis.org http ://www.nemsis.org/media/XSD/EMSDataSet.xsd ">
+  <Header>
+    <Record>
+      <E02><E02_01>092054799999999</E02_01>
+        <E02_16>100899.0</E02_16>
+        <E02_17>100902.0</E02_17>
+        <E02_18>100908.1</E02_18>
+        <E02_19>100910.1</E02_19>
+      </E02>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+      Nemsis::Parser.new(xml_str)
+    }
+    let(:r) { Nemsis::Renderer::WakeMed::HTML.new(p)}
+    let(:html) {r.render}
+
+    describe 'various mileage values' do
+      it('should have start') {html.should =~ />100899.0</}
+      it('should have scene') {html.should =~ />100908.1</}
+      it('should have destination') {html.should =~ />100908.1</}
+      it('should have end') {html.should =~ />100910.1</}
+      it('should have loaded') {html.should =~ />6.1</}
+      it('should have total') {html.should =~ />11.1</}
+      #it('write to html file') { WRITE_HTML_FILE=true; write_html_file('mileage', 'simple', html)}
     end
 
   end
