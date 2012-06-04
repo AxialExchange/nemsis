@@ -286,7 +286,7 @@ XML
       it('should have the text') {html.should =~ /No Complaints or Injury\/Illness Noted/}
       #it('write to html file') { WRITE_HTML_FILE=true; write_html_file('impression_reg', 'simple', html)}
     end
-    context '-20 text provided' do
+    context '-20 text provided in error by ESO' do
       let(:p) {
         xml_str = <<XML
 <?xml version=" 1.0 " encoding=" UTF-8 " ?>
@@ -305,8 +305,8 @@ XML
       }
       let(:r) { Nemsis::Renderer::WakeMed::HTML.new(p)}
       let(:html) {r.render}
-      it('should not have -20') {html.should_not =~ /^(\s*)<tr>.*<b>Secondary Impression.*>-20</}
-      it('should have blank space text') {html.should =~ /^(\s*)<tr>.*<b>Secondary Impression.*>&nbsp;</}
+      it('should have -20') {html.should =~ /^(\s*)<tr>.*<b>Secondary Impression.*>-20</}
+      it('should not have blank space text') {html.should_not =~ /^(\s*)<tr>.*<b>Secondary Impression.<b>*>&nbsp;</}
       #it('write to html file') { WRITE_HTML_FILE=true; write_html_file('impression_neg20', 'simple', html)}
     end
 
