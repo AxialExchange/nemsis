@@ -485,7 +485,7 @@ STYLE
           html += start_row +
               labeled_cell("Mental Status", (assessment.E16_25)) +
               cell("Mental Status") +
-              assessment_cell(cell(positive(assessment, 'E16_23') + negative(assessment, 'E16_63'))) +
+              assessment_cell(cell(positive(assessment, 'E16_38') + negative(assessment, 'E16_63'))) +
               end_row
           html += start_row +
               labeled_cell("Skin", (assessment.E16_26)) +
