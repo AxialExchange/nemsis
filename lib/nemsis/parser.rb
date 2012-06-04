@@ -388,7 +388,11 @@ module Nemsis
       valid_values = values.reject {|v| v =~ /^\s*Not\s*(Done|Assessed)\s*$/i}
       values = valid_values unless valid_values.empty?
       
-      values.join(separator)
+      values = values.join(separator)
+      # Added this simply to prevent E09_20 from showing the text '-20'
+      # Seems like it would be better to get ESO to not send in a -20 for a text field, eh?
+      values = '&nbsp;' if values.strip.empty? || values.strip == '-20'
+      values
     end
 
     ###
