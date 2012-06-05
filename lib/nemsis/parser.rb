@@ -467,7 +467,7 @@ module Nemsis
       elsif respond_to?((/(\w+)/.match(method))[0])
         instance_eval(method) rescue ''
       # for testing:
-      elsif %w(E_STRING E_NUMBER E_DATETIME E_DATE E_TIME E_YES_NO E_SINGLE E_MULTIPLE E_ALLOW_NEGATIVE E_LOOKUP).include?(method)
+      elsif %w(E_STRING E_MULTI_STRING E_NUMBER E_DATETIME E_DATE E_TIME E_YES_NO E_SINGLE E_MULTIPLE E_ALLOW_NEGATIVE E_LOOKUP).include?(method)
         Array(parse(get_spec(method))).join(', ') rescue ''
       else
         super

@@ -156,7 +156,7 @@ XML
       write_html_file("massive", "fancy", html)
     end
 
-=begin
+#=begin
     it 'should render test xml file' do
       sample_xml_file = File.expand_path('../../data/bailey_2nd_encntr.xml', __FILE__)
       xml_str = File.read(sample_xml_file)
@@ -165,7 +165,7 @@ XML
       html = r.render_fancy
       write_html_file("bailey2", "fancy", html)
     end
-=end
+#=end
 
     after :all do
       WRITE_HTML_FILE = false
@@ -258,6 +258,31 @@ XML
       it('should have loaded') {html.should =~ />6.1</}
       it('should have total') {html.should =~ />11.1</}
       #it('write to html file') { WRITE_HTML_FILE=true; write_html_file('mileage', 'simple', html)}
+    end
+
+  end
+
+  context 'Additional Agencies' do
+    let(:p) {
+      xml_str = <<XML
+<?xml version=" 1.0 " encoding=" UTF-8 " ?>
+<EMSDataSet xmlns=" http ://www.nemsis.org " xmlns:xsi=" http ://www.w3.org/2001/XMLSchema-instance "
+            xsi:schemaLocation=" http ://www.nemsis.org http ://www.nemsis.org/media/XSD/EMSDataSet.xsd ">
+  <Header>
+    <Record>
+        <E08_17>Wake Forest Fire Department</E08_17>
+        <E08_17>Wake Forest Police Department</E08_17>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+      Nemsis::Parser.new(xml_str)
+    }
+    let(:r) { Nemsis::Renderer::WakeMed::HTML.new(p)}
+    let(:html) {r.render}
+
+    it 'should show multiple agencies' do
+      html.should =~ /Wake Forest Fire Department, Wake Forest Police Department/
     end
 
   end

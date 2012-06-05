@@ -25,6 +25,16 @@ E_STRING:
   name: String
   node: E_STRING
 
+# Data [MULTI_STRING]
+E_MULTI_STRING:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 1
+  name: Multiple Strings
+  node: E_MULTI_STRING
+
 # Data [INTEGER/DECIMAL]
 E_NUMBER:
   allow_null: 1
@@ -182,6 +192,8 @@ YML
     <D02_07>27601</D02_07>
     <Record>
       <E_STRING>My String</E_STRING>
+      <E_MULTI_STRING>First of Two Strings</E_MULTI_STRING>
+      <E_MULTI_STRING>Second of Two Strings</E_MULTI_STRING>
       <E_NUMBER>100</E_NUMBER>
       <E_DATETIME>2012-03-02T00:09:37.0Z</E_DATETIME>
       <E_DATE>2012-03-02T09:09:00.0Z</E_DATE>
@@ -203,6 +215,7 @@ XML
 
     context 'simple parsing' do
       it('should handle strings')   { p.E_STRING.should    == 'My String' }
+      it('should handle multi-entry strings')   { p.E_MULTI_STRING.should    == 'First of Two Strings, Second of Two Strings' }
       it('should handle numbers')   { p.E_NUMBER.should    == "100" }
       it('should handle Date/Time') { p.E_DATETIME.should  == "2012-03-01 19:09" }
       it('should handle Date')      { p.E_DATE.should      == "2012-03-02" }
