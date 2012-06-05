@@ -156,7 +156,7 @@ XML
       write_html_file("massive", "fancy", html)
     end
 
-#=begin
+=begin
     it 'should render test xml file' do
       sample_xml_file = File.expand_path('../../data/bailey_2nd_encntr.xml', __FILE__)
       xml_str = File.read(sample_xml_file)
@@ -165,7 +165,7 @@ XML
       html = r.render_fancy
       write_html_file("bailey2", "fancy", html)
     end
-#=end
+=end
 
     after :all do
       WRITE_HTML_FILE = false
