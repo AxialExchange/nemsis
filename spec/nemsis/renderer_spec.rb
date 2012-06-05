@@ -262,6 +262,31 @@ XML
 
   end
 
+  context 'Additional Agencies' do
+    let(:p) {
+      xml_str = <<XML
+<?xml version=" 1.0 " encoding=" UTF-8 " ?>
+<EMSDataSet xmlns=" http ://www.nemsis.org " xmlns:xsi=" http ://www.w3.org/2001/XMLSchema-instance "
+            xsi:schemaLocation=" http ://www.nemsis.org http ://www.nemsis.org/media/XSD/EMSDataSet.xsd ">
+  <Header>
+    <Record>
+        <E08_17>Wake Forest Fire Department</E08_17>
+        <E08_17>Wake Forest Police Department</E08_17>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+      Nemsis::Parser.new(xml_str)
+    }
+    let(:r) { Nemsis::Renderer::WakeMed::HTML.new(p)}
+    let(:html) {r.render}
+
+    it 'should show multiple agencies' do
+      html.should =~ /Wake Forest Fire Department, Wake Forest Police Department/
+    end
+
+  end
+
   context 'secondary impression' do
 
     context 'normal text provided' do

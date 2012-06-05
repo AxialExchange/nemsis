@@ -3141,16 +3141,10 @@ E08_16:
   node: E08_16
 E08_17:
   allow_null: 1
-  data_entry_method: single-choice
+  data_entry_method: text
   data_type: text
-  field_values:
-    -10: Not Known
-    -15: Not Reporting
-    -20: Not Recorded
-    -25: Not Applicable
-    -5: Not Available
-  is_multi_entry: 0
-  name: Additional Agency
+  is_multi_entry: 1
+  name: Additional Agencies
   node: E08_17
 E08_18:
   allow_null: ~
