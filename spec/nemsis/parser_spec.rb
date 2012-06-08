@@ -1919,8 +1919,11 @@ XML
     it 'should accept CPT codes' do
       Nemsis::Parser.validate_key!("89.700").should == 89.7
     end
-    it 'should not accept strings' do
-      Nemsis::Parser.validate_key!("Hot").should be_nil
+    it 'should accept strings' do
+      Nemsis::Parser.validate_key!("Hot").should == "Hot"
+    end
+    it 'should not accept nils' do
+      Nemsis::Parser.validate_key!(nil).should be_nil
     end
   end
 

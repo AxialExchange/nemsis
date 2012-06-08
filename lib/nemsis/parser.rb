@@ -538,6 +538,8 @@ module Nemsis
         return key.to_i
       elsif (key =~ /\d{1,3}.\d{1,}/) == 0
         return key.to_f
+      elsif key.is_a? String
+        return key
       else
         return nil
       end

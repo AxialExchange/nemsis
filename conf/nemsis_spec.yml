@@ -4380,6 +4380,9 @@ E14_03:
     -25: Not Applicable
     -5: Not Available
     12: Lead ECG-Lateral Ischemia
+    3005: 12 Lead ECG-Anterior Ischemia
+    3010: 12 Lead ECG-Inferior Ischemia
+    3015: 12 Lead ECG-Lateral Ischemia
     3020: Agonal/Idioventricular
     3025: Artifact
     3030: Asystole
@@ -4434,9 +4437,9 @@ E14_06:
     3165: P
     3170: V
 #    3150: Arterial Line
-#    3155: Automated Cuff
-#    3160: Manual Cuff
-#    3165: Palpated Cuff
+#    3155: Automated Cuff - A
+#    3160: Manual Cuff - M
+#    3165: Palpated Cuff - P
 #    3170: Venous Line
   is_multi_entry: 1
   name: BP Method
@@ -4474,6 +4477,8 @@ E14_10:
     -5: Not Available
     3175: R
     3180: IR
+#    3175: Regular - R
+#    3180: Irregular - IR
   is_multi_entry: 1
   name: PULSE RHYTHM
   node: E14_10
@@ -4499,6 +4504,11 @@ E14_12:
     3195: Fatigued
     3200: Absent
     3205: Not Assessed
+#    3185: Normal
+#    3190: Labored
+#    3195: Fatigued
+#    3200: Absent
+#    3205: Not Assessed
   is_multi_entry: 1
   name: RESPIRATORY EFFORT
   node: E14_12
@@ -4570,6 +4580,11 @@ E14_18:
     3215: CS
     3220: I
     3225: IACP
+# 3210 Initial GCS has legitimate values without interventions such as intubation and sedation - NQ
+# 3215 Patient Chemically Sedated - CS
+# 3220 Patient Intubated - I
+# 3225 Patient Intubated and Chemically Paralyzed - IACP
+
   is_multi_entry: 1
   name: GLASGOW COMA SCORE-QUALIFIER
   node: E14_18
@@ -4592,11 +4607,16 @@ E14_21:
   data_entry_method: single-choice
   data_type: combo
   field_values:
-    3230: Axillary
-    3235: Oral
-    3240: Rectal
-    3245: Tympanic
-    3250: Urinary catheter
+    3230: A
+    3235: O
+    3240: R
+    3245: TY
+    3250: U
+#    3230: Axillary
+#    3235: Oral
+#    3240: Rectal
+#    3245: Tympanic
+#    3250: Urinary catheter
   is_multi_entry: 1
   name: TEMPERATURE METHOD
   node: E14_21
@@ -4735,29 +4755,52 @@ E14_34:
   name: CARDIAC RHYTHM DESCRIPTION
   node: E14_34
 E14_35:
-  allow_null: ~
-  data_entry_method: '~'
+  allow_null: 1
+  data_entry_method: single-choice
   data_type: text
-  field_values: ~
+  field_values:
+    Regular: R
+    Irregular: I
+    Absent: A
+    Placed: P
   is_multi_entry: 1
   name: Pulse Rhythm Description
   node: E14_35
 E14_36:
-  allow_null: ~
-  data_entry_method: '~'
+  allow_null: 1
+  data_entry_method: single-choice
   data_type: text
-  field_values: ~
+  field_values:
   is_multi_entry: 1
   name: Respiratory Effort Description
   node: E14_36
 E14_37:
-  allow_null: ~
-  data_entry_method: '~'
+  allow_null: 1
+  data_entry_method: single-choice
   data_type: text
-  field_values: ~
+  field_values:
+    Oral: O
+    Auxiliary: A
+    Rectal: R
+    Tympanic: TY
+    Esophageal: E
+    Urinary Catheter: UC
+    Temporal: T
   is_multi_entry: 1
   name: Temperature Method Description
   node: E14_37
+E14_38:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: text
+  field_values:
+    Assisted: A
+    Irregular: I
+    Regular: R
+    Ventilated: V
+  is_multi_entry: 1
+  name: Respiratory Rhythm Description
+  node: E14_38
 E15_01:
   allow_null: 1
   data_entry_method: multiple-choice
@@ -8330,13 +8373,13 @@ E29_05:
     -15: Not Reporting
     -10: Not Known
     -5: Not Available
-    501401: Bystander - Compressions & Ventilations
-    501402: Bystander - Compressions only
-    501403: Bystander - Ventilations only
+    501401: 'Bystander - Compressions & Ventilations'
+    501402: 'Bystander - Compressions only'
+    501403: 'Bystander - Ventilations only'
     501404: Family
     501405: EMS
     501406: First Responder
-    501407: Medical/Health Care provider
+    501407: 'Medical/Health Care provider'
     501408: Law Enforcement
     501409: Other
   is_multi_entry: 0
@@ -8573,6 +8616,7 @@ E29_21:
     -15: Not Reporting
     -10: Not Known
     -5: Not Available
+    501501: Not Applicable
     501502: Bystander
     501503: Family
     501504: EMS
