@@ -156,16 +156,16 @@ XML
       write_html_file("massive", "fancy", html)
     end
 
-=begin
+#=begin
     it 'should render test xml file' do
-      sample_xml_file = File.expand_path('../../data/bailey_2nd_encntr.xml', __FILE__)
+      sample_xml_file = File.expand_path('../../data/bastien.xml', __FILE__)
       xml_str = File.read(sample_xml_file)
       p = Nemsis::Parser.new(xml_str)
       r = Nemsis::Renderer::WakeMed::HTML.new(p)
       html = r.render_fancy
-      write_html_file("bailey2", "fancy", html)
+      write_html_file("bastien", "fancy", html)
     end
-=end
+#=end
 
     after :all do
       WRITE_HTML_FILE = false
@@ -261,6 +261,46 @@ XML
     end
 
   end
+  context 'Clinical Impression Injury' do
+    let(:p) {
+      xml_str = <<XML
+<?xml version=" 1.0 " encoding=" UTF-8 " ?>
+<EMSDataSet xmlns=" http ://www.nemsis.org " xmlns:xsi=" http ://www.w3.org/2001/XMLSchema-instance "
+            xsi:schemaLocation=" http ://www.nemsis.org http ://www.nemsis.org/media/XSD/EMSDataSet.xsd ">
+  <Header>
+    <Record>
+      <E10>
+        <E10_01>9595</E10_01>
+        <E10_02>2030</E10_02>
+        <E10_03>2035</E10_03>
+        <E10_06_0>
+          <E10_06>1</E10_06>
+          <E10_07>2165</E10_07>
+        </E10_06_0>
+        <E10_11>Motorized Vehicle Accident</E10_11>
+        <E10_12>Right Front</E10_12>
+      </E10>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+      Nemsis::Parser.new(xml_str)
+    }
+    let(:r) { Nemsis::Renderer::WakeMed::HTML.new(p)}
+    let(:html) {r.render}
+
+    # "concat('E10_11', 'E10_02', 'E10_03')"
+    # 9595: Motor Vehicle traffic accident (E81X.0)
+    # 2030: Unintentional
+    # 2035: Blunt
+    # Motorized Vehicle Accident
+    describe 'Injury values' do
+      it('should have Injury label') {html.should =~ /Injury/}
+      it('should have values') {html.should =~ /Motorized Vehicle Accident, Unintentional, Blunt/}
+      #it('write to html file') { saved_flag=WRITE_HTML_FILE;WRITE_HTML_FILE=true; write_html_file('injury', 'simple', html);WRITE_HTML_FILE=saved_flag}
+    end
+
+  end
 
   context 'Additional Agencies' do
     let(:p) {
@@ -284,6 +324,112 @@ XML
     it 'should show multiple agencies' do
       html.should =~ /Wake Forest Fire Department, Wake Forest Police Department/
     end
+
+  end
+
+  context 'Vital Signs' do
+    let(:p) {
+      xml_str = <<XML
+<?xml version=" 1.0 " encoding=" UTF-8 " ?>
+<EMSDataSet xmlns=" http ://www.nemsis.org " xmlns:xsi=" http ://www.w3.org/2001/XMLSchema-instance "
+            xsi:schemaLocation=" http ://www.nemsis.org http ://www.nemsis.org/media/XSD/EMSDataSet.xsd ">
+  <Header>
+    <Record>
+      <E14><E14_01>2012-03-01T18:08:00.0Z</E14_01>
+        <E14_02>0</E14_02>
+        <E14_04_0>
+          <E14_04>128</E14_04>
+          <E14_05>87</E14_05>
+          <E14_06>3155</E14_06>
+        </E14_04_0>
+        <E14_08>76</E14_08>
+        <E14_10>3175</E14_10>
+        <E14_11>12</E14_11>
+        <E14_12>3185</E14_12>
+        <E14_14>108</E14_14>
+        <E14_15_0>
+          <E14_15>4</E14_15>
+          <E14_16>5</E14_16>
+          <E14_17>6</E14_17>
+        </E14_15_0>
+        <E14_19>15</E14_19>
+        <E14_20_0>
+          <E14_20>36.28</E14_20>
+        </E14_20_0>
+        <E14_22>3255</E14_22>
+        <E14_27>12</E14_27>
+        <E14_29></E14_29>
+        <E14_30></E14_30>
+        <E14_32>-20</E14_32>
+        <E14_35>Regular</E14_35>
+        <E14_36>Normal</E14_36>
+        <E14_38>Regular</E14_38>
+      </E14>
+      <E14><E14_01>2012-03-01T18:14:00.0Z</E14_01>
+        <E14_02>0</E14_02>
+        <E14_03>3070</E14_03>
+        <E14_04_0>
+          <E14_04>130</E14_04>
+          <E14_05>90</E14_05>
+          <E14_06>3165</E14_06>
+        </E14_04_0>
+        <E14_08>80</E14_08>
+        <E14_10>3175</E14_10>
+        <E14_11>13</E14_11>
+        <E14_12>3185</E14_12>
+        <E14_20_0>
+          <E14_20>35.28</E14_20>
+        </E14_20_0>
+        <E14_29></E14_29>
+        <E14_30></E14_30>
+        <E14_32>-20</E14_32>
+        <E14_34>Normal Sinus Rhythm</E14_34>
+        <E14_35>Placed</E14_35>
+        <E14_36>Normal</E14_36>
+        <E14_37>Esophageal</E14_37>
+        <E14_38>Ventilated</E14_38>
+      </E14>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+      Nemsis::Parser.new(xml_str)
+    }
+    let(:r) { Nemsis::Renderer::WakeMed::HTML.new(p)}
+    let(:html) {r.render}
+
+    it 'should show basic heading' do
+      html.should =~ /Vital Signs/
+    end
+    it 'should not show full text descriptions' do
+      html.should_not =~ /12 Normal/i
+    end
+
+    # BP    <%= cell ("#{[e14.E14_04, e14.E14_05].select {|v| !v.to_s.eql?('')}.compact.join('/')}&nbsp;#{e14.E14_06}") %>
+    it 'should show BP abbreviations' do
+      html.should =~ /128\/87&nbsp;A/ #Automated
+      html.should =~ /130\/90&nbsp;P/ #Palpated
+    end
+
+    # Pulse <%= cell ("#{[(!e14.E14_07.to_s.eql?('') ? e14.E14_07 : e14.E14_08), e14.E14_10].compact.join(' ')}&nbsp;") %>
+    it 'should show Pulse abbreviations' do
+      html.should =~ /76 R/
+    end
+
+    # RR    <%= cell ((e14.concat 'E14_11', 'E14_12')) %>
+    it 'should show Respiratory Rate abbreviations' do
+      html.should =~ /12 R/
+      html.should =~ /13 V/
+    end
+
+    # Temp  <%= cell ((e14.concat 'E14_20', 'E14_37')) %>
+    it 'should show Temp Method abbreviations' do
+      html.should =~ /36.28/
+      html.should =~ /35.28 E/
+    end
+
+    it('write to html file') { saved_flag=WRITE_HTML_FILE;WRITE_HTML_FILE=true; write_html_file('vital_signs', 'simple', html);WRITE_HTML_FILE=saved_flag}
+
 
   end
 

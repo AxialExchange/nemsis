@@ -490,7 +490,7 @@ STYLE
           html += start_row +
               labeled_cell("Skin", (assessment.E16_26)) +
               cell("Skin") +
-              assessment_cell(cell(positive(assessment, 'E16_39', 'E15_01') + negative(assessment, 'E16_64'))) +
+              assessment_cell(cell(positive(assessment, 'E16_39', 'E15_16') + negative(assessment, 'E16_64'))) +
               end_row 
           html += start_row +
               tall_label("HEENT", 4) +

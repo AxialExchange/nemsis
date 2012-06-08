@@ -44,7 +44,7 @@
     start_table title, 6 %>
   <tbody>
       <!-- Primary Impression, Anatomical Position, Injury -->
-      <%= row( {'Primary Impression' => "concat('E09_19')"}, 'E09_11', {'Injury' => "concat('E10_01', 'E10_02', 'E10_03', 'E10_11')"} )%>
+      <%= row( {'Primary Impression' => "concat('E09_19')"}, 'E09_11', {'Injury' => "concat_with_comma('E10_11', 'E10_02', 'E10_03')"} )%>
       <!-- Secondary Impression, Chief Complaint (Dur), Medical/Trauma -->
       <%= row( {'Secondary Impression' => "concat('E09_20')"}, {'Chief Complaint' => "concat('E09_05', 'E09_06', 'E09_07')"}, {'Medical/Trauma' => "parse_value_of('MedicalTrauma')"} )%>
       <!-- Protocol Used (D04_08), Secondary Complaint (Dur), Barriers of Care -->
@@ -109,14 +109,14 @@
           <%= cell (e14.E14_30) %>
 
           <%= cell ("#{[e14.E14_04, e14.E14_05].select {|v| !v.to_s.eql?('')}.compact.join('/')}&nbsp;#{e14.E14_06}") %>
-          <%= cell ("#{[(!e14.E14_07.to_s.eql?('') ? e14.E14_07 : e14.E14_08), e14.E14_10].compact.join(' ')}&nbsp;") %>
-          <%= cell ((e14.concat 'E14_11', 'E14_12')) %>
+          <%= cell ("#{[(!e14.E14_07.to_s.eql?('') ? e14.E14_07 : e14.E14_08), e14.E14_35].compact.join(' ')}&nbsp;") %>
+          <%= cell ((e14.concat 'E14_11', 'E14_38')) %>
           <%= cell (e14.E14_09) %>
 
           <%= cell (e14.E14_13) %>
           <%= cell (e14.E14_31) %>
           <%= cell (e14.E14_14) %>
-          <%= cell ((e14.concat 'E14_20', 'E14_21')) %>
+          <%= cell ((e14.concat 'E14_20', 'E14_37')) %>
 
           <%= cell (e14.E14_23) %>
           <%= cell ("#{e14.E14_19}/#{e14.E14_18}") %>
@@ -374,7 +374,7 @@
     </tr>
     <%= start_row %>
       <%= labeled_cell @parser.name('E29_18'), "#{@parser.E29_18} min" %>
-      <%= labeled_cell @parser.name('E29_11'), @parser.E29_11 %>
+      <%= labeled_cell @parser.name('E29_11'), @parser.E29_31 %>
     </tr>
     <%= row 'E29_04', 'E29_23' %>
     <%= row 'E29_05', 'E29_22' %>
