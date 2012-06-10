@@ -188,7 +188,7 @@ STYLE
         ###
         # Present the values provided, no look-ups
         def row_from_values(*fields)
-          raise ArgumentError.new("you must pass fields into row() method!") if fields.nil?
+          raise ArgumentError.new("you must pass fields into row_from_values() method!") if fields.nil?
           colspan = 0
           colspan = fields.last if fields.last.is_a?(Fixnum)
           text = start_row
@@ -203,7 +203,7 @@ STYLE
         ###
         # Present the data returned by looking up the passed-in elements
         def row_from_fields(*fields)
-          raise ArgumentError.new("you must pass fields into row() method!") if fields.nil?
+          raise ArgumentError.new("you must pass fields into row_from_fields() method!") if fields.nil?
           colspan = 0
           colspan = fields.last if fields.last.is_a?(Fixnum)
           text = start_row
@@ -250,7 +250,11 @@ STYLE
               elsif false && num_columns > 3
                 text += labeled_cell_narrow(label, (value.empty? ? '' : @parser.send(value)), colspan)
               else
-                text += labeled_cell(label, (value.empty? ? '' : @parser.send(value)), colspan)
+                begin
+                  text += labeled_cell(label, (value.empty? ? '' : @parser.send(value)), colspan)
+                rescue
+                  text += labeled_cell(label, (value.empty? ? '' : value), colspan)
+                end
               end
             else
               element = @parser.get(field)
@@ -444,7 +448,7 @@ STYLE
                  ' ' +
                  set.map do |a|
                    num = items.flatten.count{|x| x == a}
-                   num == 1 ? a : "#{a} (#{num})"
+                   (num == 1 || a =~ /No Abnormalities/i) ? a : "#{a} (#{num})"
                  end.join(', ')
 
           text
