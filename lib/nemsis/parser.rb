@@ -588,8 +588,11 @@ module Nemsis
           str = obj.strftime("%Y-%m-%d") rescue nil
       else
         str = obj.to_s
+          if str.index('Comments Alert, 54 yo f Pt.')
+            puts "We have W&D"
+          end
       end
-      #puts "#{__method__}: #{str}"
+      puts "#{__method__}: #{str}" if str.index('Comments Alert, 54 yo f Pt.')
       str
     end
 
@@ -635,7 +638,7 @@ module Nemsis
     # Just return the raw node text value
     def get_raw(element_spec, node)
       result = node && node.text or ""
-      #puts "#{__method__}: #{result}"
+      puts "#{__method__}: #{result}" if result.index('Comments Alert, 54 yo f Pt.')
       result
     end
   end

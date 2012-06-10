@@ -156,16 +156,16 @@ XML
       write_html_file("massive", "fancy", html)
     end
 
-#=begin
+=begin
     it 'should render test xml file' do
-      sample_xml_file = File.expand_path('../../data/bastien.xml', __FILE__)
+      sample_xml_file = File.expand_path('../../data/smith.xml', __FILE__)
       xml_str = File.read(sample_xml_file)
       p = Nemsis::Parser.new(xml_str)
       r = Nemsis::Renderer::WakeMed::HTML.new(p)
       html = r.render_fancy
-      write_html_file("bastien", "fancy", html)
+      write_html_file("smith", "fancy", html)
     end
-#=end
+=end
 
     after :all do
       WRITE_HTML_FILE = false
@@ -424,8 +424,8 @@ XML
 
     # Temp  <%= cell ((e14.concat 'E14_20', 'E14_37')) %>
     it 'should show Temp Method abbreviations' do
-      html.should =~ /36.28/
-      html.should =~ /35.28 E/
+      html.should =~ /97.3/   # 36.28 deg C
+      html.should =~ /95.5 E/ # 35.28 deg C
     end
 
     it('write to html file') { saved_flag=WRITE_HTML_FILE;WRITE_HTML_FILE=true; write_html_file('vital_signs', 'simple', html);WRITE_HTML_FILE=saved_flag}

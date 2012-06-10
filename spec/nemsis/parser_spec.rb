@@ -224,6 +224,33 @@ XML
       it('should handle Yes/No')    { p.E_YES_NO.should    == "No" }
       it('should handle Multiple')  { p.E_MULTIPLE.should  == "First, Third choice, Assessment-Adult" }
     end
+
+    context 'ampersands in user-entered text' do
+      let(:p) {
+        xml_str = <<XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
+  <Header>
+    <Record>
+      <E_STRING><E19_20>Comments Alert, 54 yo f Pt. W&D, with clear & = breath sounds......Sats @ 99% on room air.....Palpitations with Chest Tightness @ a "2"....R/O Cardiac......; Patient Response: Improved</E19_20></E_STRING>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+        Nemsis::Parser.new(xml_str, spec_yaml)
+      }
+
+      # ESO should remove the ampersands from the XML, as they are illegal characters
+      # So I only left this in here in case Axial has to clean up the mess first.
+      # 10 June 2012 -- jon
+      pending 'should preserve the ampersands' do
+        p.E_STRING.should include('W&D')
+        p.E_STRING.should include('clear & =')
+      end
+
+    end
+
     describe 'method missing' do
       it('should treat method name as element name') { p.E_STRING.should == p.parse_element('E_STRING') }
       it('should pass along complex calls') { p.send("concat('E_STRING', 'E_SINGLE')").should == "My String Days" }

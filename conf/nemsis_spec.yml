@@ -4504,11 +4504,6 @@ E14_12:
     3195: Fatigued
     3200: Absent
     3205: Not Assessed
-#    3185: Normal
-#    3190: Labored
-#    3195: Fatigued
-#    3200: Absent
-#    3205: Not Assessed
   is_multi_entry: 1
   name: RESPIRATORY EFFORT
   node: E14_12

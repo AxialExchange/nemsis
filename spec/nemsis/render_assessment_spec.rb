@@ -105,7 +105,7 @@ XML
         reg_not_assessed = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_NOT_ASSESSED_REGEX
         it('should NOT have (+) with Not Assessed') { html.should_not =~ /#{reg_not_assessed}/ }
 
-        it('should have multiple No Abnormalities') { html.should =~ /No Abnormalities \(4\)/ }
+        it('should NOT have multiple No Abnormalities') { html.should_not =~ /No Abnormalities \(4\)/ }
 
       end
 
@@ -131,7 +131,7 @@ XML
         reg_not_assessed = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_NOT_ASSESSED_REGEX
         it('should NOT have (+) with Not Assessed') { html.should_not =~ /#{reg_not_assessed}/ }
 
-        it('should have multiple No Abnormalities') { html.should =~ /No Abnormalities \(4\)/ }
+        it('should NOT have multiple No Abnormalities') { html.should_not =~ /No Abnormalities \(4\)/ }
 
       end
 

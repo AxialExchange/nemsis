@@ -46,9 +46,11 @@
       <!-- Primary Impression, Anatomical Position, Injury -->
       <%= row( {'Primary Impression' => "concat('E09_19')"}, 'E09_11', {'Injury' => "concat_with_comma('E10_11', 'E10_02', 'E10_03')"} )%>
       <!-- Secondary Impression, Chief Complaint (Dur), Medical/Trauma -->
-      <%= row( {'Secondary Impression' => "concat('E09_20')"}, {'Chief Complaint' => "concat('E09_05', 'E09_06', 'E09_07')"}, {'Medical/Trauma' => "parse_value_of('MedicalTrauma')"} )%>
+      <% chief_complaint = @parser.has_content('E09_05') ? "#{@parser.E09_05} &ndash; Dur. #{@parser.E09_06} #{@parser.E09_07}" : '&nbsp;' %>
+      <%= row( {'Secondary Impression' => "E09_20"}, {'Chief Complaint' => chief_complaint}, {'Medical/Trauma' => "parse_value_of('MedicalTrauma')"} )%>
       <!-- Protocol Used (D04_08), Secondary Complaint (Dur), Barriers of Care -->
-      <%= row 'E17_01', {'Secondary Complaint' => "concat('E09_08', 'E09_09', 'E09_10')"}, 'E12_27' %>
+      <% secondary_complaint = @parser.has_content('E09_08') ? "#{@parser.E09_08} &ndash; Dur. #{@parser.E09_09} #{@parser.E09_10}" : '&nbsp;' %>
+      <%= row 'E17_01', {'Secondary Complaint' => secondary_complaint}, 'E12_27' %>
       <!-- Signs & Symptoms, Alcohol/Drugs -->
       <%= row({"Signs &amp; Symptoms" => "concat_with_comma('E09_13', 'E09_14', 'E09_17', 'E09_18')"}, 'E12_19', 3) %>
   </tbody>
@@ -93,7 +95,7 @@
       <%= label_top "ETCO2" %>
       <%= label_top "CO" %>
       <%= label_top "BG" %>
-      <%= label_top "T &deg;C" %>
+      <%= label_top "T &deg;F" %>
 
       <%= label_top "Pain" %>
       <%= label_top "GCS" %>
@@ -102,6 +104,9 @@
     </tr>
 
     <% @parser.parse_cluster('E14').sort_by { |e14| Time.parse(e14.E14_01) rescue Time.now }.each do |e14| %>
+        <% next unless e14.E14_22.present? || e14.E14_04.present? || e14.E14_05.present? || e14.E14_07.present? || e14.E14_11.present? \
+                        || e14.E14_30.present? || e14.E14_09.present? || e14.E14_13.present? || e14.E14_31.present? \
+                        || e14.E14_14.present? || e14.E14_20.present? || e14.E14_19.present? || e14.E14_27.present?%>
         <%= start_row %>
           <%= cell (e14.parse_time('E14_01')) %>
           <%= cell (e14.E14_22) %>
@@ -116,10 +121,11 @@
           <%= cell (e14.E14_13) %>
           <%= cell (e14.E14_31) %>
           <%= cell (e14.E14_14) %>
-          <%= cell ((e14.concat 'E14_20', 'E14_37')) %>
+          <% temp = e14.E14_20.to_f == 0 ? '&nbsp;' : (e14.E14_20.to_f*9.0/5.0 + 32).round(1) %>
+          <%= cell (("#{temp} #{e14.E14_37}")) %>
 
           <%= cell (e14.E14_23) %>
-          <%= cell ("#{e14.E14_19}/#{e14.E14_18}") %>
+          <%= cell ("#{e14.E14_19}#{(e14.E14_19.empty? || e14.E14_18.empty?) ? '' : '/'}#{e14.E14_18}") %>
           <%= cell (e14.E14_27) %>
           <%= cell (e14.E14_28) %>
         </tr>
@@ -129,7 +135,7 @@
 <br>
 <% end %>
 
-<% if @parser.has_content('E14_03','E14_33') %>
+<% if @parser.has_content('E14_03','E14_32','E14_33','E14_34') %>
     <%= title = "ECG"
         start_table title, 3 %>
       <%= start_row %>
