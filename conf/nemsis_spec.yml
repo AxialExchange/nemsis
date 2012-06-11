@@ -8758,7 +8758,7 @@ E29_31:
   is_multi_entry: 1
   name: CARDIAC RHYTHM AT DESTINATION DESCRIPTION
   node: E29_31
- E30_01:
+E30_01:
   allow_null: 1
   data_entry_method: ~
   data_type: date/time
