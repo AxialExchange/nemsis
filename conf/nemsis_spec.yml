@@ -8751,7 +8751,14 @@ E29_30:
   is_multi_entry: 1
   name: Resuscitation
   node: E29_30
-E30_01:
+E29_31:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 1
+  name: CARDIAC RHYTHM AT DESTINATION DESCRIPTION
+  node: E29_31
+ E30_01:
   allow_null: 1
   data_entry_method: ~
   data_type: date/time
