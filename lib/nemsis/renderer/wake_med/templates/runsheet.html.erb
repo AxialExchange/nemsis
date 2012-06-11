@@ -63,7 +63,7 @@
     <% medications = [] %>
     <% if @parser.has_content('E12_14_0') %>
       <% @parser.parse_cluster('E12_14_0').each do |e12_14| %>
-        <% medications << e12_14.concat('E12_14', 'E12_15', 'E12_16', 'E12_21') %>
+        <% medications << e12_14.concat('E12_15', 'E12_16', 'E12_21') %>
       <% end %>
     <% end %>
     <%= start_row %>
