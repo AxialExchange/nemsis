@@ -6202,6 +6202,13 @@ E16_87:
   is_multi_entry: 1
   name: Neurological Negative Text
   node: E16_87
+E16_88:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 0
+  name: Weight in Pounds
+  node: E16_88
 E17_01:
   allow_null: 1
   data_entry_method: multiple-choice
