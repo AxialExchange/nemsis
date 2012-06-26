@@ -448,7 +448,7 @@ STYLE
                  ' ' +
                  set.map do |a|
                    num = items.flatten.count{|x| x == a}
-                   (num == 1 || a =~ /No Abnormalities/i) ? a : "#{a} (#{num})"
+                   (num == 1) ? a : "#{a} (#{num})"
                  end.join(', ')
 
           text
@@ -468,14 +468,16 @@ STYLE
         ASSESSMENT_BLANK_NEGATIVE_REGEX = Regexp.quote("<hr>(-) <")
         ASSESSMENT_BLANK_POSITIVE_REGEX = Regexp.quote(">(+) <hr>")
         ASSESSMENT_LONE_HR_REGEX = Regexp.quote("><hr>")
-        ASSESSMENT_NO_ABNORMALITIES_REGEX = Regexp.quote(">(+) No Abnormalities")
-        ASSESSMENT_NOT_ASSESSED_REGEX = Regexp.quote(">(+) Not Assessed<")
+        # Trap '(+) No Abnormalities' and 'No Abnormalities (4)'
+        ASSESSMENT_NO_ABNORMALITIES_REGEX = />(\(\+\) )?No Abnormalities( \((\d)+\))?/
+        # Trap '(+) Not Assessed' and 'Not Assessed (4)'
+        ASSESSMENT_NOT_ASSESSED_REGEX = />(\(\+\) )?Not Assessed( \((\d)+\))?/
 
         # Remove a lone <hr> when the positive section is empty
         def assessment_cell(cell_html)
           html = cell_html.gsub(/#{ASSESSMENT_LONE_HR_REGEX}/, "<td class='value'>")
           html = html.gsub(/#{ASSESSMENT_NO_ABNORMALITIES_REGEX}/, ">No Abnormalities")
-          html = html.gsub(/#{ASSESSMENT_NOT_ASSESSED_REGEX}/, ">Not Assessed<")
+          html = html.gsub(/#{ASSESSMENT_NOT_ASSESSED_REGEX}/, ">Not Assessed")
         end
 
         def assessment_table(assessment)

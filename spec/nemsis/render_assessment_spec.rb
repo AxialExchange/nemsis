@@ -46,6 +46,7 @@ describe Nemsis::Renderer do
           <E16_45>Decreased Sounds</E16_45>
           <E16_45>Murmur</E16_45>
           <E16_61>Not Assessed</E16_61>
+          <E16_61>Not Assessed</E16_61>
           <E16_71>LU: Decreased</E16_71>
           <E16_71>LU: Wheezing</E16_71>
           <E16_71>LU: Rales</E16_71>
@@ -86,7 +87,7 @@ XML
 
       context 'fancy html' do
         let(:html) { r.render_fancy }
-        WRITE_HTML_FILE = true
+        #WRITE_HTML_FILE = true
         it('should output file') { write_html_file("assessments-plus", "fancy", html) }
         it('should have assessments section') { html.should =~ /Initial Assessment/ }
         it('should have Chest row') { html.should =~ /Chest Section/ }
@@ -100,18 +101,20 @@ XML
         reg_lone_br = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_LONE_HR_REGEX
         it('should NOT have <hr> with no (+) section') { html.should_not =~ /#{reg_lone_br}/ }
 
+        reg_no_abnormalities = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_NO_ABNORMALITIES_REGEX
         it('should NOT have (+) with No Abnormalities') { html.should_not =~ /\(\+\) No Abnormalities/ }
+        it('should NOT have No Abnormalities (4)') { html.should_not =~ /No Abnormalities \(4\)/ }
+        it('should have plain No Abnormalities') { html.should =~ />No Abnormalities</ }
 
         reg_not_assessed = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_NOT_ASSESSED_REGEX
-        it('should NOT have (+) with Not Assessed') { html.should_not =~ /#{reg_not_assessed}/ }
-
-        it('should NOT have multiple No Abnormalities') { html.should_not =~ /No Abnormalities \(4\)/ }
-
+        it('should NOT have (+) with Not Assessed') { html.should_not =~ /\(\+\) Not Assessed/ }
+        it('should NOT have Not Assessed (2)') { html.should_not =~ /Not Assessed \(2\)/ }
+        it('should have plain Not Assessed') { html.should =~ />Not Assessed</ }
       end
 
       context 'simple html' do
         let(:html) { r.render }
-        WRITE_HTML_FILE = true
+        #WRITE_HTML_FILE = true
         it('should output file') { write_html_file("assessments-plus", "simple", html) }
         it('should have assessments section') { html.should =~ /Initial Assessment/ }
         it('should have Chest row') { html.should =~ /Chest Section/ }
@@ -127,12 +130,13 @@ XML
 
         reg_no_abnormalities = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_NO_ABNORMALITIES_REGEX
         it('should NOT have (+) with No Abnormalities') { html.should_not =~ /\(\+\) No Abnormalities/ }
+        it('should NOT have No Abnormalities (4)') { html.should_not =~ /No Abnormalities \(4\)/ }
+        it('should have plain No Abnormalities') { html.should =~ />No Abnormalities</ }
 
         reg_not_assessed = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_NOT_ASSESSED_REGEX
-        it('should NOT have (+) with Not Assessed') { html.should_not =~ /#{reg_not_assessed}/ }
-
-        it('should NOT have multiple No Abnormalities') { html.should_not =~ /No Abnormalities \(4\)/ }
-
+        it('should NOT have (+) with Not Assessed') { html.should_not =~ /\(\+\) Not Assessed/ }
+        it('should NOT have Not Assessed (2)') { html.should_not =~ /Not Assessed \(2\)/ }
+        it('should have plain Not Assessed') { html.should =~ />Not Assessed</ }
       end
 
     end

@@ -6202,6 +6202,13 @@ E16_87:
   is_multi_entry: 1
   name: Neurological Negative Text
   node: E16_87
+E16_88:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 0
+  name: Weight in Pounds
+  node: E16_88
 E17_01:
   allow_null: 1
   data_entry_method: multiple-choice
@@ -9714,3 +9721,35 @@ E34_06:
   is_multi_entry: 0
   name: 'Spinal Pain/Tenderness'
   node: E34_06
+E35_01:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 1
+  name: Personal Item ID
+  node: E35_01
+E35_02:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 1
+  name: Description
+  node: E35_02
+E35_03:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 1
+  name: Given To
+  node: E35_03
+E35_04:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 1
+  name: Comments
+  node: E35_04

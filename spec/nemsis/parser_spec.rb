@@ -752,6 +752,13 @@ E16_01:
   is_multi_entry: 0
   name: Weight (kg)
   node: E16_01
+E16_88:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: number
+  is_multi_entry: 0
+  name: Weight in Pounds
+  node: E16_88
 YML
     }
     context 'for a baby' do
@@ -793,6 +800,28 @@ XML
 
       it 'should show lbs & kg' do
         p.weight_in_words().should == '269 lbs - 122 kg'
+      end
+    end
+
+    context 'with weight in pounds provided' do
+      let(:p) {
+        xml_str = <<XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
+  <Header>
+    <Record>
+      <E16_01>66</E16_01>
+      <E16_88>145</E16_88>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+        Nemsis::Parser.new(xml_str, spec_yaml)
+      }
+
+      it 'should show lbs & kg' do
+        p.weight_in_words().should == '145 lbs - 66 kg'
       end
     end
 

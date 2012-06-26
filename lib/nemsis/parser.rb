@@ -189,10 +189,13 @@ module Nemsis
       age
     end
 
+    # This method started off life because, prior to mid-June 2012, we only got E16_01 in whole-number kgs.
+    # Now we also get weight in pounds in a new field: E16_88
     def weight_in_words
-      wt = self.E16_01.to_f # in kg
-      wt_in_lbs = wt*2.20462262
-      "%s lbs - %d kg" % [((wt_in_lbs < 100) ? wt_in_lbs.round(1) : wt_in_lbs.round), wt]
+      wt_kg = self.E16_01.to_f # in kg
+      wt_lb = self.E16_88.to_f
+      wt_in_lbs = wt_lb > 0 ? wt_lb : wt_kg*2.20462262
+      "%s lbs - %d kg" % [((wt_in_lbs < 100) ? wt_in_lbs.round(1) : wt_in_lbs.round), wt_kg]
     end
 
     def parse_time(element, full=false)
