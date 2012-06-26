@@ -681,19 +681,13 @@
   <br>
 <% end %>
 
-<% unless true %>
+<% if @parser.has_content('E35_01') %>
   <%= start_table "Personal Items", 3 %>
     <tbody>
-    <%= start_row %>
-      <%= label "Item" %>
-      <%= label "Given To" %>
-      <%= label "Comment" %>
-    </tr>
-    <%= start_row %>
-      <%= cell "TBD" %>
-      <%= cell "TBD" %>
-      <%= cell "TBD" %>
-    </tr>
+    <%=  heading_row('E35_02', 'E35_03', 'E35_04') %>
+    <% @parser.parse_cluster('E35_01_0').each do |e35| %>
+      <%=  row_from_values(e35.E35_02, e35.E35_03, e35.E35_04) %>
+    <% end %>
     </tbody>
   </table>
   <br>

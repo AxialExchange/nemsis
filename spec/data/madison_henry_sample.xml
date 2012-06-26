@@ -697,6 +697,19 @@
         <E34_05>0</E34_05>
         <E34_06>1</E34_06>
       </E34>
+      <E35>
+        <E35_01_0>
+          <E35_01>C160EF94-F2AD-4222-9468-A0060172DA8C</E35_01>
+          <E35_02>Purse/Wallet</E35_02>
+          <E35_03>pt</E35_03>
+        </E35_01_0>
+        <E35_01_0>
+          <E35_01>99D9FEEC-EC50-4284-ADAF-A006016865EE</E35_01>
+          <E35_02>Gold Bullion</E35_02>
+          <E35_03>EMS Driver</E35_03>
+          <E35_04>Pt appreciated the thrill of the lights and sirens</E35_04>
+        </E35_01_0>
+      </E35>
     </Record>
   </Header>
 </EMSDataSet>

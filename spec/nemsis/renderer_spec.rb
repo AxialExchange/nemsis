@@ -1040,5 +1040,60 @@ XML
     end
   end
 
+  describe 'Personal Items' do
+    let(:p) {
+      xml_str = <<XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
+  <Header>
+    <D01_01>0920547</D01_01>
+    <D01_03>37</D01_03>
+    <D01_04>00000</D01_04>
+    <D01_07>6110</D01_07>
+    <D01_08>5830</D01_08>
+    <D01_09>5870</D01_09>
+    <D01_21>192209802</D01_21>
+    <D02_07>27601</D02_07>
+    <Record>
+      <E35>
+        <E35_01_0>
+          <E35_01>C160EF94-F2AD-4222-9468-A0060172DA8C</E35_01>
+          <E35_02>Purse/Wallet</E35_02>
+          <E35_03>pt</E35_03>
+        </E35_01_0>
+        <E35_01_0>
+          <E35_01>99D9FEEC-EC50-4284-ADAF-A006016865EE</E35_01>
+          <E35_02>Gold Bullion</E35_02>
+          <E35_03>EMS Driver</E35_03>
+          <E35_04>Pt appreciated the thrill of the lights and sirens</E35_04>
+        </E35_01_0>
+      </E35>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+      Nemsis::Parser.new(xml_str)
+    }
+    let(:r) { Nemsis::Renderer::WakeMed::HTML.new(p) }
+    let(:html) { r.render }
+
+    it 'should have the special section' do
+      WRITE_HTML_FILE = true
+      write_html_file('personal_items', 'simple', html)
+      html.should =~ /Personal Items/
+    end
+    it 'should have the first entry' do
+      html.should =~ /Purse\/Wallet/
+      html.should =~ />pt</
+    end
+    it 'should have the second entry' do
+      html.should =~ /Gold Bullion/
+      html.should =~ /EMS Driver/
+      html.should =~ /thrill of the lights/
+    end
+
+  end
+
 end
 
