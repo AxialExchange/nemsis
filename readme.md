@@ -97,10 +97,44 @@ You can see parser_spec.rb and renderer_spec.rb for detailed examples. Here are 
       it('should pass along complex calls') { p.send("concat('E_STRING', 'E_SINGLE')").should == "My String Days" }
     end
 
-For generating dynamic section, you can check if there is any data with code like this:
+### Checking for content
+
+For generating dynamic sections, you can check if there are any data with code like this:
 
     <% if @parser.has_content('E28') %>
 
 or for individual values:
 
     <% if @parser.has_content('E14_01','E14_03','E14_33') %>
+
+### Repeating Sections
+
+Personal Items is a good example of a set of repeating data:
+
+      <E35>
+        <E35_01_0>
+          <E35_01>C160EF94-F2AD-4222-9468-A0060172DA8C</E35_01>
+          <E35_02>Purse/Wallet</E35_02>
+          <E35_03>pt</E35_03>
+        </E35_01_0>
+        <E35_01_0>
+          <E35_01>99D9FEEC-EC50-4284-ADAF-A006016865EE</E35_01>
+          <E35_02>Gold Bullion</E35_02>
+          <E35_03>EMS Driver</E35_03>
+          <E35_04>Pt appreciated the thrill of the lights and sirens</E35_04>
+        </E35_01_0>
+      </E35>
+
+Which can be easily tackled using the following syntax
+
+        <% if @parser.has_content('E35_01') %>
+          <%= start_table "Personal Items", 3 %>
+            <tbody>
+            <%=  heading_row('E35_02', 'E35_03', 'E35_04') %>
+            <% @parser.parse_cluster('E35_01_0').each do |e35| %>
+              <%=  row_from_values(e35.E35_02, e35.E35_03, e35.E35_04) %>
+            <% end %>
+            </tbody>
+          </table>
+          <br>
+        <% end %>
