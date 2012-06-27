@@ -33,7 +33,7 @@
   <!--Gender, county, physician -->
   <%= row 'E06_11', {'County' => "parse_county('E06_06')"}, {'Physician' => "concat('E12_04', 'E12_06')"} %>
   <!--Age, country-->
-  <%= row( {'Age' => 'age_in_words'}, 'E06_09', {'' => ''}) %>
+  <%= row( {'Age' => 'age_in_words'}, 'E06_09', {'' => '&nbsp;'}) %>
   <%= start_row %>
     <%= labeled_cell "Advanced Directive", @parser.E12_07, 5 %>
   </tr>
@@ -397,7 +397,7 @@
       <%= heading "In-Field Pronouncement", 4 %>
     </tr>
     <%= row( {"Expired" => 'E29_14'}, {'Date/Time' => 'E29_15'} ) %>
-    <%= row( {'Physician' => 'E29_16'}, {' ' => ''} ) %>
+    <%= row( {'Physician' => 'E29_16'}, {'&nbsp;' => '&nbsp;'} ) %>
     </tbody>
 </table>
 <br>
@@ -488,14 +488,14 @@
 <% if @parser.has_content('E30') %>
     <%= title = "Specialty Patient &mdash; Influenza Screening"
         start_table title, 4 %>
-    <%= row 'E30_01', {' ' => ''} %>
-    <%= row({"Symptoms" => ""}, {"History" => ""}) %>
+    <%= row 'E30_01', {'&nbsp;' => '&nbsp;'} %>
+    <%= row({'Symptoms' => '&nbsp;'}, {'History' => '&nbsp;'}) %>
     <%= row 'E30_03', 'E30_08' %>
     <%= row 'E30_04', 'E30_09' %>
     <%= row 'E30_05', 'E30_10' %>
     <%= row 'E30_06', 'E30_11' %>
-    <%= row 'E30_07', {' ' => ''} %>
-    <%= row 'E30_02', {' ' => ''} %>
+    <%= row 'E30_07', {'&nbsp;' => '&nbsp;'} %>
+    <%= row 'E30_02', {'&nbsp;' => '&nbsp;'} %>
 </table>
 <br>
 <% end %>
@@ -546,7 +546,7 @@
     <!-- Address 2, Transported to, En route -->
     <%= row('E08_11', 'E20_01', {"En Route" => "parse_time('E05_05')"}) %>
     <!-- Address 2, Requested By, Resp on Scene -->
-    <%= row({'Address 2' => "parse_value_of('IncidentAddress2')"}, {"Requested By" => "parse_value_of('Requested By')"}, { "&nbsp;" => ''}) %>
+    <%= row({'Address 2' => "parse_value_of('IncidentAddress2')"}, {"Requested By" => "parse_value_of('Requested By')"}, { "&nbsp;" => '&nbsp;'}) %>
     <!-- City, Destination, On Scene -->
     <%= row({'City' => "parse_city('E08_12')"}, 'E20_17', {"On Scene" => "parse_time('E05_06')"}) %>
     <!-- State, Address, At Patient -->
@@ -560,7 +560,7 @@
     <!-- Priority Scene, Zip, Closed -->
     <%= row('E02_20', 'E20_07', {"Back in Svc" => "parse_time('E05_11')"}) %>
     <!-- Shift, '', In District -->
-    <%= row({"Shift" => "parse_value_of('Shift')"}, {"&nbsp;" => ''}, {"Back @HomeLoc" => "parse_time('E05_13')"}) %>
+    <%= row({"Shift" => "parse_value_of('Shift')"}, {"&nbsp;" => '&nbsp;'}, {"Back @HomeLoc" => "parse_time('E05_13')"}) %>
     <!-- Level of Svc, Condition at Dest, Record # -->
     <%= row({"Level of Service" => "parse_value_of('Level of Service')"}, 'E20_15', 'E12_03') %>
   </tbody>
@@ -696,11 +696,11 @@
 <% if false && @parser.has_content('E20_16','E12_02', 'E07_34', 'E07_35', 'E07_36', 'E07_37', 'E07_02')   %>
     <%= start_table "Transfer Details", 4 %>
     <!--PAN, Sending Phys.-->
-    <%=  row({"PAN" => ''}, {"Sending Physician" => ''})  %>
+    <%=  row({"PAN" => '&nbsp;'}, {"Sending Physician" => '&nbsp;'})  %>
     <!--PCS, Sending Record #-->
-    <%=  row({"PCS" => ''}, 'E12_02')  %>
+    <%=  row({"PCS" => '&nbsp;'}, 'E12_02')  %>
     <!--ABN, Receiving Phys-->
-    <%=  row({"ABN" => ''}, {"Receiving Physician" => ''})  %>
+    <%=  row({"ABN" => '&nbsp;'}, {"Receiving Physician" => '&nbsp;'})  %>
     <!--CMS Level Service, Condition Code-->
     <%=  row('E07_34', 'E07_35')  %>
     <!--ICD-9 Code, Condition Modifier Code-->
@@ -708,7 +708,7 @@
     <!--Transfer Reason-->
     <%=  row('E20_16',3)  %>
     <!--Other/Services-->
-    <%=  row({"Other/Services" => ''}, 3)  %>
+    <%=  row({"Other/Services" => '&nbsp;'}, 3)  %>
     <!--Medical Necessity-->
     <%=  row('E07_02', 3)  %>
 </table>
