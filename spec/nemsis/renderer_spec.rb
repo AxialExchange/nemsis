@@ -145,15 +145,15 @@ XML
       write_html_file("madison", "fancy", html)
     end
 
-    it 'should render massive' do
-      sample_xml_file = File.expand_path('../../data/test_patient.12345678901234567890.xml', __FILE__)
+    it 'should render everything patient' do
+      sample_xml_file = File.expand_path('../../data/everything_patient.xml', __FILE__)
       xml_str = File.read(sample_xml_file)
       p = Nemsis::Parser.new(xml_str)
       r = Nemsis::Renderer::WakeMed::HTML.new(p)
       html = r.render
-      write_html_file("massive", "simple", html)
+      write_html_file("everything_patient", "simple", html)
       html = r.render_fancy
-      write_html_file("massive", "fancy", html)
+      write_html_file("everything_patient", "fancy", html)
     end
 
 =begin
