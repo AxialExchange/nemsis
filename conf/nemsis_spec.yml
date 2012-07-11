@@ -3718,8 +3718,32 @@ E10_12:
   data_type: text
   field_values: ~
   is_multi_entry: 0
-  name: Poistion Of Patient In The Seat Of Vehicle
+  name: Position Of Patient In The Seat Of Vehicle
   node: E10_12
+E10_13:
+  allow_null: 1
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 0
+  name: Injury Location Description
+  node: E10_13
+E10_14:
+  allow_null: 1
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 0
+  name: Injury Date
+  node: E10_14
+E10_15:
+  allow_null: 1
+  data_entry_method: '~'
+  data_type: text
+  field_values: ~
+  is_multi_entry: 0
+  name: Injury Detail Description
+  node: E10_15
 E11_01:
   allow_null: 1
   data_entry_method: single-choice National Element

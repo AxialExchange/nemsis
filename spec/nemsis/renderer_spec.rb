@@ -156,7 +156,7 @@ XML
       write_html_file("everything_patient", "fancy", html)
     end
 
-#=begin
+=begin
     it 'should render test xml file' do
       sample_xml_file = File.expand_path('../../data/priscilla.xml', __FILE__)
       xml_str = File.read(sample_xml_file)
@@ -165,7 +165,7 @@ XML
       html = r.render_fancy
       write_html_file("test", "fancy", html)
     end
-#=end
+=end
 
     after :all do
       WRITE_HTML_FILE = false
@@ -208,9 +208,9 @@ XML
           @plain_html.should_not =~ /<td  ><font size='2'><\/font><\/td>/
         end
 
-        it 'write to html file' do
-          write_html_file('sample', 'simple', @plain_html)
-        end
+        #it 'write to html file' do
+        #  write_html_file('sample', 'simple', @plain_html)
+        #end
       end
 
       context 'fancy HTML' do
@@ -219,9 +219,9 @@ XML
           @fancy_html.should =~ /<STYLE/
         end
 
-        it 'write to html file' do
-          write_html_file('sample', 'fancy', @fancy_html)
-        end
+        #it 'write to html file' do
+        #  write_html_file('sample', 'fancy', @fancy_html)
+        #end
       end
     end
 
@@ -261,6 +261,7 @@ XML
     end
 
   end
+
   context 'Clinical Impression Injury' do
     let(:p) {
       xml_str = <<XML
@@ -270,15 +271,13 @@ XML
   <Header>
     <Record>
       <E10>
-        <E10_01>9595</E10_01>
+        <E10_01>9550</E10_01>
         <E10_02>2030</E10_02>
         <E10_03>2035</E10_03>
-        <E10_06_0>
-          <E10_06>1</E10_06>
-          <E10_07>2165</E10_07>
-        </E10_06_0>
-        <E10_11>Motorized Vehicle Accident</E10_11>
-        <E10_12>Right Front</E10_12>
+        <E10_11>Fall</E10_11>
+        <E10_13>Home</E10_13>
+        <E10_14>2012-02-27</E10_14>
+        <E10_15>Fall from other slipping, tripping or stumbling</E10_15>
       </E10>
     </Record>
   </Header>
@@ -289,15 +288,12 @@ XML
     let(:r) { Nemsis::Renderer::WakeMed::HTML.new(p)}
     let(:html) {r.render}
 
-    # "concat('E10_11', 'E10_02', 'E10_03')"
-    # 9595: Motor Vehicle traffic accident (E81X.0)
-    # 2030: Unintentional
-    # 2035: Blunt
-    # Motorized Vehicle Accident
-    describe 'Injury values' do
-      it('should have Injury label') {html.should =~ /Injury/}
-      it('should have values') {html.should =~ /Motorized Vehicle Accident, Unintentional, Blunt/}
-      #it('write to html file') { saved_flag=WRITE_HTML_FILE;WRITE_HTML_FILE=true; write_html_file('injury', 'simple', html);WRITE_HTML_FILE=saved_flag}
+    describe 'various signs and symptom values' do
+      #it('write to html file')   {WRITE_HTML_FILE=true; write_html_file('symptoms', 'simple', html)}
+      it('should have section')  {html.should =~ /Clinical Impression/}
+      it('should have details')  {html.should =~ /Fall from other slipping, tripping or stumbling/}
+      it('should have date')     {html.should =~ /2012-02-27/}
+      it('should have location') {html.should =~ /Home/}
     end
 
   end
@@ -483,8 +479,7 @@ XML
       html.should =~ /95.5 E/ # 35.28 deg C
     end
 
-    it('write to html file') { saved_flag=WRITE_HTML_FILE;WRITE_HTML_FILE=true; write_html_file('vital_signs', 'simple', html);WRITE_HTML_FILE=saved_flag}
-
+    #it('write to html file') { saved_flag=WRITE_HTML_FILE;WRITE_HTML_FILE=true; write_html_file('vital_signs', 'simple', html);WRITE_HTML_FILE=saved_flag}
 
   end
 
@@ -591,7 +586,7 @@ XML
 
     it 'should have a Flow Chart section' do
       fancy_html.should =~ /Flow Chart/i
-      write_html_file('flow_chart', 'fancy', fancy_html)
+      #write_html_file('flow_chart', 'fancy', fancy_html)
     end
 
     it 'should not have a Trauma section' do
@@ -682,7 +677,7 @@ XML
 
     it 'should have a ECG section' do
       fancy_html.should =~ /ECG/i
-      write_html_file('ecg', 'fancy', fancy_html)
+      #write_html_file('ecg', 'fancy', fancy_html)
     end
 
     it 'should not have a Trauma section' do
@@ -730,8 +725,8 @@ XML
     let(:html) { r.render }
 
     it 'should have the special section' do
-      WRITE_HTML_FILE = true
-      write_html_file('personal_items', 'simple', html)
+      #WRITE_HTML_FILE = true
+      #write_html_file('personal_items', 'simple', html)
       html.should =~ /Personal Items/
     end
     it 'should have the first entry' do

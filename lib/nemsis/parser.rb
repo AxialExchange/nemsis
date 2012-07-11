@@ -365,6 +365,10 @@ module Nemsis
       concat_with(elements, ' ')
     end
 
+    def concat_with_hyphen(*elements)
+      concat_with(elements, ' - ')
+    end
+
     def concat_with_comma(*elements)
       concat_with(elements, ', ')
     end
