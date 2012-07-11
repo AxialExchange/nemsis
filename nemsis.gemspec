@@ -3,11 +3,11 @@ $:.push File.expand_path("../lib", __FILE__)
 require "nemsis/version"
 
 Gem::Specification.new do |s|
-  s.name        = "nemsis"
+  s.name        = 'nemsis'
   s.version     = Nemsis::VERSION
-  s.authors     = ["Guangming Cui", "Jon Kern"]
-  s.email       = ["gcui@axialproject.com", "jkern@axialproject.com", "dev@axialproject.com"]
-  s.homepage    = ""
+  s.authors     = ['Guangming Cui', 'Jon Kern']
+  s.email       = %w(gcui@axialproject.com jkern@axialproject.com dev@axialproject.com)
+  s.homepage    = ''
   s.summary     = %q{NEMSIS Data Parser}
   s.description = %q{Parses NEMSIS (National EMS Information System) Data in XML format}
 
@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
   # s.add_runtime_dependency "rest-client"
 
   s.add_dependency 'activesupport' # needed for proper time parsing
+  s.add_dependency 'chronic'
   s.add_dependency 'nokogiri'
   s.add_dependency(%q<nokogiri>, ['1.5.2'])
   s.add_dependency 'ruby-debug19'
