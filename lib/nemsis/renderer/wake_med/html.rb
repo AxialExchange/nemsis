@@ -668,6 +668,6 @@ class String
   def to_br
     text = self.split(/\n\n/)
     paragraphs = text.map {|paragraph| paragraph.strip}
-    paragraphs.join("<br>")
+    paragraphs.join("<br><br>")
   end
 end
