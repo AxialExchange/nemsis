@@ -44,7 +44,7 @@
     start_table title, 6 %>
   <tbody>
       <!-- Primary Impression, Anatomical Position, Injury -->
-      <%= row( {'Primary Impression' => "concat('E09_19')"}, 'E09_11', {'Injury' => "concat_with_comma('E10_11', 'E10_02', 'E10_03')"} )%>
+      <%= row( {'Primary Impression' => "concat('E09_19')"}, 'E09_11', {'Injury' => "concat_with_hyphen('E10_11', 'E10_15', 'E10_13', 'E10_14')"} )%>
       <!-- Secondary Impression, Chief Complaint (Dur), Medical/Trauma -->
       <% chief_complaint = @parser.has_content('E09_05') ? "#{@parser.E09_05} &ndash; Dur. #{@parser.E09_06} #{@parser.E09_07}" : '&nbsp;' %>
       <%= row( {'Secondary Impression' => "E09_20"}, {'Chief Complaint' => chief_complaint}, {'Medical/Trauma' => "parse_value_of('MedicalTrauma')"} )%>
