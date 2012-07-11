@@ -103,12 +103,18 @@
       <%= label_top "<b>PTS</b>" %>
     </tr>
 
-    <% @parser.parse_cluster('E14').sort_by { |e14| Time.parse(e14.E14_01) rescue Time.now }.each do |e14| %>
+    <% # comment the 1.year.ago is so that it gets ordered first in the list (i.e., oldest vital sign data)
+       @parser.parse_cluster('E14').sort_by { |e14| Time.parse(e14.E14_01) rescue 1.year.ago }.each do |e14| %>
         <% next unless e14.E14_22.present? || e14.E14_04.present? || e14.E14_05.present? || e14.E14_07.present? || e14.E14_11.present? \
                         || e14.E14_30.present? || e14.E14_09.present? || e14.E14_13.present? || e14.E14_31.present? \
                         || e14.E14_14.present? || e14.E14_20.present? || e14.E14_19.present? || e14.E14_27.present?%>
+        <%
+          time = e14.parse_time('E14_01')
+           # When time is missing, we get a special 'space' value that we want to replace with PTA
+          time = 'PTA' if time == "".space
+        %>
         <%= start_row %>
-          <%= cell (e14.parse_time('E14_01')) %>
+          <%= cell (time) %>
           <%= cell (e14.E14_22) %>
           <%= cell (e14.E14_29) %>
           <%= cell (e14.E14_30) %>
