@@ -179,7 +179,7 @@
                                                    e18.E18_16)} %>
       <% elsif (e18.E18_12 + e18.E18_16 + e18.E18_13 + e18.E18_14).strip.length > 0 %>
         <% rows[:flow_chart] << {:time => e18.E18_01, 
-                                 :html => row_from_values(to_time(e18.E18_01), 
+                                 :html => row_from_values(to_time(e18.E18_01),
                                                           e18.E18_12,
                                                           e18.E18_16,
                                                           e18.concat_with_comma('E18_13', 'E18_14'))} %>
@@ -195,7 +195,7 @@
                                                    e19.concat_with_comma('E19_19', 'E19_20'))} %>
       <% elsif (e19.E19_15 + e19.E19_16 + e19.E19_17 + e19.E19_20).strip.length > 0 %>
         <% rows[:flow_chart] << {:time => e19.E19_01, 
-                                 :html => row_from_values(to_time(e19.E19_01), 
+                                 :html => row_from_values(to_time(e19.E19_01),
                                                           e19.E19_15,
                                                           e19.E19_20,
                                                           e19.concat_with_comma('E19_16', 'E19_17'))} %>

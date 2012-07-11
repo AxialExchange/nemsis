@@ -3,6 +3,7 @@ require 'bundler/setup'
 
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'nemsis'
+include AgeInWords
 
 # Set this global flag to true in your spec to enable actually writing the file out.
 # Otherwise it defaults to false to keep from cluttering up the hard drive
