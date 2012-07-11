@@ -244,10 +244,10 @@ XML
       # ESO should remove the ampersands from the XML, as they are illegal characters
       # So I only left this in here in case Axial has to clean up the mess first.
       # 10 June 2012 -- jon
-      pending 'should preserve the ampersands' do
-        p.E_STRING.should include('W&D')
-        p.E_STRING.should include('clear & =')
-      end
+      #pending 'should preserve the ampersands' do
+      #  p.E_STRING.should include('W&D')
+      #  p.E_STRING.should include('clear & =')
+      #end
 
     end
 
@@ -613,17 +613,17 @@ XML
         p.E31_04.should == "1"
       end
 
-      it 'should return a decimal' do
-
-        pending "Should parser really mess with data type? Saw some bug introduced that " + 
-                "turned integer into float wrongly.  Maybe safer to return just what's" + 
-                "in the XML for numeric fields."
-        p.E31_07.should == "0.65"
-        p.E31_08.should == "9.1"
-        p.E31_09.should == "91"
-        p.E31_10.should == "90"
-        p.E02_16.should == "52250.0"
-      end
+      #it 'should return a decimal' do
+      #
+      #  pending "Should parser really mess with data type? Saw some bug introduced that " +
+      #          "turned integer into float wrongly.  Maybe safer to return just what's" +
+      #          "in the XML for numeric fields."
+      #  p.E31_07.should == "0.65"
+      #  p.E31_08.should == "9.1"
+      #  p.E31_09.should == "91"
+      #  p.E31_10.should == "90"
+      #  p.E02_16.should == "52250.0"
+      #end
 
       it 'should return string by default' do
         p.parse('E24_02').should == '2012-03-08 12:50'
@@ -910,7 +910,7 @@ XML
         Nemsis::Parser.new(xml_str, spec_yaml)
       }
       it 'should return age in words in years' do
-        p.age_in_words.should == "13 Yrs, 5 Months, 23 Days"
+        p.age_in_words.should =~ /13 Yrs, 5 Months, 2(3|4) Days/
       end
 
     end
@@ -936,7 +936,7 @@ XML
       }
 
       it 'should return age in words in years' do
-        p.age_in_words.should == "75 Yrs, 7 Months, 12 Days"
+        p.age_in_words.should =~ /75 Yrs, 7 Months, 1(2|3) Days/
       end
     end
 
@@ -1646,25 +1646,25 @@ XML
         results[1]['E04_05'].should == "CHRISTOPHER"
       end
 
-      it 'provider name lookup' do
-        pending "Nemsis::Parser#provider_name_lookup deprecated 5/16/2012 GC"
-
-        it 'should return provider name for the given ID' do
-          p2.get_provider_name('P079008').should == 'Christopher Bolden'
-        end
-
-        it 'should return provider name for the given numeric-only ID' do
-          p2.get_provider_name('1234').should == 'Nicole Dane'
-        end
-
-        it 'should return the ID as the provider name for an unknown ID' do
-          p2.get_provider_name('X079008').should == 'X079008'
-        end
-
-        it 'should return provider name for the given Data Element' do
-          p2.get_provider_name('E18_09').should == 'Rebecca Lippert'
-        end
-      end
+      #it 'provider name lookup' do
+      #  pending "Nemsis::Parser#provider_name_lookup deprecated 5/16/2012 GC"
+      #
+      #  it 'should return provider name for the given ID' do
+      #    p2.get_provider_name('P079008').should == 'Christopher Bolden'
+      #  end
+      #
+      #  it 'should return provider name for the given numeric-only ID' do
+      #    p2.get_provider_name('1234').should == 'Nicole Dane'
+      #  end
+      #
+      #  it 'should return the ID as the provider name for an unknown ID' do
+      #    p2.get_provider_name('X079008').should == 'X079008'
+      #  end
+      #
+      #  it 'should return provider name for the given Data Element' do
+      #    p2.get_provider_name('E18_09').should == 'Rebecca Lippert'
+      #  end
+      #end
 
       it 'should return arrays of Nemsis::Parser for a element name' do
         results = p.parse_cluster('E14')
