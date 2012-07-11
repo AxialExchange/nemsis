@@ -107,6 +107,10 @@ or for individual values:
 
     <% if @parser.has_content('E14_01','E14_03','E14_33') %>
 
+### Concatenating Fields
+
+     <%= row( {'Primary Impression' => "concat('E09_19')"}, 'E09_11', {'Injury' => "concat_with_hyphen('E10_11', 'E10_15', 'E10_13', 'E10_14')"} )%>
+
 ### Repeating Sections
 
 Personal Items is a good example of a set of repeating data:
