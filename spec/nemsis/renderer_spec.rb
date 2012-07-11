@@ -456,7 +456,7 @@ XML
     end
 
     # When time is missing, show PTA
-    it 'should show basic heading' do
+    it 'should show PTA for vital signs missing timestamp' do
       html.should =~ /PTA/
     end
 
