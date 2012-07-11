@@ -261,6 +261,43 @@ XML
     end
 
   end
+
+  context 'signs & symptoms' do
+    let(:p) {
+      xml_str = <<XML
+<?xml version=" 1.0 " encoding=" UTF-8 " ?>
+<EMSDataSet xmlns=" http ://www.nemsis.org " xmlns:xsi=" http ://www.w3.org/2001/XMLSchema-instance "
+            xsi:schemaLocation=" http ://www.nemsis.org http ://www.nemsis.org/media/XSD/EMSDataSet.xsd ">
+  <Header>
+    <Record>
+      <E10>
+        <E10_01>9550</E10_01>
+        <E10_02>2030</E10_02>
+        <E10_03>2035</E10_03>
+        <E10_11>Fall</E10_11>
+        <E10_13>Home</E10_13>
+        <E10_14>2012-02-27</E10_14>
+        <E10_15>Fall from other slipping, tripping or stumbling</E10_15>
+      </E10>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+      Nemsis::Parser.new(xml_str)
+    }
+    let(:r) { Nemsis::Renderer::WakeMed::HTML.new(p)}
+    let(:html) {r.render}
+
+    describe 'various signs and symptom values' do
+      it('write to html file')   {WRITE_HTML_FILE=true; write_html_file('symptoms', 'simple', html)}
+      it('should have section')  {html.should =~ /Clinical Impression/}
+      it('should have details')  {html.should =~ /Fall from other slipping, tripping or stumbling/}
+      it('should have date')     {html.should =~ /2012-02-27/}
+      it('should have location') {html.should =~ /Home/}
+    end
+
+  end
+
   context 'Clinical Impression Injury' do
     let(:p) {
       xml_str = <<XML
