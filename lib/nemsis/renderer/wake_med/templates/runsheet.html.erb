@@ -135,7 +135,7 @@
 <br>
 <% end %>
 
-<% if @parser.has_content('E14_03','E14_32','E14_33','E14_34') %>
+<% if @parser.has_content('E14_03','E14_33') %>
     <%= title = "ECG"
         start_table title, 3 %>
       <%= start_row %>
@@ -202,17 +202,19 @@
       <% end %>
     <% end %>
 
-    <%= title = "Flow Chart"
-        start_table title, 4 %>
-    <%= heading_row 'E18_01', 'E18_03', 'Description', 'E18_09' %>
-    <% rows[:flow_chart].sort_by { |r| Time.parse(r[:time]) rescue Time.now }.each do |row| %>
-      <%= row[:html] %>
+    <% if !rows[:flow_chart].empty? %>
+        <%= title = "Flow Chart"
+            start_table title, 4 %>
+        <%= heading_row 'E18_01', 'E18_03', 'Description', 'E18_09' %>
+        <% rows[:flow_chart].sort_by { |r| Time.parse(r[:time]) rescue Time.now }.each do |row| %>
+          <%= row[:html] %>
+        <% end %>
+        </tbody>
+      </table>
+      <br>
     <% end %>
-    </tbody>
-  </table>
-  <br>
 
-  <% if !rows[:pta].empty? %>
+    <% if !rows[:pta].empty? %>
       <%= title = "Treatments Prior to Arrival"
           start_table title, 4 %>
       <%= heading_row 'Treatment', 'Treatment By', 'Patient Response', 'Comments' %>
