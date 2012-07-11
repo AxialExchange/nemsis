@@ -63,8 +63,6 @@ module AgeInWords
     date_measurements[:months] = MONTH_UNIT
     date_measurements[:days]   = DAY_UNIT
 
-    puts hash.inspect
-
     # Remove all the values that are nil or excluded. Keep the required ones.
     date_measurements.delete_if do |measure, key|
       hash[key].nil? || options[:zero] && !options[:zero] && hash[key].zero? || (!options[:except].nil? && options[:except].include?(key)) ||
