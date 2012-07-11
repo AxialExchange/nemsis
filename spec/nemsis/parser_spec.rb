@@ -885,8 +885,8 @@ XML
         Nemsis::Parser.new(xml_str, spec_yaml)
       }
 
-      it 'should return age in words with months/weeks/days' do
-        p.age_in_words.should == "3 months" or "12 weeks"
+      it 'should return age in words with years/months/days' do
+        p.age_in_words.should == "3 Months"
       end
     end
 
@@ -910,7 +910,7 @@ XML
         Nemsis::Parser.new(xml_str, spec_yaml)
       }
       it 'should return age in words in years' do
-        p.age_in_words.should == "13 years"
+        p.age_in_words.should == "13 Yrs, 5 Months, 23 Days"
       end
 
     end
@@ -936,7 +936,7 @@ XML
       }
 
       it 'should return age in words in years' do
-        p.age_in_words.should == "75 years"
+        p.age_in_words.should == "75 Yrs, 7 Months, 12 Days"
       end
     end
 

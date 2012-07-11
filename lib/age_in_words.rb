@@ -39,32 +39,6 @@ module AgeInWords
 
   def get_age_in_words dob
     age_text = ERROR_TEXT
-    return age_text if dob.nil? || !(dob.kind_of?(Date) || dob.kind_of?(Time))
-
-    dob = Date.parse(dob.strftime('%Y-%m-%d')) if dob.kind_of?(Time)
-
-    age_in_days = (Date.today - dob).to_i
-
-    modulus = 0
-
-    if age_in_days <= DAY_MAX_DAYS
-      age = age_in_days
-      age_text = "#{age} days"
-    elsif age_in_days <= WEEK_MAX_DAYS
-      age,modulus = age_in_days.divmod(7)
-      age_text = "#{age} weeks"
-    elsif age_in_days <= MONTH_MAX_DAYS
-      age,modulus = age_in_days.divmod(30)
-      age_text = "#{age} months"
-    else
-      age,modulus = age_in_days.divmod(365)
-      age_text = "#{age} years"
-    end
-    age_text
-  end
-
-  def to_age_in_words dob
-    age_text = ERROR_TEXT
     return age_text if dob.nil? || (!dob.respond_to?("to_date") && !dob.kind_of?(String))
 
     if dob.kind_of?(String)
@@ -79,15 +53,21 @@ module AgeInWords
     age_text = display_date_in_words(hash)
   end
 
+  private
   def display_date_in_words(hash, options = {})
+
+    return '< 1 Day' if hash.empty?
+
     date_measurements = Hash.new
     date_measurements[:years]  = YEAR_UNIT
     date_measurements[:months] = MONTH_UNIT
     date_measurements[:days]   = DAY_UNIT
 
+    puts hash.inspect
+
     # Remove all the values that are nil or excluded. Keep the required ones.
     date_measurements.delete_if do |measure, key|
-      hash[key].nil? || hash[key].zero? || (!options[:except].nil? && options[:except].include?(key)) ||
+      hash[key].nil? || options[:zero] && !options[:zero] && hash[key].zero? || (!options[:except].nil? && options[:except].include?(key)) ||
           (options[:only] && !options[:only].include?(key))
     end
 
@@ -99,37 +79,34 @@ module AgeInWords
     date_measurements = Hash[*date_measurements.first] if options.delete(:highest_measure_only)
 
     date_measurements.each do |measure, key|
-      name = options[:singularize] == :always || hash[key].between?(-1, 1) ? key.singularize : key
+      #name = options[:singularize] == :always || hash[key].between?(-1, 1) ? key.singularize : key
+      name = key
       count = hash[key]
       output += ["#{count} #{count > 1 ? "#{name}s" : name}"]
     end
 
-    options.delete(:singularize)
+    text = output.join(', ')
+    text = text.gsub(', 0 Month, 0 Day','')
+    text = text.gsub('0 Yr, 0 Month','')
+    text = text.gsub(/0 Yr, (\d+ Months), 0 Day/, "\\1")
+    text = text.gsub(' 0 Month',' 0 Months')
 
-    # maybe only grab the first few values
-    if options[:precision]
-      output = output[0...options[:precision]]
-      options.delete(:precision)
-    end
-
-    output.join(', ')
+    text
   end
 
   # inspired by https://github.com/radar/dotiw/blob/master/lib/dotiw/time_hash.rb
   class DateHash
     DATE_FRACTIONS = [:days, :months, :years]
 
-    attr_accessor :distance, :smallest, :largest, :from_date, :to_date, :options
+    attr_accessor :distance, :smallest, :largest, :begin_date, :end_date, :options
 
     def initialize(distance, from_date = nil, to_date = nil, options = {})
       self.output = {}
       self.options = options
       self.distance = distance
-      self.from_date = from_date || Date.today
-      self.to_date = to_date || (self.from_date + self.distance.seconds)
-      self.smallest, self.largest = [self.from_date, self.to_date].minmax
-
-      I18n.locale = options[:locale] if options[:locale]
+      self.begin_date = from_date || Date.today
+      self.end_date = to_date || (self.begin_date + self.distance.seconds)
+      self.smallest, self.largest = [self.begin_date, self.end_date].minmax
 
       build_date_hash
     end
@@ -179,8 +156,12 @@ module AgeInWords
       if days < 0
         # Convert the last month to days and add to total
         months -= 1
-        last_month = largest.advance(:months => -1)
-        days += Time.days_in_month(last_month.month, last_month.year)
+        last_month = largest<<(-1)
+        last_day_in_month = 32
+        until Date.valid_date?(last_month.year, last_month.month, last_day_in_month) do
+          last_day_in_month -= 1
+        end
+        days += last_day_in_month - 1
       end
 
       if months < 0
@@ -193,9 +174,10 @@ module AgeInWords
       output[MONTH_UNIT] = months
       output[DAY_UNIT]   = days
 
-      total_days, self.distance = (from_date - to_date).abs.divmod(1)
+      total_days, self.distance = (begin_date - end_date).abs.divmod(1)
     end
   end # TimeHash
 
 
 end
+
