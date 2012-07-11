@@ -262,6 +262,51 @@ XML
 
   end
 
+  context 'Clinical Impression Signs & Symptoms' do
+    let(:p) {
+      xml_str = <<XML
+<?xml version=" 1.0 " encoding=" UTF-8 " ?>
+<EMSDataSet xmlns=" http ://www.nemsis.org " xmlns:xsi=" http ://www.w3.org/2001/XMLSchema-instance "
+            xsi:schemaLocation=" http ://www.nemsis.org http ://www.nemsis.org/media/XSD/EMSDataSet.xsd ">
+  <Header>
+    <Record>
+      <E09>
+        <E09_01>-20</E09_01>
+        <E09_02>-20</E09_02>
+        <E09_03>-20</E09_03>
+        <E09_04>1</E09_04>
+        <E09_05>Low back/flank pain</E09_05>
+        <E09_06_0>
+          <E09_06>30</E09_06>
+          <E09_07>1240</E09_07>
+        </E09_06_0>
+        <E09_11>1310</E09_11>
+        <E09_12>1375</E09_12>
+        <E09_13>1475</E09_13>
+        <E09_15>1740</E09_15>
+        <E09_16>-20</E09_16>
+        <E09_17>Pain-Back</E09_17>
+        <E09_19>Traumatic injury</E09_19>
+        <E09_20></E09_20>
+      </E09>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+      Nemsis::Parser.new(xml_str)
+    }
+    let(:r) { Nemsis::Renderer::WakeMed::HTML.new(p)}
+    let(:html) {r.render}
+
+    describe 'various signs and symptom values' do
+      #it('write to html file')   {WRITE_HTML_FILE=true; write_html_file('symptoms', 'simple', html)}
+      it('should have section')  {html.should =~ /Clinical Impression/}
+      it('should have details')  {html.should =~ /Pain/}
+      it('should have date')     {html.should =~ /Pain-Back/}
+    end
+
+  end
+
   context 'Clinical Impression Injury' do
     let(:p) {
       xml_str = <<XML
