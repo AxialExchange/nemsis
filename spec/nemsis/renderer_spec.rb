@@ -136,6 +136,7 @@ XML
     before :all do
       WRITE_HTML_FILE = true
     end
+=begin
     it 'should render madison' do
       sample_xml_file = File.expand_path('../../data/madison_henry_sample.xml', __FILE__)
       xml_str = File.read(sample_xml_file)
@@ -144,6 +145,7 @@ XML
       html = r.render_fancy
       write_html_file("madison", "fancy", html)
     end
+=end
 
     it 'should render everything patient' do
       sample_xml_file = File.expand_path('../../data/everything_patient.xml', __FILE__)
@@ -158,7 +160,7 @@ XML
 
 =begin
     it 'should render test xml file' do
-      sample_xml_file = File.expand_path('../../data/priscilla.xml', __FILE__)
+      sample_xml_file = File.expand_path('../../data/anthony.xml', __FILE__)
       xml_str = File.read(sample_xml_file)
       p = Nemsis::Parser.new(xml_str)
       r = Nemsis::Renderer::WakeMed::HTML.new(p)
@@ -587,6 +589,23 @@ XML
             xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
   <Header>
     <Record>
+      <E09>
+        <E09_01>-20</E09_01>
+        <E09_02>-20</E09_02>
+        <E09_03>-20</E09_03>
+        <E09_04>0</E09_04>
+        <E09_05>abd pain</E09_05>
+        <E09_11>1330</E09_11>
+        <E09_12>1370</E09_12>
+        <E09_13>1475</E09_13>
+        <E09_14>1580</E09_14>
+        <E09_15>1615</E09_15>
+        <E09_16>-20</E09_16>
+        <E09_17>Abdominal-Left Upper Quadrant Pain</E09_17>
+        <E09_18>Abdominal-Right Upper Quadrant Pain</E09_18>
+        <E09_19>Abdominal Pain/Problems</E09_19>
+        <E09_20></E09_20>
+      </E09>
       <E18>
         <E18_01>2012-03-02T02:48:00.0Z</E18_01>
         <E18_02>0</E18_02>
@@ -619,6 +638,39 @@ XML
           <E19_19>See Narrative</E19_19>
           <E19_20>Comments See Narrative; Patient Response: Unchanged</E19_20>
         </E19_01_0>
+        <E19_01_0>
+          <E19_01>2012-04-18T06:51:10.0Z</E19_01>
+          <E19_02>0</E19_02>
+          <E19_03>89.700</E19_03>
+          <E19_05>1</E19_05>
+          <E19_06>-20</E19_06>
+          <E19_07>4500</E19_07>
+          <E19_08>4600</E19_08>
+          <E19_09>P049769</E19_09>
+          <E19_10>4625</E19_10>
+          <E19_15>ALS Assessment</E19_15>
+          <E19_16>BROWN</E19_16>
+          <E19_17>AVERY</E19_17>
+          <E19_19>See Narrative</E19_19>
+          <E19_20>Comments See Narrative ; Patient Response: Improved</E19_20>
+        </E19_01_0>
+        <E19_01_0>
+          <E19_01>2012-04-18T06:54:24.0Z</E19_01>
+          <E19_02>0</E19_02>
+          <E19_03>38.992</E19_03>
+          <E19_04>20 ga</E19_04>
+          <E19_05>1</E19_05>
+          <E19_06>1</E19_06>
+          <E19_07>4500</E19_07>
+          <E19_08>4600</E19_08>
+          <E19_09>P049769</E19_09>
+          <E19_10>4625</E19_10>
+          <E19_15>IV Therapy</E19_15>
+          <E19_16>BROWN</E19_16>
+          <E19_17>AVERY</E19_17>
+          <E19_20>20 ga; Hand-Left; Saline Lock; Total Fluid 10; Patient Response: Improved; Successful</E19_20>
+        </E19_01_0>
+        <E19_12>4685</E19_12>
       </E19>
     </Record>
   </Header>
@@ -630,8 +682,12 @@ XML
     let(:fancy_html) {r.render_fancy}
 
     it 'should have a Flow Chart section' do
-      fancy_html.should =~ /Flow Chart/i
       #write_html_file('flow_chart', 'fancy', fancy_html)
+      fancy_html.should =~ /Flow Chart/i
+    end
+
+    it 'should not have a Prior to Arrival section' do
+      fancy_html.should_not =~ /Treatments Prior to Arrival/i
     end
 
     it 'should not have a Trauma section' do
@@ -642,6 +698,110 @@ XML
       fancy_html.should_not =~ /89.7/
       fancy_html.should =~ /ALS Assessment/
     end
+  end
+
+  context 'Prior to Arrival' do
+
+    let(:p) {
+      xml_str = <<XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
+  <Header>
+    <Record>
+      <E18><E18_01 xsi:nil="true" />
+        <E18_02>1</E18_02>
+        <E18_03>Aspirin</E18_03>
+        <E18_07>4375</E18_07>
+        <E18_08>-20</E18_08>
+        <E18_12>Aspirin</E18_12>
+        <E18_15>EMS Provider</E18_15>
+        <E18_16>Comments RFD 19; Patient Response: Improved</E18_16>
+      </E18>
+      <E18>
+        <E18_01>2012-03-02T02:48:00.0Z</E18_01>
+        <E18_02>0</E18_02>
+        <E18_03>Fentanyl</E18_03>
+        <E18_04>4190</E18_04>
+        <E18_05_0>
+          <E18_05>50.00</E18_05>
+          <E18_06>4330</E18_06>
+        </E18_05_0>
+        <E18_07>4375</E18_07>
+        <E18_08>4390</E18_08>
+        <E18_09>P021554</E18_09>
+        <E18_10>4490</E18_10>
+        <E18_11>907</E18_11>
+      </E18>
+      <E19>
+        <E19_01_0>
+          <E19_01>2012-03-01T19:28:00.0Z</E19_01>
+          <E19_02>0</E19_02>
+          <E19_03>89.700</E19_03>
+          <E19_05>1</E19_05>
+          <E19_06>-20</E19_06>
+          <E19_07>4500</E19_07>
+          <E19_08>4605</E19_08>
+          <E19_09>P048047</E19_09>
+          <E19_10>4625</E19_10>
+          <E19_15>ALS Assessment</E19_15>
+          <E19_16>WALKER</E19_16>
+          <E19_17>CHRISTOPHER</E19_17>
+          <E19_19>See Narrative</E19_19>
+          <E19_20>Comments See Narrative; Patient Response: Unchanged</E19_20>
+        </E19_01_0>
+        <E19_01_0>
+          <E19_01>2012-04-18T06:51:10.0Z</E19_01>
+          <E19_02>0</E19_02>
+          <E19_03>89.700</E19_03>
+          <E19_05>1</E19_05>
+          <E19_06>-20</E19_06>
+          <E19_07>4500</E19_07>
+          <E19_08>4600</E19_08>
+          <E19_09>P049769</E19_09>
+          <E19_10>4625</E19_10>
+          <E19_15>ALS Assessment</E19_15>
+          <E19_16>BROWN</E19_16>
+          <E19_17>AVERY</E19_17>
+          <E19_19>See Narrative</E19_19>
+          <E19_20>Comments See Narrative ; Patient Response: Improved</E19_20>
+        </E19_01_0>
+        <E19_01_0>
+          <E19_01>2012-04-18T06:54:24.0Z</E19_01>
+          <E19_02>0</E19_02>
+          <E19_03>38.992</E19_03>
+          <E19_04>20 ga</E19_04>
+          <E19_05>1</E19_05>
+          <E19_06>1</E19_06>
+          <E19_07>4500</E19_07>
+          <E19_08>4600</E19_08>
+          <E19_09>P049769</E19_09>
+          <E19_10>4625</E19_10>
+          <E19_15>IV Therapy</E19_15>
+          <E19_16>BROWN</E19_16>
+          <E19_17>AVERY</E19_17>
+          <E19_20>20 ga; Hand-Left; Saline Lock; Total Fluid 10; Patient Response: Improved; Successful</E19_20>
+        </E19_01_0>
+        <E19_12>4685</E19_12>
+      </E19>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+      Nemsis::Parser.new(xml_str)
+    }
+    let(:r) {Nemsis::Renderer::WakeMed::HTML.new(p)}
+    let(:fancy_html) {r.render_fancy}
+
+    it 'should have a Prior to Arrival section' do
+      #write_html_file('prior_to_arrival', 'fancy', fancy_html)
+      fancy_html.should =~ /Treatments Prior to Arrival/i
+    end
+
+    it 'should have a Flow Chart section' do
+      fancy_html.should =~ /Flow Chart/i
+    end
+
   end
 
   context 'ECG section' do
