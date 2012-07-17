@@ -902,7 +902,7 @@ XML
       <E06_14>13</E06_14>
           <E06_15>715</ E06_15>
       </E06_14_0>
-        <E06_16>1999-01-17</ E06_16>
+        <E06_16>"#{(13.years.ago - 5.months - 10.days).strftime("%Y-%m-%d")}"</ E06_16>
     </Record>
   </Header>
 </EMSDataSet>
@@ -910,7 +910,7 @@ XML
         Nemsis::Parser.new(xml_str, spec_yaml)
       }
       it 'should return age in words in years' do
-        p.age_in_words.should =~ /13 Yrs, 5 Months, 2(3|4) Days/
+        p.age_in_words.should =~ /13 Yrs, 5 Months, 10 Days/
       end
 
     end
@@ -927,7 +927,7 @@ XML
         <E06_14>76</E06_14>
         <E06_15>715</E06_15>
       </E06_14_0>
-      <E06_16>1936-11-28</E06_16>
+      <E06_16>"#{(75.years.ago - 7.months - 12.days).strftime("%Y-%m-%d")}"</E06_16>
     </Record>
   </Header>
 </EMSDataSet>
@@ -936,7 +936,7 @@ XML
       }
 
       it 'should return age in words in years' do
-        p.age_in_words.should =~ /75 Yrs, 7 Months, 1(2|3) Days/
+        p.age_in_words.should =~ /75 Yrs, 7 Months, 12 Days/
       end
     end
 
