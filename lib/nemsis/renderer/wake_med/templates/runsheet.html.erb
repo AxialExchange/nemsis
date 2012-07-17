@@ -167,16 +167,13 @@
     <br>
 <% end %>
 
-<% if @parser.has_content('E18') || @parser.has_content('E19') %>
-    <% rows = {:flow_chart => [], :pta => []} %>
+<!--FLOW CHART: Time, Treatment, Description, Provider-->
+<!--PTA columns: Treatment, Treatment By, Patient Response, Comments-->
 
-    <% @parser.parse_cluster('E09').each do |e09| %>
-      <% rows[:pta] << {:time => nil, 
-                        :html => row_from_values(e09.E09_01,
-                                                 e09.E09_02,
-                                                 e09.E09_03,
-                                                 e09.concat_with_comma('E09_17', 'E09_18', 'E09_19', 'E09_20'))} %>
-    <% end %>
+<% if @parser.has_content('E18') || @parser.has_content('E19') %>
+    <% # Create two buckets to hold flow chart and pta HTML data
+       rows = {:flow_chart => [], :pta => []}
+    %>
 
     <% @parser.parse_cluster('E18').each do |e18| %>
       <% if e18.E18_02.eql?('Yes') %>
