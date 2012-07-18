@@ -1,3 +1,3 @@
 module Nemsis
-  VERSION = "0.3.1b"
+  VERSION = "0.3.1c"
 end
