@@ -865,7 +865,7 @@ E06_16:
 YML
     }
 
-    context 'baby' do
+    context 'incident time missing' do
       let(:p) {
         xml_str = <<XML
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -885,12 +885,12 @@ XML
         Nemsis::Parser.new(xml_str, spec_yaml)
       }
 
-      it 'should return age in words with years/months/days' do
+      it 'should return age in words in months' do
         p.age_in_words.should == "3 Months"
       end
     end
 
-    context 'teen' do
+    context 'incident time provided' do
       let(:p) {
         xml_str = <<XML
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -898,49 +898,40 @@ XML
             xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
   <Header>
     <Record>
+      <E05>
+        <E05_01>2012-03-01T18:41:05.0Z</E05_01>
+        <E05_02>"#{1.months.ago.strftime("%Y-%m-%dT%H:%M:%S\.0Z")}"</E05_02>
+        <E05_03>2012-03-01T05:00:00.0Z</E05_03>
+        <E05_04>2012-03-01T18:41:05.0Z</E05_04>
+        <E05_05>2012-03-01T18:41:10.0Z</E05_05>
+        <E05_06>2012-03-01T18:50:15.0Z</E05_06>
+        <E05_07>2012-03-01T18:51:00.0Z</E05_07>
+        <E05_08>2012-03-01T19:25:00.0Z</E05_08>
+        <E05_09>2012-03-01T19:02:35.0Z</E05_09>
+        <E05_10>2012-03-01T19:16:54.0Z</E05_10>
+        <E05_11>2012-03-01T20:01:44.0Z</E05_11>
+        <E05_12 xsi:nil="true" />
+        <E05_13>2012-03-01T20:01:49.0Z</E05_13>
+        <E05_14>2012-03-01T18:41:05.0Z</E05_14>
+      </E05>
       <E06_14_0>
       <E06_14>13</E06_14>
           <E06_15>715</ E06_15>
       </E06_14_0>
-        <E06_16>"#{(13.years.ago - 5.months - 10.days).strftime("%Y-%m-%d")}"</ E06_16>
+      <E06_16>"#{2.months.ago.strftime("%Y-%m-%d")}"</E06_16>
     </Record>
   </Header>
 </EMSDataSet>
 XML
         Nemsis::Parser.new(xml_str, spec_yaml)
       }
-      it 'should return age in words in years' do
-        p.age_in_words.should =~ /13 Yrs, 5 Months, 10 Days/
+      it 'should return age in words in weeks' do
+        p.age_in_words.should =~ /8 Weeks/
       end
 
     end
 
-    context 'senior' do
-      let(:p) {
-        xml_str = <<XML
-<?xml version="1.0" encoding="UTF-8" ?>
-<EMSDataSet xmlns="http://www.nemsis.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/XSD/EMSDataSet.xsd">
-  <Header>
-    <Record>
-      <E06_14_0>
-        <E06_14>76</E06_14>
-        <E06_15>715</E06_15>
-      </E06_14_0>
-      <E06_16>"#{(75.years.ago - 7.months - 12.days).strftime("%Y-%m-%d")}"</E06_16>
-    </Record>
-  </Header>
-</EMSDataSet>
-XML
-        Nemsis::Parser.new(xml_str, spec_yaml)
-      }
-
-      it 'should return age in words in years' do
-        p.age_in_words.should =~ /75 Yrs, 7 Months, 12 Days/
-      end
-    end
-
-    context 'dob missing' do
+    context 'dob missing, use E06_14 and E06_15' do
       let(:p) {
         xml_str = <<XML
 <?xml version="1.0" encoding="UTF-8" ?>

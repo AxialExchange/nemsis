@@ -8,7 +8,7 @@ include AgeInWords
 # Set this global flag to true in your spec to enable actually writing the file out.
 # Otherwise it defaults to false to keep from cluttering up the hard drive
 # and it makes the specs run _slightly_ faster (37 sec vs 40 sec)
-WRITE_HTML_FILE = true
+WRITE_HTML_FILE = false
 
 # You are probably here wondering why your file didn't print out, eh?'
 def write_html_file(name, type, html)

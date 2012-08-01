@@ -2,8 +2,9 @@ require 'chronic'
 
 module AgeInWords
 
-  YEAR_UNIT  = "Yr"
+  YEAR_UNIT  = "Year"
   MONTH_UNIT = "Month"
+  WEEK_UNIT  = "Week"
   DAY_UNIT   = "Day"
 
   #
@@ -32,12 +33,51 @@ module AgeInWords
   # The Date of Birth +dob+ is required.
   # Error is raised if the dob is not a date/time class.
   #
+
+  ##
+  # These are some thresholds (in number of days) for determining how to report back the age.
   DAY_MAX_DAYS    = 30
-  WEEK_MAX_DAYS   = 3 * 30
+  WEEK_MAX_DAYS   = 12 * 7
   MONTH_MAX_DAYS  = 365 * 2
   ERROR_TEXT = "Missing DOB"
 
-  def get_age_in_words dob
+  def get_age_in_words(dob, to_date = Date.today)
+    age_text = ERROR_TEXT
+    return age_text if dob.nil? || (!dob.respond_to?("to_date") && !dob.kind_of?(String))
+
+    from_date = convert_to_date(dob)
+    to_date = convert_to_date(to_date)
+
+    age_in_days = (from_date - to_date).abs.to_i
+    modulus = 0
+
+    if age_in_days <= DAY_MAX_DAYS
+      age = age_in_days
+      text = display_age_and_units(age, DAY_UNIT)
+    elsif age_in_days <= WEEK_MAX_DAYS
+      age,modulus = age_in_days.divmod(7)
+      text = display_age_and_units(age, WEEK_UNIT)
+    elsif age_in_days <= MONTH_MAX_DAYS
+      age,modulus = age_in_days.divmod(30)
+      text = display_age_and_units(age, MONTH_UNIT)
+    else
+      age,modulus = age_in_days.divmod(365)
+      text = display_age_and_units(age, YEAR_UNIT)
+    end
+
+    #puts "#{age_in_days} days => #{text} / #{modulus}|"
+
+    text
+  end
+
+  def convert_to_date(date)
+    if date.kind_of?(String)
+      date = Chronic.parse(date)
+    end
+    date = date.to_date
+  end
+
+  def get_verbose_age_in_words dob
     age_text = ERROR_TEXT
     return age_text if dob.nil? || (!dob.respond_to?("to_date") && !dob.kind_of?(String))
 
@@ -49,12 +89,18 @@ module AgeInWords
 
     from_date = dob
     to_date = Date.today
-    hash = DateHash.new((from_date - to_date).abs, from_date, to_date, {}).to_hash
-    age_text = display_date_in_words(hash)
+    hash = DateHash.new((from_date - to_date).abs.to_i, from_date, to_date, {}).to_hash
+    age_text = verbose_date_in_words(hash)
   end
 
   private
-  def display_date_in_words(hash, options = {})
+  def display_age_and_units(age, units)
+    text = "#{age} #{units}#{age == 1 ? '' : 's'}"
+  end
+
+  ##
+  # Display age like '10 Yrs, 9 Months, 6 Days'
+  def verbose_date_in_words(hash, options = {})
 
     return '< 1 Day' if hash.empty?
 
@@ -134,7 +180,7 @@ module AgeInWords
     end
 
     def build_days
-      output[DAY_UNIT], self.distance = distance.divmod(1)
+      return output[DAY_UNIT], self.distance = distance.divmod(1)
     end
 
     def build_months

@@ -180,10 +180,12 @@ module Nemsis
 
     def age_in_words
       dob = self.E06_16
-      unless dob.blank?
-        age = get_age_in_words(Date.parse(dob))
-      else
+      if dob.blank?
         age = "#{self.E06_14} #{self.E06_15}"
+      else
+        puts "self.E05_02: #{self.E05_02}"
+        time_of_incident = self.E05_02.blank? ? Date.today : Date.parse(self.E05_02)
+        age = get_age_in_words(Date.parse(dob), time_of_incident)
       end
       age = "Age Unavailable" if age.strip.blank?
       age
