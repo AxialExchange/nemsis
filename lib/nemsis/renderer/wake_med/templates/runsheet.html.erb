@@ -548,7 +548,7 @@
   </thead>
   <tbody>
     <!-- Location, Disposition, Call Rec'd -->
-    <%= row('E08_07', {"Disposition" => "concat('E20_10', 'E20_14')"}, {"Call Received" => "parse_time('E05_14')"}) %>
+    <%= row('E08_07', 'E20_19', {"Call Received" => "parse_time('E05_14')"}) %>
     <!-- Location, Transport due to, dispatched -->
     <%= row('E08_16', 'E20_16', {"Dispatched" => "parse_time('E05_04')"}) %>
     <!-- Address 2, Transported to, En route -->
