@@ -7061,7 +7061,7 @@ E20_19:
   data_type: text
   field_values: ~
   is_multi_entry: 1
-  name: Disposition Description
+  name: Disposition
   node: E20_19
 E20_20:
   allow_null: ~
