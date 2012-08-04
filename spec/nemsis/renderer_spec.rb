@@ -229,6 +229,35 @@ XML
 
   end
 
+  context 'comment tags' do
+    let(:p) {
+      xml_str = <<XML
+<?xml version=" 1.0 " encoding=" UTF-8 " ?>
+<EMSDataSet xmlns=" http ://www.nemsis.org " xmlns:xsi=" http ://www.w3.org/2001/XMLSchema-instance "
+            xsi:schemaLocation=" http ://www.nemsis.org http ://www.nemsis.org/media/XSD/EMSDataSet.xsd ">
+  <Header>
+    <Record>
+      <E02><E02_01>092054799999999</E02_01>
+        <E02_16>100899.0</E02_16>
+        <E02_17>100902.0</E02_17>
+        <E02_18>100908.1</E02_18>
+        <E02_19>100910.1</E02_19>
+      </E02>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+      Nemsis::Parser.new(xml_str)
+    }
+    let(:r) { Nemsis::Renderer::WakeMed::HTML.new(p)}
+    let!(:html) {r.render}
+
+    it 'should not have comment tags' do
+      html.index('<!--').should be_nil
+    end
+
+  end
+
   context 'mileage' do
     let(:p) {
       xml_str = <<XML

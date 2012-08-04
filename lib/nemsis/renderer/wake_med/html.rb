@@ -640,7 +640,9 @@ STYLE
           erb_file             = File.expand_path('../templates/runsheet.html.erb', __FILE__)
           template             = File.read(erb_file)
           renderer             = ERB.new(template)
-          renderer.result(binding)
+          html = renderer.result(binding)
+          html = html.gsub(/(<!--.+?-->)/,'')
+          html
         end
 
       end
