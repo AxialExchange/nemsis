@@ -156,6 +156,7 @@ XML
       write_html_file("everything_patient", "simple", html)
       html = r.render_fancy
       write_html_file("everything_patient", "fancy", html)
+      html.should_not =~ /age_in_words/
     end
 
 =begin

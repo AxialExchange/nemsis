@@ -32,7 +32,7 @@
   <!--Gender, county, physician -->
   <%= row 'E06_11', {'County' => "parse_county('E06_06')"}, {'Physician' => "concat('E12_04', 'E12_06')"} %>
   <!--Age, country-->
-  <%= row( {'Age' => 'age_in_words'}, 'E06_09', {'' => '&nbsp;'}) %>
+  <%= row( {'Age' => @parser.age_in_words}, 'E06_09', {'' => '&nbsp;'}) %>
   <%= start_row %>
     <%= labeled_cell "Advanced Directive", @parser.E12_07, 5 %>
   </tr>
