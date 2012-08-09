@@ -41,6 +41,9 @@ module Nemsis
     ###
     # Create a parser by passing in a well-formed XML string and an optional NEMSIS specification yml string.
     def initialize(xml_str, spec_yaml_str=nil)
+      # Flag for the time string format
+      @show_seconds = false
+
       raise ArgumentError.new('Parser initiation requires XML String argument') if xml_str.nil? or xml_str.empty?
       if spec_yaml_str.nil? or spec_yaml_str.empty?
         @@spec = YAML::load(File.read(File.expand_path('../../../conf/nemsis_spec.yml', __FILE__)))
@@ -74,7 +77,11 @@ module Nemsis
 
       return if element_spec.nil?
 
+      return_data_type ||= element_spec['data_type']
+
       return_data_type.downcase!
+
+      # TODO This is a bit odd... in that the yml file contains much more granular data types that we could take advantage of
       return_data_type = 'string' unless ['string', 'object', 'raw'].include?(return_data_type)
 
       xpath = "//#{element_spec['node']}"
@@ -162,15 +169,22 @@ module Nemsis
     # Example
     #   patient_last_name = p.parse_element('E06_01')
     def parse_element(element)
-      element_spec = get_spec(element)
+      @show_seconds = false
 
+      element_spec = get_spec(element)
       if element_spec.nil?
         # warn "Requested Info from: '#{element}', but it is null :-("
         return "&nbsp;"
       end
 
-      results = parse(element_spec, 'string')
+      if ['date/time','date','time'].include?(element_spec['data_type'])
+        #results = parse(element_spec, element_spec['data_type'])
+        @show_seconds = true
+      else
+        #results = parse(element_spec, 'string')
+      end
 
+      results = parse(element_spec, 'string')
       results.is_a?(Array) ? results.first : results
     end
 
@@ -180,11 +194,16 @@ module Nemsis
 
     def age_in_words
       dob = self.E06_16
+      begin
+        dob_date = Date.parse(dob)
+      rescue
+        dob = ''
+      end
       if dob.blank?
         age = "#{self.E06_14} #{self.E06_15}"
       else
         time_of_incident = self.E05_02.blank? ? Date.today : Date.parse(self.E05_02)
-        age = get_age_in_words(Date.parse(dob), time_of_incident)
+        age = get_age_in_words(dob_date, time_of_incident)
       end
       age = "Age Unavailable" if age.strip.blank?
       age
@@ -199,23 +218,27 @@ module Nemsis
       "%s lbs - %d kg" % [((wt_in_lbs < 100) ? wt_in_lbs.round(1) : wt_in_lbs.round), wt_kg]
     end
 
-    def parse_time(element, full=false)
+    def parse_time_with_seconds(element)
+      parse_time(element, false, true)
+    end
+
+    def parse_time(element, include_date=false, include_seconds=false)
       time_str = parse_element(element)
       text = ""
-      if full
-        text = Time.parse(time_str).strftime("%Y-%m-%d %H:%M") rescue nil
+      if include_date
+        text = Time.parse(time_str).localtime.strftime("%Y-%m-%d %H:%M#{include_seconds ? ':%S' : ''}") rescue nil
       else
-        text = Time.parse(time_str).strftime("%H:%M") rescue nil
+        text = Time.parse(time_str).localtime.strftime("%H:%M#{include_seconds ? ':%S' : ''}") rescue nil
       end
       text = '&nbsp;' if text.nil? || text.strip.blank?
       text
     end
 
-    def parse_date(element, full=true)
+    def parse_date(element, include_year=true)
       date_str = parse_element(element)
       text = ""
 
-      if full
+      if include_year
         text = Time.parse(date_str).strftime("%Y-%m-%d") rescue nil
       else
         text = Time.parse(date_str).strftime("%m-%d") rescue nil
@@ -583,24 +606,21 @@ module Nemsis
     def get_str(element_spec, node)
       obj = get_obj(element_spec, node)
 
-      case 
-      when obj.class.to_s =~ /time/i
-        case element_spec['data_type']
-        when /^date\/time$/i
-          str = obj.in_time_zone(@@time_zone).strftime("%Y-%m-%d %H:%M") rescue nil
-        when /^time$/i
-          str = obj.in_time_zone(@@time_zone).strftime("%Y-%m-%d %H:%M") rescue nil
-        #   str = obj.in_time_zone(@@time_zone).strftime("%H:%M") rescue nil
-        end
-      when obj.class.to_s =~ /date/i
-          str = obj.strftime("%Y-%m-%d") rescue nil
-      else
-        str = obj.to_s
-          if str.index('Comments Alert, 54 yo f Pt.')
-            puts "We have W&D"
+      case
+        when obj.class.to_s =~ /time/i
+          case element_spec['data_type']
+            when /^date\/time$/i
+              str = obj.in_time_zone(@@time_zone).strftime("%Y-%m-%d %H:%M#{@show_seconds ? ':%S' : ''}") rescue nil
+            when /^time$/i
+              str = obj.in_time_zone(@@time_zone).strftime("%Y-%m-%d %H:%M#{@show_seconds ? ':%S' : ''}") rescue nil
+            #   str = obj.in_time_zone(@@time_zone).strftime("%H:%M") rescue nil
           end
+        when obj.class.to_s =~ /date/i
+          str = obj.strftime("%Y-%m-%d") rescue nil
+        else
+          str = obj.to_s
       end
-      puts "#{__method__}: #{str}" if str.index('Comments Alert, 54 yo f Pt.')
+      #puts "#{__method__}: #{str}" if str.index('Comments Alert, 54 yo f Pt.')
       str
     end
 
@@ -625,9 +645,10 @@ module Nemsis
             obj = value if value
           end
         when element_spec['data_type'] =~ /time/i
-          obj = ActiveSupport::TimeZone.new('UTC').parse(raw_value) rescue nil
+          # TODO I am not sure why we aren't using 'obj.in_time_zone' down in this section as in get_str()
+          obj = ActiveSupport::TimeZone.new('UTC').parse(raw_value) rescue raw_value
         when element_spec['data_type'] =~ /^date$/i
-          obj = Date.parse(raw_value) rescue nil
+          obj = Date.parse(raw_value) rescue raw_value
         when element_spec['data_type'] =~ /number/i
           # f = sprintf("%.1e", raw_value).to_f
           # i = f.to_i
@@ -646,7 +667,7 @@ module Nemsis
     # Just return the raw node text value
     def get_raw(element_spec, node)
       result = node && node.text or ""
-      puts "#{__method__}: #{result}" if result.index('Comments Alert, 54 yo f Pt.')
+      #puts "#{__method__}: #{result}" if result.index('Comments Alert, 54 yo f Pt.')
       result
     end
   end

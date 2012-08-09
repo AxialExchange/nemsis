@@ -1038,9 +1038,9 @@ YML
   <Header>
     <Record>
       <E24>
-        <E24_01>2012-03-08T17:50:00.0Z</E24_01>
-        <E24_02>2012-03-08T17:50:00.0Z</E24_02>
-        <E24_03>2012-03-08T17:50:00.0Z</E24_03>
+        <E24_01>2012-03-08T17:50:01.0Z</E24_01>
+        <E24_02>2012-03-08T17:50:02.0Z</E24_02>
+        <E24_03>2012-03-08T17:50:03.0Z</E24_03>
       </E24>
     </Record>
   </Header>
@@ -1070,7 +1070,6 @@ XML
         context 'date/time data type' do
           it 'should return a full date/time value' do
             p.parse_time('E24_01', true).should == "2012-03-08 12:50"
-            p.parse_time('E24_01').should == "12:50"
           end
           
           it 'should return a date value' do
@@ -1083,6 +1082,15 @@ XML
 
           it 'should return a time value' do
             p.parse_time('E24_01').should == "12:50"
+          end
+        end
+
+        context 'optionally show seconds' do
+          it 'should show full date and time with seconds' do
+            p.parse_time('E24_01', true, true).should == "2012-03-08 12:50:01"
+          end
+          it 'should show time with seconds' do
+            p.parse_time('E24_03', false, true).should == "12:50:03"
           end
         end
 

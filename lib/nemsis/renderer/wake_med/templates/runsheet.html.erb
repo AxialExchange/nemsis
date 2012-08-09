@@ -12,7 +12,7 @@
     <%= start_row %>
       <%= borderless_cell "Name:", "#{@parser.E06_01}, #{@parser.E06_02}" %>
       <%= borderless_cell "Incident #:", @parser.E02_02 %>
-      <%= borderless_cell "Date:", @parser.parse_time('E05_03', true) %>
+      <%= borderless_cell "Date:", @parser.parse_date('E05_03', true) %>
     </tr>
   </table>
 
@@ -547,27 +547,27 @@
   </thead>
   <tbody>
     <!-- Location, Disposition, Call Rec'd -->
-    <%= row('E08_07', 'E20_19', {"Call Received" => "parse_time('E05_14')"}) %>
+    <%= row('E08_07', 'E20_19', {"Call Received" => "parse_time_with_seconds('E05_14')"}) %>
     <!-- Location, Transport due to, dispatched -->
-    <%= row('E08_16', 'E20_16', {"Dispatched" => "parse_time('E05_04')"}) %>
+    <%= row('E08_16', 'E20_16', {"Dispatched" => "parse_time_with_seconds('E05_04')"}) %>
     <!-- Address 2, Transported to, En route -->
-    <%= row('E08_11', 'E20_01', {"En Route" => "parse_time('E05_05')"}) %>
+    <%= row('E08_11', 'E20_01', {"En Route" => "parse_time_with_seconds('E05_05')"}) %>
     <!-- Address 2, Requested By, Resp on Scene -->
     <%= row({'Address 2' => "parse_value_of('IncidentAddress2')"}, {"Requested By" => "parse_value_of('Requested By')"}, { "&nbsp;" => '&nbsp;'}) %>
     <!-- City, Destination, On Scene -->
-    <%= row({'City' => "parse_city('E08_12')"}, 'E20_17', {"On Scene" => "parse_time('E05_06')"}) %>
+    <%= row({'City' => "parse_city('E08_12')"}, 'E20_17', {"On Scene" => "parse_time_with_seconds('E05_06')"}) %>
     <!-- State, Address, At Patient -->
-    <%= row({'State' => "parse_state('E08_14')"}, 'E20_03', {"At Patient" => "parse_time('E05_07')"}) %>
+    <%= row({'State' => "parse_state('E08_14')"}, 'E20_03', {"At Patient" => "parse_time_with_seconds('E05_07')"}) %>
     <!-- Zip, Address 2, Depart -->
-    <%= row('E08_15', {"Address 2" => "parse_value_of('DestinationAddress2')"}, {"Depart Scene" => "parse_time('E05_09')"}) %>
+    <%= row('E08_15', {"Address 2" => "parse_value_of('DestinationAddress2')"}, {"Depart Scene" => "parse_time_with_seconds('E05_09')"}) %>
     <!-- Medic Unit, City, At Dest -->
-    <%= row({'Medic Unit' => 'E02_22'}, {'City' => "parse_city('E20_04')"}, {"At Dest." => "parse_time('E05_10')"}) %>
+    <%= row({'Medic Unit' => 'E02_22'}, {'City' => "parse_city('E20_04')"}, {"At Dest." => "parse_time_with_seconds('E05_10')"}) %>
     <!-- Run type, State, Transferred -->
-    <%= row('E02_04', {"State" => "parse_state('E20_05')"}, {"Pt Xferred" => "parse_time('E05_08')"}) %>
+    <%= row('E02_04', {"State" => "parse_state('E20_05')"}, {"Pt Xferred" => "parse_time_with_seconds('E05_08')"}) %>
     <!-- Priority Scene, Zip, Closed -->
-    <%= row('E02_20', 'E20_07', {"Back in Svc" => "parse_time('E05_11')"}) %>
+    <%= row('E02_20', 'E20_07', {"Back in Svc" => "parse_time_with_seconds('E05_11')"}) %>
     <!-- Shift, '', In District -->
-    <%= row({"Shift" => "parse_value_of('Shift')"}, {"&nbsp;" => '&nbsp;'}, {"Back @HomeLoc" => "parse_time('E05_13')"}) %>
+    <%= row({"Shift" => "parse_value_of('Shift')"}, {"&nbsp;" => '&nbsp;'}, {"Back @HomeLoc" => "parse_time_with_seconds('E05_13')"}) %>
     <!-- Level of Svc, Condition at Dest, Record # -->
     <%= row({"Level of Service" => "parse_value_of('Level of Service')"}, 'E20_15', 'E12_03') %>
   </tbody>
