@@ -48,6 +48,8 @@ module AgeInWords
     from_date = convert_to_date(dob)
     to_date = convert_to_date(to_date)
 
+    return age_text if from_date.nil? || to_date.nil?
+
     age_in_days = (from_date - to_date).abs.to_i
     modulus = 0
 
@@ -74,7 +76,8 @@ module AgeInWords
     if date.kind_of?(String)
       date = Chronic.parse(date)
     end
-    date = date.to_date
+    date = date.to_date if date
+    date
   end
 
   def get_verbose_age_in_words dob
