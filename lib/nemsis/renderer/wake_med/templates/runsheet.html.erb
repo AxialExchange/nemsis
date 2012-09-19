@@ -31,7 +31,7 @@
   <!--Middle, phone, SSN-->
   <%= row 'E06_03', 'E06_17', 'E06_10' %>
   <!--Gender, county, physician -->
-  <%= row 'E06_11', {'County' => home_address[:county]}, {'Physician' => "concat('E12_04', 'E12_06')"} %>
+  <%= row 'E06_11', {'County' => home_address[:county]}, {'Physician' => "concat_with_comma('E12_06', 'E12_04')"} %>
   <!--Age, country-->
   <%= row( {'Age' => @parser.age_in_words}, {'Country' => home_address[:country]}, {'' => '&nbsp;'}) %>
   <%= start_row %>
