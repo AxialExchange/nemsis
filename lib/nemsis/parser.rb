@@ -247,6 +247,41 @@ module Nemsis
       text
     end
 
+    def home_address
+      home_address = {}
+      home_address[:address]  = has_content('E06_20') ? parse_element('E06_20') : parse_element('E06_04')
+      home_address[:address2] = has_content('E06_21') ? parse_element('E06_21') : " "
+      home_address[:city]     = has_content('E06_22') ? parse_element('E06_22') : parse_city('E06_05')
+      home_address[:county]   = has_content('E06_23') ? parse_element('E06_23') : parse_element('E06_06')
+      home_address[:state]    = has_content('E06_24') ? parse_element('E06_24') : parse_state('E06_07')
+      home_address[:country]  = has_content('E06_25') ? parse_element('E06_25') : parse_element('E06_09')
+      home_address[:zip]      = parse_element('E06_08')
+      home_address
+    end
+
+    def incident_address
+      incident_address = {}
+      incident_address[:address]  = has_content('E08_19') ? parse_element('E08_19') : parse_element('E08_11')
+      incident_address[:address2] = has_content('E08_20') ? parse_element('E08_20') : parse_value_of('IncidentAddress2')
+      incident_address[:city]     = has_content('E08_21') ? parse_element('E08_21') : parse_city('E08_12')
+      incident_address[:county]   = has_content('E08_22') ? parse_element('E08_22') : parse_element('E08_13')
+      incident_address[:state]    = has_content('E08_23') ? parse_element('E08_23') : parse_state('E08_14')
+      incident_address[:zip]      = parse_element('E08_15')
+      incident_address
+    end
+
+    def destination_address
+      destination_address = {}
+      destination_address[:description] = has_content('E20_20') ? parse_element('E20_20') : parse_element('E20_17')
+      destination_address[:address]     = has_content('E20_21') ? parse_element('E20_21') : parse_element('E20_11')
+      destination_address[:address2]    = has_content('E20_22') ? parse_element('E20_22') : parse_value_of('DestinationAddress2')
+      destination_address[:city]        = has_content('E20_23') ? parse_element('E20_23') : parse_city('E20_04')
+      destination_address[:county]      = has_content('E20_24') ? parse_element('E20_24') : parse_element('E20_06')
+      destination_address[:state]       = has_content('E20_25') ? parse_element('E20_25') : parse_state('E20_05')
+      destination_address[:zip]         = parse_element('E20_07')
+      destination_address
+    end
+
     # Look up the city/state/county text based on codes
     # return the value, a not found message, or a nbsp;
     def lookup_address_element(type, code)
