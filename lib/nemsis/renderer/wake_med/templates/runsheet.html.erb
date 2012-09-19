@@ -18,21 +18,22 @@
 
 <%= title = "Patient Information"
     start_table title, 6 %>
+  <% home_address = @parser.home_address %>
   <tbody>
   <!--Last, address, dob-->
-  <%= row 'E06_01', 'E06_04', 'E06_16' %>
+  <%= row 'E06_01', {'Address' => "#{home_address[:address2].blank? ? home_address[:address] : "#{home_address[:address]}<br>#{home_address[:address2]}"}"}, 'E06_16' %>
   <!--First, city/st/zip, weight-->
   <%= start_row %>
     <%= labeled_cell 'First', @parser.E06_02 %>
-    <%= labeled_cell 'City, St Zip', "#{@parser.parse_city('E06_05')}, #{@parser.parse_state('E06_07')} #{@parser.E06_08}" %>
+    <%= labeled_cell 'City, St Zip', "#{home_address[:city]}, #{home_address[:state]} #{home_address[:zip]}" %>
     <%= labeled_cell 'Weight', @parser.weight_in_words %>
   </tr>
   <!--Middle, phone, SSN-->
   <%= row 'E06_03', 'E06_17', 'E06_10' %>
   <!--Gender, county, physician -->
-  <%= row 'E06_11', {'County' => "parse_county('E06_06')"}, {'Physician' => "concat('E12_04', 'E12_06')"} %>
+  <%= row 'E06_11', {'County' => home_address[:county]}, {'Physician' => "concat('E12_04', 'E12_06')"} %>
   <!--Age, country-->
-  <%= row( {'Age' => @parser.age_in_words}, 'E06_09', {'' => '&nbsp;'}) %>
+  <%= row( {'Age' => @parser.age_in_words}, {'Country' => home_address[:country]}, {'' => '&nbsp;'}) %>
   <%= start_row %>
     <%= labeled_cell "Advanced Directive", @parser.E12_07, 5 %>
   </tr>
@@ -538,6 +539,9 @@
 <% if @parser.has_content('E05') %>
 <%= title = "Incident Details"
     start_table "", 6 %>
+<%  incident_address = @parser.incident_address
+    destination_address = @parser.destination_address
+%>
   <thead>
     <%= start_row %>
       <%= heading title, 2 %>
@@ -550,22 +554,22 @@
     <%= row('E08_07', 'E20_19', {"Call Received" => "parse_time_with_seconds('E05_14')"}) %>
     <!-- Location, Transport due to, dispatched -->
     <%= row('E08_16', 'E20_16', {"Dispatched" => "parse_time_with_seconds('E05_04')"}) %>
-    <!-- Address 2, Transported to, En route -->
-    <%= row('E08_11', 'E20_01', {"En Route" => "parse_time_with_seconds('E05_05')"}) %>
+    <!-- Address, Transported to, En route -->
+    <%= row({'Address' => incident_address[:address]}, 'E20_01', {"En Route" => "parse_time_with_seconds('E05_05')"}) %>
     <!-- Address 2, Requested By, Resp on Scene -->
-    <%= row({'Address 2' => "parse_value_of('IncidentAddress2')"}, {"Requested By" => "parse_value_of('Requested By')"}, { "&nbsp;" => '&nbsp;'}) %>
+    <%= row({'Address 2' => incident_address[:address2]}, {"Requested By" => "parse_value_of('Requested By')"}, { "&nbsp;" => '&nbsp;'}) %>
     <!-- City, Destination, On Scene -->
-    <%= row({'City' => "parse_city('E08_12')"}, 'E20_17', {"On Scene" => "parse_time_with_seconds('E05_06')"}) %>
+    <%= row({'City' => incident_address[:city]}, {'Destination' => destination_address[:description]}, {"On Scene" => "parse_time_with_seconds('E05_06')"}) %>
     <!-- State, Address, At Patient -->
-    <%= row({'State' => "parse_state('E08_14')"}, 'E20_03', {"At Patient" => "parse_time_with_seconds('E05_07')"}) %>
+    <%= row({'State' => incident_address[:state]}, {'Address' => destination_address[:address]}, {"At Patient" => "parse_time_with_seconds('E05_07')"}) %>
     <!-- Zip, Address 2, Depart -->
-    <%= row('E08_15', {"Address 2" => "parse_value_of('DestinationAddress2')"}, {"Depart Scene" => "parse_time_with_seconds('E05_09')"}) %>
+    <%= row('E08_15', {'Address 2' => destination_address[:address2]}, {"Depart Scene" => "parse_time_with_seconds('E05_09')"}) %>
     <!-- Medic Unit, City, At Dest -->
-    <%= row({'Medic Unit' => 'E02_22'}, {'City' => "parse_city('E20_04')"}, {"At Dest." => "parse_time_with_seconds('E05_10')"}) %>
+    <%= row({'Medic Unit' => 'E02_22'}, {'City' => destination_address[:city]}, {"At Dest." => "parse_time_with_seconds('E05_10')"}) %>
     <!-- Run type, State, Transferred -->
-    <%= row('E02_04', {"State" => "parse_state('E20_05')"}, {"Pt Xferred" => "parse_time_with_seconds('E05_08')"}) %>
+    <%= row('E02_04', {'State' => destination_address[:state]}, {"Pt Xferred" => "parse_time_with_seconds('E05_08')"}) %>
     <!-- Priority Scene, Zip, Closed -->
-    <%= row('E02_20', 'E20_07', {"Back in Svc" => "parse_time_with_seconds('E05_11')"}) %>
+    <%= row('E02_20', {'ZIP Code' => destination_address[:zip]}, {"Back in Svc" => "parse_time_with_seconds('E05_11')"}) %>
     <!-- Shift, '', In District -->
     <%= row({"Shift" => "parse_value_of('Shift')"}, {"&nbsp;" => '&nbsp;'}, {"Back @HomeLoc" => "parse_time_with_seconds('E05_13')"}) %>
     <!-- Level of Svc, Condition at Dest, Record # -->

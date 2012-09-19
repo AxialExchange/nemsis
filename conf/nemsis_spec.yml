@@ -2282,6 +2282,54 @@ E06_19:
   is_multi_entry: 0
   name: DRIVER'S LICENSE NUMBER
   node: E06_19
+E06_20:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: Address
+  node: E06_20
+E06_21:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: Address2
+  node: E06_21
+E06_22:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: City
+  node: E06_22
+E06_23:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: County
+  node: E06_23
+E06_24:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: State
+  node: E06_24
+E06_25:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: Country
+  node: E06_25
 E07_01:
   allow_null: 1
   data_entry_method: single-choice National Element
@@ -3154,6 +3202,46 @@ E08_18:
   is_multi_entry: 1
   name: Location Type Descrption
   node: E08_18
+E08_19:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: Address
+  node: E08_19
+E08_20:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: Address2
+  node: E08_20
+E08_21:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: City
+  node: E08_21
+E08_22:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: County
+  node: E08_22
+E08_23:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: State
+  node: E08_23
 E09_01:
   allow_null: 1
   data_entry_method: multiple-choice National Element
@@ -7071,6 +7159,46 @@ E20_20:
   is_multi_entry: 1
   name: Destination Type Description
   node: E20_20
+E20_21:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: Address
+  node: E20_21
+E20_22:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: Address2
+  node: E20_22
+E20_23:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: City
+  node: E20_23
+E20_24:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: County
+  node: E20_24
+E20_25:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: State
+  node: E20_25
 E21_01:
   allow_null: 1
   data_entry_method: ~

@@ -116,6 +116,12 @@
         </E06_14_0>
         <E06_16>1994-01-04</E06_16>
         <E06_17>9191232852</E06_17>
+        <E06_20>123 Broadway St</E06_20>
+        <E06_21>Apt #2</E06_21>
+        <E06_22>South Hill</E06_22>
+        <E06_23>James</E06_23>
+        <E06_24>VA</E06_24>
+        <E06_25>USA</E06_25>
       </E06>
       <E07>
         <E07_01>-20</E07_01>
@@ -151,6 +157,11 @@
         <E08_16></E08_16>
         <E08_18>Place of Recreation/Sport</E08_18>
         <E08_17>Wake Forest Police Department</E08_17>
+        <E08_19>12050 Retail Dr</E08_19>
+        <E08_20>Suite #2</E08_20>
+        <E08_21>Wake Forest</E08_21>
+        <E08_22>Wake</E08_22>
+        <E08_23>NC</E08_23>
       </E08>
       <E09>
         <E09_01>-20</E09_01>
@@ -719,6 +730,11 @@
         <E20_18>Patient</E20_18>
         <E20_19>Transported No Lights/Siren</E20_19>
         <E20_20>Hospital ER</E20_20>
+        <E20_21>10000 Falls of Neuse Rd</E20_21>
+        <E20_22>Dest address #2</E20_22>
+        <E20_23>Raleigh</E20_23>
+        <E20_24>Wake</E20_24>
+        <E20_25>NC</E20_25>
       </E20>
       <E22>
         <E22_01>5340</E22_01>
