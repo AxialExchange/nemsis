@@ -565,13 +565,13 @@
     <!-- Zip, Address 2, Depart -->
     <%= row('E08_15', {'Address 2' => destination_address[:address2]}, {"Depart Scene" => "parse_time_with_seconds('E05_09')"}) %>
     <!-- Medic Unit, City, At Dest -->
-    <%= row({'Medic Unit' => 'E02_22'}, {'City' => destination_address[:city]}, {"At Dest." => "parse_time_with_seconds('E05_10')"}) %>
+    <%= row({'Medic Unit' => 'E02_22'}, {'City' => destination_address[:city]}, {"At Destination" => "parse_time_with_seconds('E05_10')"}) %>
     <!-- Run type, State, Transferred -->
-    <%= row('E02_04', {'State' => destination_address[:state]}, {"Pt Xferred" => "parse_time_with_seconds('E05_08')"}) %>
+    <%= row('E02_04', {'State' => destination_address[:state]}, {"Pt. Transferred" => "parse_time_with_seconds('E05_08')"}) %>
     <!-- Priority Scene, Zip, Closed -->
-    <%= row('E02_20', {'ZIP Code' => destination_address[:zip]}, {"Back in Svc" => "parse_time_with_seconds('E05_11')"}) %>
+    <%= row('E02_20', {'ZIP Code' => destination_address[:zip]}, {"Incident Close" => "parse_time_with_seconds('E05_11')"}) %>
     <!-- Shift, '', In District -->
-    <%= row({"Shift" => "parse_value_of('Shift')"}, {"&nbsp;" => '&nbsp;'}, {"Back @HomeLoc" => "parse_time_with_seconds('E05_13')"}) %>
+    <%= row({"Shift" => "parse_value_of('Shift')"}, {"&nbsp;" => '&nbsp;'}, {"In District" => "parse_time_with_seconds('E05_13')"}) %>
     <!-- Level of Svc, Condition at Dest, Record # -->
     <%= row({"Level of Service" => "parse_value_of('Level of Service')"}, 'E20_15', 'E12_03') %>
   </tbody>
