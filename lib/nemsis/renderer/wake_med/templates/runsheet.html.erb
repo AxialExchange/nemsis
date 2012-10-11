@@ -52,7 +52,7 @@
       <% secondary_complaint = @parser.has_content('E09_08') ? "#{@parser.E09_08} &ndash; Dur. #{@parser.E09_09} #{@parser.E09_10}" : '&nbsp;' %>
       <%= row 'E17_01', {'Secondary Complaint' => secondary_complaint}, 'E12_27' %>
       <!-- Signs & Symptoms, Alcohol/Drugs -->
-      <%= row({"Signs &amp; Symptoms" => "concat_with_comma('E09_13', 'E09_14', 'E09_17', 'E09_18')"}, 'E12_19', 2) %>
+      <%= row({"Signs &amp; Symptoms" => "concat_with_comma('E09_17', 'E09_18')"}, 'E12_19', 2) %>
   </tbody>
 </table>
 <br>
