@@ -612,7 +612,7 @@
     start_table title, 8 %>
   <tbody>
   <!--Name, Primary Payer -->
-  <%= row( {'Insured\'s Name' => "concat('E07_11', 'E07_12', 'E07_13')"}, 'E07_01') %>
+  <%= row( {'Insured\'s Name' => "concat_with_comma('E07_11', 'E07_12', 'E07_13')"}, 'E07_01') %>
   <!--Relationship to Patient, Response Urgency-->
   <%= row 'E07_14', 'E07_33' %>
   <!--Employer, Primary Ins-->
