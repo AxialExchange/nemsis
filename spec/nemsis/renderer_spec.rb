@@ -375,6 +375,50 @@ XML
 
   end
 
+  context 'Insurance Details' do
+    let(:p) {
+      xml_str = <<XML
+<?xml version=" 1.0 " encoding=" UTF-8 " ?>
+<EMSDataSet xmlns=" http ://www.nemsis.org " xmlns:xsi=" http ://www.w3.org/2001/XMLSchema-instance "
+            xsi:schemaLocation=" http ://www.nemsis.org http ://www.nemsis.org/media/XSD/EMSDataSet.xsd ">
+  <Header>
+    <Record>
+      <E07>
+        <E07_01>-20</E07_01>
+        <E07_03_0>
+          <E07_03>Medicaid</E07_03>
+          <E07_04>755</E07_04>
+          <E07_10>999066222N</E07_10>
+          <E07_11_0>
+            <E07_11>MOORE</E07_11>
+            <E07_12>ROGER</E07_12>
+            <E07_13>007</E07_13>
+          </E07_11_0>
+          <E07_14>770</E07_14>
+          <E07_38>Self</E07_38>
+          <E07_39>Child</E07_39>
+        </E07_03_0>
+      </E07>
+    </Record>
+  </Header>
+</EMSDataSet>
+XML
+      Nemsis::Parser.new(xml_str)
+    }
+    let(:r) { Nemsis::Renderer::WakeMed::HTML.new(p)}
+    let(:html) {r.render}
+
+    describe 'various insurance details values' do
+      #it('write to html file')   {WRITE_HTML_FILE=true; write_html_file('symptoms', 'simple', html)}
+      it('should have section')  {html.should =~ /Insurance Details/}
+      it('should have name')  {html.should =~ /MOORE, ROGER, 007/}
+      it('should have Relationship to Patient')     {html.should =~ /Self/}
+      it('should have insurance') {html.should =~ /Medicaid/}
+      it('should have Policy #') {html.should =~ /999066222N/}
+    end
+
+  end
+
   context 'Additional Agencies' do
     let(:p) {
       xml_str = <<XML
