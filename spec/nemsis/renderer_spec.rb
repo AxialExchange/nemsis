@@ -133,9 +133,7 @@ XML
 
   # This is a good place to put local test files and have them generate local output you can view in your browser
   context 'generate some sample runsheets' do
-    before :all do
-      WRITE_HTML_FILE = true
-    end
+
 =begin
     it 'should render madison' do
       sample_xml_file = File.expand_path('../../data/madison_henry_sample.xml', __FILE__)
@@ -170,9 +168,6 @@ XML
     end
 =end
 
-    after :all do
-      WRITE_HTML_FILE = false
-    end
   end
 
   context 'instance methods' do
@@ -289,7 +284,6 @@ XML
       it('should have end') {html.should =~ />100910.1</}
       it('should have loaded') {html.should =~ />6.1</}
       it('should have total') {html.should =~ />11.1</}
-      #it('write to html file') { WRITE_HTML_FILE=true; write_html_file('mileage', 'simple', html)}
     end
 
   end
@@ -331,7 +325,6 @@ XML
     let(:html) {r.render}
 
     describe 'various signs and symptom values' do
-      #it('write to html file')   {WRITE_HTML_FILE=true; write_html_file('symptoms', 'simple', html)}
       it('should have section')  {html.should =~ /Clinical Impression/}
       it('should have details')  {html.should =~ /Pain/}
       it('should have date')     {html.should =~ /Pain-Back/}
@@ -366,7 +359,6 @@ XML
     let(:html) {r.render}
 
     describe 'various signs and symptom values' do
-      #it('write to html file')   {WRITE_HTML_FILE=true; write_html_file('symptoms', 'simple', html)}
       it('should have section')  {html.should =~ /Clinical Impression/}
       it('should have details')  {html.should =~ /Fall from other slipping, tripping or stumbling/}
       it('should have date')     {html.should =~ /2012-02-27/}
@@ -409,7 +401,6 @@ XML
     let(:html) {r.render}
 
     describe 'various insurance details values' do
-      #it('write to html file')   {WRITE_HTML_FILE=true; write_html_file('symptoms', 'simple', html)}
       it('should have section')  {html.should =~ /Insurance Details/}
       it('should have name')  {html.should =~ /MOORE, ROGER, 007/}
       it('should have Relationship to Patient')     {html.should =~ /Self/}
@@ -600,8 +591,6 @@ XML
       html.should =~ /95.5 E/ # 35.28 deg C
     end
 
-    #it('write to html file') { saved_flag=WRITE_HTML_FILE;WRITE_HTML_FILE=true; write_html_file('vital_signs', 'simple', html);WRITE_HTML_FILE=saved_flag}
-
   end
 
   context 'secondary impression' do
@@ -626,7 +615,6 @@ XML
       let(:r) { Nemsis::Renderer::WakeMed::HTML.new(p)}
       let(:html) {r.render}
       it('should have the text') {html.should =~ /No Complaints or Injury\/Illness Noted/}
-      #it('write to html file') { WRITE_HTML_FILE=true; write_html_file('impression_reg', 'simple', html)}
     end
     context '-20 text provided in error by ESO' do
       let(:p) {
@@ -649,7 +637,6 @@ XML
       let(:html) {r.render}
       it('should have -20') {html.should =~ /^(\s*)<tr>.*<b>Secondary Impression.*>-20</}
       it('should not have blank space text') {html.should_not =~ /^(\s*)<tr>.*<b>Secondary Impression.<b>*>&nbsp;</}
-      #it('write to html file') { WRITE_HTML_FILE=true; write_html_file('impression_neg20', 'simple', html)}
     end
 
   end
@@ -1004,8 +991,6 @@ XML
     let(:html) { r.render }
 
     it 'should have the special section' do
-      #WRITE_HTML_FILE = true
-      #write_html_file('personal_items', 'simple', html)
       html.should =~ /Personal Items/
     end
     it 'should have the first entry' do
