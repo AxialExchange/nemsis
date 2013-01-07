@@ -589,7 +589,7 @@ XML
 
     describe '#parse' do
       it 'should handle bad inputs' do
-        expect {p.parse(nil)}.should raise_error
+        expect {p.parse(nil)}.to raise_error
       end
 
       it 'should return an empty string for a missing data element' do
