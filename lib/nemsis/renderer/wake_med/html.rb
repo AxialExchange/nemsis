@@ -1,8 +1,13 @@
 require 'ostruct'
+require 'nemsis/renderer/wake_med/helpers/text_helper'
+
 module Nemsis
   module Renderer
     module WakeMed
       class HTML
+
+        include Nemsis::Renderer::WakeMed::Helpers::TextHelper
+
         HTML_STYLE = <<STYLE
     <HEAD>
       <STYLE type="text/css">
