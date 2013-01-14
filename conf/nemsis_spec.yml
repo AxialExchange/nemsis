@@ -2195,7 +2195,7 @@ E06_12:
     680: White
     685: Other Race
   is_multi_entry: 0
-  name: RACE
+  name: Race
   node: E06_12
 E06_13:
   allow_null: 1
@@ -2210,7 +2210,7 @@ E06_13:
     690: Hispanic or Latino
     695: Not Hispanic or Latino
   is_multi_entry: 0
-  name: ETHNICITY
+  name: Ethnicity
   node: E06_13
 E06_14:
   allow_null: 1

@@ -244,9 +244,8 @@ STYLE
           fields.each do |field|
             next if field.is_a?(Fixnum)
             #puts "Field = #{field}"
-            if field.empty?
-              text += cell(" ")
-              text += cell(" ")
+            if field.nil? || field.empty?
+              text += labeled_cell('&nbsp;', '&nbsp;', colspan)
             elsif field.is_a?(Hash)
               label = field.keys[0]
               value = field[label]

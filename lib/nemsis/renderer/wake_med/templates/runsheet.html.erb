@@ -34,6 +34,7 @@
   <%= row 'E06_11', {'County' => home_address[:county]}, {'Physician' => "concat_with_comma('E12_06', 'E12_04')"} %>
   <!--Age, country-->
   <%= row( {'Age' => @parser.age_in_words}, {'Country' => home_address[:country]}, {'' => '&nbsp;'}) %>
+  <%= row 'E06_12', 'E06_13', nil %>
   <%= start_row %>
     <%= labeled_cell "Advanced Directive", @parser.E12_07, 5 %>
   </tr>
