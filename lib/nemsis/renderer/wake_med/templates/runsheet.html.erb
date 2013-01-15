@@ -1,4 +1,3 @@
-
 <%
    NBSP ||= "&nbsp;"
 %>
@@ -551,30 +550,30 @@
     </tr>
   </thead>
   <tbody>
-    <!-- Location, Disposition, Call Rec'd -->
-    <%= row('E08_07', 'E20_19', {"Call Received" => "parse_time_with_seconds('E05_14')"}) %>
-    <!-- Location, Transport due to, dispatched -->
-    <%= row('E08_16', 'E20_16', {"Dispatched" => "parse_time_with_seconds('E05_04')"}) %>
-    <!-- Address, Transported to, En route -->
-    <%= row({'Address' => incident_address[:address]}, 'E20_01', {"En Route" => "parse_time_with_seconds('E05_05')"}) %>
-    <!-- Address 2, Requested By, Resp on Scene -->
-    <%= row({'Address 2' => incident_address[:address2]}, {"Requested By" => "parse_value_of('Requested By')"}, { "&nbsp;" => '&nbsp;'}) %>
-    <!-- City, Destination, On Scene -->
-    <%= row({'City' => incident_address[:city]}, {'Destination' => destination_address[:description]}, {"On Scene" => "parse_time_with_seconds('E05_06')"}) %>
-    <!-- State, Address, At Patient -->
-    <%= row({'State' => incident_address[:state]}, {'Address' => destination_address[:address]}, {"At Patient" => "parse_time_with_seconds('E05_07')"}) %>
-    <!-- Zip, Address 2, Depart -->
-    <%= row('E08_15', {'Address 2' => destination_address[:address2]}, {"Depart Scene" => "parse_time_with_seconds('E05_09')"}) %>
-    <!-- Medic Unit, City, At Dest -->
-    <%= row({'Medic Unit' => 'E02_22'}, {'City' => destination_address[:city]}, {"At Destination" => "parse_time_with_seconds('E05_10')"}) %>
-    <!-- Run type, State, Transferred -->
-    <%= row('E02_04', {'State' => destination_address[:state]}, {"Pt. Transferred" => "parse_time_with_seconds('E05_08')"}) %>
-    <!-- Priority Scene, Zip, Closed -->
-    <%= row('E02_20', {'ZIP Code' => destination_address[:zip]}, {"Incident Close" => "parse_time_with_seconds('E05_11')"}) %>
-    <!-- Shift, '', In District -->
-    <%= row({"Shift" => "parse_value_of('Shift')"}, {"&nbsp;" => '&nbsp;'}, {"In District" => "parse_time_with_seconds('E05_13')"}) %>
-    <!-- Level of Svc, Condition at Dest, Record # -->
-    <%= row({"Level of Service" => "parse_value_of('Level of Service')"}, 'E20_15', 'E12_03') %>
+    <!-- Location, Disposition, PSAP Call -->
+    <%= row('E08_07', 'E20_19', {"PSAP Call" => "parse_time_with_seconds('E05_02')"}) %>
+    <!-- Location, Transport due to, Dispatch Notified -->
+    <%= row('E08_16', 'E20_16', {"Dispatch Notified" => "parse_time_with_seconds('E05_03')"}) %>
+    <!-- Address, Transported to, Call Received-->
+    <%= row({'Address' => incident_address[:address]}, 'E20_01', {"Call Received" => "parse_time_with_seconds('E05_14')"}) %>
+    <!-- Address 2, Requested By, Dispatched -->
+    <%= row({'Address 2' => incident_address[:address2]}, {"Requested By" => "parse_value_of('Requested By')"}, { "Dispatched" => "parse_time_with_seconds('E05_04')"}) %>
+    <!-- City, Destination, En Route -->
+    <%= row({'City' => incident_address[:city]}, {'Destination' => destination_address[:description]}, {"En Route" => "parse_time_with_seconds('E05_05')"}) %>
+    <!-- State, Address, On Scene -->
+    <%= row({'State' => incident_address[:state]}, {'Address' => destination_address[:address]}, {"On Scene" => "parse_time_with_seconds('E05_06')"}) %>
+    <!-- Zip, Address 2, At Patient -->
+    <%= row('E08_15', {'Address 2' => destination_address[:address2]}, {"At Patient" => "parse_time_with_seconds('E05_07')"}) %>
+    <!-- Medic Unit, City, Depart Scene -->
+    <%= row({'Medic Unit' => 'E02_22'}, {'City' => destination_address[:city]}, {"Depart Scene" => "parse_time_with_seconds('E05_09')"}) %>
+    <!-- Run type, State, At Destination -->
+    <%= row('E02_04', {'State' => destination_address[:state]}, {"At Destination" => "parse_time_with_seconds('E05_10')"}) %>
+    <!-- Priority Scene, Zip, Pt. Transferred -->
+    <%= row('E02_20', {'ZIP Code' => destination_address[:zip]}, {"Pt. Transferred" => "parse_time_with_seconds('E05_08')"}) %>
+    <!-- Shift, Destination Record #, Incident Close -->
+    <%= row({"Shift" => "parse_value_of('Shift')"}, 'E12_03', {"Incident Close" => "parse_time_with_seconds('E05_11')"}) %>
+    <!-- Level of Svc, Condition at Dest, In District -->
+    <%= row({"Level of Service" => "parse_value_of('Level of Service')"}, 'E20_15', {"In District" => "parse_time_with_seconds('E05_13')"}) %>
   </tbody>
 </table>
 <br>
