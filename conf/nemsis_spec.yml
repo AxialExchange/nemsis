@@ -1935,6 +1935,14 @@ E04_06:
   is_multi_entry: 1
   name: Qualified Crew Member Level
   node: E04_06
+E04_07:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  field_values: ~
+  is_multi_entry: 1
+  name: Qualified Crew Member Role
+  node: E04_07
 E05_01:
   allow_null: 1
   data_entry_method: ~
