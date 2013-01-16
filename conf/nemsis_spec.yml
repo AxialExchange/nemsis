@@ -9913,3 +9913,116 @@ E35_04:
   is_multi_entry: 1
   name: Comments
   node: E35_04
+E36_01:
+  allow_null: 1
+  data_entry_method: single-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    0: No
+    1: Yes
+  is_multi_entry: 0
+  name: 'Trauma Activation'
+  node: E36_01
+E36_02:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: date/time
+  is_multi_entry: 0
+  name: 'Date/Time'
+  node: E36_02
+E36_03:
+  allow_null: 0
+  data_entry_method: ~
+  data_type: text
+  field_values: {}
+  is_multi_entry: 0
+  name: Reason not Activated
+  node: E36_03
+E36_04:
+  allow_null: 1
+  data_entry_method: ~
+  data_type: text
+  is_multi_entry: 0
+  name: Trauma Level
+  node: E36_04
+E36_05:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    502101: None
+    502102: Glasgow Coma Scale
+    502103: Systolic Blood Pressure (mmHg)
+    502104: Respiratory Rate
+  is_multi_entry: 1
+  name: Vital Signs
+  node: E36_05
+E36_06:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    502201: None
+    502202: Penetrating Injury
+    502203: Flail Chest
+    502204: Serious Extremity Injury
+    502205: Hand or Foot Amputation
+    502206: Pelvic Fractures
+    502207: Skull Fractures
+    502208: Paralysis
+  is_multi_entry: 1
+  name: Anatomy of Injury
+  node: E36_06
+E36_07:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    502301: None
+    502302: Falls
+    502303: Auto vs. Pedestrian
+    502304: Serious Motorcycle Crash
+    502305: High-Risk Auto Crash
+  is_multi_entry: 1
+  name: Mechanism of Injury
+  node: E36_07
+E36_08:
+  allow_null: 1
+  data_entry_method: multiple-choice
+  data_type: combo
+  field_values:
+    -25: Not Applicable
+    -20: Not Recorded
+    -15: Not Reporting
+    -10: Not Known
+    -5: Not Available
+    502401: None 
+    502402: Adults > 55
+    502403: Children
+    502404: Anticoagulants and Bleeding Disorders
+    502405: Burns
+    502406: Pregnancy > 20 Weeks
+    502407: EMS Provider Judgement
+  is_multi_entry: 1
+  name: Special Considerations
+  node: E36_08

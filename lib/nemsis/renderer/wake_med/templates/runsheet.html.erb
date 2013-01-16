@@ -451,6 +451,23 @@
 <br>
 <% end %>
 
+<% if @parser.has_content('E36') %>
+    <%= title = "Specialty Patient &mdash; CDC 2011 Trauma Criteria"
+        start_table title, 4 %>
+    <tbody>
+    <!--Vital Signs, Trauma Activation-->
+    <%=  row 'E36_05', 'E36_01' %>
+    <!--Anatomy of Injury, Date/Time-->
+    <%=  row 'E36_06', 'E36_02' %>
+    <!--Mechanism of Injury, Trauma Level-->
+    <%=  row 'E36_07', 'E36_04' %>
+    <!--Special Considerations, Reason not Activated-->
+    <%=  row 'E36_08', 'E36_03' %>
+    </tbody>
+</table>
+<br>
+<% end %>
+
 <% if @parser.has_content('E32') %>
 <%= title = "Specialty Patient &mdash; Obstetrical"
     start_table title, 7 %>
