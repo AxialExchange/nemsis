@@ -1849,6 +1849,11 @@ XML
         <E04_04>TECH SUPPORT</E04_04>
         <E04_05>ESO</E04_05>
       </E04>
+      <E09>
+        <E09_17>Generalized Symptoms-Nausea and Vomiting</E09_17>
+        <E09_18>Generalized Symptoms-Dehydration</E09_18>
+        <E09_18>GI/GU-Diarrhea</E09_18>
+      </E09>
       <E15>
         <E15_02>-10</E15_02>
         <E15_03>3325</E15_03>
@@ -1867,6 +1872,10 @@ XML
 
       it 'should concatenate field values for multiple entries' do
         p.concat('E04_05', 'E04_04').should == "ESO TECH SUPPORT"
+      end
+
+      it 'should concatenate field values for multiple fields of same element' do
+        p.concat('E09_17', 'E09_18').should == "Generalized Symptoms-Nausea and Vomiting Generalized Symptoms-Dehydration GI/GU-Diarrhea"
       end
 
       it 'should return empty when there are no data' do

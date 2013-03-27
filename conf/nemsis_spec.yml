@@ -1266,7 +1266,7 @@ D08_12:
     -5: Not Available
     650: Male
     655: Female
-  is_multi_entry: 1
+  is_multi_entry: 0
   name: EMS PERSONNEL'S GENDER
   node: D08_12
 D08_13:
@@ -1319,7 +1319,7 @@ D08_16:
     -5: Not Available
     0: No
     1: Yes
-  is_multi_entry: 1
+  is_multi_entry: 0
   name: NATIONAL REGISTRY CREDENTIALED
   node: D08_16
 D08_17:
@@ -2503,7 +2503,7 @@ E07_12:
     -20: Not Recorded
     -25: Not Applicable
     -5: Not Available
-  is_multi_entry: 2
+  is_multi_entry: 1
   name: Insured First
   node: E07_12
 E07_13:
@@ -3192,7 +3192,7 @@ E08_16:
     -20: Not Recorded
     -25: Not Applicable
     -5: Not Available
-  is_multi_entry: 0
+  is_multi_entry: 1
   name: Location Name
   node: E08_16
 E08_17:
@@ -3587,7 +3587,7 @@ E09_18:
   allow_null: 1
   data_entry_method: ~
   data_type: text
-  is_multi_entry: 0
+  is_multi_entry: 1
   name: Qualified Other Associated Symptoms
   node: E09_18
 E09_19:
@@ -4486,7 +4486,7 @@ E14_02:
     -5: Not Available
     0: No
     1: Yes
-  is_multi_entry: 1
+  is_multi_entry: 0
   name: OBTAINED PRIOR TO THIS UNITS EMS CARE
   node: E14_02
 E14_03:
@@ -4852,7 +4852,7 @@ E14_32:
     -5: Not Available
     0: No
     1: Yes
-  is_multi_entry: 1
+  is_multi_entry: 0
   name: SUSPECTED MYOCARDIAL INFARCTION
   node: E14_32
 E14_33:
@@ -6363,7 +6363,7 @@ E18_02:
     -5: Not Available
     0: No
     1: Yes
-  is_multi_entry: 1
+  is_multi_entry: 0
   name: MEDICATION ADMINISTERED PRIOR TO THIS UNITS EMS CARE
   node: E18_02
 E18_03:
@@ -6597,7 +6597,7 @@ E19_02:
     -5: Not Available
     0: No
     1: Yes
-  is_multi_entry: 1
+  is_multi_entry: 0
   name: PROCEDURE PERFORMED PRIOR TO THIS UNITS EMS CARE
   node: E19_02
 E19_03:
@@ -7988,7 +7988,7 @@ E27_02:
     -5: Not Available
     0: No
     1: Yes
-  is_multi_entry: 0
+  is_multi_entry: 1
   name: Screening Criteria Met
   node: E27_02
 E27_03:
@@ -8729,7 +8729,7 @@ E29_16:
   data_entry_method: ~
   data_type: text
   field_values: {}
-  is_multi_entry: 0
+  is_multi_entry: 1
   name: Field Pronouncement Physician
   node: E29_16
 E29_17:
@@ -9165,7 +9165,7 @@ E31_06:
   data_entry_method: ~
   data_type: text
   field_values: {}
-  is_multi_entry: 0
+  is_multi_entry: 1
   name: Law enforcement case number
   node: E31_06
 E31_07:
@@ -9188,7 +9188,7 @@ E31_08:
   data_entry_method: ~
   data_type: text
   field_values: {}
-  is_multi_entry: 0
+  is_multi_entry: 1
   name: Extrication Comments
   node: E31_08
 E31_09:
@@ -9359,7 +9359,7 @@ E32_07:
   data_entry_method: ~
   data_type: text
   field_values: {}
-  is_multi_entry: 0
+  is_multi_entry: 1
   name: OB Physician
   node: E32_07
 E32_08:
