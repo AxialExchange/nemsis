@@ -320,9 +320,9 @@ STYLE
         def label(label, colspan=0)
           label = label.space unless label.nil?
           if @fancy_html
-            text = "    <td class='label' #{(colspan > 0) ? "colspan='#{colspan}'" : '' } >#{label}</td>"
+            text = "    <td class='label' #{(colspan > 1) ? "colspan='#{colspan}'" : '' } >#{label}</td>"
           else
-            text = "    <td#{(colspan > 0) ? " colspan='#{colspan}'" : '' }><font size='2'><b>#{label}</b></font></td>"
+            text = "    <td#{(colspan > 1) ? " colspan='#{colspan}'" : '' }><font size='2'><b>#{label}</b></font></td>"
           end
           text
         end
@@ -330,17 +330,17 @@ STYLE
         def label_with_style(style, label, rowspan=0)
           label = label.space unless label.nil?
           if @fancy_html
-            text = "<td class='#{style}' #{(rowspan > 0) ? "rowspan='#{rowspan}'" : '' }>#{label}</td>"
+            text = "<td class='#{style}' #{(rowspan > 1) ? "rowspan='#{rowspan}'" : '' }>#{label}</td>"
           else
             text = case style
                      when 'label'
-                       "<td#{(rowspan > 0) ? " rowspan='#{rowspan}'" : '' }><font size='2'><b>#{label}</b></font></td>"
+                       "<td#{(rowspan > 1) ? " rowspan='#{rowspan}'" : '' }><font size='2'><b>#{label}</b></font></td>"
                      when 'label-medium'
-                       "<td width='25%'#{(rowspan > 0) ? " rowspan='#{rowspan}'" : '' }><font size='2'><b>#{label}</b></font></td>"
+                       "<td width='25%'#{(rowspan > 1) ? " rowspan='#{rowspan}'" : '' }><font size='2'><b>#{label}</b></font></td>"
                      when 'label-narrow'
-                       "<td width='10%'#{(rowspan > 0) ? " rowspan='#{rowspan}'" : '' }><font size='2'><b>#{label}</b></font></td>"
+                       "<td width='10%'#{(rowspan > 1) ? " rowspan='#{rowspan}'" : '' }><font size='2'><b>#{label}</b></font></td>"
                      else
-                       "<td#{(rowspan > 0) ? " rowspan='#{rowspan}'" : '' }><font size='2'><b>#{label}</b></font></td>"
+                       "<td#{(rowspan > 1) ? " rowspan='#{rowspan}'" : '' }><font size='2'><b>#{label}</b></font></td>"
                    end
             text
           end
@@ -354,9 +354,9 @@ STYLE
         def label_top(label, colspan=0)
           label = label.space unless label.nil?
           if @fancy_html
-            text = "    <td class='label-top' #{(colspan > 0) ? "colspan='#{colspan}'" : '' }>#{label}</td>"
+            text = "    <td class='label-top' #{(colspan > 1) ? "colspan='#{colspan}'" : '' }>#{label}</td>"
           else
-            text = "    <td#{(colspan > 0) ? " colspan='#{colspan}'" : '' }><font size='2'><b>#{label}</b></font></td>"
+            text = "    <td#{(colspan > 1) ? " colspan='#{colspan}'" : '' }><font size='2'><b>#{label}</b></font></td>"
           end
           text
         end
@@ -364,9 +364,9 @@ STYLE
         def heading(label, colspan=0)
           label = label.space unless label.nil?
           if @fancy_html
-            text = "    <th#{(colspan > 0) ? " colspan='#{colspan}'" : '' }>#{label}</th>"
+            text = "    <th#{(colspan > 1) ? " colspan='#{colspan}'" : '' }>#{label}</th>"
           else
-            text = "    <th#{(colspan > 0) ? " colspan='#{colspan}'" : '' }><font color='blue' size='3'>#{label}</font></th>"
+            text = "    <th#{(colspan > 1) ? " colspan='#{colspan}'" : '' }><font color='blue' size='3'>#{label}</font></th>"
           end
           text
         end
@@ -374,9 +374,9 @@ STYLE
         def cell(value, colspan=0, rowspan=0)
           value = value.space if value.is_a?(String)
           if @fancy_html
-            text = "    <td class='value'#{(colspan > 0) ? " colspan='#{colspan}'" : '' }#{(rowspan > 0) ? " rowspan='#{rowspan}'" : '' }>#{value}</td>"
+            text = "    <td class='value'#{(colspan > 1) ? " colspan='#{colspan}'" : '' }#{(rowspan > 1) ? " rowspan='#{rowspan}'" : '' }>#{value}</td>"
           else
-            text = "    <td #{(colspan > 0) ? " colspan='#{colspan}'" : '' }#{(rowspan > 0) ? " rowspan='#{rowspan}'" : '' }><font size='2'>#{value}</font></td>"
+            text = "    <td #{(colspan > 1) ? " colspan='#{colspan}'" : '' }#{(rowspan > 1) ? " rowspan='#{rowspan}'" : '' }><font size='2'>#{value}</font></td>"
           end
           text
         end
