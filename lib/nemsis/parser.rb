@@ -319,13 +319,28 @@ module Nemsis
     def parse_pair(name_element, value_element)
       result = {}
       begin
-        name_element_spec = get_spec(name_element)
-        names             = parse(name_element_spec)
+        name_element_spec = get_spec(name_element) or return result
+        value_element_spec = get_spec(value_element) or return result
 
-        value_element_spec = get_spec(value_element)
-        values             = parse(value_element_spec)
+        name_xpath = "//#{name_element_spec['node']}"
+        name_nodes = xml_doc.xpath(name_xpath)
 
-        names.size.times { |i| result[names[i]] = values[i] } unless names.nil? or values.nil?
+        name_nodes.each do |name_node|
+          name_text = name_node.text rescue ''
+          value_text = ''
+
+          parent_node = name_node.parent
+
+          parent_node.children.each do |child_node|
+            if child_node.name == value_element_spec['node']
+              value_text = child_node.text
+            end
+          end
+
+          if !name_text.blank?
+            result[name_text] = value_text 
+          end
+        end
       rescue ArgumentError => err
         # warn "Warn: in parse_pair: #{err}"
       end
