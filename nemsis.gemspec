@@ -25,7 +25,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'activesupport' # needed for proper time parsing
   s.add_dependency 'chronic'
   s.add_dependency 'nokogiri'
-  s.add_dependency(%q<nokogiri>, ['1.5.2'])
   s.add_dependency 'ruby-debug19'
   s.add_dependency 'tzinfo'
 end
