@@ -4,23 +4,23 @@ describe "Age In Words" do
   context 'should require a Date or a Time or a convertible string' do
     it 'should permit a Date' do
       dob = Chronic.parse("50 months ago").to_date
-      dob.class.should == Date
-      AgeInWords::get_age_in_words(dob).should_not == AgeInWords::ERROR_TEXT
+      expect(dob.class).to eq(Date)
+      expect(AgeInWords::get_age_in_words(dob)).not_to eq(AgeInWords::ERROR_TEXT)
     end
     it 'should permit a Time' do
       dob = Chronic.parse("50 months ago").to_time
-      dob.class.should == Time
-      AgeInWords::get_age_in_words(dob).should_not == AgeInWords::ERROR_TEXT
+      expect(dob.class).to eq(Time)
+      expect(AgeInWords::get_age_in_words(dob)).not_to eq(AgeInWords::ERROR_TEXT)
     end
     it 'should permit a valid date string' do
       dob = Chronic.parse("50 months ago").strftime("%D")
-      dob.class.should == String
-      AgeInWords::get_age_in_words(dob).should_not == AgeInWords::ERROR_TEXT
+      expect(dob.class).to eq(String)
+      expect(AgeInWords::get_age_in_words(dob)).not_to eq(AgeInWords::ERROR_TEXT)
     end
     it 'should permit a valid date/time string' do
       dob = Chronic.parse("50 months ago").to_s
-      dob.class.should == String
-      AgeInWords::get_age_in_words(dob).should_not == AgeInWords::ERROR_TEXT
+      expect(dob.class).to eq(String)
+      expect(AgeInWords::get_age_in_words(dob)).not_to eq(AgeInWords::ERROR_TEXT)
     end
   end
 
@@ -29,29 +29,29 @@ describe "Age In Words" do
       dob = Chronic.parse("50 months ago")
       to_date = Chronic.parse("40 months ago")
       age_text = AgeInWords::get_age_in_words(dob, to_date)
-      age_text.should_not == AgeInWords::ERROR_TEXT
-      age_text.should == "10 Months"
+      expect(age_text).not_to eq(AgeInWords::ERROR_TEXT)
+      expect(age_text).to eq("10 Months")
     end
 
     it 'should handle days' do
       dob = Chronic.parse("#{AgeInWords::DAY_MAX_DAYS + 5} days ago")
       to_date = Chronic.parse("5 days ago")
       age_text = AgeInWords::get_age_in_words(dob, to_date)
-      age_text.should == "#{AgeInWords::DAY_MAX_DAYS} Days"
+      expect(age_text).to eq("#{AgeInWords::DAY_MAX_DAYS} Days")
     end
 
     it 'should handle weeks' do
       dob = Chronic.parse("#{AgeInWords::WEEK_MAX_DAYS + 5} days ago")
       to_date = Chronic.parse("5 days ago")
       age_text = AgeInWords::get_age_in_words(dob, to_date)
-      age_text.should == "#{AgeInWords::WEEK_MAX_DAYS/7} Weeks"
+      expect(age_text).to eq("#{AgeInWords::WEEK_MAX_DAYS/7} Weeks")
     end
 
     it 'should handle months' do
       dob = Chronic.parse("#{AgeInWords::MONTH_MAX_DAYS + 5} days ago")
       to_date = Chronic.parse("5 days ago")
       age_text = AgeInWords::get_age_in_words(dob, to_date)
-      age_text.should == "#{AgeInWords::MONTH_MAX_DAYS/(365/12)} Months"
+      expect(age_text).to eq("#{AgeInWords::MONTH_MAX_DAYS/(365/12)} Months")
     end
   end
 
@@ -59,26 +59,26 @@ describe "Age In Words" do
     it "should work for almost 11 year olds" do
       age = {:years => 10, :months => 9, :days => 6, :text => "10 Years"}
       dob = (Chronic.parse("#{12*age[:years] + age[:months]} months ago") - age[:days]*24*60*60).to_date
-      AgeInWords::get_age_in_words(dob).should == age[:text]
+      expect(AgeInWords::get_age_in_words(dob)).to eq(age[:text])
     end
 
     it "should work with just years" do
       age = {:years => 10, :months => 0, :days => 0, :text => "10 Years"}
       dob = (Chronic.parse("#{12*age[:years] + age[:months]} months ago") - age[:days]*24*60*60).to_date
-      AgeInWords::get_age_in_words(dob).should == age[:text]
+      expect(AgeInWords::get_age_in_words(dob)).to eq(age[:text])
     end
 
     it "should work with just months" do
       age = {:years => 0, :months => 10, :days => 0, :text => "10 Months"}
       dob = (Chronic.parse("#{12*age[:years] + age[:months]} months ago") - age[:days]*24*60*60).to_date
-      AgeInWords::get_age_in_words(dob).should == age[:text]
+      expect(AgeInWords::get_age_in_words(dob)).to eq(age[:text])
     end
 
 =begin
     it "should work with just days" do
       age = {:years => 0, :months => 0, :days => 10, :text => "10 Days"}
       dob = (Chronic.parse("#{12*age[:years] + age[:months]} months ago") - age[:days]*24*60*60).to_date
-      AgeInWords::get_verbose_age_in_words(dob).should == age[:text]
+      expect(AgeInWords::get_verbose_age_in_words(dob)).to eq(age[:text])
     end
 
     it "should work with just large value of days" do

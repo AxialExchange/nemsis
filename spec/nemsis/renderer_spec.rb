@@ -39,10 +39,10 @@ XML
     let(:html) { r.render }
 
     it 'should have some text' do
-      html.should =~ /^\s*<h4>Wake County EMS System - Patient Care Record/
+      expect(html).to match(/^\s*<h4>Wake County EMS System - Patient Care Record/)
     end
     it 'should have the current version number' do
-      html.should =~ /Version #{Nemsis::VERSION}/
+      expect(html).to match(/Version #{Nemsis::VERSION}/)
     end
 
   end
@@ -98,11 +98,11 @@ XML
     describe 'renderer flags' do
       it 'should default to plain type by default' do
         html = r.render
-        html.should_not =~ /<STYLE/
+        expect(html).not_to match(/<STYLE/)
       end
       it 'should allow for toggling fancy flag' do
         html = r.render_fancy
-        html.should =~ /<STYLE/
+        expect(html).to match(/<STYLE/)
       end
 
       it 'should have runsheet timestamp by default' do
@@ -115,7 +115,7 @@ XML
         # puts "Expected #{timestamp}, Found #{time_in_html}/#{html_timestamp}; delta = #{delta}"
         
         delta = (html_timestamp - timestamp).abs
-        delta.should < 5
+        expect(delta).to be < 5
       end
 
       it 'should allow for adding runsheet date' do
@@ -124,7 +124,7 @@ XML
                                              strftime("%Y-%m-%d %H:%M:%S %Z")
 
         html = r.render(time_stamp)
-        html.should =~ /Generated at: #{expected_time_stamp_str}/i
+        expect(html).to match(/Generated at: #{expected_time_stamp_str}/i)
       end
 
     end
@@ -154,7 +154,7 @@ XML
       write_html_file("everything_patient", "simple", html)
       html = r.render_fancy
       write_html_file("everything_patient", "fancy", html)
-      html.should_not =~ /age_in_words/
+      expect(html).not_to match(/age_in_words/)
     end
 
 =begin
@@ -185,25 +185,25 @@ XML
       context 'plain HTML' do
 
         it 'returns not nil' do
-          @plain_html.should_not be_nil
+          expect(@plain_html).not_to be_nil
         end
 
         it 'has title section' do
-          @plain_html.should =~ /^\s*<h4>Wake County EMS System - Patient Care Record/
+          expect(@plain_html).to match(/^\s*<h4>Wake County EMS System - Patient Care Record/)
         end
 
         context 'specialty patient section' do
-          it('has specialty patient') { @plain_html.should =~ /Specialty Patient/ }
-          it('has specialty patient trauma criteria') { @plain_html.should =~ /Trauma Activation/ }
-          it('has specialty patient airway') { @plain_html.should =~ /Advanced Airway/ }
+          it('has specialty patient') { expect(@plain_html).to match(/Specialty Patient/) }
+          it('has specialty patient trauma criteria') { expect(@plain_html).to match(/Trauma Activation/) }
+          it('has specialty patient airway') { expect(@plain_html).to match(/Advanced Airway/) }
         end
 
         it 'should not have a STYLE section' do
-          @plain_html.should_not =~ /<STYLE/
+          expect(@plain_html).not_to match(/<STYLE/)
         end
 
         it 'should not have empty table cells' do
-          @plain_html.should_not =~ /<td  ><font size='2'><\/font><\/td>/
+          expect(@plain_html).not_to match(/<td  ><font size='2'><\/font><\/td>/)
         end
 
         #it 'write to html file' do
@@ -214,7 +214,7 @@ XML
       context 'fancy HTML' do
 
         it 'should have a STYLE section' do
-          @fancy_html.should =~ /<STYLE/
+          expect(@fancy_html).to match(/<STYLE/)
         end
 
         #it 'write to html file' do
@@ -249,7 +249,7 @@ XML
     let!(:html) {r.render}
 
     it 'should not have comment tags' do
-      html.index('<!--').should be_nil
+      expect(html.index('<!--')).to be_nil
     end
 
   end
@@ -278,12 +278,12 @@ XML
     let(:html) {r.render}
 
     describe 'various mileage values' do
-      it('should have start') {html.should =~ />100899.0</}
-      it('should have scene') {html.should =~ />100908.1</}
-      it('should have destination') {html.should =~ />100908.1</}
-      it('should have end') {html.should =~ />100910.1</}
-      it('should have loaded') {html.should =~ />6.1</}
-      it('should have total') {html.should =~ />11.1</}
+      it('should have start')       { expect(html).to match(/>100899.0</) }
+      it('should have scene')       { expect(html).to match(/>100908.1</) }
+      it('should have destination') { expect(html).to match(/>100908.1</) }
+      it('should have end')         { expect(html).to match(/>100910.1</) }
+      it('should have loaded')      { expect(html).to match(/>6.1</) }
+      it('should have total')       { expect(html).to match(/>11.1</) }
     end
 
   end
@@ -325,9 +325,9 @@ XML
     let(:html) {r.render}
 
     describe 'various signs and symptom values' do
-      it('should have section')  {html.should =~ /Clinical Impression/}
-      it('should have details')  {html.should =~ /Pain/}
-      it('should have date')     {html.should =~ /Pain-Back/}
+      it('should have section')  { expect(html).to match(/Clinical Impression/) }
+      it('should have details')  { expect(html).to match(/Pain/) }
+      it('should have date')     { expect(html).to match(/Pain-Back/) }
     end
 
   end
@@ -359,10 +359,10 @@ XML
     let(:html) {r.render}
 
     describe 'various signs and symptom values' do
-      it('should have section')  {html.should =~ /Clinical Impression/}
-      it('should have details')  {html.should =~ /Fall from other slipping, tripping or stumbling/}
-      it('should have date')     {html.should =~ /2012-02-27/}
-      it('should have location') {html.should =~ /Home/}
+      it('should have section')  { expect(html).to match(/Clinical Impression/) }
+      it('should have details')  { expect(html).to match(/Fall from other slipping, tripping or stumbling/) }
+      it('should have date')     { expect(html).to match(/2012-02-27/) }
+      it('should have location') { expect(html).to match(/Home/) }
     end
 
   end
@@ -401,11 +401,11 @@ XML
     let(:html) {r.render}
 
     describe 'various insurance details values' do
-      it('should have section')  {html.should =~ /Insurance Details/}
-      it('should have name')  {html.should =~ /MOORE, ROGER, 007/}
-      it('should have Relationship to Patient')     {html.should =~ /Self/}
-      it('should have insurance') {html.should =~ /Medicaid/}
-      it('should have Policy #') {html.should =~ /999066222N/}
+      it('should have section')                 { expect(html).to match(/Insurance Details/) }
+      it('should have name')                    { expect(html).to match(/MOORE, ROGER, 007/) }
+      it('should have Relationship to Patient') { expect(html).to match(/Self/) }
+      it('should have insurance')               { expect(html).to match(/Medicaid/) }
+      it('should have Policy #')                { expect(html).to match(/999066222N/) }
     end
 
   end
@@ -430,7 +430,7 @@ XML
     let(:html) {r.render}
 
     it 'should show multiple agencies' do
-      html.should =~ /Wake Forest Fire Department, Wake Forest Police Department/
+      expect(html).to match(/Wake Forest Fire Department, Wake Forest Police Department/)
     end
 
   end
@@ -557,38 +557,38 @@ XML
     let(:html) {r.render}
 
     it 'should show basic heading' do
-      html.should =~ /Vital Signs/
+      expect(html).to match(/Vital Signs/)
     end
     it 'should not show full text descriptions' do
-      html.should_not =~ /12 Normal/i
+      expect(html).not_to match(/12 Normal/i)
     end
 
     # When time is missing, show PTA
     it 'should show PTA for vital signs missing timestamp' do
-      html.should =~ /PTA/
+      expect(html).to match(/PTA/)
     end
 
     # BP    <%= cell ("#{[e14.E14_04, e14.E14_05].select {|v| !v.to_s.eql?('')}.compact.join('/')}&nbsp;#{e14.E14_06}") %>
     it 'should show BP abbreviations' do
-      html.should =~ /128\/87&nbsp;A/ #Automated
-      html.should =~ /130\/90&nbsp;P/ #Palpated
+      expect(html).to match(/128\/87&nbsp;A/) #Automated
+      expect(html).to match(/130\/90&nbsp;P/) #Palpated
     end
 
     # Pulse <%= cell ("#{[(!e14.E14_07.to_s.eql?('') ? e14.E14_07 : e14.E14_08), e14.E14_10].compact.join(' ')}&nbsp;") %>
     it 'should show Pulse abbreviations' do
-      html.should =~ /76 R/
+      expect(html).to match(/76 R/)
     end
 
     # RR    <%= cell ((e14.concat 'E14_11', 'E14_12')) %>
     it 'should show Respiratory Rate abbreviations' do
-      html.should =~ /12 R/
-      html.should =~ /13 V/
+      expect(html).to match(/12 R/)
+      expect(html).to match(/13 V/)
     end
 
     # Temp  <%= cell ((e14.concat 'E14_20', 'E14_37')) %>
     it 'should show Temp Method abbreviations' do
-      html.should =~ /97.3/   # 36.28 deg C
-      html.should =~ /95.5 E/ # 35.28 deg C
+      expect(html).to match(/97.3/)   # 36.28 deg C
+      expect(html).to match(/95.5 E/) # 35.28 deg C
     end
 
   end
@@ -614,7 +614,7 @@ XML
       }
       let(:r) { Nemsis::Renderer::WakeMed::HTML.new(p)}
       let(:html) {r.render}
-      it('should have the text') {html.should =~ /No Complaints or Injury\/Illness Noted/}
+      it('should have the text') { expect(html).to match(/No Complaints or Injury\/Illness Noted/) }
     end
     context '-20 text provided in error by ESO' do
       let(:p) {
@@ -635,8 +635,8 @@ XML
       }
       let(:r) { Nemsis::Renderer::WakeMed::HTML.new(p)}
       let(:html) {r.render}
-      it('should have -20') {html.should =~ /^(\s*)<tr>.*<b>Secondary Impression.*>-20</}
-      it('should not have blank space text') {html.should_not =~ /^(\s*)<tr>.*<b>Secondary Impression.<b>*>&nbsp;</}
+      it('should have -20') { expect(html).to match(/^(\s*)<tr>.*<b>Secondary Impression.*>-20</) }
+      it('should not have blank space text') { expect(html).not_to match(/^(\s*)<tr>.*<b>Secondary Impression.<b>*>&nbsp;</) }
     end
 
   end
@@ -744,20 +744,20 @@ XML
 
     it 'should have a Flow Chart section' do
       #write_html_file('flow_chart', 'fancy', fancy_html)
-      fancy_html.should =~ /Flow Chart/i
+      expect(fancy_html).to match(/Flow Chart/i)
     end
 
     it 'should not have a Prior to Arrival section' do
-      fancy_html.should_not =~ /Treatments Prior to Arrival/i
+      expect(fancy_html).not_to match(/Treatments Prior to Arrival/i)
     end
 
     it 'should not have a Trauma section' do
-      fancy_html.should_not =~ /Trauma Activation/i
+      expect(fancy_html).not_to match(/Trauma Activation/i)
     end
 
     it 'should have the CPT Code 89.7 -- soon we will get text instead (4/17/2012 telecon w/ ESO)' do
-      fancy_html.should_not =~ /89.7/
-      fancy_html.should =~ /ALS Assessment/
+      expect(fancy_html).not_to match(/89.7/)
+      expect(fancy_html).to match(/ALS Assessment/)
     end
   end
 
@@ -856,11 +856,11 @@ XML
 
     it 'should have a Prior to Arrival section' do
       #write_html_file('prior_to_arrival', 'fancy', fancy_html)
-      fancy_html.should =~ /Treatments Prior to Arrival/i
+      expect(fancy_html).to match(/Treatments Prior to Arrival/i)
     end
 
     it 'should have a Flow Chart section' do
-      fancy_html.should =~ /Flow Chart/i
+      expect(fancy_html).to match(/Flow Chart/i)
     end
 
   end
@@ -942,12 +942,12 @@ XML
     let(:fancy_html) {r.render_fancy}
 
     it 'should have a ECG section' do
-      fancy_html.should =~ /ECG/i
+      expect(fancy_html).to match(/ECG/i)
       #write_html_file('ecg', 'fancy', fancy_html)
     end
 
     it 'should not have a Trauma section' do
-      fancy_html.should_not =~ /Trauma Activation/i
+      expect(fancy_html).not_to match(/Trauma Activation/i)
     end
 
   end
@@ -991,16 +991,16 @@ XML
     let(:html) { r.render }
 
     it 'should have the special section' do
-      html.should =~ /Personal Items/
+      expect(html).to match(/Personal Items/)
     end
     it 'should have the first entry' do
-      html.should =~ /Purse\/Wallet/
-      html.should =~ />pt</
+      expect(html).to match(/Purse\/Wallet/)
+      expect(html).to match(/>pt</)
     end
     it 'should have the second entry' do
-      html.should =~ /Gold Bullion/
-      html.should =~ /EMS Driver/
-      html.should =~ /thrill of the lights/
+      expect(html).to match(/Gold Bullion/)
+      expect(html).to match(/EMS Driver/)
+      expect(html).to match(/thrill of the lights/)
     end
 
   end

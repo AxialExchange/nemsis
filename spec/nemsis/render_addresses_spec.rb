@@ -98,83 +98,83 @@ XML
     let(:html) { r.render }
 
     it 'should have some text' do
-      html.should =~ /^\s*<h4>Wake County EMS System - Patient Care Record/
+      expect(html).to match(/^\s*<h4>Wake County EMS System - Patient Care Record/)
     end
 
 
     context 'Home Address' do
       it 'should not have the original home address field' do
-        html.should_not include '123 Broadway St'
+        expect(html).not_to include('123 Broadway St')
       end
       it 'should have the correct home address2' do
-        html.should include 'Home address #2'
-        html.should include 'Home address<br>Home address #2'
+        expect(html).to include('Home address #2')
+        expect(html).to include('Home address<br>Home address #2')
       end
 
       it 'should have the correct home city' do
-        html.should include 'Home City'
+        expect(html).to include('Home City')
       end
       it 'should have the correct home state' do
-        html.should include 'Home State'
+        expect(html).to include('Home State')
       end
       it 'should have the correct home zip' do
-        html.should include '27596'
+        expect(html).to include('27596')
       end
       it 'should have the correct home county' do
-        html.should include 'Home County'
+        expect(html).to include('Home County')
       end
       it 'should have the correct home country' do
-        html.should include 'Home Country'
+        expect(html).to include('Home Country')
       end
     end
 
     context 'Scene Address' do
       it 'should not have the original scene address field' do
-        html.should_not include '12050 RETAIL DR'
-        html.should_not include 'Destination Address 2'
-        html.should_not include 'Hospital'
+        expect(html).not_to include('12050 RETAIL DR')
+        expect(html).not_to include('Destination Address 2')
+        expect(html).not_to include('Hospital')
       end
       it 'should have the correct scene address' do
-        html.should include 'Scene address'
+        expect(html).to include('Scene address')
       end
       it 'should have the correct scene address2' do
-        html.should include 'Scene address #2'
+        expect(html).to include('Scene address #2')
       end
 
       it 'should have the correct scene city' do
-        html.should include 'Scene City'
+        expect(html).to include('Scene City')
       end
       it 'should have the correct scene state' do
-        html.should include 'Scene State'
+        expect(html).to include('Scene State')
       end
       it 'should have the correct scene zip' do
-        html.should include '27596'
+        expect(html).to include('27596')
       end
     end
 
     context 'Destination Address' do
       it 'should not have the original destination address field' do
-        html.should_not include '10000 Falls of Neuse Rd'
-        html.should_not include 'Destination Address 2'
+        expect(html).not_to include('10000 Falls of Neuse Rd')
+        expect(html).not_to include('Destination Address 2')
       end
       it 'should have the correct destination description' do
-        html.should include 'Destination description'
+        expect(html).to include('Destination description')
       end
       it 'should have the correct destination address' do
-        html.should include 'Destination address'
+        expect(html).to include('Destination address')
       end
       it 'should have the correct destination address2' do
-        html.should include 'Destination address #2'
+        expect(html).to include('Destination address #2')
       end
 
       it 'should have the correct destination city' do
-        html.should include 'Destination City'
+        expect(html).to include('Destination City')
       end
       it 'should have the correct destination state' do
-        html.should include 'Destination State'
+        expect(html).to include('Destination State')
       end
       it 'should have the correct destination zip' do
-        html.should include '27596'
+        expect(html).to include('27596')
       end
     end
   end

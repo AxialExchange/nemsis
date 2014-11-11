@@ -6,27 +6,27 @@ include Nemsis::Renderer::WakeMed::Helpers::TextHelper
 describe Nemsis::Renderer::WakeMed::Helpers::TextHelper do
 
   it "stringifies nil" do
-    simple_format(nil).should == ''
+    expect(simple_format(nil)).to eq('')
   end
 
   it "stringifies non-strings" do
-    simple_format(3.14).should == '3.14'
+    expect(simple_format(3.14)).to eq('3.14')
   end
 
   it "escapes HTML tags" do
-    simple_format('<b>').should == '&lt;b&gt;'
+    expect(simple_format('<b>')).to eq('&lt;b&gt;')
   end
 
   it "strips leading and trailing whitespace" do
-    simple_format(" \t \n  blah \n \v ").should == 'blah'
+    expect(simple_format(" \t \n  blah \n \v ")).to eq('blah')
   end
 
   it "converts newlines to <br> tags" do
-    simple_format("now\nis the\n\ntime").should == 'now<br>is the<br><br>time'
+    expect(simple_format("now\nis the\n\ntime")).to eq('now<br>is the<br><br>time')
   end
 
   it "converts leading spaces on a line to &nbsp; entities" do
-    simple_format("Stooges:\n  Larry\n  Moe\n  Curly").should == 'Stooges:<br>&nbsp;&nbsp;Larry<br>&nbsp;&nbsp;Moe<br>&nbsp;&nbsp;Curly'
+    expect(simple_format("Stooges:\n  Larry\n  Moe\n  Curly")).to eq('Stooges:<br>&nbsp;&nbsp;Larry<br>&nbsp;&nbsp;Moe<br>&nbsp;&nbsp;Curly')
   end
 
 end

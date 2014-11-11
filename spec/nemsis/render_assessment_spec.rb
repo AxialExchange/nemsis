@@ -88,53 +88,53 @@ XML
       context 'fancy html' do
         let(:html) { r.render_fancy }
         it('should output file') { write_html_file("assessments-plus", "fancy", html) }
-        it('should have assessments section') { html.should =~ /Initial Assessment/ }
-        it('should have Chest row') { html.should =~ /Chest Section/ }
+        it('should have assessments section') { expect(html).to match(/Initial Assessment/) }
+        it('should have Chest row') { expect(html).to match(/Chest Section/) }
 
         reg_neg = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_BLANK_NEGATIVE_REGEX
-        it('should NOT have blank (-)') { html.should_not =~ /#{reg_neg}/ }
+        it('should NOT have blank (-)') { expect(html).not_to match(/#{reg_neg}/) }
 
         reg_pos = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_BLANK_POSITIVE_REGEX
-        it('should NOT have blank (+)') { html.should_not =~ /#{reg_pos}/ }
+        it('should NOT have blank (+)') { expect(html).not_to match(/#{reg_pos}/) }
 
         reg_lone_br = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_LONE_HR_REGEX
-        it('should NOT have <hr> with no (+) section') { html.should_not =~ /#{reg_lone_br}/ }
+        it('should NOT have <hr> with no (+) section') { expect(html).not_to match(/#{reg_lone_br}/) }
 
         reg_no_abnormalities = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_NO_ABNORMALITIES_REGEX
-        it('should NOT have (+) with No Abnormalities') { html.should_not =~ /\(\+\) No Abnormalities/ }
-        it('should NOT have No Abnormalities (4)') { html.should_not =~ /No Abnormalities \(4\)/ }
-        it('should have plain No Abnormalities') { html.should =~ />No Abnormalities</ }
+        it('should NOT have (+) with No Abnormalities') { expect(html).not_to match(/\(\+\) No Abnormalities/) }
+        it('should NOT have No Abnormalities (4)') { expect(html).not_to match(/No Abnormalities \(4\)/) }
+        it('should have plain No Abnormalities') { expect(html).to match(/>No Abnormalities</) }
 
         reg_not_assessed = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_NOT_ASSESSED_REGEX
-        it('should NOT have (+) with Not Assessed') { html.should_not =~ /\(\+\) Not Assessed/ }
-        it('should NOT have Not Assessed (2)') { html.should_not =~ /Not Assessed \(2\)/ }
-        it('should have plain Not Assessed') { html.should =~ />Not Assessed</ }
+        it('should NOT have (+) with Not Assessed') { expect(html).not_to match(/\(\+\) Not Assessed/) }
+        it('should NOT have Not Assessed (2)') { expect(html).not_to match(/Not Assessed \(2\)/) }
+        it('should have plain Not Assessed') { expect(html).to match(/>Not Assessed</) }
       end
 
       context 'simple html' do
         let(:html) { r.render }
         it('should output file') { write_html_file("assessments-plus", "simple", html) }
-        it('should have assessments section') { html.should =~ /Initial Assessment/ }
-        it('should have Chest row') { html.should =~ /Chest Section/ }
+        it('should have assessments section') { expect(html).to match(/Initial Assessment/) }
+        it('should have Chest row') { expect(html).to match(/Chest Section/) }
 
         reg_neg = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_BLANK_NEGATIVE_REGEX
-        it('should NOT have blank (-)') { html.should_not =~ /#{reg_neg}/ }
+        it('should NOT have blank (-)') { expect(html).not_to match(/#{reg_neg}/) }
 
         reg_pos = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_BLANK_POSITIVE_REGEX
-        it('should NOT have blank (+)') { html.should_not =~ /#{reg_pos}/ }
+        it('should NOT have blank (+)') { expect(html).not_to match(/#{reg_pos}/) }
 
         reg_lone_br = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_LONE_HR_REGEX
-        it('should NOT have <hr> with no (+) section') { html.should_not =~ /#{reg_lone_br}/ }
+        it('should NOT have <hr> with no (+) section') { expect(html).not_to match(/#{reg_lone_br}/) }
 
         reg_no_abnormalities = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_NO_ABNORMALITIES_REGEX
-        it('should NOT have (+) with No Abnormalities') { html.should_not =~ /\(\+\) No Abnormalities/ }
-        it('should NOT have No Abnormalities (4)') { html.should_not =~ /No Abnormalities \(4\)/ }
-        it('should have plain No Abnormalities') { html.should =~ />No Abnormalities</ }
+        it('should NOT have (+) with No Abnormalities') { expect(html).not_to match(/\(\+\) No Abnormalities/) }
+        it('should NOT have No Abnormalities (4)') { expect(html).not_to match(/No Abnormalities \(4\)/) }
+        it('should have plain No Abnormalities') { expect(html).to match(/>No Abnormalities</) }
 
         reg_not_assessed = Nemsis::Renderer::WakeMed::HTML::ASSESSMENT_NOT_ASSESSED_REGEX
-        it('should NOT have (+) with Not Assessed') { html.should_not =~ /\(\+\) Not Assessed/ }
-        it('should NOT have Not Assessed (2)') { html.should_not =~ /Not Assessed \(2\)/ }
-        it('should have plain Not Assessed') { html.should =~ />Not Assessed</ }
+        it('should NOT have (+) with Not Assessed') { expect(html).not_to match(/\(\+\) Not Assessed/) }
+        it('should NOT have Not Assessed (2)') { expect(html).not_to match(/Not Assessed \(2\)/) }
+        it('should have plain Not Assessed') { expect(html).to match(/>Not Assessed</) }
       end
 
     end
@@ -347,9 +347,9 @@ XML
 
       let(:html) { r.render_fancy }
       it('should output file') { write_html_file("assessments-single", "fancy", html) }
-      it('should have assessments section') { html.should =~ /Initial Assessment/ }
-      it('should NOT have 1 of n') { html.should_not =~ /Assessment (1 of)/ }
-      it('should NOT have ongoing assessments section') { html.should_not =~ /Ongoing Assessment/ }
+      it('should have assessments section') { expect(html).to match(/Initial Assessment/) }
+      it('should NOT have 1 of n') { expect(html).not_to match(/Assessment (1 of)/) }
+      it('should NOT have ongoing assessments section') { expect(html).not_to match(/Ongoing Assessment/) }
     end
 
     context 'Show a double assessment' do
@@ -617,9 +617,9 @@ XML
 
       let(:html) { r.render_fancy }
       it('should output file') { write_html_file("assessments-double", "fancy", html) }
-      it('should have assessments section') { html.should =~ /Initial Assessment/ }
-      it('should have 1 of n') { html.should =~ /Initial Assessment \(1 of 2\)/ }
-      it('should have ongoing assessments section') { html.should =~ /Ongoing Assessment \(2 of 2\)/ }
+      it('should have assessments section') { expect(html).to match(/Initial Assessment/) }
+      it('should have 1 of n') { expect(html).to match(/Initial Assessment \(1 of 2\)/) }
+      it('should have ongoing assessments section') { expect(html).to match(/Ongoing Assessment \(2 of 2\)/) }
     end
 
     context 'Show assessments even without timestamp' do
@@ -861,10 +861,10 @@ XML
 
       let(:html) { r.render_fancy }
       it('should output file') { write_html_file("assessments-3-and-1-missing-timestamp", "fancy", html) }
-      it('should have assessments section') { html.should =~ /Initial Assessment/ }
-      it('should have 1 of n') { html.should =~ /Initial Assessment \(1 of 3\)/ }
-      it('should have ongoing assessments section') { html.should =~ /Ongoing Assessment \(2 of 3\)/ }
-      it('should have ongoing assessments section') { html.should =~ /Ongoing Assessment \(3 of 3\)/ }
+      it('should have assessments section') { expect(html).to match(/Initial Assessment/) }
+      it('should have 1 of n') { expect(html).to match(/Initial Assessment \(1 of 3\)/) }
+      it('should have ongoing assessments section') { expect(html).to match(/Ongoing Assessment \(2 of 3\)/) }
+      it('should have ongoing assessments section') { expect(html).to match(/Ongoing Assessment \(3 of 3\)/) }
     end
 
     # In some test cases, we got a trailing "blank" assessment with no timestamp.
@@ -1053,9 +1053,9 @@ XML
 
       let(:html) { r.render_fancy }
       it('should output file') { write_html_file("assessments-with-duplicate", "fancy", html) }
-      it('should have assessments section') { html.should =~ /Initial Assessment/ }
-      pending('should not have 1 of n') { html.should_not =~ /Initial Assessment \(1 of / }
-      pending('should have ongoing assessments section') { html.should_not =~ /Ongoing Assessment/ }
+      it('should have assessments section') { expect(html).to match(/Initial Assessment/) }
+      pending('should not have 1 of n') { expect(html).not_to match(/Initial Assessment \(1 of /) }
+      pending('should have ongoing assessments section') { expect(html).not_to match(/Ongoing Assessment/) }
     end
 =end
   end

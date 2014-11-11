@@ -268,10 +268,10 @@ XML
     let(:html) { r.render }
     context 'flat xml should work' do
       it('should output file') {write_html_file("flat_xml", "simple", html)}
-      it('should have mileage section') { html.should =~ /Mileage/}
-      it('should have medications section') { html.should =~ /Medication\/Allergies\/History/}
-      it('should have Vital Signs section') { html.should =~ /Vital Signs/}
-      it('should have assessments section') { html.should =~ /Initial Assessment/}
+      it('should have mileage section') { expect(html).to match(/Mileage/) }
+      it('should have medications section') { expect(html).to match(/Medication\/Allergies\/History/) }
+      it('should have Vital Signs section') { expect(html).to match(/Vital Signs/) }
+      it('should have assessments section') { expect(html).to match(/Initial Assessment/) }
     end
   end
 end

@@ -71,7 +71,7 @@ XML
         write_html_file("dynamic_sections", "simple", html)
       end
       dynamic_sections.each do |s|
-        it("should not have: #{s}") { html.should_not =~ /#{s}/ }
+        it("should not have: #{s}") { expect(html).not_to match(/#{s}/) }
       end
     end
   end
@@ -137,7 +137,7 @@ XML
     visible_sections = ['Specialty Patient &mdash; Trauma Criteria']
     context ', when there is info, ' do
       visible_sections.each do |s|
-        it("should have: #{s}") { html.should =~ /#{s}/ }
+        it("should have: #{s}") { expect(html).to match(/#{s}/) }
       end
     end
   end
@@ -186,7 +186,7 @@ XML
     let(:html) { r.render }
 
     it 'should not show section when delays are "None"' do
-      html.should_not =~ /Delays/
+      expect(html).not_to match(/Delays/)
     end
   end
 end

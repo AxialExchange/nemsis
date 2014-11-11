@@ -7,7 +7,8 @@ describe Nemsis::Parser do
         expect {
           @parser = Nemsis::Parser.new()
         }.to raise_error
-        @parser.should be_nil
+
+        expect(@parser).to be_nil
       end
     end
   end
@@ -214,15 +215,15 @@ XML
     }
 
     context 'simple parsing' do
-      it('should handle strings')   { p.E_STRING.should    == 'My String' }
-      it('should handle multi-entry strings')   { p.E_MULTI_STRING.should    == 'First of Two Strings, Second of Two Strings' }
-      it('should handle numbers')   { p.E_NUMBER.should    == "100" }
-      it('should handle Date/Time') { p.E_DATETIME.should  == "2012-03-01 19:09" }
-      it('should handle Date')      { p.E_DATE.should      == "2012-03-02" }
-      it('should handle Time')      { p.E_TIME.should      == "2012-03-02 04:29" }
-      it('should handle Single')    { p.E_SINGLE.should    == "Days" }
-      it('should handle Yes/No')    { p.E_YES_NO.should    == "No" }
-      it('should handle Multiple')  { p.E_MULTIPLE.should  == "First, Third choice, Assessment-Adult" }
+      it('should handle strings')               { expect(p.E_STRING).to       eq('My String') }
+      it('should handle multi-entry strings')   { expect(p.E_MULTI_STRING).to eq('First of Two Strings, Second of Two Strings') }
+      it('should handle numbers')               { expect(p.E_NUMBER).to       eq("100") }
+      it('should handle Date/Time')             { expect(p.E_DATETIME).to     eq("2012-03-01 19:09") }
+      it('should handle Date')                  { expect(p.E_DATE).to         eq("2012-03-02") }
+      it('should handle Time')                  { expect(p.E_TIME).to         eq("2012-03-02 04:29") }
+      it('should handle Single')                { expect(p.E_SINGLE).to       eq("Days") }
+      it('should handle Yes/No')                { expect(p.E_YES_NO).to       eq("No") }
+      it('should handle Multiple')              { expect(p.E_MULTIPLE).to     eq("First, Third choice, Assessment-Adult") }
     end
 
     context 'ampersands in user-entered text' do
@@ -252,8 +253,8 @@ XML
     end
 
     describe 'method missing' do
-      it('should treat method name as element name') { p.E_STRING.should == p.parse_element('E_STRING') }
-      it('should pass along complex calls') { p.send("concat('E_STRING', 'E_SINGLE')").should == "My String Days" }
+      it('should treat method name as element name') { expect(p.E_STRING).to eq(p.parse_element('E_STRING')) }
+      it('should pass along complex calls') { expect(p.send("concat('E_STRING', 'E_SINGLE')")).to eq("My String Days") }
     end
 
     context 'show negative index look-ups' do
@@ -272,7 +273,7 @@ XML
         Nemsis::Parser.new(xml_str, spec_yaml)
       }
       it 'should show negative values' do
-        p.parse_element_no_filter('E_SINGLE').should == 'Not Known'
+        expect(p.parse_element_no_filter('E_SINGLE')).to eq('Not Known')
       end
 
     end
@@ -291,13 +292,13 @@ XML
         expect {p.lookup(p.get_spec('E_MULTIPLE'), '500003')}.to_not raise_error
       end
       it 'should lookup an index in specific element' do
-        p.lookup('E_MULTIPLE', '500003').should == "Second choice"
+        expect(p.lookup('E_MULTIPLE', '500003')).to eq("Second choice")
       end
       it 'should lookup CPT codes from D04_04' do
-        p.lookup('E_MULTIPLE', '89.700').should == "Assessment-Adult"
+        expect(p.lookup('E_MULTIPLE', '89.700')).to eq("Assessment-Adult")
       end
       it 'should not lookup CPT codes if it is an invalid key' do
-        p.E_MULTIPLE.should include("Assessment-Adult")
+        expect(p.E_MULTIPLE).to include("Assessment-Adult")
         #p.lookup('E_MULTIPLE', 'Assessment-Adult').should == "Assessment-Adult"
       end
     end
@@ -593,24 +594,24 @@ XML
       end
 
       it 'should return an empty string for a missing data element' do
-        p.E25_00.should == ""
+        expect(p.E25_00).to eq("")
       end
 
       it 'should return a string for single values' do
-        p.E24_04.should == "Level 1"
+        expect(p.E24_04).to eq("Level 1")
       end
 
       it 'should return an array as a comma-separated list for multiple values' do
-        p.E24_05.should include "Environmental Factors"
-        p.E24_05.should include "Medical Illness"
+        expect(p.E24_05).to include "Environmental Factors"
+        expect(p.E24_05).to include "Medical Illness"
       end
 
       it 'should return lookup value' do
-        p.E06_12.should == "White"
+        expect(p.E06_12).to eq("White")
       end
 
       it 'should return an integer' do
-        p.E31_04.should == "1"
+        expect(p.E31_04).to eq("1")
       end
 
       #it 'should return a decimal' do
@@ -626,118 +627,118 @@ XML
       #end
 
       it 'should return string by default' do
-        p.parse('E24_02').should == '2012-03-08 12:50'
+        expect(p.parse('E24_02')).to eq('2012-03-08 12:50')
       end
 
       it 'should return object (i.e. time) if requested' do
         result = p.parse('E24_02', 'object')
 
-        result.class.should eql(ActiveSupport::TimeWithZone)
-        result.in_time_zone('UTC').strftime("%F %T %z").should == '2012-03-08 17:50:00 +0000'
+        expect(result.class).to eql(ActiveSupport::TimeWithZone)
+        expect(result.in_time_zone('UTC').strftime("%F %T %z")).to eq('2012-03-08 17:50:00 +0000')
       end
 
       it 'should return raw data if requested' do
-        p.parse('E06_12', 'raw').should == '680'
+        expect(p.parse('E06_12', 'raw')).to eq('680')
       end
 
       it 'should return date-only value without doing timezone conversion' do
-        p.parse('E06_16').should == p.parse('E06_16', 'raw')
+        expect(p.parse('E06_16')).to eq(p.parse('E06_16', 'raw'))
       end
     end
 
     describe '#get_spec' do
       it 'should return a spec hash for the given element' do
-        p.get_spec('E06_12').class.should == Hash
-        p.get_spec('E06_12')['data_type'].should == 'combo'
-        p.get_spec('E06_12')['data_entry_method'].should == 'single-choice National Element'
+        expect(p.get_spec('E06_12').class).to eq(Hash)
+        expect(p.get_spec('E06_12')['data_type']).to eq('combo')
+        expect(p.get_spec('E06_12')['data_entry_method']).to eq('single-choice National Element')
       end
 
       it 'should return nil for a non-existent node' do
-        p.get_spec('F00').should be_nil
+        expect(p.get_spec('F00')).to be_nil
       end
     end
 
     describe '#get_node_name' do
       it 'should return a name for the given element' do
-        p.get_node_name('E06_12').class.should == String
-        p.get_node_name('E06_12').should == 'E06_12'
+        expect(p.get_node_name('E06_12').class).to eq(String)
+        expect(p.get_node_name('E06_12')).to eq('E06_12')
       end
 
       it 'should return nil for a non-existent node' do
-        p.get_node_name('F00').should be_nil
+        expect(p.get_node_name('F00')).to be_nil
       end
     end
 
     describe 'method missing' do
       it 'should treat method name as element name' do
-        p.E06_01.should == p.parse_element('E06_01')
+        expect(p.E06_01).to eq(p.parse_element('E06_01'))
       end
 
       it 'should pass along complex calls' do
-        p.send("concat('E06_02', 'E06_01')").should == "TWEETY BIRD"
+        expect(p.send("concat('E06_02', 'E06_01')")).to eq("TWEETY BIRD")
       end
 
     end
 
     describe '#lookup' do
       it 'should lookup a value in using another element' do
-        p.E17_01.should == "Pain Control"
+        expect(p.E17_01).to eq("Pain Control")
       end
     end
 
     describe '#parse_element' do
       it 'should return string for non-coded element' do
-        p.parse_element('E06_01').should == 'BIRD'
+        expect(p.parse_element('E06_01')).to eq('BIRD')
       end
 
       it 'should return string for coded element' do
-        p.parse_element('E06_12').should == 'White'
+        expect(p.parse_element('E06_12')).to eq('White')
       end
 
       it 'should return nil for default negative values' do
-        p.parse_element('E07_01').should == ''
+        expect(p.parse_element('E07_01')).to eq('')
       end
 
       it 'should return value for negative indexes' do
-        p.parse('E07_01', 'object', false).should == 'Not Recorded'
+        expect(p.parse('E07_01', 'object', false)).to eq('Not Recorded')
       end
       it 'should return value for negative indexes' do
-        p.parse_element_no_filter('E07_01').should == 'Not Recorded'
+        expect(p.parse_element_no_filter('E07_01')).to eq('Not Recorded')
       end
 
       it 'should return lookup value' do
-        p.parse_element('E24_01').should == "YES"
+        expect(p.parse_element('E24_01')).to eq("YES")
       end
     end
 
     describe '#get' do
       it 'should return key/value hash' do
-        p.get('E06_01').class.should == Hash
+        expect(p.get('E06_01').class).to eq(Hash)
       end
 
       it 'should return key/value element name' do
-        p.get('E06_01')[:name].should == "LAST NAME"
+        expect(p.get('E06_01')[:name]).to eq("LAST NAME")
       end
 
       it 'should return key/value element text value' do
-        p.get('E06_01')[:value].should == "BIRD"
+        expect(p.get('E06_01')[:value]).to eq("BIRD")
       end
 
       it 'should return key/value element lookup value' do
-        p.get('E24_01')[:value].should == "YES"
+        expect(p.get('E24_01')[:value]).to eq("YES")
       end
     end
 
     describe '#name' do
       it "should return the name" do
-        p.name('E06_01').should == "LAST NAME"
-        p.name('E06_02').should == "First"
+        expect(p.name('E06_01')).to eq("LAST NAME")
+        expect(p.name('E06_02')).to eq("First")
       end
     end
 
     describe '#index' do
       it "should return the index into the lookup table" do
-        p.index('E24_05').should == "500003"
+        expect(p.index('E24_05')).to eq("500003")
       end
     end
   end
@@ -778,7 +779,7 @@ XML
       }
 
       it 'should show lbs with a decimal place & kg' do
-        p.weight_in_words().should == '13.2 lbs - 6 kg'
+        expect(p.weight_in_words()).to eq('13.2 lbs - 6 kg')
       end
     end
 
@@ -799,7 +800,7 @@ XML
       }
 
       it 'should show lbs & kg' do
-        p.weight_in_words().should == '269 lbs - 122 kg'
+        expect(p.weight_in_words()).to eq('269 lbs - 122 kg')
       end
     end
 
@@ -821,7 +822,7 @@ XML
       }
 
       it 'should show lbs & kg' do
-        p.weight_in_words().should == '145 lbs - 66 kg'
+        expect(p.weight_in_words()).to eq('145 lbs - 66 kg')
       end
     end
 
@@ -886,7 +887,7 @@ XML
       }
 
       it 'should return age in words in months' do
-        p.age_in_words.should == "3 Months"
+        expect(p.age_in_words).to eq("3 Months")
       end
     end
 
@@ -926,7 +927,7 @@ XML
         Nemsis::Parser.new(xml_str, spec_yaml)
       }
       it 'should return age in words in weeks' do
-        p.age_in_words.should =~ /8 Weeks/
+        expect(p.age_in_words).to match(/8 Weeks/)
       end
 
     end
@@ -951,7 +952,7 @@ XML
       }
 
       it 'should return age in words based on entered age (not DOB)' do
-        p.age_in_words.should =~ /46 days/i
+        expect(p.age_in_words).to match(/46 days/i)
       end
     end
 
@@ -973,7 +974,7 @@ XML
       }
 
       it 'should return age unknown when no data exists' do
-        p.age_in_words.should =~ /Age Unavailable/i
+        expect(p.age_in_words).to match(/Age Unavailable/i)
       end
     end
 
@@ -998,7 +999,7 @@ XML
       }
 
       it 'should return age as entered when DOB is illegal format' do
-        p.age_in_words.should =~ /76 years/i
+        expect(p.age_in_words).to match(/76 years/i)
       end
     end
 
@@ -1051,74 +1052,74 @@ XML
 
       describe 'date/time format should be based on data type by default' do
         it 'should return a full date/time value' do
-          p.E24_01.should == "2012-03-08 12:50"
+          expect(p.E24_01).to eq("2012-03-08 12:50")
         end
 
         it 'should return a date value' do
-          p.E24_02.should == "2012-03-08"
+          expect(p.E24_02).to eq("2012-03-08")
         end
 
         it 'should return a time value' do
           # Nemsis::Parser should not be stripping any part of the date/time
           # if needed to display as time string, that is a display requirement
           # which should be handled in view helpers
-          p.E24_03.should == "2012-03-08 12:50"
+          expect(p.E24_03).to eq("2012-03-08 12:50")
         end
       end
 
       describe 'overriding date/time format' do
         context 'date/time data type' do
           it 'should return a full date/time value' do
-            p.parse_time('E24_01', true).should == "2012-03-08 12:50"
+            expect(p.parse_time('E24_01', true)).to eq("2012-03-08 12:50")
           end
           
           it 'should return a date value' do
-            p.parse_date('E24_01').should == "2012-03-08"
+            expect(p.parse_date('E24_01')).to eq("2012-03-08")
           end
 
           it 'should return a short date value (no year)' do
-            p.parse_date('E24_01', false).should == "03-08"
+            expect(p.parse_date('E24_01', false)).to eq("03-08")
           end
 
           it 'should return a time value' do
-            p.parse_time('E24_01').should == "12:50"
+            expect(p.parse_time('E24_01')).to eq("12:50")
           end
         end
 
         context 'optionally show seconds' do
           it 'should show full date and time with seconds' do
-            p.parse_time('E24_01', true, true).should == "2012-03-08 12:50:01"
+            expect(p.parse_time('E24_01', true, true)).to eq("2012-03-08 12:50:01")
           end
           it 'should show time with seconds' do
-            p.parse_time('E24_03', false, true).should == "12:50:03"
+            expect(p.parse_time('E24_03', false, true)).to eq("12:50:03")
           end
         end
 
         context 'date data type' do
           it 'should not return a full date/time value' do
-            p.parse_time('E24_02', true).should_not == "2012-03-08 12:50"
+            expect(p.parse_time('E24_02', true)).not_to eq("2012-03-08 12:50")
           end
 
           it 'should return a date value' do
-            p.parse_date('E24_02').should == "2012-03-08"
+            expect(p.parse_date('E24_02')).to eq("2012-03-08")
           end
 
           it 'should not return a time value' do
-            p.parse_time('E24_02').should_not == "12:50"
+            expect(p.parse_time('E24_02')).not_to eq("12:50")
           end
         end
 
         context 'time data type' do
           it 'should return a full date/time value' do
-            p.parse_time('E24_03', true).should == "2012-03-08 12:50"
+            expect(p.parse_time('E24_03', true)).to eq("2012-03-08 12:50")
           end
 
           it 'should not return a date value' do
-            p.parse_date('E24_03').should == "2012-03-08"
+            expect(p.parse_date('E24_03')).to eq("2012-03-08")
           end
 
           it 'should return a time value' do
-            p.parse_time('E24_03').should == "12:50"
+            expect(p.parse_time('E24_03')).to eq("12:50")
           end
         end
     end
@@ -1329,43 +1330,43 @@ XML
 
     describe '#parse_field' do
       it 'should parse element by full name in nemsis data dictionary (case insensitive)' do
-        p.parse_field('CHIEF COMPLAINT').should == p.E09_05
+        expect(p.parse_field('CHIEF COMPLAINT')).to eq(p.E09_05)
       end
 
       it 'should return the first instance when there are multiple result sets' do
-        p.parse_field('CREW MEMBER ID').should == p.E04_01
+        expect(p.parse_field('CREW MEMBER ID')).to eq(p.E04_01)
       end
 
       it 'will pick up the first node when there are duplicate node names' do
-        p.parse_field('last name').should_not == p.E06_01
-        p.parse_field('last name').should == p.E04_04
+        expect(p.parse_field('last name')).not_to eq(p.E06_01)
+        expect(p.parse_field('last name')).to eq(p.E04_04)
       end
       it 'should parse element by full name in nemsis data dictionary (case insensitive)' do
-        p.parse_field('12 LEAD I').should == p.E28_07
-        p.parse_field('12 Lead I').should == p.E28_07
+        expect(p.parse_field('12 LEAD I')).to eq(p.E28_07)
+        expect(p.parse_field('12 Lead I')).to eq(p.E28_07)
       end
     end
 
     describe '#parse_pair' do
       it 'should return hash' do
         result = p.parse_pair('E23_11', 'E23_09')
-        result.is_a?(Hash).should be_true
-        result['Patient Number'].should == '123123212'
+        expect(result.is_a?(Hash)).to be_truthy
+        expect(result['Patient Number']).to eq('123123212')
       end
       it 'should return an empty hash when no data exists' do
         result = p.parse_pair('E33_11', 'E33_09')
-        result.is_a?(Hash).should be_true
-        result.should be_empty
+        expect(result.is_a?(Hash)).to be_truthy
+        expect(result).to be_empty
       end
     end
 
     describe '#parse_value_of' do
       it 'should return value E23_09 of key E23_11' do
-        p.parse_value_of('Patient Number').should == '123123212'
+        expect(p.parse_value_of('Patient Number')).to eq('123123212')
       end
 
       it 'should return empty info when none exists' do
-        p.parse_value_of('BugsBunny').should == '&nbsp;'
+        expect(p.parse_value_of('BugsBunny')).to eq('&nbsp;')
       end
     end
 
@@ -1461,16 +1462,16 @@ XML
       let(:results) {p2.parse_cluster('E14')}
 
       it 'should return arrays of Nemsis::Parser for an element name' do
-        results.is_a?(Array).should be_true
-        results.size.should == 4
-        results.first.class.should == Nemsis::Parser
+        expect(results.is_a?(Array)).to be_truthy
+        expect(results.size).to eq(4)
+        expect(results.first.class).to eq(Nemsis::Parser)
       end
 
       it 'should allow you to get the same elements from each parser instance' do
-        results[0].E14_01.should == "2012-03-08 10:30"
-        results[1].E14_01.should == "2012-03-08 10:35"
-        results[2].E14_01.should == "2012-03-08 10:40"
-        results[3].E14_01.should == "2012-03-08 10:45"
+        expect(results[0].E14_01).to eq("2012-03-08 10:30")
+        expect(results[1].E14_01).to eq("2012-03-08 10:35")
+        expect(results[2].E14_01).to eq("2012-03-08 10:40")
+        expect(results[3].E14_01).to eq("2012-03-08 10:45")
       end
 
     end
@@ -1498,13 +1499,13 @@ XML
 
         }
         it 'should return the city for a valid code' do
-          p2.parse_city('E08_12').should == 'Randleman Junction'
+          expect(p2.parse_city('E08_12')).to eq('Randleman Junction')
         end
         it 'should return the state for a valid code' do
-          p2.parse_state('E08_14').should == 'NC'
+          expect(p2.parse_state('E08_14')).to eq('NC')
         end
         it 'should return the county for a valid code' do
-          p2.parse_county('E06_06').should == 'Transylvania'
+          expect(p2.parse_county('E06_06')).to eq('Transylvania')
         end
 
       end
@@ -1530,13 +1531,13 @@ XML
 
         }
         it 'should return the city code when lookup fails' do
-          p2.parse_city('E08_12').should == 'City not found for 95100'
+          expect(p2.parse_city('E08_12')).to eq('City not found for 95100')
         end
         it 'should return the state code when lookup fails' do
-          p2.parse_state('E08_14').should == 'State not found for 137'
+          expect(p2.parse_state('E08_14')).to eq('State not found for 137')
         end
         it 'should return the county code when lookup fails' do
-          p2.parse_county('E06_06').should == 'County not found for 137183'
+          expect(p2.parse_county('E06_06')).to eq('County not found for 137183')
         end
 
       end
@@ -1559,13 +1560,13 @@ XML
 
         }
         it 'should return &nbsp; when XML is missing city field' do
-          p2.parse_city('E08_12').should == '&nbsp;'
+          expect(p2.parse_city('E08_12')).to eq('&nbsp;')
         end
         it 'should return &nbsp; when XML is missing state field' do
-          p2.parse_state('E08_14').should == '&nbsp;'
+          expect(p2.parse_state('E08_14')).to eq('&nbsp;')
         end
         it 'should return &nbsp; when XML is missing county field' do
-          p2.parse_county('E06_06').should == '&nbsp;'
+          expect(p2.parse_county('E06_06')).to eq('&nbsp;')
         end
 
       end
@@ -1626,22 +1627,22 @@ XML
       let(:results) { p2.get_children('E04') }
 
       it "should return an array of records" do
-        results.is_a?(Array).should be_true
-        results.size.should == 5
+        expect(results.is_a?(Array)).to be_truthy
+        expect(results.size).to eq(5)
       end
 
       it "should have each spec element available" do
-        results[0]['E04_01'].should == ""
-        results[0]['E04_02'].should == "Primary Patient Caregiver"
-        results[0]['E04_03'].should == ""
-        results[0]['E04_04'].should == "TECH SUPPORT"
-        results[0]['E04_05'].should == "ESO"
+        expect(results[0]['E04_01']).to eq("")
+        expect(results[0]['E04_02']).to eq("Primary Patient Caregiver")
+        expect(results[0]['E04_03']).to eq("")
+        expect(results[0]['E04_04']).to eq("TECH SUPPORT")
+        expect(results[0]['E04_05']).to eq("ESO")
 
-        results[1]['E04_01'].should == "P038756"
-        results[1]['E04_02'].should == "Driver"
-        results[1]['E04_03'].should == "EMT-Paramedic"
-        results[1]['E04_04'].should == "ADAMS"
-        results[1]['E04_05'].should == "CHRISTOPHER"
+        expect(results[1]['E04_01']).to eq("P038756")
+        expect(results[1]['E04_02']).to eq("Driver")
+        expect(results[1]['E04_03']).to eq("EMT-Paramedic")
+        expect(results[1]['E04_04']).to eq("ADAMS")
+        expect(results[1]['E04_05']).to eq("CHRISTOPHER")
       end
 
       #it 'provider name lookup' do
@@ -1666,8 +1667,8 @@ XML
 
       it 'should return arrays of Nemsis::Parser for a element name' do
         results = p.parse_cluster('E14')
-        results.is_a?(Array).should be_true
-        results.first.is_a?(Nemsis::Parser).should be_true
+        expect(results.is_a?(Array)).to be_truthy
+        expect(results.first.is_a?(Nemsis::Parser)).to be_truthy
       end
 
     end
@@ -1675,8 +1676,8 @@ XML
     describe '#parse_clusters' do
       it 'should return arrays of Nemsis::Parser for multiple element names' do
         results = p.parse_clusters('E15', 'E16')
-        results.is_a?(Array).should be_true
-        results.first.is_a?(Nemsis::Parser).should be_true
+        expect(results.is_a?(Array)).to be_truthy
+        expect(results.first.is_a?(Nemsis::Parser)).to be_truthy
       end
     end
 
@@ -1719,17 +1720,17 @@ XML
 
       it 'should return assessments in chronological order' do
         results = p2.parse_assessments
-        results.is_a?(Array).should be_true
+        expect(results.is_a?(Array)).to be_truthy
 
         initial_assessment = results.first
-        initial_assessment.is_a?(Nemsis::Parser).should be_true
-        initial_assessment.xml_doc.root.name.should == 'E15_E16'
-        initial_assessment.E16_03.should == '2012-03-08 12:48'
+        expect(initial_assessment.is_a?(Nemsis::Parser)).to be_truthy
+        expect(initial_assessment.xml_doc.root.name).to eq('E15_E16')
+        expect(initial_assessment.E16_03).to eq('2012-03-08 12:48')
 
         ongoing_assessments = results[1..-1]
-        ongoing_assessments.first.should be_true
-        ongoing_assessments.first.is_a?(Nemsis::Parser).should be_true
-        ongoing_assessments.first.xml_doc.root.name.should == 'E16_00_0'
+        expect(ongoing_assessments.first).to be_truthy
+        expect(ongoing_assessments.first.is_a?(Nemsis::Parser)).to be_truthy
+        expect(ongoing_assessments.first.xml_doc.root.name).to eq('E16_00_0')
       end
     end
 
@@ -1771,7 +1772,7 @@ XML
           }.to_not raise_error
 
           results = p2.parse_assessments
-          results.is_a?(Array).should be_true
+          expect(results.is_a?(Array)).to be_truthy
         end
       end
             context 'missing E16_00_0 details' do
@@ -1804,7 +1805,7 @@ XML
           }.to_not raise_error
 
           results = p2.parse_assessments
-          results.is_a?(Array).should be_true
+          expect(results.is_a?(Array)).to be_truthy
         end
       end
 
@@ -1829,7 +1830,7 @@ XML
           }.to_not raise_error
 
           results = p2.parse_assessments
-          results.is_a?(Array).should be_true
+          expect(results.is_a?(Array)).to be_truthy
         end
       end
     end
@@ -1870,27 +1871,27 @@ XML
       }
 
       it 'should concatenate field values for multiple entries' do
-        p.concat('E04_05', 'E04_04').should == "ESO TECH SUPPORT"
+        expect(p.concat('E04_05', 'E04_04')).to eq("ESO TECH SUPPORT")
       end
 
       it 'should concatenate field values for multiple fields of same element' do
-        p.concat('E09_17', 'E09_18').should == "Generalized Symptoms-Nausea and Vomiting Generalized Symptoms-Dehydration GI/GU-Diarrhea"
+        expect(p.concat('E09_17', 'E09_18')).to eq("Generalized Symptoms-Nausea and Vomiting Generalized Symptoms-Dehydration GI/GU-Diarrhea")
       end
 
       it 'should return empty when there are no data' do
-        p.concat('E12_08', 'E12_09').should == ""
+        expect(p.concat('E12_08', 'E12_09')).to eq("")
       end
 
       it 'should remove "Not Assessed" if other fields contains valid value' do
-        p.concat('E16_05', 'E15_02', 'E15_03').should == 'Bleeding Controlled'
+        expect(p.concat('E16_05', 'E15_02', 'E15_03')).to eq('Bleeding Controlled')
       end
 
       it 'should leave "Not Assessed" if it is the only value' do
-        p.concat('E16_05' ).should == 'Not Assessed'
+        expect(p.concat('E16_05' )).to eq('Not Assessed')
       end
 
       it 'should remove duplicate values' do
-        p.concat('E16_05', 'E15_03', 'E15_04', 'E15_05').should == 'Bleeding Controlled Burn'
+        expect(p.concat('E16_05', 'E15_03', 'E15_04', 'E15_05')).to eq('Bleeding Controlled Burn')
       end
     end
 
@@ -1947,28 +1948,28 @@ XML
 
       context 'Single Values' do
         it 'should be true when data values exist' do
-          p2.has_content('E20_03').should == true
+          expect(p2.has_content('E20_03')).to eq(true)
         end
 
         it 'should be false when no data values exist' do
-          p2.has_content('E23_02').should == false
+          expect(p2.has_content('E23_02')).to eq(false)
         end
 
         it 'should be false for -NN lookup value' do
-          p2.has_content('E23_01').should == false
+          expect(p2.has_content('E23_01')).to eq(false)
         end
       end
 
       context 'Entire range of elements' do
         it 'should be true when data values exist' do
-          p2.has_content('E02').should == true
+          expect(p2.has_content('E02')).to eq(true)
         end
         it 'should be true when data values exist' do
-          p2.has_content('E34').should == true
+          expect(p2.has_content('E34')).to eq(true)
         end
 
         it 'should be false when no data values exist' do
-          p2.has_content('E35').should == false
+          expect(p2.has_content('E35')).to eq(false)
         end
       end
     end
@@ -1977,16 +1978,16 @@ XML
 
   describe 'validate_key!' do
     it 'should accept normal integers' do
-      Nemsis::Parser.validate_key!("50003").should == 50003
+      expect(Nemsis::Parser.validate_key!("50003")).to eq(50003)
     end
     it 'should accept CPT codes' do
-      Nemsis::Parser.validate_key!("89.700").should == 89.7
+      expect(Nemsis::Parser.validate_key!("89.700")).to eq(89.7)
     end
     it 'should accept strings' do
-      Nemsis::Parser.validate_key!("Hot").should == "Hot"
+      expect(Nemsis::Parser.validate_key!("Hot")).to eq("Hot")
     end
     it 'should not accept nils' do
-      Nemsis::Parser.validate_key!(nil).should be_nil
+      expect(Nemsis::Parser.validate_key!(nil)).to be_nil
     end
   end
 
