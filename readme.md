@@ -1,3 +1,6 @@
+Update by Ievgen on 18th of December, 2017:
+I can't see this project used anywhere on the BE. If you find out that this project is used, add a comment. If you find out it's not used in a hear from now, remove this project.
+
 Note: This gem has been developed using ruby 1.9.2
 
 # NEMSIS
